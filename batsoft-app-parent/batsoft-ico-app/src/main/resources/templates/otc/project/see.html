@@ -1,0 +1,274 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+ <div class="ibox-title">
+                    <h5>查看 <small></small></h5>
+                    <div class="ibox-tools">
+    <a href="javascript:void(0)" class="toList" data-to-url="/ico/project/view/list">
+        <i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+</div>
+</div>
+<div class="ibox-content">
+    <form method="post" class="form form-horizontal">
+
+        <div id="projectRender"></div>
+        <script id="projectTpl" type="text/x-jsrender">
+
+            <div class="hr-line-dashed hidden"></div>
+            <div class="form-group hidden"><label class="col-sm-2 control-label">id</label>
+                <div class="col-sm-10"><input type="text" name="id" value="{{:id}}" class="form-control"></div>
+            </div>
+
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">项目名称<span class="text-danger">*</span></label>
+                <div class="col-sm-10"><input type="text" name="projectName"
+                                              value="{{:projectName}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">项目阶段 </label>
+                    <div class="col-sm-10"> <select name="projectLevel"  class="form-control">
+                            <option value="0" {{if projectLevel==0}}selected{{/if}}>未启动</option>
+                            <option value="1" {{if projectLevel==1}}selected{{/if}}>开发中</option>
+                            <option value="2" {{if projectLevel==2}}selected{{/if}}>已上市</option>
+                            <option value="3" {{if projectLevel==3}}selected{{/if}}>已盈利</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">真实姓名<span class="text-danger">*</span></label>
+                <div class="col-sm-10"><input type="text" name="truename"
+                                              value="{{:truename}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">国籍</label>
+                <div class="col-sm-10"><input type="text" name="nationality"
+                                              value="{{:nationality}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">详细地址</label>
+                <div class="col-sm-10"><input type="text" name="adress"
+                                              value="{{:adress}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">团队人数</label>
+                <div class="col-sm-10"><input type="text" name="teamNum"
+                                              value="{{:teamNum}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">融资阶段 </label>
+                    <div class="col-sm-10"> <select name="financingPhase"  class="form-control">
+                            <option value="0" {{if financingPhase==0}}selected{{/if}}>天使轮</option>
+                            <option value="1" {{if financingPhase==1}}selected{{/if}}>A轮</option>
+                            <option value="2" {{if financingPhase==2}}selected{{/if}}>B轮</option>
+                            <option value="3" {{if financingPhase==3}}selected{{/if}}>C轮</option>
+                            <option value="4" {{if financingPhase==4}}selected{{/if}}>D轮</option>
+                            <option value="5" {{if financingPhase==5}}selected{{/if}}>未融资</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">项目简介 </label>
+                                        <div class="col-sm-10"> <textarea class="form-control" placeholder="项目简介" name="projectBrief" >{{:projectBrief}}</textarea></div>
+                                    </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">宣传视频</label>
+                <div class="col-sm-10"><input type="text" name="propagandaUrl"
+                                              value="{{:propagandaUrl}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">项目介绍</label>
+                <div class="col-sm-10">
+                    <div class="summernote editor_projectIntroduction" data-name="projectIntroduction" >{{:projectIntroduction}}</div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">ico细则</label>
+                <div class="col-sm-10">
+                    <div class="summernote editor_icoDetails" data-name="icoDetails" >{{:icoDetails}}</div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+            <div class="form-group"><label class="col-sm-2 control-label">团队介绍</label>
+                <div class="col-sm-10">
+                    <div class="summernote editor_teamIntroduction" data-name="teamIntroduction" >{{:teamIntroduction}}</div>
+                </div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">币种 <span class="text-danger">*</span></label>
+                    <div class="col-sm-10"> <select name="currency"  class="form-control">
+                            <option value="BTC" {{if currency==BTC}}selected{{/if}}>BTC</option>
+                            <option value="ETH" {{if currency==ETH}}selected{{/if}}>ETH</option>
+                            <option value="ETC" {{if currency==ETC}}selected{{/if}}>ETC</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">投资金额是否限制 </label>
+                    <div class="col-sm-10"> <select name="ivestLimit"  class="form-control">
+                            <option value="0" {{if ivestLimit==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if ivestLimit==1}}selected{{/if}}>是</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">投资数额<span class="text-danger">*</span></label>
+                <div class="col-sm-10"><input type="text" name="amount"
+                                              value="{{:amount}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">回报说明 </label>
+                                        <div class="col-sm-10"> <textarea class="form-control" placeholder="回报说明" name="repayment" >{{:repayment}}</textarea></div>
+                                    </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">名额限制 </label>
+                    <div class="col-sm-10"> <select name="numLimit"  class="form-control">
+                            <option value="0" {{if numLimit==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if numLimit==1}}selected{{/if}}>是</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">支持限制 </label>
+                    <div class="col-sm-10"> <select name="supportLimit"  class="form-control">
+                            <option value="0" {{if supportLimit==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if supportLimit==1}}selected{{/if}}>是</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">是否包邮 </label>
+                    <div class="col-sm-10"> <select name="freeMail"  class="form-control">
+                            <option value="0" {{if freeMail==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if freeMail==1}}selected{{/if}}>是</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">回报时间(天)--预计ico结束？天内回报</label>
+                <div class="col-sm-10"><input type="text" name="backTime"
+                                              value="{{:backTime}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">ICO天数</label>
+                <div class="col-sm-10"><input type="text" name="icoDays"
+                                              value="{{:icoDays}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">联系人</label>
+                <div class="col-sm-10"><input type="text" name="contactPerson"
+                                              value="{{:contactPerson}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">联系电话</label>
+                <div class="col-sm-10"><input type="text" name="telphone"
+                                              value="{{:telphone}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">开始时间(申请多少天开始)</label>
+                <div class="col-sm-10"><input type="text" name="startTime"
+                                              value="{{:startTime}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">目标金额 </label>
+                    <div class="col-sm-10"> <select name="targetAmount"  class="form-control">
+                            <option value="0" {{if targetAmount==0}}selected{{/if}}>不限</option>
+                            <option value="1" {{if targetAmount==1}}selected{{/if}}>限制</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+                <div class="form-group"><label class="col-sm-2 control-label">审核状态 </label>
+                    <div class="col-sm-10"> <select name="status"  class="form-control">
+                            <option value="0" {{if status==0}}selected{{/if}}>申请中</option>
+                            <option value="2" {{if status==2}}selected{{/if}}>审核通过</option>
+                            <option value="3" {{if status==3}}selected{{/if}}>拒绝</option>
+                    </select></div>
+                </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">创建人Id</label>
+                <div class="col-sm-10"><input type="text" name="createId"
+                                              value="{{:createId}}"
+                                              class="form-control "></div>
+            </div>
+            <div class="hr-line-dashed"></div>
+
+
+            <div class="form-group"><label class="col-sm-2 control-label">创建人</label>
+                <div class="col-sm-10"><input type="text" name="creator"
+                                              value="{{:creator}}"
+                                              class="form-control "></div>
+            </div>
+
+
+        </script>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh", "summernote", DEV + "/page_ico_project"], function (a, e, c, h, b) {
+            b.see();
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

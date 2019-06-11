@@ -1,0 +1,28 @@
+spring:
+  mvc:
+    favicon:
+      enabled: false
+  application:
+    name: batsoft-job
+  cloud:
+    config:
+      profile: dev
+      label:
+      uri: http://127.0.0.1:8899/
+
+#eureka \u914D\u7F6E
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:6061/eureka/
+
+#log setting
+logging:
+  config: classpath:logback-spring.xml
+  path:   /usr/local/bttmall/logs/job
+#log setting
+
+
+
+
+

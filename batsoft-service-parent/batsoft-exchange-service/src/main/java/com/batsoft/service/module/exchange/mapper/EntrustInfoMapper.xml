@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>EntrustInfoMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:22:47 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.EntrustInfoDao">
+
+
+    <resultMap id="findPageBySqlMap" type="com.batsoft.model.module.exchange.vo.EntrustInfoVo">
+        <id column="id" property="id" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+        <result column="sell_account_id" property="sellAccountId" javaType="java.lang.String"/>
+        <result column="buy_account_id" property="buyAccountId" javaType="java.lang.String"/>
+        <result column="sell_customer_id" property="sellCustomerId" javaType="java.lang.String"/>
+        <result column="buy_customer_id" property="buyCustomerId" javaType="java.lang.String"/>
+        <result column="trade_coin_code" property="tradeCoinCode" javaType="java.lang.String"/>
+        <result column="pricing_coin_code" property="pricingCoinCode" javaType="java.lang.String"/>
+        <result column="type" property="type" javaType="java.lang.String"/>
+        <result column="entrust_price" property="entrustPrice" javaType="java.math.BigDecimal"/>
+        <result column="entrust_amout" property="entrustAmout" javaType="java.math.BigDecimal"/>
+        <result column="entrust_time" property="entrustTime" javaType="java.util.Date"/>
+        <result column="buy_user_name" property="buyUserName" javaType="java.lang.String"/>
+        <result column="sell_user_name" property="sellUserName" javaType="java.lang.String"/>
+        <result column="entrust_total_amunt" property="entrustTotalAmunt" javaType="java.math.BigDecimal"/>
+        <result column="entrust_total_money" property="entrustTotalMoney" javaType="java.math.BigDecimal"/>
+    </resultMap>
+
+
+    <!-- 通过定价币种和交易币种查询交易总数量 -->
+    <select id="getTotalAmunt" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+    SELECT SUM(entrust_amout) as entrust_total_amunt
+    FROM
+	  ${tablename}
+    WHERE
+	  trade_coin_code = #{tradeCoinCode}
+      AND pricing_coin_code =#{pricingCoinCode}
+    </select>
+
+
+    <!-- 通过定价币种和交易币种查询交易总价 -->
+    <select id="getTotalMoney" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        SELECT  sum(entrust_amout*entrust_price) as entrust_total_money FROM
+          ${tablename}
+        WHERE
+          trade_coin_code = #{tradeCoinCode}
+          AND pricing_coin_code =#{pricingCoinCode}
+    </select>
+
+
+    <!-- 通过sql分页查询 -->
+    <select id="findById" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        select * from ${tablename}
+        <where>
+            <if test="id != null">
+             id = #{id}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 通过sql分页查询 -->
+    <select id="findPageBySql" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        select * from ${tablename}
+        <where>
+            <if test="buy_order_id != null">
+              buy_order_id = #{buy_order_id}
+            </if>
+            <if test="coin_code != null">
+                AND coin_code = #{coin_code}
+            </if>
+        </where>
+        ORDER BY create_time DESC limit #{from},#{pageSize}
+    </select>
+
+    <!-- 通过sql分页查询 -->
+    <select id="findPageBySqlTotal" parameterType="java.util.Map" resultType="java.lang.Long">
+        select COUNT(*) from ${tablename}
+        <where>
+            <if test="buy_order_id != null">
+                 buy_order_id = #{buy_order_id}
+            </if>
+            <if test="coin_code != null">
+                AND coin_code = #{coin_code}
+            </if>
+        </where>
+        ORDER BY create_time DESC limit #{from},#{pageSize}
+    </select>
+
+    <delete id="deleteById"  parameterType="java.util.HashMap">
+        delete from ${tablename} where id in
+          <foreach  collection="id" item="item" open="(" separator=","  close=")">
+              #{item}
+          </foreach>
+    </delete>
+
+    <select id="sumOfBuyAmoutByStartTimeAndId" parameterType="java.util.Map" resultType="BigDecimal">
+        select  COALESCE(sum(entrust_amout),0) from ${tablename}
+        <where>
+            <if test=" id != null">
+                buy_customer_id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="coinCode != null ">
+                AND trade_coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode != null ">
+                AND pricing_coin_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                AND type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="create_time != null ">
+                AND create_time >= #{create_time,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <select id="sumOfSellAmoutByStartTimeAndId" parameterType="java.util.Map" resultType="BigDecimal">
+        select  COALESCE(sum(entrust_amout),0) from ${tablename}
+        <where>
+            <if test=" id != null">
+                sell_customer_id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="coinCode != null ">
+                AND trade_coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode != null ">
+                AND pricing_coin_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                AND type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="create_time != null ">
+                AND create_time >= #{create_time,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+    <!-- 通过userId分页查询 -->
+    <select id="findPageByUserId" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        SELECT info.entrust_time, info.trade_coin_code, info.pricing_coin_code, 'buy' AS type, entrust_price, entrust_amout, info.create_time 
+        FROM ${tablename} AS info 
+        INNER JOIN member_user AS mu ON info.buy_customer_id = mu.id AND info.buy_customer_id = #{user_id}
+        <if test="coin_code != null and coin_code != ''">
+            AND (trade_coin_code = #{coin_code} OR  pricing_coin_code = #{coin_code})
+        </if>
+		UNION ALL
+		SELECT info.entrust_time, info.trade_coin_code, info.pricing_coin_code, 'sell' AS type, entrust_price, entrust_amout, info.create_time 
+		FROM ${tablename} AS info 
+		INNER JOIN member_user AS mu ON info.sell_customer_id = mu.id AND info.sell_customer_id = #{user_id}
+		<if test="coin_code != null and coin_code != ''">
+            AND (trade_coin_code = #{coin_code} OR  pricing_coin_code = #{coin_code})
+        </if>
+		ORDER BY create_time LIMIT #{from},#{pageSize}
+    </select>
+
+    <!-- 通过userId分页查询 -->
+    <select id="findPageByUserIdTotal" parameterType="java.util.Map"
+            resultType="java.lang.Long">
+        SELECT COUNT(id) from ${tablename}
+        <where>
+            <if test="user_id != null">
+               (sell_customer_id = #{user_id} or buy_customer_id = #{user_id})
+            </if>
+            <if test="coin_code != null">
+                AND (trade_coin_code LIKE CONCAT('%', #{coin_code},'%') or  pricing_coin_code like CONCAT('%',#{coin_code},'%'))
+            </if>
+        </where>
+    </select>
+
+    <select id="findByTradePricingCoin" parameterType="java.util.Map" resultType="com.batsoft.model.module.exchange.vo.EntrustInfoVo">
+      SELECT
+        id,coin_code AS coinCode, entrust_price AS entrustPrice,
+        entrust_amout AS entrustAmout,entrust_time AS entrustTime,
+        sell_account_id AS sellAccountId,buy_account_id AS buyAccountId,
+        sell_customer_id AS sellCustomerId,buy_customer_id AS buyCustomerId,
+        trade_coin_code AS tradeCoinCode,buy_fee AS buyFee,buy_rate AS buyRate,
+        pricing_coin_code AS pricingCoinCode,`type`,sell_fee AS sellFee,
+        sell_rate AS sellRate,sell_order_id AS sellOrderId,buy_order_id AS buyOrderId,
+        platformCoin, buyPlatformCoin, sellPlatformCoin, platfromType, platfromRate
+      FROM ${tableName}
+      WHERE CONCAT(trade_coin_code,'_',pricing_coin_code) = #{coinPair}
+      ORDER BY entrust_time DESC
+      LIMIT 80
+    </select>
+	
+    <!-- 查询USDT交易量 -->
+    <select id="findTradeAmountFormUsdt" parameterType="java.util.Map" resultType="com.batsoft.model.module.exchange.vo.IndexUsdtTradeAmount">
+		SELECT SUM(emp.entrust_price * emp.entrust_amout * emp.real_time_usdt_rate) AS tradeCoinAmount, 
+		
+		SUM(emp.entrust_price * (emp.buy_fee + emp.sell_fee) * emp.real_time_usdt_rate) AS feeCoinAmount
+		
+		FROM ${tablename} AS emp
+    </select>
+	
+</mapper>

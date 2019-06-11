@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppRoleMenuMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-05-13 16:56:07 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.manage.AppRoleMenuDao">
+
+    <resultMap id="roleMenu" type="com.batsoft.model.module.system.manage.AppRoleMenu">
+        <result column="menu_id" property="menuId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="hasRoleMenu" parameterType="com.batsoft.model.module.system.manage.AppRoleMenu" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM system_app_role_menu
+        where role_id = #{roleId} and menu_id=#{menuId}
+    </select>
+
+    <delete id="removeRoleMenu" parameterType="java.lang.String" >
+        DELETE
+        FROM system_app_role_menu
+        where role_id = #{roleId}
+    </delete>
+
+    <select id="findRoleMenus" resultMap="roleMenu" parameterType="java.lang.String">
+        SELECT
+        menu_id
+        FROM system_app_role_menu
+        where role_id=#{roleId} and del='0'
+    </select>
+
+</mapper>

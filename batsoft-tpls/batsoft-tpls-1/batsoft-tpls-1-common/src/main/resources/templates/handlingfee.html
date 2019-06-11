@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style>
+        .about-topHeader .jWrap {
+            width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            height: 60px;
+            line-height: 60px;
+            margin-top: 19px;
+        }.about-topHeader .jWrap h1 {
+             font-size: 20px;
+             font-weight: 400;
+             text-indent: 26px;
+             line-height: 60px;
+         }
+        .about-list {
+            padding: 34px 28px;
+        }
+        .article-body p{
+            margin-bottom: 8px;
+        }
+        .mi_ipad tr{
+            height: 40px;
+            line-height: 40px;
+            color: #232a4a;
+            border-bottom: 1px dotted #F3F4F8;
+            text-align: center;
+        }
+        .mi_ipad tr td{
+            color:#262A42;
+        }
+        body, html {
+            height: 100%;
+            background-color: #F3F4F8;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper" style="background:#F3F4F8 ">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="join-wrap">
+        <div class="about-topHeader" style="background:none;border-bottom: none;">
+            <div class="jWrap">
+                <h1>手续费</h1>
+            </div>
+        </div>
+        <div class="about-main clearfix">
+            <div class="about-list">
+                <section class="article-info">
+                    <div class="article-content">
+                        <div class="article-body">
+                            <table style="width: 100%;border-collapse: collapse;" class="mi_ipad">
+                                <tr style=" color: #d1d3df;height: 40px;line-height: 40px;">
+                                    <th>交易对</th>
+                                    <th>挂单</th>
+                                    <th>吃单</th>
+                                </tr>
+                                <tr>
+                                    <td>BTC/USDT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>ETH/USDT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>BT/USDT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>JT/BT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>CPT/BT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>HAT/BT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>MT/BT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+                                <tr>
+                                    <td>MTT/BT</td>
+                                    <td>0.10%</td>
+                                    <td>0.10%</td>
+                                </tr>
+
+
+
+                            </table>
+                        </div>
+                        <!--<div class="article-attachments">-->
+                            <!--<ul class="attachments">-->
+
+                            <!--</ul>-->
+                        <!--</div>-->
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+
+    <script>
+        seajs.use([DEV + "/main","socketjs","stomp","numeral"], function (main,a,b,numeral) {
+
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+</body>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

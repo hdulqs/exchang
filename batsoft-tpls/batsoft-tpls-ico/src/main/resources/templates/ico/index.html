@@ -1,0 +1,643 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent clearfix')"></span>
+
+    <!-- SLIDER -->
+    <section id="slider" class="fullheight m-0"
+             data-background-delay="3500"
+             data-background-fade="1000"
+             data-background="
+					http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/1.jpg
+					,http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/2.jpg
+					,http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/3.jpg
+			">
+
+
+        <!-- Backstretch Navigation -->
+        <a class="bs-next" href="#"></a>
+        <a class="bs-prev" href="#"></a>
+
+
+        <div class="display-table">
+            <div class="display-table-cell vertical-align-middle">
+
+                <div class="container text-center">
+
+                    <h1 class="fw-300 mt-30 mb-0 wow fadeIn animated" data-wow-delay="0.6s">SMARTY BACKSTRETCH</h1>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <span class="raster overlay dark-3 z-index-0"><!-- dark|light overlay [0 to 9 opacity] --></span>
+
+
+    </section>
+    <!-- /SLIDER -->
+
+    <!-- projects -->
+    <section class="section-sm">
+        <div class="container">
+
+            <div class="row property-item-list">
+
+                <div class="col-xs-12 col-md-3">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box property-featured-yellow">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-green text-white">进行中</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <!-- countdown -->
+                            <div class="property-item-counter" data-text="距离开始">
+                                <div class="countdown" data-from="January 31, 2018 15:03:26" data-labels="years,months,weeks,days,hour,min,sec"><!-- Example Date From: December 31, 2018 15:03:26 --></div>
+                            </div>
+                            <!-- /countdown -->
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/joseph-albanese-102983-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >70%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/invest/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-3">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-green text-white">进行中</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+
+                            <!-- countdown -->
+                            <div class="property-item-counter" data-text="距离结束">
+                                <div class="countdown" data-from="January 31, 2018 15:03:26" data-labels="years,months,weeks,days,hour,min,sec"><!-- Example Date From: December 31, 2018 15:03:26 --></div>
+                            </div>
+                            <!-- /countdown -->
+
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/vita-vilcina-3217-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >70%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-3">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-blue text-white">已结束</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <span class="rating rating-4 fs-17 text-white"><!-- rating-1 ... rating-5 --></span>
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/david-everett-strickler-196946-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >70%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-3">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/evelyn-paris-95853-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >100%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </section>
+    <!-- /projects -->
+
+    <section class="text-center">
+        <div class="container">
+            <header class="text-center mb-60">
+                <h2>为什么选择BATSOFT ICO 平台</h2>
+            </header>
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-info-circle fa-5x"></i>
+                    <h2 class="fs-17 mt-6">中国最早的ICO平台之一</h2>
+                    <p class="text-muted">BATSOFT为国内领先的ICO专业服务平台，现核心成员多为清华大学等名校硕、博士，谷歌、微软、Airbnb、盛大网络等著名互联网公司高级研发或架构师。</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">安全可靠的ICO平台</h2>
+                    <p class="text-muted">BATSOFT掌握业界前沿技术，保障项目及投资者资金安全，可做到七天无理由退币。自成立起，已为众多明星项目提供ICO平台服务。更多项目即将陆续登陆平台。</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-comments-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">专业权威的ICO平台</h2>
+                    <p class="text-muted">BATSOFT团队对各个项目进行全面评估，选取可靠性较高的项目，维护平台投资者权益。服务团队长期在线，及时为用户处理相关需求。</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- -->
+    <section>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Passion</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Precision</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Simplicity</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix fs-20 block relative p-10" href="#">
+                                <span class="float-right text-black fs-14">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- / -->
+
+    <!-- 友情链接-->
+    <section class="section-sm">
+        <div class="container">
+
+            <header class="text-center mb-60">
+                <h4>合作伙伴</h4>
+            </header>
+
+
+            <ul class="row clients-dotted list-inline">
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/3.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/4.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/5.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/6.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/7.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/8.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <!-- /友情链接-->
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_backstretch"], function () {
+        });
+    </script>
+</div>
+
+</body>
+</html>

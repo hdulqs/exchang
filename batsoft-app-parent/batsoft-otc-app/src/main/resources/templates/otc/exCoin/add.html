@@ -1,0 +1,148 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>币种信息新增 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+                             <a href="javascript:void(0)" class="toList" data-to-url="/otc/exCoin/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <form  method="post" th:action="@{/otc/exCoin/save}"
+                               class="form">
+
+
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币种名称 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="币种名称" name="coinName" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币种代码 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="币种代码" name="symbol" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-4">
+                                        <div class="form-group"><label class=" control-label">买手续费 </label>
+                                         <input type="text" placeholder="买手续费" name="buyFee" value="0.0" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-4">
+                                        <div class="form-group"><label class=" control-label">卖手续费 </label>
+                                         <input type="text" placeholder="卖手续费" name="sellFee" value="0.0" class="form-control  ">
+                                        </div>
+                            </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group"><label class=" control-label">提现手续费 </label>
+                                        <input type="text" placeholder="提现手续费" name="withdrawFee" value="0.0" class="form-control  ">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group"><label class=" control-label">排序 <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="排序" name="sort" value="0" class="form-control  ">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="form-group"><label class=" control-label">充值节点确认个数 <span class="text-danger">*</span></label>
+                                        <input type="text" placeholder="充值节点确认个数" name="coinConfirm" value="0.0" class="form-control  ">
+                                    </div>
+                                </div>
+                            <div class="col-sm-4">
+                                    <div class="form-group"><label class=" control-label">状态 </label>
+                                    <select name="status"  class="form-control">
+                                                <option value="0" >禁用</option>
+                                                <option value="1" selected>正常</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">币种logo </label>
+                                        <div class="container">
+                                            <div th:replace="layout/common/imgUpload :: imgUpload('coinLogo','')">
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-12">
+                                    <div class="form-group"><label class=" control-label">币种介绍 </label>
+                                       <textarea class="form-control" placeholder="币种介绍" name="coinRemark" ></textarea>
+                                    </div>
+                            </div>
+                            </div>
+
+
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                        <div th:replace="layout/common/handler :: handler">
+
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",   "dropzone", DEV + "/page_upload",  DEV + "/page_otc_exCoin"], function (a, e, c, i, upload,  b) {
+            b.add();
+         upload.imageUpload(); 
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

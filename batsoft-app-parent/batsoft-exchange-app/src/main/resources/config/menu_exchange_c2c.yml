@@ -1,0 +1,129 @@
+menus:
+  name: C2C业务管理
+  key: exchange_c2c
+  path: exchange_c2c
+  icon: appstore-o
+  description: C2C业务管理
+  item:
+  - name: c2c交易订单管理
+    key: exchange_c2cOrder
+    icon: appstore-o
+    path: c2cOrder/list
+    menu: 1
+    permission: exchange:c2cOrder:list
+    description: c2c交易订单表管理
+    item:
+    - name: 增加
+      key: exchange_c2cOrder_add
+      icon: appstore-o
+      path: c2cOrder/add
+      menu: 0
+      permission: exchange:c2cOrder:add
+      description: c2c交易订单增加
+    - name: 修改
+      key: exchange_c2cOrder_edit
+      icon: appstore-o
+      path: c2cOrder/edit
+      menu: 0
+      permission: exchange:c2cOrder:edit
+      description: c2c交易订单修改
+    - name: 查看
+      key: exchange_c2cOrder_see
+      icon: appstore-o
+      path: c2cOrder/info
+      menu: 0
+      permission: exchange:c2cOrder:see
+      description: c2c交易订单查看
+    - name: 审核通过
+      key: exchange_c2cOrder_passStatus
+      icon: appstore-o
+      path: c2cOrder/passStatus
+      menu: 0
+      permission: exchange:c2cOrder:passStatus
+      description: c2c订单审核通过
+    - name: 审核拒绝
+      key: exchange_c2cOrder_refuseStatus
+      icon: appstore-o
+      path: c2cOrder/refuseStatus
+      menu: 0
+      permission: exchange:c2cOrder:refuseStatus
+      description: c2c订单审核拒绝
+    - name: 删除
+      key: exchange_c2cOrder_remove
+      icon: appstore-o
+      path: c2cOrder/remove
+      menu: 0
+      permission: exchange:c2cOrder:remove
+      description: c2c交易订单表删除
+  - name: c2c商户管理
+    key: exchange_c2cUser
+    icon: appstore-o
+    path: c2cUser/list
+    menu: 1
+    permission: exchange:c2cUser:list
+    description: c2c商户管理
+    item:
+    - name: 增加
+      key: exchange_c2cUser_add
+      icon: appstore-o
+      path: c2cUser/add
+      menu: 0
+      permission: exchange:c2cUser:add
+      description: c2c商户增加
+    - name: 修改
+      key: exchange_c2cUser_edit
+      icon: appstore-o
+      path: c2cUser/edit
+      menu: 0
+      permission: exchange:c2cUser:edit
+      description: c2c商户修改
+    - name: 查看
+      key: exchange_c2cUser_see
+      icon: appstore-o
+      path: c2cUser/info
+      menu: 0
+      permission: exchange:c2cUser:see
+      description: c2c商户查看
+    - name: 删除
+      key: exchange_c2cUser_remove
+      icon: appstore-o
+      path: c2cUser/remove
+      menu: 0
+      permission: exchange:c2cUser:remove
+      description: c2c商户删除
+  - name: c2c代币管理
+    key: exchange_c2cProduct
+    icon: appstore-o
+    path: c2cProduct/list
+    menu: 1
+    permission: exchange:c2cProduct:list
+    description: c2c代币管理
+    item:
+    - name: 增加
+      key: exchange_c2cProduct_add
+      icon: appstore-o
+      path: c2cProduct/add
+      menu: 0
+      permission: exchange:c2cProduct:add
+      description: c2c代币增加
+    - name: 修改
+      key: exchange_c2cProduct_edit
+      icon: appstore-o
+      path: c2cProduct/edit
+      menu: 0
+      permission: exchange:c2cProduct:edit
+      description: c2c代币修改
+    - name: 查看
+      key: exchange_c2cProduct_see
+      icon: appstore-o
+      path: c2cProduct/info
+      menu: 0
+      permission: exchange:c2cProduct:see
+      description: c2c代币查看
+    - name: 删除
+      key: exchange_c2cProduct_remove
+      icon: appstore-o
+      path: c2cProduct/remove
+      menu: 0
+      permission: exchange:c2cProduct:remove
+      description: c2c代币删除

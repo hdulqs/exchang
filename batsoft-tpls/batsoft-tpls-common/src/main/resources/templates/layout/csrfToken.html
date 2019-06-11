@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="csrfToken">
+    <input class="hide" name="_csrf" th:value="${@globalService.csrfToken()}">
+      </div>
+	
+</body>
+</html>
+

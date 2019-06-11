@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+
+<!-- 友情鏈接模板  -->
+<div th:fragment="friendLink" >
+    <!-- SLIDER -->
+    <section class="section-sm">
+        <div class="container">
+
+            <header class="text-center mb-60">
+                <h2>合作伙伴</h2>
+            </header>
+            <hr class="mb-60">
+            <ul class="row clients-dotted list-inline" id="friendLinkId">
+            </ul>
+
+        </div>
+    </section>
+    <!-- SLIDER -->
+    <script id="friendLink_temp" type="text/x-jsrender">
+       <li class="col-md-5th col-sm-5th col-xs-6">
+            <a href="{{:linkUrl}}}">
+                <img class="img-fluid" style="width:137px; height:77px" th:src="@{${@globalService.fileHost()}+'{{:imageUrl}}'}" alt="client">
+            </a>
+       </li>
+    </script>
+    <!-- js加载项 -->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script>
+            seajs.use([DEV + "/main","jquery_backstretch",DEV+"/page_friend"], function (a,c,d) {
+                d.list();
+            });
+        </script>
+    </div>
+</div>
+
+<!-- 友情鏈接模板  側滑  -->
+<div th:fragment="friendLink_change" >
+    <!-- SLIDER -->
+    <!-- BRANDS -->
+    <section class="section-xs">
+        <div class="container">
+            <div class="text-center">
+                <div class="owl-carousel m-0 owl-theme owl-carousel-init" data-plugin-options="{&quot;singleItem&quot;: false, &quot;autoPlay&quot;: 3000}" style="opacity: 1; display: block;">
+                    <div class="owl-wrapper-outer"><div class="owl-wrapper" style="width: 3648px; left: 0px; display: block; transition: all 1000ms ease; transform: translate3d(0px, 0px, 0px);">
+                        <div id="friendLink_changeId"></div>
+                    </div></div>
+                    <div class="owl-controls clickable"><div class="owl-pagination"><div class="owl-page active"><span class=""></span></div><div class="owl-page"><span class=""></span></div></div></div></div>
+            </div>
+        </div>
+    </section>
+    <!-- SLIDER -->
+    <script id="friendLink_change_temp" type="text/x-jsrender">
+        <div class="owl-item" style="width: 228px; height: 150px;"><div>
+            <img class="img-fluid" th:src="@{${@globalService.fileHost()}+'{{:imageUrl}}'}" alt="">
+        </div></div>
+    </script>
+    <!-- js加载项 -->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script>
+            seajs.use([DEV + "/main","jquery_backstretch",DEV+"/page_friend"], function (a,c,d) {
+                d.changeList();
+            });
+        </script>
+    </div>
+</div>
+
+</body>
+</html>

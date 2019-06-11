@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+    <style>
+        .aboutHeader { width: 1200px; height:99px; margin: 0 auto; line-height: 99px; font-size: 20px; background: url(../images/newindex/about-top-bg.jpg) no-repeat right center; }
+
+        .content { margin: 20px 0; padding: 60px 90px; border: #eaeaea 1px solid; background-color: #ffffff; overflow: hidden; line-height: 26px; color: #666666;}
+        .content img { max-width: 100%; height: auto; }
+        .content p { padding: 8px 0;}
+
+        p.rateTit { line-height: 40px; font-size: 16px; margin-top: 20px;}
+
+        .mapBox { width: 530px; height: 315px; margin-right: 55px; float: left; background-color: #ffffff; padding: 5px; border: #eeeeee 1px solid; box-shadow: 0px 3px 5px 2px rgba(0, 0, 0, .1);}
+        .contactUl { overflow: hidden; padding-top: 70px; }
+        .contactUl li { line-height: 30px; padding: 12px 0;}
+        .icoContact { width: 30px; height: 30px; display: inline-block; vertical-align: top; background-image: url(../images/newindex/ico_contact.png); background-repeat: no-repeat; margin-right: 25px;}
+        .icoContact.c_email { background-position: 0 0;}
+        .icoContact.c_twitter { background-position: 0 -40px;}
+        .icoContact.c_address { background-position: 0 -80px;}
+        .accountInfo-lists{width:1012px;border:1px solid #e6e6e6; margin: 0 auto}
+        .accountInfo-lists li{clear:both;border:none;border-top:1px solid #f0f0f0;padding:0;height: 30px;}
+        .accountInfo-lists li:nth-child(odd){background: #fbfbfb}
+        .accountInfo-lists li:nth-child(odd){background: #fbfbfb}
+        .accountInfo-lists li:nth-child(even){background: #fff}
+
+        .accountInfo-lists li.bg{background:rgba(232,179,66,0.05);}
+        .accountInfo-lists li .items{padding:0 0;height: 30px;line-height: 30px}
+        .accountInfo-lists li .items>div{box-sizing:border-box;width:200px;padding-left:26px;border-left:1px solid #f0f0f0;}
+        .accountInfo-lists li .items>div:nth-child(1){border:none;}
+        .accountInfo-lists li .items img{display:inline-block;vertical-align:middle;width:16px;height:16px;margin:-4px 6px 0 0;}
+        .tl-right{text-align:center;}
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap">
+        <div class="aboutHeader">费率标准</div>
+    </div>
+    <div class="wrapMain">
+        <div class="content">
+            <p class="rateTit">充值费率</p>
+            <p>免费</p>
+            <p class="rateTit">交易费率</p>
+            <p>Maker：0.1%</p>
+            <p>Taker：0.1%</p>
+            <p class="rateTit">提现费率</p>
+            <ul class="accountInfo-lists">
+                <li class="th">
+                    <div class="items">
+                        <div class="coin fl">币种</div>
+                        <div class="fullName fl">币种全称</div>
+                        <div class="total fl">最小提币数量</div>
+                        <div class="useable fl">提币手续费</div>
+                        <div class="total fl tl-right">提币基础费用</div>
+                    </div>
+                </li>
+                
+                <li class="td">
+                    <div class="items">
+                        <div class="coin fl">
+                            <img src="https://Batsoft.s3.ap-southeast-1.amazonaws.com/images/cf66caa852973a3779cd3b046d0f9a0a.png" alt="">
+                            BTC
+                        </div>
+                        <div class="fullName fl">Bitcoin</div>
+                        <div class="total fl">0.05</div>
+                        <div class="useable fl">
+                            0.002
+                        </div>
+                        <div class="base_fee fl tl-right">0</div>
+                    </div>
+                </li>
+                <li class="td">
+                    <div class="items">
+                        <div class="coin fl">
+                            <img src="https://Batsoft.s3.ap-southeast-1.amazonaws.com/images/7d3aa8827b607bb4ff414fbfb414cb2c.png" alt="">
+                            ETH
+                        </div>
+                        <div class="fullName fl">Ethereum</div>
+                        <div class="total fl">0.1</div>
+                        <div class="useable fl">
+                            0.01
+                        </div>
+                        <div class="base_fee fl tl-right">0</div>
+                    </div>
+                </li>
+               
+            </ul>
+            <div class="cl"></div>
+        </div>
+    </div>
+
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+
+</body>
+</html>

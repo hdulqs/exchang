@@ -1,0 +1,1 @@
+define("static/front/dist/script/page_loadJs",["bootstrap"],function(require,exports,module){require("bootstrap"),module.exports={Init:function(){}}});

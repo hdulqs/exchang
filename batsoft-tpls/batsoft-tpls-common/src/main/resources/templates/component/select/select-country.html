@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+
+
+
+    <select th:name="${name}" id="countryCode"     class="form-control select2"
+            data-placeholder="选择国家" th:fragment="country(name,def)">
+        <option value=""></option>
+
+        <optgroup  label="Asia"/>
+
+        <option value="AF" currency="AFN"
+
+
+        >阿富汗1</option>
+
+        <option value="AM" currency="AMD"
+
+
+        >亚美尼亚</option>
+
+        <option value="AZ" currency="AZN"
+
+
+        >阿塞拜疆</option>
+
+        <option value="BH" currency="BHD"
+
+
+        >巴林</option>
+
+        <option value="BD" currency="BDT"
+
+
+        >孟加拉</option>
+
+        <option value="BT" currency="BTN"
+
+
+        >不丹</option>
+
+        <option value="IO" currency="USD"
+
+
+        >英属印度洋领地</option>
+
+        <option value="BN" currency="BND"
+
+
+        >文莱</option>
+
+        <option value="KH" currency="KHR"
+
+
+        >柬埔寨</option>
+
+        <option value="CN" currency="CNY"
+                selected="true"
+
+        >中国</option>
+
+        <option value="CX" currency="AUD"
+
+
+        >圣诞岛</option>
+
+        <option value="CC" currency="AUD"
+
+
+        >科科斯群岛</option>
+
+        <option value="GE" currency="GEL"
+
+
+        >格鲁吉亚</option>
+
+        <option value="HK" currency="HKD"
+
+
+        >香港</option>
+
+        <option value="IN" currency="INR"
+
+
+        >印度</option>
+
+        <option value="ID" currency="IDR"
+
+
+        >印尼</option>
+
+        <option value="IR" currency="IRR"
+
+
+        >伊朗</option>
+
+        <option value="IQ" currency="IQD"
+
+
+        >伊拉克</option>
+
+        <option value="IL" currency="ILS"
+
+
+        >以色列</option>
+
+        <option value="JP" currency="JPY"
+
+
+        >日本</option>
+
+        <option value="JO" currency="JOD"
+
+
+        >约旦</option>
+
+        <option value="KZ" currency="KZT"
+
+
+        >哈萨克斯坦</option>
+
+        <option value="KW" currency="KWD"
+
+
+        >科威特</option>
+
+        <option value="KG" currency="KGS"
+
+
+        >吉尔吉斯斯坦</option>
+
+        <option value="LA" currency="LAK"
+
+
+        >老挝</option>
+
+        <option value="LB" currency="LBP"
+
+
+        >黎巴嫩</option>
+
+        <option value="MO" currency="MOP"
+
+
+        >澳门</option>
+
+        <option value="MY" currency="MYR"
+
+
+        >马来西亚</option>
+
+        <option value="MV" currency="MVR"
+
+
+        >马尔代夫</option>
+
+        <option value="MN" currency="MNT"
+
+
+        >蒙古</option>
+
+        <option value="MM" currency="MMK"
+
+
+        >缅甸</option>
+
+        <option value="NP" currency="NPR"
+
+
+        >尼泊尔</option>
+
+        <option value="KP" currency="KPW"
+
+
+        >朝鲜</option>
+
+        <option value="OM" currency="OMR"
+
+
+        >阿曼</option>
+
+        <option value="PK" currency="PKR"
+
+
+        >巴基斯坦</option>
+
+        <option value="PS" currency="ILS"
+
+
+        >巴勒斯坦</option>
+
+        <option value="QA" currency="QAR"
+
+
+        >卡塔尔</option>
+
+        <option value="SA" currency="SAR"
+
+
+        >沙特阿拉伯</option>
+
+        <option value="SG" currency="SGD"
+
+
+        >新加坡</option>
+
+        <option value="TR" currency="TRY"
+
+
+        >土耳其</option>
+
+        <option value="KR" currency="KRW"
+
+
+        >韩国</option>
+
+        <option value="LK" currency="LKR"
+
+
+        >斯里兰卡</option>
+
+        <option value="SY" currency="SYP"
+
+
+        >叙利亚</option>
+
+        <option value="TW" currency="TWD"
+
+
+        >台湾</option>
+
+        <option value="TJ" currency="TJS"
+
+
+        >塔吉克斯坦</option>
+
+        <option value="TH" currency="THB"
+
+
+        >泰国</option>
+
+        <option value="PH" currency="PHP"
+
+
+        >菲律宾</option>
+
+        <option value="TM" currency="TMT"
+
+
+        >土库曼斯坦</option>
+
+        <option value="AE" currency="AED"
+
+
+        >阿联酋</option>
+
+        <option value="UZ" currency="UZS"
+
+
+        >乌兹别克斯坦</option>
+
+        <option value="VN" currency="VND"
+
+
+        >越南</option>
+
+        <option value="YE" currency="YER"
+
+
+        >也门</option>
+
+
+        <optgroup  label="Europe"/>
+
+        <option value="AX" currency="EUR"
+
+
+        >奥兰群岛</option>
+
+        <option value="AL" currency="ALL"
+
+
+        >阿尔巴尼亚</option>
+
+        <option value="AD" currency="EUR"
+
+
+        >安道尔</option>
+
+        <option value="AT" currency="EUR"
+
+
+        >奥地利</option>
+
+        <option value="BY" currency="BYR"
+
+
+        >白俄罗斯</option>
+
+        <option value="BE" currency="EUR"
+
+
+        >比利时</option>
+
+        <option value="BA" currency="BAM"
+
+
+        >波黑</option>
+
+        <option value="BG" currency="BGN"
+
+
+        >保加利亚</option>
+
+        <option value="BQ" currency="EUR"
+
+
+        >荷兰加勒比区</option>
+
+        <option value="HR" currency="HRK"
+
+
+        >克罗地亚</option>
+
+        <option value="CY" currency="EUR"
+
+
+        >塞浦路斯</option>
+
+        <option value="CZ" currency="CZK"
+
+
+        >捷克</option>
+
+        <option value="DK" currency="DKK"
+
+
+        >丹麦</option>
+
+        <option value="EE" currency="EUR"
+
+
+        >爱沙尼亚</option>
+
+        <option value="FO" currency="DKK"
+
+
+        >法罗群岛</option>
+
+        <option value="FI" currency="EUR"
+
+
+        >芬兰</option>
+
+        <option value="FR" currency="EUR"
+
+
+        >法国</option>
+
+        <option value="DE" currency="EUR"
+
+
+        >德国</option>
+
+        <option value="GI" currency="GIP"
+
+
+        >直布罗陀</option>
+
+        <option value="GB" currency="GBP"
+
+
+        >英国</option>
+
+        <option value="GR" currency="EUR"
+
+
+        >希腊</option>
+
+        <option value="GG" currency="GBP"
+
+
+        >根西岛</option>
+
+        <option value="HU" currency="HUF"
+
+
+        >匈牙利</option>
+
+        <option value="IS" currency="ISK"
+
+
+        >冰岛</option>
+
+        <option value="IE" currency="EUR"
+
+
+        >爱尔兰</option>
+
+        <option value="IM" currency="GBP"
+
+
+        >马恩岛</option>
+
+        <option value="IT" currency="EUR"
+
+
+        >意大利</option>
+
+        <option value="JE" currency="GBP"
+
+
+        >泽西岛</option>
+
+        <option value="LV" currency="EUR"
+
+
+        >拉脱维亚</option>
+
+        <option value="LI" currency="CHF"
+
+
+        >列支敦士登</option>
+
+        <option value="LT" currency="EUR"
+
+
+        >立陶宛</option>
+
+        <option value="LU" currency="EUR"
+
+
+        >卢森堡</option>
+
+        <option value="MT" currency="EUR"
+
+
+        >马耳他</option>
+
+        <option value="MD" currency="MDL"
+
+
+        >摩尔多瓦</option>
+
+        <option value="MC" currency="EUR"
+
+
+        >摩纳哥</option>
+
+        <option value="ME" currency="EUR"
+
+
+        >黑山</option>
+
+        <option value="NL" currency="EUR"
+
+
+        >荷兰</option>
+
+        <option value="NO" currency="NOK"
+
+
+        >挪威</option>
+
+        <option value="PL" currency="PLN"
+
+
+        >波兰</option>
+
+        <option value="PT" currency="EUR"
+
+
+        >葡萄牙</option>
+
+        <option value="MK" currency="MKD"
+
+
+        >马其顿</option>
+
+        <option value="RO" currency="RON"
+
+
+        >罗马尼亚</option>
+
+        <option value="RU" currency="RUB"
+
+
+        >俄罗斯</option>
+
+        <option value="SM" currency="EUR"
+
+
+        >圣马力诺</option>
+
+        <option value="RS" currency="RSD"
+
+
+        >塞尔维亚</option>
+
+        <option value="SK" currency="EUR"
+
+
+        >斯洛伐克</option>
+
+        <option value="SI" currency="EUR"
+
+
+        >斯洛文尼亚</option>
+
+        <option value="ES" currency="EUR"
+
+
+        >西班牙</option>
+
+        <option value="SE" currency="SEK"
+
+
+        >瑞典</option>
+
+        <option value="CH" currency="CHF"
+
+
+        >瑞士</option>
+
+        <option value="SJ" currency="NOK"
+
+
+        >斯瓦尔巴群岛和扬马延岛</option>
+
+        <option value="UA" currency="UAH"
+
+
+        >乌克兰</option>
+
+        <option value="VA" currency="EUR"
+
+
+        >梵蒂冈</option>
+
+
+        <optgroup  label="Africa"/>
+
+        <option value="DZ" currency="DZD"
+
+
+        >阿尔及利亚</option>
+
+        <option value="AO" currency="AOA"
+
+
+        >安哥拉</option>
+
+        <option value="BJ" currency="XOF"
+
+
+        >贝宁</option>
+
+        <option value="BW" currency="BWP"
+
+
+        >博茨瓦纳</option>
+
+        <option value="BF" currency="XOF"
+
+
+        >布基纳法索</option>
+
+        <option value="BI" currency="BIF"
+
+
+        >布隆迪</option>
+
+        <option value="CI" currency="XOF"
+
+
+        >科特迪瓦</option>
+
+        <option value="CM" currency="XAF"
+
+
+        >喀麦隆</option>
+
+        <option value="CV" currency="CVE"
+
+
+        >佛得角</option>
+
+        <option value="CF" currency="XAF"
+
+
+        >中非</option>
+
+        <option value="TD" currency="XAF"
+
+
+        >乍得</option>
+
+        <option value="CD" currency="CDF"
+
+
+        >刚果（金）</option>
+
+        <option value="DJ" currency="DJF"
+
+
+        >吉布提</option>
+
+        <option value="EG" currency="EGP"
+
+
+        >埃及</option>
+
+        <option value="GQ" currency="XAF"
+
+
+        >赤道几内亚</option>
+
+        <option value="ER" currency="ERN"
+
+
+        >厄立特里亚</option>
+
+        <option value="ET" currency="ETB"
+
+
+        >埃塞俄比亚</option>
+
+        <option value="GA" currency="XAF"
+
+
+        >加蓬</option>
+
+        <option value="GM" currency="GMD"
+
+
+        >冈比亚</option>
+
+        <option value="GH" currency="GHS"
+
+
+        >加纳</option>
+
+        <option value="GW" currency="XOF"
+
+
+        >几内亚比绍</option>
+
+        <option value="KE" currency="KES"
+
+
+        >肯尼亚</option>
+
+        <option value="LS" currency="LSL"
+
+
+        >莱索托</option>
+
+        <option value="LR" currency="LRD"
+
+
+        >利比里亚</option>
+
+        <option value="LY" currency="LYD"
+
+
+        >利比亚</option>
+
+        <option value="MG" currency="MGA"
+
+
+        >马达加斯加</option>
+
+        <option value="MW" currency="MWK"
+
+
+        >马拉维</option>
+
+        <option value="ML" currency="XOF"
+
+
+        >马里</option>
+
+        <option value="MR" currency="MRO"
+
+
+        >毛里塔尼亚</option>
+
+        <option value="MU" currency="MUR"
+
+
+        >毛里求斯</option>
+
+        <option value="YT" currency="EUR"
+
+
+        >马约特</option>
+
+        <option value="MA" currency="MAD"
+
+
+        >摩洛哥</option>
+
+        <option value="MZ" currency="MZN"
+
+
+        >莫桑比克</option>
+
+        <option value="NA" currency="NAD"
+
+
+        >纳米比亚</option>
+
+        <option value="NR" currency="AUD"
+
+
+        >瑙鲁</option>
+
+        <option value="NE" currency="XOF"
+
+
+        >尼日尔</option>
+
+        <option value="NG" currency="NGN"
+
+
+        >尼日利亚</option>
+
+        <option value="CG" currency="XAF"
+
+
+        >刚果（布）</option>
+
+        <option value="RE" currency="EUR"
+
+
+        >留尼汪</option>
+
+        <option value="RW" currency="RWF"
+
+
+        >卢旺达</option>
+
+        <option value="ST" currency="STD"
+
+
+        >圣多美和普林西比</option>
+
+        <option value="SN" currency="XOF"
+
+
+        >塞内加尔</option>
+
+        <option value="SC" currency="SCR"
+
+
+        >塞舌尔</option>
+
+        <option value="SL" currency="SLL"
+
+
+        >塞拉利昂</option>
+
+        <option value="SO" currency="SOS"
+
+
+        >索马里</option>
+
+        <option value="ZA" currency="ZAR"
+
+
+        >南非</option>
+
+        <option value="SS" currency="SSP"
+
+
+        >南苏丹</option>
+
+        <option value="SH" currency="SHP"
+
+
+        >圣赫勒拿</option>
+
+        <option value="SD" currency="SDG"
+
+
+        >苏丹</option>
+
+        <option value="SZ" currency="SZL"
+
+
+        >斯威士兰</option>
+
+        <option value="TZ" currency="TZS"
+
+
+        >坦桑尼亚</option>
+
+        <option value="KM" currency="KMF"
+
+
+        >科摩罗</option>
+
+        <option value="TG" currency="XOF"
+
+
+        >多哥</option>
+
+        <option value="TN" currency="TND"
+
+
+        >突尼斯</option>
+
+        <option value="UG" currency="UGX"
+
+
+        >乌干达</option>
+
+        <option value="EH" currency="MAD"
+
+
+        >西撒哈拉</option>
+
+        <option value="ZM" currency="ZMW"
+
+
+        >赞比亚</option>
+
+        <option value="ZW" currency="ZWL"
+
+
+        >津巴布韦</option>
+
+
+        <optgroup  label="NorthAmerica"/>
+
+        <option value="AI" currency="XCD"
+
+
+        >安圭拉</option>
+
+        <option value="AG" currency="XCD"
+
+
+        >安提瓜和巴布达</option>
+
+        <option value="AW" currency="AWG"
+
+
+        >阿鲁巴</option>
+
+        <option value="BB" currency="BBD"
+
+
+        >巴巴多斯</option>
+
+        <option value="BZ" currency="BZD"
+
+
+        >伯利兹</option>
+
+        <option value="BM" currency="BMD"
+
+
+        >百慕大</option>
+
+        <option value="BO" currency="BOB"
+
+
+        >玻利维亚</option>
+
+        <option value="VG" currency="USD"
+
+
+        >英属维尔京群岛</option>
+
+        <option value="CA" currency="CAD"
+
+
+        >加拿大</option>
+
+        <option value="KY" currency="KYD"
+
+
+        >开曼群岛</option>
+
+        <option value="CR" currency="CRC"
+
+
+        >哥斯达黎加</option>
+
+        <option value="CU" currency="CUP"
+
+
+        >古巴</option>
+
+        <option value="DM" currency="XCD"
+
+
+        >多米尼克</option>
+
+        <option value="DO" currency="DOP"
+
+
+        >多米尼加</option>
+
+        <option value="SV" currency="USD"
+
+
+        >萨尔瓦多</option>
+
+        <option value="GL" currency="DKK"
+
+
+        >格陵兰</option>
+
+        <option value="GD" currency="XCD"
+
+
+        >格林纳达</option>
+
+        <option value="GP" currency="EUR"
+
+
+        >瓜德罗普</option>
+
+        <option value="GT" currency="GTQ"
+
+
+        >危地马拉</option>
+
+        <option value="HT" currency="HTG"
+
+
+        >海地</option>
+
+        <option value="HN" currency="HNL"
+
+
+        >洪都拉斯</option>
+
+        <option value="JM" currency="JMD"
+
+
+        >牙买加</option>
+
+        <option value="MQ" currency="EUR"
+
+
+        >马提尼克</option>
+
+        <option value="MX" currency="MXN"
+
+
+        >墨西哥</option>
+
+        <option value="MS" currency="XCD"
+
+
+        >蒙塞拉特岛</option>
+
+        <option value="NI" currency="NIO"
+
+
+        >尼加拉瓜</option>
+
+        <option value="PA" currency="PAB"
+
+
+        >巴拿马</option>
+
+        <option value="PR" currency="USD"
+
+
+        >波多黎各</option>
+
+        <option value="BL" currency="EUR"
+
+
+        >圣巴泰勒米岛</option>
+
+        <option value="MF" currency="EUR"
+
+
+        >法属圣马丁</option>
+
+        <option value="PM" currency="EUR"
+
+
+        >圣皮埃尔和密克隆</option>
+
+        <option value="KN" currency="XCD"
+
+
+        >圣基茨和尼维斯</option>
+
+        <option value="LC" currency="XCD"
+
+
+        >圣卢西亚</option>
+
+        <option value="VC" currency="XCD"
+
+
+        >圣文森特和格林纳丁斯</option>
+
+        <option value="BS" currency="BSD"
+
+
+        >巴哈马</option>
+
+        <option value="TT" currency="TTD"
+
+
+        >特立尼达和多巴哥</option>
+
+        <option value="TC" currency="USD"
+
+
+        >特克斯和凯科斯群岛</option>
+
+        <option value="US" currency="USD"
+
+
+        >美国</option>
+
+        <option value="VI" currency="USD"
+
+
+        >美属维尔京群岛</option>
+
+
+        <optgroup  label="Australia"/>
+
+        <option value="AS" currency="USD"
+
+
+        >美属萨摩亚</option>
+
+        <option value="AU" currency="AUD"
+
+
+        >澳大利亚</option>
+
+        <option value="CK" currency="NZD"
+
+
+        >库克群岛</option>
+
+        <option value="FM" currency="USD"
+
+
+        >密克罗尼西亚联邦</option>
+
+        <option value="FJ" currency="FJD"
+
+
+        >斐济群岛</option>
+
+        <option value="PF" currency="XPF"
+
+
+        >法属波利尼西亚</option>
+
+        <option value="GU" currency="USD"
+
+
+        >关岛</option>
+
+        <option value="KI" currency="AUD"
+
+
+        >基里巴斯</option>
+
+        <option value="MH" currency="USD"
+
+
+        >马绍尔群岛</option>
+
+        <option value="NC" currency="XPF"
+
+
+        >新喀里多尼亚</option>
+
+        <option value="NZ" currency="NZD"
+
+
+        >新西兰</option>
+
+        <option value="NU" currency="NZD"
+
+
+        >纽埃</option>
+
+        <option value="NF" currency="AUD"
+
+
+        >诺福克岛</option>
+
+        <option value="MP" currency="USD"
+
+
+        >北马里亚纳群岛</option>
+
+        <option value="PW" currency="USD"
+
+
+        >帕劳</option>
+
+        <option value="PG" currency="PGK"
+
+
+        >巴布亚新几内亚</option>
+
+        <option value="PN" currency="NZD"
+
+
+        >皮特凯恩群岛</option>
+
+        <option value="WS" currency="WST"
+
+
+        >萨摩亚</option>
+
+        <option value="SB" currency="SBD"
+
+
+        >所罗门群岛</option>
+
+        <option value="TL" currency="USD"
+
+
+        >东帝汶</option>
+
+        <option value="TK" currency="NZD"
+
+
+        >托克劳</option>
+
+        <option value="TO" currency="TOP"
+
+
+        >汤加</option>
+
+        <option value="TV" currency="AUD"
+
+
+        >图瓦卢</option>
+
+        <option value="UM" currency="USD"
+
+
+        >美国本土外小岛屿</option>
+
+        <option value="VU" currency="VUV"
+
+
+        >瓦努阿图</option>
+
+        <option value="WF" currency="XPF"
+
+
+        >瓦利斯和富图纳</option>
+
+
+        <optgroup  label="SouthAmerica"/>
+
+        <option value="AR" currency="ARS"
+
+
+        >阿根廷</option>
+
+        <option value="BR" currency="BRL"
+
+
+        >巴西</option>
+
+        <option value="CL" currency="CLP"
+
+
+        >智利</option>
+
+        <option value="CO" currency="COP"
+
+
+        >哥伦比亚</option>
+
+        <option value="EC" currency="USD"
+
+
+        >厄瓜多尔</option>
+
+        <option value="FK" currency="FKP"
+
+
+        >马尔维纳斯群岛（福克兰）</option>
+
+        <option value="GF" currency="EUR"
+
+
+        >法属圭亚那</option>
+
+        <option value="GN" currency="GNF"
+
+
+        >几内亚</option>
+
+        <option value="GY" currency="GYD"
+
+
+        >圭亚那</option>
+
+        <option value="PY" currency="PYG"
+
+
+        >巴拉圭</option>
+
+        <option value="PE" currency="PEN"
+
+
+        >秘鲁</option>
+
+        <option value="SR" currency="SRD"
+
+
+        >苏里南</option>
+
+        <option value="UY" currency="UYU"
+
+
+        >乌拉圭</option>
+
+        <option value="VE" currency="VEF"
+
+
+        >委内瑞拉</option>
+
+        <!--load js-->
+        <div th:replace="component/basejs :: basejs(~{::script})">
+            <script th:inline="javascript">
+                seajs.use(["select2"], function () {
+                    var def= [# th:text="${def}"/];
+                    if(def!=""){
+                        jQuery('#countryCode').select2().val(def).trigger('change');
+                    }else{
+                        jQuery('#countryCode').select2();
+                    }
+
+                });
+            </script>
+        </div>
+        <!--load js-->
+    </select>
+
+
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .divSelect li a{width:100px;display:inline-block;}
+        .marketsTable{margin:0px;}
+        .resetBt{
+            display:inline-block;
+            margin: 0 5px 0 5px;
+            width: 70px;
+            height: 28px;
+            line-height: 30px;
+            cursor: pointer;
+            background:none;
+            text-align: center;
+            color:#333;
+            border:1px solid #d4d4d4;
+        }
+        .topColtitWrap {
+            border-bottom: #181B2A 1px solid;
+            color:#C7CCE6 ;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181B2A;
+        }
+        #search_form ul li{
+            margin-left: 14px;
+        }
+        .searchForm li.inputCalendar .input {
+            width: 100px;
+            height: 28px;
+            padding: 0 40px 0 10px;
+            border: none;
+            border: 1px solid #4E5B85;
+            line-height: 28px;
+            background: #181B2A;
+            color:#C7CCE6;
+        }
+        #start_date::-webkit-input-placeholder{
+            color:#C7CCE6;
+        }
+        #end_date::-webkit-input-placeholder{
+            color:#C7CCE6;
+        }
+        #sad::-webkit-input-placeholder{
+            color:#60688D;
+        }
+        #sad:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        .page .pagination>li:first-child>a, .page .pagination>li:first-child>span {
+            margin-left: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .page .pagination>li>a, .page .pagination>li>span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #c7cce6;
+            margin-left: 5px;
+            text-decoration: none;
+            background-color: #181B2A;
+            border: 1px solid #4E5B85;
+        }
+        .searchForm .divSelect ul {
+            top: 28px;
+            left: 0px;
+        }
+        .divSelect ul {
+            width: 99%;
+            border: #dfdfdf 1px solid;
+            position: absolute;
+            z-index: 1;
+            left: -1px;
+            top: 38px;
+            background-color: #fff;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        .searchForm .divSelect cite {
+            display: block;
+            height: 28px;
+            overflow: hidden;
+            padding-right: 0px;
+            padding-left: 8px;
+            font-style: normal;
+        }
+        .no-data {
+            padding: 10.34% 0;
+            text-align: center;
+        }
+        .searchForm li.inputCalendar .input {
+            width: 100px;
+            height: 28px;
+            padding: 0 40px 0 10px;
+            border: none;
+            border: 1px solid #181B2A;
+            line-height: 28px;
+            background: #181B2A;
+            color:#C7CCE6;
+        }
+        #start_date:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+        }
+        .searchForm .divSelect cite::-webkit-input-placeholder{
+            color:#60688D;
+        }
+        #quote_asset_box:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #base_asset_box:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+        }
+        #set_data{
+            color:#60688D;
+        }
+        .resetBt {
+            display: inline-block;
+            margin: 0 5px 0 5px;
+            width: 70px;
+            height: 31px;
+            line-height: 30px;
+            cursor: pointer;
+            background: none;
+            text-align: center;
+            color: #333;
+            border: none;
+        }
+
+        #set_data:hover{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        a.resetBt:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        .searchForm .searchBt:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        .searchForm .divSelect:focus{
+            border: 1px solid #4E5B85;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        .searchForm .divSelect ul {
+            top: 32px;
+            left: 6px;
+        }
+        .divSelect ul {
+            width: 93%;
+            border: #dfdfdf 1px solid;
+            position: absolute;
+            z-index: 1;
+            top: 32px;
+            left: 6px;
+            background-color: #fff;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap">
+        <div class="colBar clockBg">
+            <p class="colTit" th:text="#{order_history}">历史成交</p>
+        </div>
+    </div>
+    <div class="wrapMain fullScreen_h">
+        <div class="hr20"></div>
+        <div class="historySearchBar" >
+            <form id="search_form" action="/entrust/trade" onsubmit="return false;">
+                <ul class="searchForm">
+                    <li th:text="#{time}" style="color: #C7CCE6;">时间：</li>
+                    <li class="inputCalendar">
+                        <input type="text" name="date" id="start_date" placeholder="yyyy-mm-dd" class="input inputIcoCalendar" style="position: relative;left:10px;"  readonly />
+                    </li>
+                    <li>&nbsp;-&nbsp;</li>
+                    <!--<li class="inputCalendar">-->
+                        <!--<input type="text" name="end_date" id="end_date" placeholder="yyyy-mm-dd" th:value="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd')}" class="input inputIcoCalendar" readonly />-->
+                    <!--</li>-->
+                    <li class="margin_l_m" th:text="#{markets}" style="color: #C7CCE6;">市场：</li>
+                    <li style="height: 35px;">
+                        <div class="divSelect" id="base_asset_box" style="background:#262a42;border: none;">
+                            <cite id="set_post" style="height: 35px;"><input name="base_asset" class="selectInput" id="sad" type="text"th:placeholder="#{key}" placeholder="输入关键词" style="background: #181b2a;color:#C7CCE6;line-height: 29px;color: #C7CCE6;position: relative;left:-2px;top: 0px;text-indent: 12px;height:31px" ></cite>
+                            <ul id="base_asset_render" style="display: none;position: absolute;top: 35px;left: 6px;">
+                            </ul>
+                            <script id="base_asset_tpl" type="text/x-jsrender">
+                                <li><a href="javascript:;" selectid="{{:coinCode}}">{{:coinCode}}</a></li>
+                            </script>
+                        </div>
+                    </li>
+                    <li>&nbsp;/&nbsp;</li>
+                    <li>
+                        <div class="divSelect" id="quote_asset_box" style="background: #181b2a;border:none;color: #C7CCE6;position: relative;left:-27px;height: 31px;">
+                            <cite th:text="#{all}" style="background: #181b2a;color:#C7CCE6;height: 30px;" id="set_data">全部</cite>
+                            <ul id="base_asset_price_render" style="display: none;position: absolute;top: 36px;left: 2px;    width: 95%;">
+
+                            </ul>
+                            <script id="base_asset_price_tpl" type="text/x-jsrender">
+                                <li><a href="javascript:;" selectid="{{:coinCode}}">{{:coinCode}}</a></li>
+                            </script>
+                            <input name="quote_asset" type="hidden" value="" class="selectInput">
+                        </div>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="searchBt white" th:text="#{search}" style="color: #60688D;background-color: #181b2a; height: 31px;position: relative;left:-44px;">查询</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" class="resetBt"  th:text="#{reset}" style="color:  #60688D;background-color: #181b2a;height: 31px;line-height: 30px;position: relative;left:-50px;height: 31px;line-height:30px;">重置</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
+        <div class="marketsTableBox" style="display:none;">
+            <div class="hr20"></div>
+
+            <div class="marketsTable borderTable" style="background-color: #181B2A;border-top: none;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl" style="background: #181B2A;">
+                    <tr class="theader" style=" background-color: #181B2A;color: #C7CCE6;">
+                        <th width="2%" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">&nbsp;</th>
+                        <th width="18%" th:text="#{time}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">成交时间</th>
+                        <th width="18%" th:text="#{markets}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">市场</th>
+                        <th width="12%" th:text="#{side}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">买卖</th>
+                        <th width="14%" th:text="#{price}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">价格</th>
+                        <th width="14%" th:text="#{amount}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">成交数量</th>
+                        <!--<th width="10%" th:text="#{fee}">手续费</th>-->
+                        <th width="22%" th:text="#{total}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">成交金额</th>
+                    </tr>
+                    <tbody id="trade_history_render">
+                    <!--<tr>
+                        <td colspan="100">
+                            <div class="no-data">
+                                <span th:text="#{no_data}">暂无数据</span> </div>
+                        </td>
+                    </tr>-->
+                    </tbody>
+                </table>
+            </div>
+
+            <script id="trade_history_tpl" type="text/x-jsrender">
+                <tr class="no-data-tr">
+                    <td style=" text-align: center;"> </td>
+                    <td style=" text-align: center;">{{:entrustTime}}</td>
+                    <td style=" text-align: center;">{{:tradeCoinCode}}_{{:pricingCoinCode}}</td>
+                    <td style=" text-align: center;">{{:typeStr}}</td>
+                     <!--<td>{{:category}}</td>-->
+
+                     <td style=" text-align: center;">{{:entrustPrice}}</td>
+                     <!--<td style=" text-align: center;">{{:(entrustAmoutSql-entrustAmout)}}</td>-->
+                     <td style=" text-align: center;">{{:entrustAmout}}</td>
+                     <!--<td style=" text-align: center;">{{:entrustPrice*(entrustAmoutSql-entrustAmout)}}</td>-->
+                     <td style=" text-align: center;">{{:totleMoney}}</td>
+                     <td style=" text-align: center;"></td>
+                </tr>
+            </script>
+            <div class="page">
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+            <div class="hr30"></div>
+        </div>
+    </div>
+
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","numeral","jquery_pagination","layer","laydate", "clipboard","qrcode", DEV + "/page_user"], function ( a0,a,q, i, o, b, c, d) {
+            d.historyTrade();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

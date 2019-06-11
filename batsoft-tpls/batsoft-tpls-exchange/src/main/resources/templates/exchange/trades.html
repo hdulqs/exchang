@@ -1,0 +1,570 @@
+<!doctype html>
+<html>
+<head>
+
+        <title>行情图表-中国比特币兑换中心-用心服务每一刻</title>
+
+        <script type="text/javascript">
+            var GLOBAL = {},
+                VERSION = GLOBAL['VERSION'] = '1484635775628',
+                ZNAME = GLOBAL['ZNAME'] = 'z',
+                DOMAIN_BASE = GLOBAL['DOMAIN_BASE'] = 'localhost',
+                DOMAIN_MAIN = GLOBAL['DOMAIN_MAIN'] = 'http://localhost',
+                DOMAIN_VIP = GLOBAL['DOMAIN_VIP'] = 'http://localhost',
+                DOMAIN_STATIC = GLOBAL['DOMAIN_STATIC'] = 'http://localhost',
+                DOMAIN_P2P = GLOBAL['DOMAIN_P2P'] = 'http://localhost',
+                DOMAIN_TRANS = GLOBAL['DOMAIN_TRANS'] = 'http://localhost',
+                LANG = GLOBAL['LANG'] = 'cn',
+                UON = GLOBAL['UON'] = 'zuon',
+                UID = GLOBAL['UID'] = 'zuid',
+                AID = GLOBAL['AID'] = 'zaid',
+                RID = GLOBAL['RID'] = 'zrid',
+                VIP = GLOBAL['VIP'] = 'zvip',
+                UNAME = GLOBAL['UNAME'] = 'zuname',
+                ANAME = GLOBAL['ANAME'] = 'zaname',
+                NOTE = GLOBAL['NOTE'] = 'znote';
+
+        </script>
+        <meta charset="utf-8">
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta http-equiv="Cache-Control" content="no-siteapp">
+        <meta content="yes" name="apple-mobile-web-app-capable">
+        <meta content="yes" name="apple-touch-fullscreen">
+        <meta content="telephone=no" name="format-detection">
+        <meta content="black" name="apple-mobile-web-app-status-bar-style">
+        <meta name="author" content="CHBTC.COM">
+        <meta name="copyright" content="Copyright &copy;CHBTC.COM 版权所有">
+        <meta name="revisit-after" content="1 days">
+
+        <link rel="shortcut icon" href="http://127.0.0.1:8889/static/front/src/script/trade/favicon_red.ico">
+        <link rel=stylesheet type=text/css href="http://127.0.0.1:8889/static/front/src/script/trade/cnbtc2014.css"/>
+        <link rel="stylesheet" href="http://127.0.0.1:8889/static/front/src/script/trade/module.base.css">
+        <link rel="stylesheet" href="http://127.0.0.1:8889/static/front/src/script/trade/module.common.css">
+        <script src="http://127.0.0.1:8889/static/front/src/script/trade/module.base.js" charset="UTF-8"></script>
+        <script src="http://127.0.0.1:8889/static/front/src/script/trade/module.lang.js" charset="UTF-8"></script>
+        <!--[if lt IE 9]>
+        <script src="https://s.chbtc.com/statics/js/v2/html5shiv.min.js?V1484635775628" charset="UTF-8"></script>
+        <script src="https://s.chbtc.com/statics/js/v2/respond.min.js?V1484635775628" charset="UTF-8"></script>
+        <![endif]-->
+        <!-- <script type="text/javascript" src="https://s.chbtc.com/statics/js/common/webcommon.js?V1484635775628" charset="UTF-8"></script> -->
+        <script type="text/javascript">
+            if (JuaBox.isMobile()) {
+                document.writeln("<style type=\"text/css\">");
+                document.writeln(".container, .bk-nav.navbar, .bk-footer, .bk-body, .bg-login, .Jua-showTip {min-width: 980px !important;}  ");
+                document.writeln("</style>");
+            }
+        </script>
+
+        <link rel="stylesheet" href="http://127.0.0.1:8889/static/front/src/script/trade/module.trans.css">
+        <style type="text/css">
+            body {
+                overflow-x: hidden;
+                overflow-y: hidden;
+                background-color: #1F1D1D !important;
+            }
+        </style>
+        <script type="text/javascript">
+            var marketData = [{
+                "numberBi": "ETH",
+                "numberBiEn": "ETH",
+                "numberBiNote": "E",
+                "numberBixNormal": "100000000",
+                "numberBixShow": "100000000",
+                "numberBixDian": "3",
+                "exchangeBi": "CNY",
+                "exchangeBiEn": "RMB",
+                "exchangeBiNote": "￥",
+                "market": "ethdefault",
+                "exchangeBixNormal": "100",
+                "exchangeBixShow": "100",
+                "exchangeBixDian": "2",
+                "entrustUrlBase": "/",
+                "feeRate": "0.0"
+            }];
+        </script>
+        </head>
+<body>
+
+<input type="hidden" name="coinPair" id="coinPair" value="${coinPair}"></input>
+
+<div class="bk-body">
+    <!--页面中部内容开始-->
+    <div class="bk-kHeader clearfix">
+        <div class="bk-kLogo pull-left">
+            <a href="." title="中国比特币CHBTC.COM">
+                <img src="https://s.chbtc.com/statics/img/v2/common/chbtc_logo_k.png?V1484635775628" alt="中国比特币">
+            </a>
+        </div>
+        <div class="bk-kType pull-left">
+
+                    <a href="./market/marketplaceone/${dccoinpair.tradeCoinCode}_${dccoinpair.pricingCoinCode}"
+                       target="_self" class=""><img
+                            src="https://s.chbtc.com/statics/img/v2/trans/market-btc.png">BTC/USDT
+                    </a>
+
+
+            <!--<a href="https://trans.chbtc.com/markets/btc" target="_self" class=""><img src="https://s.chbtc.com/statics/img/v2/trans/market-btc.png">BTC/CNY行情</a>
+            <a href="https://trans.chbtc.com/markets/ltc" target="_self" class=""><img src="https://s.chbtc.com/statics/img/v2/trans/market-ltc.png">LTC/CNY行情</a>
+            <a href="https://trans.chbtc.com/markets/eth" target="_self" class="active"><img src="https://s.chbtc.com/statics/img/v2/trans/market-eth.png">ETH/CNY行情</a>
+            <a href="https://trans.chbtc.com/markets/etc" target="_self" class="etcDisplay "><img src="https://s.chbtc.com/statics/img/v2/trans/market-etc.png">ETC/CNY行情</a>-->
+        </div>
+        <div class="bk-kTool pull-right">
+            <a onclick="toggleFoot()" roll="button" title="切换底部" class="toggle-foot"></a>
+            <a onclick="toggleRight()" roll="button" title="切换右侧" class="toggle-right"></a>
+        </div>
+        <div class="bk-kUser pull-right">
+
+
+                <div class="nologin">
+                    <a href="./login.do" target="_self">登录</a> |
+                    <a href="https://vip.chbtc.com/user/register" target="_self">注册</a> |
+                    <a href="https://trans.chbtc.com/eth" target="_self" title="返回专业版">返回专业版</a>
+                </div>
+
+                    <div class="logined">
+                        <a target="_self" href="https://vip.chbtc.com/u/safe">
+                            您好，<span id="M_userName">小明</span>&nbsp;&nbsp;<i id="M_userLevelIco"></i>
+                        </a> |
+                        <a href="./logout.do?backUrl=./market/marketplaceone" target="_self" title="退出登录">退出登录</a> |
+
+                    </div>
+
+
+        </div>
+    </div>
+    <iframe src="http://www.batsoft.com/static/front/src/script/trade/fullkline.html?symbol=eth" id="marketFrame" class="marketFrame"
+            name="marketFrame" onload="" frameborder="0" width="100%" style="height:500px" hspace="0"
+            scrolling="no"></iframe>
+    <div class="bk-kMarket" style="height:230px;">
+        <div class="bk-trans-form">
+            <div class="bk-table">
+                <div class="bk-cell list">
+                    <div class="bk-tabList" id="bkEntrustTab">
+                        <div class="bk-tabList-hd clearfix">
+                            <div class="btn-group bk-btn-group" role="group">
+                                <a class="btn active" role="button">限价委托<span style="display: none;">(<span
+                                        id="limitEntrustNum">0</span>)</span></a>
+                                <a class="btn" role="button">计划委托<span style="display: none;">(<span
+                                        id="readyEntrustNum">0</span>)</span></a>
+                                <a class="btn " role="button">历史委托</a>
+                            </div>
+                            <a class="pull-right" href="https://trans.chbtc.com/record/eth" target="_blank"
+                               role="button"><i class="fa fa-calendar fa-fw"></i>更多记录</a>
+                        </div>
+                        <div class="bk-tabList-bd">
+                            <div class="bk-entrust">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="">委托时间</th>
+                                        <th style="text-align:left;">委托数量/已成交(ETH)</th>
+                                        <th style="text-align:left;">委托价格/成交均价(CNY)</th>
+                                        <th style="">成交总额(CNY)</th>
+                                        <th style="">状态</th>
+                                        <th style="">订单来源</th>
+                                        <th style="width:115px;">操作<a role="button" id="batchCancel">[批量撤单]</a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="entrustRecord"></tbody>
+                                </table>
+                            </div>
+                            <div class="bk-entrust">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="">委托时间</th>
+                                        <th style="text-align:left;">委托量</th>
+                                        <th style="text-align:left;">触发价格(CNY)</th>
+                                        <th style="text-align:left;">委托价格(CNY)</th>
+                                        <th style="">状态</th>
+                                        <th style="">订单来源</th>
+                                        <th style="width:115px;">操作<a role="button" data-plantype="true"
+                                                                      id="batchCancelPlan">[全部撤单]</a></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="readyRecord"></tbody>
+                                </table>
+                            </div>
+                            <div class="bk-entrust">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th style="">委托时间</th>
+                                        <th style="text-align:left;">委托数量/已成交(ETH)</th>
+                                        <th style="text-align:left;">委托价格/成交均价(CNY)</th>
+                                        <th style="">成交总额(CNY)</th>
+
+                                        <th style="">状态</th>
+                                        <th style="">订单来源</th>
+                                        <th style="width:115px;">操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="historyRecord"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tradeList" style="display:none;">
+                        <div class="bk-entrust"
+                             style="max-height:500px; min-height:150px;overflow-x:hidden;overflow-y:auto;">
+                            <table class="table table-striped table-bordered table-hover">
+                                <thead>
+                                <tr>
+                                    <th>成交时间</th>
+                                    <th style="text-align:left;">成交数量(ETH)</th>
+                                    <th style="text-align:left;">成交价格(CNY)</th>
+                                    <th style="text-align:left;">成交额(CNY)</th>
+
+                                </tr>
+                                </thead>
+                                <tbody id="tradeRecord"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <script type="text/x-tmpl" id="tmpl-entrustRecord">
+            {% for (var i = 0; i < Math.min(7, rs.length); i++) { %}
+  	        <tr>
+  	          <td>{%=rs[i].submitTime%}</td>
+  	          <td style="text-align:left;"><span class="label {%=rs[i].nameClass%}">{%=rs[i].nameType%}</span><span class="bkNum {%=rs[i].nameClass%}">{%=rs[i].numbers%}</span> / <span class="bkNum {%=rs[i].nameClass%}">{%=rs[i].completeNumber%}</span></td>
+							<td style="text-align:left;">
+                  <span class="{%=rs[i].nameClass%}">{%=rs[i].unitPrice%}</span> / 
+                  <span class="{%=rs[i].nameClass%}">{%=rs[i].averagePrice%}</span>
+              </td>
+  	          <td>{%=rs[i].completeTotalMoney%}</td>
+  	          <td>{%=rs[i].nameStatus%}</td>
+ 			  <td>{%=rs[i].source%}</td>
+  	          <td><a class="cancelEntrust" role="button" data-id="{%=rs[i].entrustId%}" data-type="{%=rs[i].types%}">{%=rs[i].operat%}</a></td>
+  	        </tr>
+            {% } %}
+
+                    </script>
+
+                    <script type="text/x-tmpl" id="tmpl-readyRecord">
+            {% for (var i = 0; i < Math.min(5, rs.length); i++) { %}
+  	        <tr>
+  	          <td>{%=rs[i].submitTime%}</td>
+  	          <td style="text-align:left;">
+                  <span class="label {%=rs[i].nameClass%}">{%=rs[i].nameType%}</span>
+                  <span class="bkNum {%=rs[i].nameClass%}">{% if(rs[i].types==1){ %} {%=rs[i].totalMoney%} (CNY) {% }else{ %} {%=rs[i].numbers%} (ETH) {% } %}</span>
+              </td>
+  	          <td style="text-align:left;">
+                  <span class="{%=rs[i].nameClass%}">{% if(rs[i].types==1){ %} 追高触发价 ：{%=rs[i].triggerPrice%}  {% }else{ %} 止盈触发价：{%=rs[i].triggerPriceProfit%} {% } %} </span><br/> 
+                  <span class="{%=rs[i].nameClass%}">{% if(rs[i].types==1){ %} 抄底触发价 ：{%=rs[i].triggerPriceProfit%} {% }else{ %} 止损触发价：{%=rs[i].triggerPrice%} {% } %} </span>
+              </td>
+  	          <td style="text-align:left;">
+                  <span class="{%=rs[i].nameClass%}">{% if(rs[i].types==1){ %} 追高委托价 ：{%=rs[i].unitPrice%} {% }else{ %} 止盈委托价：{%=rs[i].unitPriceProfit%} {% } %}  </span><br/>
+                  <span class="{%=rs[i].nameClass%}">{% if(rs[i].types==1){ %} 抄底委托价 ：{%=rs[i].unitPriceProfit%} {% }else{ %} 止损委托价：{%=rs[i].unitPrice%} {% } %} </span>
+              </td>
+  	          <td>{%=rs[i].nameStatus%}</td>
+			  <td>{%=rs[i].source%}</td>
+  	          <td>
+                 <a class="cancelEntrust" role="button" data-id="{%=rs[i].entrustId%}" data-plantype="{%=rs[i].plantype%}" data-type="{%=rs[i].types%}">{%=rs[i].operat%}</a>
+				{% if(rs[i].nameStatus=='已委托'){ %}				
+ 					<a class="detailEntrust" role="button" data-id="{%=rs[i].formalEntrustId%}"> 明细 </a>
+				{% }%}
+              </td>
+  	        </tr>
+            {% } %}
+
+                    </script>
+
+
+                    <script type="text/x-tmpl" id="tmpl-historyRecord">
+            {% for (var i = 0; i < Math.min(7, rs.length); i++) { %}
+  	        <tr>
+  	          <td>{%=rs[i].submitTime%}</td>
+  	          <td style="text-align:left;">
+                 <span class="label {%=rs[i].nameClass%}">{%=rs[i].nameType%}</span>
+                 <span class="bkNum {%=rs[i].nameClass%}">{%=rs[i].numbers%}</span> / 
+                 <span class="bkNum {%=rs[i].nameClass%}">{%=rs[i].completeNumber%}</span>
+              </td>
+  	          <td style="text-align:left;">
+                  <span class="{%=rs[i].nameClass%}">{%=rs[i].unitPrice%}</span> / 
+                  <span class="{%=rs[i].nameClass%}">{%=rs[i].averagePrice%}</span>
+              </td>
+  	          <td>{%=rs[i].completeTotalMoney%}</td>
+			
+  	          <td>{%=rs[i].nameStatus%}</td>
+			   <td>{%=rs[i].source%}</td>
+  	          <td><a class="detailEntrust" role="button" data-id="{%=rs[i].entrustId%}">明细</a></td>
+  	        </tr>
+            {% } %}
+
+                    </script>
+                    <script type="text/x-tmpl" id="tmpl-tradeRecord">
+            {% for (var i = 0; i <= rs.length -1; i++) { %}
+  	        <tr>
+  	          <td>{%=rs[i].submitTime%}</td>
+  	          <td style="text-align:left;">
+                 
+                 <span class="bkNum {%=rs[i].nameClass%}">{%=rs[i].numbers%}</span>
+              </td>
+              <td style="text-align:left;">{%=rs[i].unitPrice%}</td>
+  	          <td>{%=rs[i].totalMoney%}</td>
+			
+  	        </tr>
+            {% } %}
+
+                    </script>
+
+
+                </div>
+                <div class="bk-cell item">
+                    <div class="bk-buy-form">
+                        <form role="form" id="buyForm" class="form-horizontal" method="post" action=""
+                              autocomplete="off">
+                            <input type="hidden" name="buyType" id="buyType" value="0">
+                            <input type="hidden" name="moneyType" id="moneyType" value="0">
+                            <input type="hidden" name="coinType" id="coinType" value="3">
+                            <div class="form-group has-feedback" style="padding-top:8px;">
+                                <label class="control-label" style="position:static;">可用：<b id="canUseMoney"
+                                                                                            class="text-primary">--</b>
+                                    CNY</label>
+                                <label class="control-label" style="position:static;">可买：<b id="canBuyCoin"
+                                                                                            class="text-gray">--</b> ETH</label>
+
+                            </div>
+                            <div id="buyDefaultForm">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="buyPrice"><span class="buyLabel">限定最高</span>买入价CNY</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="buyPrice"
+                                               name="buyPrice" pattern="" errormsg="" aria-describedby="buyPrice_error">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback" style="display:none">
+                                    <label class="control-label" for="buyMinPrice">限定最低买入价CNY</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="buyMinPrice"
+                                               name="buyMinPrice" pattern="" errormsg=""
+                                               aria-describedby="buyMinPrice_error">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="buyAmout">买入量ETH</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="buyAmout"
+                                               name="buyAmout" pattern="" errormsg="" aria-describedby="buyAmout_error">
+                                    </div>
+                                </div>
+
+                                <div class="range range_buy" id="buySlider"><!-- 买单滑动杆 --></div>
+
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="realBuyAccount" style="position:static;">预计交易额：<b
+                                            class="text-primary" id="realBuyAccount">0.00</b> CNY</label>
+
+                                </div>
+                                <div class="form-group">
+                                    <button id="buyBtn" type="button" data-loading-text="Loading..."
+                                            class="btn btn-primary btn-block btn-hg">
+                                        <i class="bk-ico buycart"></i>立即买入
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="bk-cell item">
+                    <div class="bk-sell-form">
+                        <form role="form" id="sellForm" class="form-horizontal" method="post" action=""
+                              autocomplete="off">
+                            <div class="form-group has-feedback" style="padding-top:8px;">
+                                <label class="control-label" style="position:static;">可用：<b id="canUseCoin"
+                                                                                            class="text-second">--</b>
+                                    ETH</label>
+                                <label class="control-label" style="position:static;">可卖：<b id="canSellMoney"
+                                                                                            class="text-gray">--</b> CNY</label>
+
+                            </div>
+                            <div id="sellDefaultForm">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="sellPrice"><span class="sellLabel">限定最低</span>卖出价CNY</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="sellPrice"
+                                               name="sellPrice" pattern="" errormsg=""
+                                               aria-describedby="sellPrice_error">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback" style="display:none">
+                                    <label class="control-label" for="sellMaxPrice">限定最高卖出价CNY</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="sellMaxPrice"
+                                               name="sellMaxPrice" pattern="" errormsg=""
+                                               aria-describedby="sellMaxPrice_error">
+                                    </div>
+                                </div>
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="sellAmout">卖出量ETH</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control form-second" id="sellAmout"
+                                               name="sellAmout" pattern="" errormsg=""
+                                               aria-describedby="sellAmout_error">
+                                    </div>
+                                </div>
+
+                                <div class="range range_sell" id="sellSlider"><!-- 卖单滑动杆 --></div>
+
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="realSellAccount" style="position:static;">预计交易额：<b
+                                            class="text-second" id="realSellAccount">0.00</b> CNY</label>
+
+                                </div>
+                                <div class="form-group">
+                                    <button id="sellBtn" type="button"
+                                            data-reset-text="<i class='bk-ico sellhand'></i>立即卖出"
+                                            data-loading-text="Loading..." class="btn btn-second btn-block btn-hg">
+                                        <i class="bk-ico sellhand"></i>立即卖出
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--页面中部内容结束-->
+    <script type="text/javascript">
+        $(".bk-tabList").slide({
+            mainCell: ".bk-tabList-bd",
+            titCell: ".btn-group .btn",
+            effect: "fade",
+            trigger: "click",
+            titOnClassName: "active"
+        });
+
+        function toggleFoot() {
+            $(".bk-kMarket").toggle();
+            var sHeight = $(window).height() - $(".bk-kHeader").height() - $(".bk-kMarket:visible").height() - 10;
+            $("#marketFrame").css("height", sHeight);
+            $(".toggle-foot").toggleClass("active");
+        }
+
+        function toggleRight() {
+            $(window.frames['marketFrame'].document.body).find("#trade_container").toggle();
+            $(window.frames['marketFrame'])[0].on_size();
+            $(".toggle-right").toggleClass("active");
+        }
+
+        $("#h_import").remove();
+
+        $(function () {
+            var sHeight = $(window).height() - $(".bk-kHeader").height() - $(".bk-kMarket:visible").height() - 10;
+            $("#marketFrame").css("height", sHeight);
+        });
+
+        $(window).resize(function () {
+            var sHeight = $(window).height() - $(".bk-kHeader").height() - $(".bk-kMarket:visible").height() - 10;
+            $("#marketFrame").css("height", sHeight);
+        });
+        $(document).ready(function () { //add by zhanglinbo 20160808
+
+            var websocket = null;
+            //判断当前浏览器是否支持WebSocket
+            if ('WebSocket' in window) {
+                websocket = new WebSocket("ws://localhost:9002/websocket");
+            }
+            else {
+                alert('当前浏览器 Not support websocket')
+            }
+
+            //连接发生错误的回调方法
+            websocket.onerror = function () {
+                console.log("WebSocket连接发生错误");
+            };
+
+            //连接成功建立的回调方法
+            websocket.onopen = function () {
+                console.log("WebSocket连接成功");
+            }
+
+            //接收到消息的回调方法
+            websocket.onmessage = function (event) {
+                console.log(event.data);
+                //setMessageInnerHTML(event.data);
+            }
+
+            //连接关闭的回调方法
+            websocket.onclose = function () {
+                console.log("WebSocket连接关闭");
+                //setMessageInnerHTML("WebSocket连接关闭");
+            }
+
+            //监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
+            window.onbeforeunload = function () {
+                closeWebSocket();
+            }
+
+            //将消息显示在网页上
+            function setMessageInnerHTML(innerHTML) {
+                document.getElementById('message').innerHTML += innerHTML + '<br/>';
+            }
+
+            //关闭WebSocket连接
+            function closeWebSocket() {
+                console.log("外层关闭")
+                websocket.close();
+            }
+
+            //发送消息
+            function send() {
+                var message = document.getElementById('text').value;
+                websocket.send(message);
+            }
+
+            $("#buyBtn").on("click", function () {
+                //console.log("发送买的消息")
+                //websocket.send("发送买成功");
+
+                var coinPair = $("#coinPair").val();
+                $.ajax({
+                    type: "post",
+                    url: "http://www.batsoft.com/exchange/trade/add",
+                    data: {
+                        coinPair: coinPair,
+                        price: $("#buyPrice").val(),
+                        amout: $("#buyAmout").val(),
+                        type: "buy"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        alert("下单成功");
+                    },
+                    error: function (e) {
+                        console.log("请求错误");
+                    }
+                })
+            });
+
+            $("#sellBtn").on("click", function () {
+                //console.log("发送买的消息")
+                //websocket.send("发送买成功");
+
+                var coinPair = $("#coinPair").val();
+                $.ajax({
+                    type: "post",
+                    url:  "http://www.batsoft.com/exchange/trade/add",
+                    data: {
+                        coinPair: coinPair,
+                        price: $("#sellPrice").val(),
+                        amout: $("#sellAmout").val(),
+                        type: "sell"
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        alert("下单成功");
+                    },
+                    error: function (e) {
+                        console.log("请求错误");
+                    }
+                })
+            });
+
+        });
+    </script>
+</div>
+</body>
+</html>

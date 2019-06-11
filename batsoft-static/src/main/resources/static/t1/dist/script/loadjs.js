@@ -1,0 +1,1 @@
+define(function(require,exports,module){require("sweetalert"),module.exports={Init:function(){}}});

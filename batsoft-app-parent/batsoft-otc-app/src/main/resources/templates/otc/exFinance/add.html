@@ -1,0 +1,126 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>资金账户新增 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+                             <a href="javascript:void(0)" class="toList" data-to-url="/otc/exFinance/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <form  method="post" th:action="@{/otc/exFinance/save}"
+                               class="form">
+
+
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">用户id <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="用户id" name="userId" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">用户名 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="用户名" name="userName" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币种 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="币种" name="symbol" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币地址 </label>
+                                         <input type="text" placeholder="币地址" name="coinAddress" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币地址标签 </label>
+                                         <input type="text" placeholder="币地址标签" name="coinAddressTag" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">可用金额 </label>
+                                         <input type="text" placeholder="可用金额" name="available" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">冻结金额 </label>
+                                         <input type="text" placeholder="冻结金额" name="freeze" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">状态 </label>
+                                    <select name="status"  class="form-control">
+                                                <option value="0" >正常</option>
+                                                <option value="1" >冻结</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                        <div th:replace="layout/common/handler :: handler">
+
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",   DEV + "/page_otc_exFinance"], function (a, e, c, b) {
+            b.add();
+        
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

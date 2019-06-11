@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>请更换浏览器</title>
+</head>
+<span th:replace="layout/head :: head"></span>
+<style>
+    .relid{
+        width: 100%;
+        height: 310px;
+    }
+    .relid_1{
+        width: 500px;
+        height: 350px;
+        background: #fff;
+        margin: 0 auto;
+
+    }
+
+    .relid_3{
+        width: 396px;
+        height: 154px;
+        margin: 0 auto;
+    }
+    .relid_3_1{
+        width: 100%;
+        height: 47px;
+        color: #333333;
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+    .relid_3_2{
+        width: 100%;
+        height: 107px;
+        color: #999999;
+        font-size: 14px;
+        line-height: 24px;
+    }
+</style>
+<body style="background:#F3F4F8;">
+<div class="relid"></div>
+<div class="relid_1">
+    <div class="relid_2"></div>
+    <div class="relid_3">
+        <div class="relid_3_1">您的Internet Explorer浏览器太旧啦！为了更好的体验比特天猫业务，建议使用以下浏览器访问。 </div>
+        <div class="relid_3_2">Chrome 71.0及以上版本使用 <br/>Safari 12.0及以上版本使用 <br/> Firefox 64.0及以上版本使用 </div>
+    </div>
+</div>
+
+</body>
+</html>

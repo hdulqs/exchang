@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="nav(headerStyle)">
+    <div id="header" th:class="${headerStyle}">
+
+
+        <!-- TOP NAV -->
+        <header id="topNav">
+            <!-- Top Bar -->
+            <!-- /Top Bar -->
+
+            <div class="container">
+
+                <!-- Mobile Menu Button -->
+                <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+
+                <!-- login-->
+                <span th:replace="component/loginState::loginState"></span>
+                <!-- /login-->
+
+                <!-- Logo -->
+                <span th:replace="component/logo::logo"></span>
+
+                <!--
+                    Top Nav
+
+                    AVAILABLE CLASSES:
+                    submenu-dark = dark sub menu
+                -->
+                <div class="navbar-collapse collapse float-right nav-main-collapse">
+                    <!--nav-->
+                    <nav class="nav-main">
+
+                        <ul id="topMain"  class="nav nav-pills nav-main article_list article-nav">
+
+                        </ul>
+
+                    </nav>
+                    <!--end nav-->
+
+                </div>
+
+            </div>
+        </header>
+        <!-- /Top Nav -->
+
+    </div>
+    <script id="articleNavTmpl" type="text/x-jsrender">
+           <li class="active"><a href="/article/list/{{:typeKey}}" id="nav_{{:typeKey}}">{{:name}}</a></li>
+    </script>
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script>
+            seajs.use([DEV + "/main","jquery_backstretch",DEV+"/page_cms_article"], function (a,b,c) {
+                c.listChannels();
+            });
+        </script>
+    </div>
+</div>
+
+</body>
+</html>
+

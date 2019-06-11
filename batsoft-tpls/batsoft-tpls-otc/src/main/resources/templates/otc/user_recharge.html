@@ -1,0 +1,94 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">充币</span>
+            </span>
+        </h2>
+
+        <input type="text" id="currCoin" th:value="${symbol}" class="hide">
+
+        <div class="container" id="coinsRender">
+
+        </div>
+
+        <script id="coinsTpl" type="text/x-jsrender">
+
+        {{if ~isCurr(symbol)}}
+         <a href="/otc/user/recharge/{{:symbol}}" class="btn btn-danger">{{:symbol}}</a>
+         {{else}}
+         <a href="/otc/user/recharge/{{:symbol}}" class="btn btn-outline-danger">{{:symbol}}</a>
+         {{/if}}
+
+        </script>
+
+        <hr>
+
+        <div class="container"  th:if="${allowRecharge==0}">
+       <span th:text="${symbol}"></span> 禁止充币
+        </div>
+
+
+        <div class="container" th:if="${allowRecharge==1 && coinAddress==null}">
+            <form  method="post" th:action="@{/otc/user/coin/address(symbol=${symbol})}"
+                   class="form">
+
+                <button type="submit"  href="javascript:void(0)"  class="btn btn-danger btn-lg btn-block get-address"> 获取地址</button>
+            </form>
+
+        </div>
+        <div class="container" th:if="${allowRecharge==1 && coinAddress!=null}">
+
+            <div class="row">
+           <div class="mt-20">
+               <p class="text-center">钱包地址:<span class="text-danger fs-18" id="coinAddress" th:text="${coinAddress}"></span><a href="javascript:void(0)" >复制地址</a></p>
+           </div>
+            <div class="text-center mt-30"> <div id="qrcode" style="width: 200px ;height:200px;"></div></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="alert alert-bordered-dashed mt-30 " style="padding-top: 10px!important;"><!-- DASHED -->
+                <h5><strong class="text-danger">安全提示</strong></h5>
+                <p class="text-danger">禁止充值除<span th:text="${symbol}"></span>之外的其他资产，任何非<span th:text="${symbol}"></span>资产充值将不可找回</p>
+                <p>* 1. 往该地址充值，汇款完成，等待网络自动确认（<span th:text="${confirm}"></span>个确认）后系统自动到账</p>
+                <p>* 2. 为了快速到账，充值时可以适当提高网络手续费</p>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+
+        seajs.use([DEV + "/main","qrcode",DEV+"/page_otc"], function (a,c,d) {
+
+            d.recharge();
+            var code= {text: $("#coinAddress").html()};
+            $('#qrcode').qrcode(code);
+
+
+            $.views.helpers({
+                "isCurr": function(coin){
+                    var currCoin=$("#currCoin").val();
+                    if(coin==currCoin){
+                        return true;
+                    }
+                    return false;
+                }
+            });
+
+        });
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div class=" cn " id="languageBt" th:fragment="lan" style="position: relative;top: 1px; width: 95px;">
+    <span class="language colTit" th:text="#{chinese}">
+ </span>
+    <span class="ico icoLanArr"></span>
+    <ul class="languageSwitch userItemSon">
+        <li class="en" ><a href="/lan/zh_CN" th:text="#{chinese}" class="creamy-white"></a> </li>
+        <li class="en" ><a href="/lan/en_US" th:text="#{english}" class="creamy-white"></a> </li>
+    </ul>
+</div>
+
+</body>
+</html>
+

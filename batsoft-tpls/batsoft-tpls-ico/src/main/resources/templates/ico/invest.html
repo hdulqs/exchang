@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+
+
+
+<!-- wrapper -->
+<div id="wrapper">
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+
+    <section>
+        <div class="container">
+
+            <div class="box-static box-transparent box-bordered p-30">
+
+                <div class="box-title mb-30">
+                    <h2 class="fs-20">借贷链（UGT）</h2>
+
+                    <ul class="portfolio-detail-list list-unstyled m-0">
+                        <li><span><i class="fa fa-user"></i>计划ICO:</span> 10000.00 ETH</li>
+                        <li><span><i class="fa fa-calendar"></i>已经ICO:</span> 500.00 ETH</li>
+                        <li><span><i class="fa fa-lightbulb-o"></i>每人最多ICO:</span> 300 ETH</li>
+                    </ul>
+                </div>
+
+
+                <form class="m-0" action="#" method="post" enctype="multipart/form-data">
+
+                    <label >投资金额 *</label>
+                    <div class="fancy-form fancy-form-select"><!-- select -->
+                        <select class="form-control">
+                            <option value="">--- 选择币种 ---</option>
+                            <option value="1">BTC</option>
+                            <option value="2">ETH</option>
+                            <option value="3">ETC</option>
+                        </select>
+
+                        <i class="fancy-arrow"></i>
+                    </div>
+                    <div class="stepper-wrap" style="margin: 0px 49px 0px 0px;">
+                        <input type="text" value="1.5" min="0" max="1000" class="form-control stepper" style="margin: 0px;"><div class="stepper-btn-wrap"><a class="stepper-btn-up">▴</a><a class="stepper-btn-dwn">▾</a></div></div>
+                     <br/>
+                    <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check "></i> 提交委托单</button>
+
+                </form>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","countdown",DEV+"/page_ico"], function (a,b,c) {
+            c.list();
+        });
+    </script>
+</div>
+
+</body>
+</html>

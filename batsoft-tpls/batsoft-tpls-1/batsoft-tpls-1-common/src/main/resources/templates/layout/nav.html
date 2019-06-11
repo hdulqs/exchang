@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+                <div th:fragment="nav">
+                        <div style="width: 100%;height: 80px;background: #181b2a">
+                                <div style="width: 1200px;height: 80px;background: #181b2a;margin: 0 auto;">
+                        <div class="new_header" style="height: 80px">
+                                <div >
+                                        <a href="/"><h1 class="logo">Bttmall</h1></a>
+                                        <ul class="navBar">
+                                                <li><a href="/market" th:text="#{exchange}">
+                                                        交易中心<i></i></a></li>
+
+                                                <!--<li th:if="${@globalService.c2cOpen()=='1'}"><a href="/c2c" th:text="#{c2c}">-->
+                                                        <!--C2C<i></i></a></li>-->
+                                                <li><a href="javascript:void(0);" th:onclick="'javascript:goToreferral();'" th:text="#{mutner}" >
+                                                        召集令<i></i></a><div class="Kmarker"></div></li>
+                                                <!--<li class="shop"><a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{shop}">-->
+                                                        <!--商城<i></i></a>-->
+                                                        <!--<div class="shop-icon"></div>-->
+                                                <!--</li>-->
+
+                                                <li><a href="/article/list/announcements" target="_blank" th:text="#{notice}">
+                                                        公告<i></i></a></li>
+                                                <!--<li><a href="javascript:void(0);" th:onclick="'javascript:goToreferral();'" >-->
+                                                        <!--推广<i></i></a></li>-->
+                                                <li class="shop"><a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{shop}">
+                                                        商城<i></i></a>
+                                                        <div class="shop-icon"></div>
+                                                </li>
+
+
+
+                                        </ul>
+                                </div>
+                                <span th:replace="component/loginState::loginState"></span>
+                        </div>
+
+                                </div>
+                        </div>
+                      </div>
+
+
+</body>
+</html>
+

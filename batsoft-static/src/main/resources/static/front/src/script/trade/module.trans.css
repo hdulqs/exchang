@@ -1,0 +1,999 @@
+@charset "utf-8"; 
+
+body {
+	font-family: Arial, "Microsoft YaHei", sans-serif
+}
+
+.bk-trans-asset .item, .bk-trans-form .item {
+	font-size: 14px;
+	padding-bottom: 4px
+}
+
+.bk-trans-asset .price, .bk-trans-form .price {
+	font-size: 14px
+}
+
+.bk-trans-asset .item p, .bk-trans-asset .item .line {
+	margin: 5px auto 5px
+}
+
+.bk-trans-asset #curPrice {
+	font-size: 36px;
+	cursor: pointer
+}
+
+.bk-trans-asset .price {
+	text-align: left
+}
+
+.bk-trans-asset .price h4 {
+	margin-top: 10px
+}
+
+.bk-trans-asset .price h6 {
+	padding-left: 8px;
+	margin: 0;
+	color: #666
+}
+
+.bk-trans-asset .price .iconfont {
+	font-size: 14px;
+	position: relative;
+	left: 5px;
+	top: -3px
+}
+
+.bk-trans-asset {
+	padding-top: 5px;
+	margin-bottom: 10px;
+	position: relative
+}
+
+.bk-trans-asset .alert {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 100;
+	width: 100%;
+	height: auto;
+	border: 0;
+	background-color: rgba(42, 51, 58, 0.75);
+	padding: 20px 35px 20px 15px;
+	display: none;
+	color: #fdfdfd
+}
+
+.bk-trans-asset .bk-tabList {
+	margin-bottom: 0
+}
+
+.bk-trans-asset .bk-tabList-hd .btn-group .btn {
+	padding: 15px 10px;
+	font-weight: bold
+}
+
+.bk-trans-asset .bk-tabList-bd {
+	padding-top: 10px;
+	position: relative
+}
+
+.bk-trans-asset .bk-tabList-hd .btn-group .btn img, .bk-kType a img {
+	height: 20px;
+	width: auto;
+	margin-right: 5px
+}
+
+.add-btn {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 40px;
+	height: 20px;
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block
+}
+
+.add-btn.new {
+	background-image: url(/statics/img/v2/trans/add-new.gif)
+}
+
+.add-btn.hot {
+	background-image: url(/statics/img/v2/trans/add-hot.gif)
+}
+
+.bk-trans-form .form-group {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 5px;
+	text-align: left
+}
+
+.bk-trans-form .form-control {
+	padding-right: 15px;
+	font-size: 14px;
+	text-align: right;
+	-webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .075);
+	box-shadow: inset 1px 1px 3px rgba(0, 0, 0, .075)
+}
+
+.bk-trans-form .input-group .form-control:last-child {
+	border-radius: 0
+}
+
+.bk-trans-form .input-group {
+	width: 100%
+}
+
+.bk-trans-form .control-label {
+	text-align: left;
+	font-weight: normal;
+	padding-top: 0;
+	margin-bottom: 5px
+}
+
+.bk-trans-form .form-subline {
+	margin-bottom: 20px
+}
+
+.bk-trans-form .form-subline .control-label {
+	font-family: "Microsoft YaHei";
+	margin-bottom: 4px;
+	color: #6d7b82;
+	position: absolute;
+	left: 10px;
+	top: 13px;
+	z-index: 90
+}
+
+.bk-trans-form .isreal {
+	display: inline-block;
+	padding-top: 3px;
+	float: right
+}
+
+.bluepopover {
+	display: block;
+	position: relative
+}
+
+.bluepopover .popover {
+	display: none;
+	width: 300px;
+	font-size: 12px;
+	text-align: left;
+	top: -91px;
+	left: -92px;
+	padding: 5px 0 0
+}
+
+.bluepopover:hover .popover {
+	display: block
+}
+
+.bk-buy-form, .bk-sell-form {
+	margin: 0 auto
+}
+
+.bk-buy-form .form-second {
+	color: #de211d;
+	font-weight: bold
+}
+
+.bk-sell-form .form-second {
+	color: #3dc18e;
+	font-weight: bold
+}
+
+.bk-trans-form .buyLabel, .bk-trans-form .sellLabel {
+	display: none
+}
+
+.bk-trans-left {
+	padding-top: 15px;
+	padding-bottom: 13px;
+	margin-bottom: 10px
+}
+
+.bk-trans-right {
+	padding-top: 15px;
+	padding-bottom: 10px;
+	border-left: 10px solid #f5f5f5
+}
+
+.bk-trans-form .range {
+	width: 100%;
+	padding-right: 70px;
+	height: 17px;
+	margin: 20px 0 15px 0;
+	background: none !important;
+	position: relative
+}
+
+.bk-trans-form .sliderPercent {
+	width: 60px;
+	height: 22px;
+	text-align: right;
+	display: block;
+	font-size: 14px;
+	line-height: 22px;
+	position: absolute;
+	right: 0;
+	top: -5px;
+	z-index: 100
+}
+
+.bk-kMarket .range {
+	width: 100%;
+	height: 17px;
+	margin: 10px 0 0 0;
+	padding: 0 5px
+}
+
+.sellBatLabel, .buyBatLabel, #sellPlanForm, #buyPlanForm {
+	display: none
+}
+
+.bk-market-form {
+	color: #333;
+	font-size: 14px
+}
+
+.bk-market-form g {
+	color: #999
+}
+
+.bk-market-form table tr {
+	cursor: pointer
+}
+
+.bk-market-form table tr td {
+	line-height: 26px;
+	font-family: Arial, "Microsoft YaHei", sans-serif
+}
+
+.bk-market-form table tr:hover td {
+	background-color: #f9f9f9
+}
+
+.bk-market-form table tr td:last-child {
+	padding-right: 15px;
+	padding-left: 5px
+}
+
+.bk-market-form table tr td:first-child {
+	font-size: 12px
+}
+
+.bk-market-form .percent {
+	display: inline-block;
+	height: 15px;
+	vertical-align: middle;
+	position: relative;
+	top: -2px;
+	max-width: 100%;
+	min-width: 3%
+}
+
+.bk-market-form .percent.text-primary {
+	background-color: #de211d
+}
+
+.bk-market-form .percent.text-second {
+	background-color: #3dc18e
+}
+
+.bk-trans-btn {
+	margin-bottom: 20px
+}
+
+.bk-trans-btn .btn {
+	height: 26px;
+	line-height: 1.2;
+	min-width: 110px;
+	border-radius: 15px;
+	margin: 0 6px 8px;
+	text-shadow: 0 0 1px #fff
+}
+
+.bk-entrust {
+	margin-bottom: 20px
+}
+
+.bk-entrust .bkNum {
+	color: #61727c
+}
+
+.bk-entrust .bkNum g {
+	color: inherit
+}
+
+.bk-entrust .bkNum.text-primary {
+	color: #de211d
+}
+
+.bk-entrust .bkNum.text-second {
+	color: #3dc18e
+}
+
+.bk-entrust .table {
+	margin-bottom: 0
+}
+
+.bk-entrust .table thead a {
+	color: #3dc18e;
+	font-size: 12px
+}
+
+.bk-entrust .table tbody a {
+	color: #3dc18e;
+	font-size: 14px
+}
+
+.bk-entrust .table tbody td {
+	height: auto;
+	padding: 15px 8px
+}
+
+#tradeRecord td {
+	font-size: 12px;
+	padding: 5px 8px
+}
+
+.bk-entrust .bk-norecord {
+	margin: -15px -8px
+}
+
+.bk-entrust .label {
+	display: inline-block;
+	font-size: 12px;
+	padding: 2px;
+	position: relative;
+	top: -2px;
+	margin-right: 3px;
+	margin-left: 0;
+	font-weight: normal;
+	font-size: 12px
+}
+
+.bk-entrust .label.text-primary {
+	background-color: #de211d;
+	color: #fff
+}
+
+.bk-entrust .label.text-second {
+	background-color: #3dc18e;
+	color: #fff
+}
+
+.bk-depth {
+	margin: 10px auto
+}
+
+.bk-depth li {
+	float: left;
+	width: 16.66666666%;
+	height: 26px;
+	line-height: 26px;
+	text-align: center;
+	border: 1px solid #c9c9ca;
+	border-right: 0;
+	color: #656f77
+}
+
+.bk-depth li:last-child {
+	border-right: 1px solid #c9c9ca
+}
+
+.bk-depth li:hover, .bk-depth li.active {
+	background-color: #de211d;
+	color: #fff
+}
+
+.bk-length {
+	margin-bottom: 10px
+}
+
+.bk-length li {
+	height: 26px;
+	line-height: 26px;
+	font-size: 12px;
+	text-align: center;
+	border: 1px solid #eee;
+	border-right: 0;
+	color: #656f77;
+	position: relative
+}
+
+.bk-length li:hover {
+	background-color: #f9f9f9
+}
+
+.bk-length li.active:hover, .bk-length li.active {
+	background-color: #f5f5f5
+}
+
+.bk-length li.active:after {
+	content: "";
+	display: block;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	font-size: 0;
+	overflow: hidden;
+	border-width: 6px;
+	border-color: #eee transparent transparent transparent;
+	border-style: solid dashed dashed dashed;
+	position: absolute;
+	bottom: -12px;
+	left: -6px;
+	margin-left: 50%
+}
+
+.bk-length li:first-child {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px
+}
+
+.bk-length li:last-child {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-right: 1px solid #eee
+}
+
+.bk-length li>a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #656f77;
+	text-decoration: none
+}
+
+.bk-length li>a:hover {
+	color: #656f77;
+	text-decoration: none
+}
+
+.bk-length li:hover dl {
+	display: block
+}
+
+.bk-length li dl {
+	display: none;
+	position: absolute;
+	top: 100%;
+	left: -1px;
+	right: -1px;
+	z-index: 100;
+	background-color: #fff;
+	border: 1px solid #eee;
+	border-bottom: 0
+}
+
+.bk-length li dd {
+	height: 26px;
+	line-height: 26px;
+	font-size: 12px;
+	text-align: center;
+	border-bottom: 1px solid #eee;
+	color: #656f77;
+	position: relative
+}
+
+.bk-length li dd:hover {
+	background-color: #f9f9f9
+}
+
+.bk-length li dd.active:hover, .bk-length li dd.active {
+	background-color: #f5f5f5
+}
+
+.bk-search {
+	text-align: left;
+	padding-bottom: 5px;
+	padding-left: 15px
+}
+
+.bk-search #doSearchBtn, .bk-search #reSetBtn {
+	min-width: 100px
+}
+
+.bk-trans-form .control-label, .bk-trans-asset .item .line,
+	.bk-trans-asset .item p {
+	font-size: 12px;
+	color: #666
+}
+
+.bk-trans-form .control-label b, .bk-trans-asset .item p b,
+	.bk-trans-asset .item .line b {
+	font-size: 14px;
+	font-family: Arial, "Microsoft YaHei", sans-serif;
+	cursor: pointer
+}
+
+#leverAccountSellLabel, #leverAccountBuyLabel {
+	opacity: .3;
+	cursor: not-allowed
+}
+
+#leverAccountSellLabel.open, #leverAccountBuyLabel.open {
+	opacity: 1;
+	cursor: auto
+}
+
+#leverAccountSellLabel .bluepopover, #leverAccountBuyLabel .bluepopover
+	{
+	display: none
+}
+
+#leverAccountSellLabel.open .bluepopover, #leverAccountBuyLabel.open .bluepopover
+	{
+	display: block
+}
+
+.bk-kMarket {
+	height: 280px;
+	overflow: hidden;
+	background-color: #1f1d1d;
+	margin-top: -4px;
+	border-top: 1px solid #2b2929
+}
+
+.bk-kMarket .bk-trans-form .item {
+	width: 260px;
+	font-size: 12px;
+	vertical-align: top;
+	padding-right: 10px;
+	padding-left: 0
+}
+
+.bk-kMarket .bk-trans-form .list {
+	width: auto;
+	font-size: 12px;
+	vertical-align: top;
+	padding-right: 10px
+}
+
+.bk-kMarket .bk-trans-form {
+	padding-bottom: 20px;
+	padding-top: 0;
+	background-color: transparent;
+	border-bottom: 0
+}
+
+.bk-kMarket .bk-trans-form .btn-hg {
+	border-radius: 0 !important;
+	padding: 0 10px;
+	font-size: 14px
+}
+
+.bk-kMarket .bk-trans-form .btn-hg .bk-ico {
+	display: none
+}
+
+.bk-kMarket .bk-trans-form .form-group {
+	margin-left: 0;
+	margin-right: 0;
+	margin-bottom: 5px;
+	text-align: left
+}
+
+.bk-kMarket .bk-trans-form .form-control {
+	padding: 0 15px;
+	font-size: 14px;
+	text-align: right;
+	border-radius: 0 !important;
+	background-color: #212020;
+	color: #fff;
+	border: 1px solid #333;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+
+.bk-kMarket .bk-trans-form .form-control:hover, .bk-kMarket .bk-trans-form .form-control:focus
+	{
+	background-color: #052348
+}
+
+.bk-kMarket .bk-trans-form .input-group .form-control:last-child {
+	border-radius: 0
+}
+
+.bk-kMarket .bk-trans-form .control-label {
+	display: block;
+	font-family: "Microsoft YaHei";
+	margin-bottom: 4px;
+	color: #6d7b82;
+	position: absolute;
+	left: 10px;
+	top: 8px;
+	z-index: 90
+}
+
+.bk-kMarket .bk-buy-form, .bk-kMarket .bk-sell-form {
+	width: 100%;
+	margin: 0 auto
+}
+
+.bk-kMarket .bk-trans-form .buyLabel, .bk-trans-form .sellLabel {
+	display: none
+}
+
+.bk-kMarket .bk-entrust .bk-norecord {
+	background-color: #1d1c1c;
+	margin: -2px -9px
+}
+
+@media ( max-width :1199px) {
+	.bk-kMarket .bk-trans-form .item {
+		width: 200px
+	}
+}
+
+.bk-kMarket .table thead tr th {
+	color: #666;
+	background-color: transparent;
+	height: auto
+}
+
+.bk-kMarket .table tbody tr td {
+	color: #6d7b82
+}
+
+.bk-kMarket .table-bordered, .bk-kMarket .table-bordered>tbody>tr>td,
+	.bk-kMarket .table-bordered>tbody>tr>th, .bk-kMarket .table-bordered>tfoot>tr>td,
+	.bk-kMarket .table-bordered>tfoot>tr>th, .bk-kMarket .table-bordered>thead>tr>td,
+	.bk-kMarket .table-bordered>thead>tr>th {
+	border: 1px solid transparent
+}
+
+.bk-kMarket .table-bordered>thead>tr>td, .bk-kMarket .table-bordered>thead>tr>th
+	{
+	border-bottom: 1px solid #2b2929
+}
+
+.bk-kMarket .table-striped>tbody>tr:nth-of-type(even) {
+	background-color: #212020
+}
+
+.bk-kMarket .table-striped>tbody>tr:nth-of-type(odd) {
+	background-color: #1d1c1c
+}
+
+.bk-kMarket .table-hover>tbody>tr {
+	-ms-transition: all .2s linear;
+	-moz-transition: all .2s linear;
+	-webkit-transition: all .2s linear;
+	-o-transition: all .2s linear;
+	transition: all .2s linear
+}
+
+.bk-kMarket .table-hover>tbody>tr:hover {
+	background-color: #111
+}
+
+.bk-kMarket .table-hover>tbody>tr:last-child>td {
+	border-bottom: 0
+}
+
+.bk-kMarket .bk-entrust .table tbody td {
+	height: auto;
+	padding: 2px 8px
+}
+
+.bk-kMarket .bk-tabList {
+	margin: 0 auto
+}
+
+.bk-kMarket .bk-tabList-hd a.pull-right {
+	margin-top: 2px
+}
+
+.bk-kMarket .bk-tabList-hd .btn-group .btn {
+	border-bottom: 0;
+	margin-right: 10px;
+	font-size: 14px;
+	min-width: 100px;
+	padding: 0 10px 2px;
+	border-radius: 0
+}
+
+.bk-kMarket .btn-group>.btn:first-child:not (:last-child ):not (.dropdown-toggle
+	){
+	border-radius: 0
+}
+
+.bk-kMarket .bk-tabList-hd .btn-group .btn.active:before, .bk-kMarket .bk-tabList-hd .btn-group .btn:hover:before,
+	.bk-kMarket .bk-tabList-hd .btn-group .btn:focus:before {
+	display: none
+}
+
+@media ( max-width :768px) {
+	.bk-kMarket .bk-btn-group.btn-group {
+		display: table;
+		table-layout: fixed;
+		width: 100%
+	}
+	.bk-kMarket .bk-btn-group.btn-group .btn {
+		font-size: 12px;
+		float: none;
+		display: table-cell;
+		min-width: 1%
+	}
+}
+
+.bk-kMarket .bk-tabList-hd {
+	padding: 3px 5px;
+	border-bottom: 1px solid #2b2929
+}
+
+.bk-kMarket .bk-tabList-hd .btn-group .btn {
+	color: #6d7b82;
+	background-color: #2f2c2c
+}
+
+.bk-kMarket .bk-tabList-hd .btn-group .btn.active, .bk-kMarket .bk-tabList-hd .btn-group .btn:hover,
+	.bk-kMarket .bk-tabList-hd .btn-group .btn:focus {
+	color: #fff;
+	background-color: #de211d
+}
+
+.bk-kMarket .bk-tabList-hd .btn-group .btn.active:before, .bk-kMarket .bk-tabList-hd .btn-group .btn:hover:before,
+	.bk-kMarket .bk-tabList-hd .btn-group .btn:focus:before {
+	background-color: #fa290f
+}
+
+.bk-kHeader {
+	padding: 5px 10px;
+	line-height: 40px;
+	color: #6d7b82;
+	border-bottom: 1px solid #2b2929
+}
+
+.bk-kHeader a {
+	color: #6d7b82
+}
+
+.bk-kHeader a:hover {
+	color: #de211d;
+	text-decoration: none
+}
+
+.bk-kLogo {
+	margin-right: 10px
+}
+
+.bk-kLogo img {
+	height: 32px;
+	width: auto
+}
+
+.bk-kType a {
+	font-size: 14px;
+	display: inline-block;
+	padding: 0 10px
+}
+
+.bk-kType a.active {
+	color: #de211d;
+	font-weight: bold
+}
+
+.bk-kUser a {
+	font-size: 14px;
+	padding: 0 10px
+}
+
+.bk-kTool {
+	line-height: 40px
+}
+
+.bk-kTool a {
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	margin: 0 10px;
+	cursor: pointer;
+	background-image: url(./kline-toggle.png);
+	background-position: 0 0;
+	background-repeat: no-repeat
+}
+
+.bk-kTool a.toggle-foot {
+	background-position: 0 0
+}
+
+.bk-kTool a.toggle-foot.active {
+	background-position: 0 -20px
+}
+
+.bk-kTool a.toggle-foot:hover {
+	background-position: -20px 0
+}
+
+.bk-kTool a.toggle-foot.active:hover {
+	background-position: -20px -20px
+}
+
+.bk-kTool a.toggle-right {
+	background-position: 0 -40px
+}
+
+.bk-kTool a.toggle-right.active {
+	background-position: 0 -60px
+}
+
+.bk-kTool a.toggle-right:hover {
+	background-position: -20px -40px
+}
+
+.bk-kTool a.toggle-right.active:hover {
+	background-position: -20px -60px
+}
+
+.range_wrap {
+	-moz-user-select: -moz-none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	outline: 0;
+	cursor: pointer;
+	padding: 7px 0 8px
+}
+
+.range_wrap .range_paths_wrap {
+	position: relative;
+	z-index: 1
+}
+
+.range_wrap .range_path {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 2px;
+	width: 100%;
+	background: #ccc;
+	transition: all .05s;
+	-moz-transition: all .05s;
+	-webkit-transition: all .05s;
+	-o-transition: all .05s
+}
+
+.range_wrap .range_track_wrap {
+	position: relative
+}
+
+.range_wrap .range_track {
+	z-index: 2;
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 2px;
+	width: 0;
+	background: #090;
+	transition: all .05s;
+	-moz-transition: all .05s;
+	-webkit-transition: all .05s;
+	-o-transition: all .05s
+}
+
+.range_wrap .range_handle {
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	border: 1px solid #ccc;
+	background: #FFF;
+	border-radius: 50%;
+	top: -7px;
+	z-index: 4;
+	margin-left: -4px;
+	cursor: col-resize;
+	cursor: -webkit-grab;
+	transition: left .05s;
+	-moz-transition: left .05s;
+	-webkit-transition: left .05s;
+	-o-transition: left .05s
+}
+
+.range_wrap .range_points_wrap {
+	position: relative;
+	top: -3px
+}
+
+.range_wrap .range_point {
+	z-index: 3;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	margin: -4px 0 0 -4px;
+	text-align: center
+}
+
+.range_wrap .range_point:after {
+	content: '';
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background: #ccc;
+	border-radius: 50%;
+	vertical-align: top;
+	margin-top: 4px
+}
+
+.range_wrap .range_point:hover:after {
+	width: 16px;
+	height: 16px;
+	margin-top: 0;
+	transition: all .05s;
+	-moz-transition: all .05s;
+	-webkit-transition: all .05s;
+	-o-transition: all .05s
+}
+
+.range_wrap .range_point.active:after {
+	background: #090
+}
+
+.range_wrap.click {
+	cursor: -webkit-grabbing
+}
+
+.range_wrap.click .range_handle {
+	cursor: -webkit-grabbing
+}
+
+.range_wrap.focus .range_handle {
+	border-color: #090
+}
+
+.range_wrap .range_handle {
+	background: #fff;
+	border-color: #d6d2d2
+}
+
+.range_wrap .range_point:after {
+	background: #d5d5d5
+}
+
+.range_wrap .range_path {
+	background: #d5d5d5
+}
+
+.bk-kMarket .range_wrap .range_handle {
+	background: #26272a;
+	border-color: #4d4d4d
+}
+
+.bk-kMarket .range_wrap .range_point:after {
+	background: #4d4d4d
+}
+
+.bk-kMarket .range_wrap .range_path {
+	background: #4d4d4d
+}
+
+.range_buy .range_point.active:after, .range_buy .range_track,
+	.range_edit_buy .range_point.active:after, .range_edit_buy .range_track
+	{
+	background-color: #de211d
+}
+
+.range_buy .focus .range_handle, .range_edit_buy .focus .range_handle {
+	border-color: #de211d
+}
+
+.range_sell .range_point.active:after, .range_sell .range_track,
+	.range_edit_sell .range_point.active:after, .range_edit_sell .range_track
+	{
+	background-color: #3dc18e
+}
+
+.range_sell .focus .range_handle, .range_edit_sell .focus .range_handle
+	{
+	border-color: #3dc18e
+}

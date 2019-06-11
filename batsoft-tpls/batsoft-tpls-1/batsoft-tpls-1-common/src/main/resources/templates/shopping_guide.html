@@ -1,0 +1,393 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+
+<style>
+.vip{
+    margin: 0 auto;
+    width: 100%;
+    height:4325px;
+    min-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+  
+
+}
+body{
+    background:linear-gradient(298deg,rgba(38,78,172,0.9) 0%,rgba(28,41,102,1) 100%);
+    width: 100%;
+    height:4325px;
+    min-width: 1200px;
+}
+.vipk {
+    height:4497px;
+    width: 100%;
+    height:4325px;
+    min-width: 1200px;
+    margin: 0 auto;
+}
+
+.vip1{
+    margin: 0 auto;
+    width: 1360px;
+    height:4497px;
+    min-width: 1200px;
+    background:linear-gradient(298deg,rgba(38,78,172,0.9) 0%,rgba(28,41,102,1) 100%);
+
+}
+
+    .vip1 {
+        width: 100%;
+        height: 82px;
+    }
+
+    .vip2 {
+        width: 100%;
+        height: 30px;
+        color: #F9F9F9;
+        font-size: 34px;
+        font-family: TRENDS;
+        text-align: center;
+    }
+    .vip3_1 {
+        width: 100%;
+        height: 48px;
+    }
+
+    .vip3_2 {
+        width: 670px;
+        height: 363px;
+        margin: 0 auto;
+        text-align: center;
+        color: #DFDFDF;
+        font-size: 14px;
+        line-height: 23px;
+        font-family: PingFang-SC-Medium;
+    }
+    .new_header {
+        background-color: #181b2a;
+        height: 81px;
+        min-width: 1200px;
+        padding: 0 0%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+    .vip3_4 {
+        width: 640px;
+        height: 460px;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+
+    .vip3_4_1 {
+        width: 100%;
+        height: 117px;
+        margin-bottom: 1px;
+    }
+
+    .vip3_4_1_1 {
+        width: 100%;
+        height: 48px;
+        background: #000000;
+        background-color: rgba(0,0,0,0.4982);
+        border-radius: 4px 4px 0px 0px;
+    }
+
+    .vip3_4_1_1 table {
+        width: 100%;
+        height: 48px;
+
+    }
+
+    .th {
+        width: 25%;
+        height: 48px;
+        text-align: center;
+        font-size: 12px;
+        font-family: PingFang-SC-Bold;
+        font-weight: bold;
+        color: #9B9B9B;
+    }
+
+    .vip3_4_1_x {
+        width: 100%;
+        height: 68px;
+        background: #000000;
+        margin-bottom: 1px;
+        border-radius: 0px 0px 4px 4px;
+        background-color: rgba(0,0,0,0.4982);
+    }
+
+    .vip3_4_1_x table {
+        width: 100%;
+        height: 68px;
+    }
+
+    .vip3_4_1_x table tr td {
+        width: 25%;
+        height: 68px;
+        text-align: center;
+        font-size: 12px;
+        font-family: PingFang-SC-Bold;
+        color: #F9F9F9;
+        line-height: 20px;
+    }
+
+    .vip3_4_1_2 {
+        width: 100%;
+        height: 68px;
+        background: #000000;
+        margin-bottom: 1px;
+        border-radius: 4px 4px 4px 4px;
+        background-color: rgba(0,0,0,0.4982);
+    }
+
+    .vip3_4_1_2 table {
+        width: 100%;
+        height: 68px;
+    }
+
+    .vip3_4_1_2 table tr td {
+        width: 25%;
+        height: 68px;
+        text-align: center;
+        font-size: 12px;
+        font-family: PingFang-SC-Bold;
+        color: #F9F9F9;
+        line-height: 20px;
+    }
+
+    .usdt_m {
+        color: #19A279;
+        font-weight: bold;
+    }
+
+    .usdt_x {
+        color: #9B9B9B;
+    }
+
+    .minth {
+        width: 640px;
+        height: 130px;
+        background: #000000;
+        background-color: rgba(0,0,0,0.3971);
+        margin: 0 auto;
+        margin-bottom: 70px;
+    }
+
+    .minth_ios {
+        width: 640px;
+        height: 30px;
+    }
+
+    .minth_adriods {
+        width: 640px;
+        height: 60px;
+        color: #AE4E54;
+        font-size: 12px;
+        font-family: PingFang-SC-Medium;
+        text-align: center;
+        line-height: 19px;
+    }
+
+    .minth_kiss {
+        width: 560px;
+        height: 92px;
+        text-align: center;
+        margin: 0 auto;
+        line-height: 26px;
+    }
+
+    .erke {
+        color: #DFDFDF;
+        font-size: 14px;
+        font-family: PingFang-SC-Medium;
+    }
+
+    .k_birde {
+        font-size: 14px;
+        font-family: PingFang-SC-Medium;
+    }
+    .k_birde a {
+        color: #4A90E2;
+        text-decoration: none;
+    }
+    .pink {
+        width: 100%;
+        height: 180px;
+        background: #0C0E15;
+        min-width: 1200px;
+    }
+
+    .pink_1 {
+        width: 1200px;
+        height: 16px;
+        margin: 0 auto;
+    }
+
+    .pink_3{
+        width: 150px;
+        height: 47px;
+        margin: 0 auto;
+    }
+
+    .pink_4 {
+
+        width: 600px;
+        height: 22px;
+        margin: 0 auto;
+        color: #60688D;
+        font-size: 12px;
+        font-family: PingFang-SC-Regular;
+        text-align: center;
+        line-height: 33px;
+
+    }
+
+
+
+    .vip1P {
+        width: 55px;
+        height: 55px;
+        margin: 0 auto;
+        margin-bottom: 18px;
+    }
+    .navBar li a{display:block;height:50px;line-height:50px;padding:0 15px;color:#999}
+</style>
+
+<body >
+<div class="vipk">
+<div class="vip">
+    <div style="width: 1200px;height: 80px;margin: 0 auto;margin-bottom: 204px;">
+        <div th:fragment="nav">
+            <div class="new_header" style="background:none;">
+                <div >
+                    <a href="/"><h1 class="logo">Bttmall</h1></a>
+                    <ul class="navBar">
+                        <li><a href="/market" th:text="#{exchange}">
+                            交易中心<i></i></a></li>
+
+                        <!--<li th:if="${@globalService.c2cOpen()=='1'}"><a href="/c2c" th:text="#{c2c}">-->
+                        <!--C2C<i></i></a></li>-->
+
+                        <li><a href="javascript:void(0);" th:onclick="'javascript:goToreferral();'" th:text="#{mutner}" >
+                            召集令<i></i></a><div class="Kmarker"></div></li>
+
+                        <li><a href="/article/list/announcements" target="_blank" th:text="#{notice}">
+                            公告<i></i></a></li>
+                                <li class="shop"><a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{shop}">
+                                商城<i></i></a>
+                                <div class="shop-icon"></div>
+                            </li>
+
+
+
+
+                    </ul>
+                </div>
+                <div th:fragment="loginState" >
+                    <div class=" cn " id="languageBt" th:fragment="lan" style="position: relative;top: 1px; width: 95px;">
+                    <span class="language colTit" th:text="#{chinese}">
+                 </span>
+                        <span class="ico icoLanArr"></span>
+                        <ul class="languageSwitch userItemSon">
+                            <li class="en" ><a href="/lan/zh_CN" th:text="#{chinese}" class="creamy-white"></a> </li>
+                            <li class="en" ><a href="/lan/en_US" th:text="#{english}" class="creamy-white"></a> </li>
+                        </ul>
+                    </div>
+                    <!-- 登录注册 -->
+                    <div class="userStatus" th:if="${!@globalService.isLogin()}">
+                        <a href="/login" th:text="#{login}" >登录</a> / <a href="/register" th:text="#{register}">注册</a>
+                    </div>
+                    <!-- /登录注册 -->
+                    <!-- 退出登录 -->
+                    <div class="headerUserBar" th:if="${@globalService.isLogin()}">
+                        <ul>
+
+                            <li class="item"><span class="colTit" th:text="#{orders}">委托</span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/account/entrust" th:text="#{open_order}">当前委托</a></li>
+                                    <li class="cn"><a href="/ex/member/account/history_entrust" th:text="#{trade_history}">历史委托</a></li>
+                                    <li class="cn"><a href="/ex/member/account/history_trade" th:text="#{order_history}">历史成交</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="item"><span class="colTit" th:text="#{funds}">资产</span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/account" th:text="#{balances}">我的资产</a></li>
+                                    <li class="cn"><a href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></li>
+                                    <li class="cn"><a href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></li>
+                                    <li class="cn"><a href="/ex/member/account/money_info" th:text="#{funwsd_history}">历史记录</a></li>
+                                    <li class="cn"><a href="/ex/member/account/withdraw_history" th:text="#{wites_history}">提现记录</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="item"> <span class="colTit" id="jhse" th:text="${@globalService.getUserName()}"></span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/user" th:text="#{account}">用户中心</a></li>
+                                    <li class="cn"><a href="/logouts" th:text="#{logout}">退出</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- /退出登录 -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="vip_L">
+    </div>
+    <div class="vip_p">
+    </div>
+</div>
+<div class="pink">
+    <div class="pink_1"></div>
+    <div class="pink_2"></div>
+    <div class="pink_6"></div>
+    <!--<div class="pink_3">-->
+    <!--<div class="pink_3_1"></div>-->
+    <!--<div class="pink_3_2"></div>-->
+    <!--<div class="pink_3_3"></div>-->
+    <!--<div class="pink_3_4"></div>-->
+    <!--</div>-->
+    <div class="pink_4">&#169 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited</div>
+</div>
+</body>
+<div th:replace="component/basejs :: basejs(~{::script})">
+
+    <script>
+        seajs.use([DEV + "/main","socketjs","stomp","numeral"], function (main,a,b,numeral) {
+
+        });
+            var shopToken = localStorage.getItem("shopToken");
+            var url="https://shop.bttmall.com/";
+            if(shopToken){
+                url = url + "?token=" + shopToken;
+            }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+
+    </script>
+</div>
+</html>

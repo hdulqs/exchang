@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+
+
+<select class="form-control select2"   th:name="${name}"   id="payType" th:fragment="payType(name,def)">
+        <option value="">付款方式</option>
+
+        <option value="现金存款" >现金存款</option>
+
+        <option value="银行转账" >银行转账</option>
+
+        <option value="支付宝" >支付宝</option>
+
+        <option value="微信" >微信支付</option>
+
+        <option value="iTunes礼品卡" >iTunes礼品卡</option>
+
+        <option value="Paytm" >Paytm</option>
+
+        <option value="其它" >其它</option>
+    <!--load js-->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script th:inline="javascript">
+            seajs.use(["select2"], function () {
+                var def= [# th:text="${def}"/];
+                if(def!=""){
+                    var _def=def.split(",");
+                    jQuery('#payType').select2().val(_def).trigger('change');
+                }else{
+                    jQuery('#payType').select2();
+                }
+
+            });
+        </script>
+    </div>
+    <!--load js-->
+    </select>
+<select class="form-control select2"   th:name="${name}"  multiple="multiple" id="payType" th:fragment="payTypeMultiple(name,def)">
+    <option value="">付款方式</option>
+
+    <option value="现金存款" >现金存款</option>
+
+    <option value="银行转账" >银行转账</option>
+
+    <option value="支付宝" >支付宝</option>
+
+    <option value="微信" >微信支付</option>
+
+    <option value="iTunes礼品卡" >iTunes礼品卡</option>
+
+    <option value="Paytm" >Paytm</option>
+
+    <option value="其它" >其它</option>
+    <!--load js-->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script th:inline="javascript">
+            seajs.use(["select2"], function () {
+                var def= [# th:text="${def}"/];
+                if(def!=""){
+                    var _def=def.split(",");
+                    jQuery('#payType').select2().val(_def).trigger('change');
+                }else{
+                    jQuery('#payType').select2();
+                }
+
+            });
+        </script>
+    </div>
+    <!--load js-->
+</select>
+
+</body>
+</html>

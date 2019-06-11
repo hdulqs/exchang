@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+<div th:fragment="logo">
+    <a class="logo float-left" style="padding-top: 20px" href="/">
+        <img style="width: 178px; height: 50px;" th:src="@{${@globalService.fileHost()}+${@globalService.logoLightPath()}}" alt=""/>
+        <img  style="width: 178px; height: 50px;" th:src="@{${@globalService.fileHost()}+${@globalService.logoDarkPath()}}" alt=""/>
+    </a>
+</div>
+</body>
+</html>

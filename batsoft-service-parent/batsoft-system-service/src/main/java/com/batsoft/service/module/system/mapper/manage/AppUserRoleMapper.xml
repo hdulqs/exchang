@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppUserRoleMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-05-13 16:56:34 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.manage.AppUserRoleDao">
+
+    <resultMap id="userRole" type="com.batsoft.model.module.system.manage.AppUserRole">
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <sql id="userRole_column">
+        role_id
+    </sql>
+
+
+    <select id="findRoleByUserId" resultMap="userRole" parameterType="java.lang.String">
+        SELECT
+        <include refid="userRole_column"/>
+        FROM system_app_user_role
+        where user_id=#{userId} and del='0'
+    </select>
+</mapper>

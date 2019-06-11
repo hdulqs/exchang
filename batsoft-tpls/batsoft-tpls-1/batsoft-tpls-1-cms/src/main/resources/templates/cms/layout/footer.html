@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div style=" background: #181b2a;">
+        <div  th:fragment="footer" style=" background: #181b2a;height: 280px;width: 100%;min-width: 1200px">
+            <div class="footerNavBar" style=" background: #181b2a;height: 200px;padding-top: 30px;">
+                <div class="footer-section-logo">
+                    <div class="footer-logo-img" style="position: relative;top: 13px;"></div>
+                    <div style=" font-size: 12px;color: #4E5B85;height: 10px;" th:text="#{main_page_currency}"></div>
+                    <div style=" font-size: 12px;color: #4E5B85;height: 33px;width: 130px;">比特天猫官方8群</div>
+                    <div class="fotop" style="position: relative;top: -11px;width: 80px;height: 67px;">
+                        <!--<table>-->
+                        <!--<tr>-->
+                        <!--<th class="foter1" style="width: 32px;"></th>-->
+                        <!--<th class="foter2" style="width: 32px;"></th>-->
+                        <!--<th class="foter3" style="width: 32px;"></th>-->
+                        <!--<th class="foter4" style="width: 32px;"></th>-->
+                        <!--</tr>-->
+                        <!--</table>-->
+                    </div>
+                </div>
+                <div class="footer-section-service">
+                    <div class="footer-title" th:text="#{footer.service}">服务</div>
+                    <div class="footer-link"><a target="_blank" href="/market?symbol=BT_USDT" th:text="#{footer.center}">交易中心</a></div>
+                    <div class="footer-link"><a target="_blank" href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></div>
+                    <div class="footer-link"><a target="_blank" href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></a></div>
+                </div>
+                <div class="footer-section-terms">
+                    <div class="footer-title" ><a target="_blank"  th:text="#{footer.terms}" style="color: #fff;">条款说明</a></div>
+                    <div class="footer-link"><a target="_blank" href="/privacys" th:text="#{footer.privacy}">隐私政策</a></div>
+                    <div class="footer-link"><a target="_blank" href="/agreement" th:text="#{footer.user_terms}">用户协议</a></div>
+                    <div class="footer-link"><a target="_blank" href="/handlingfee" th:text="#{footer.fee}">手续费</a></div>
+                </div>
+                <div class="footer-section-about-us">
+                    <div class="footer-title" th:text="#{footer.about_us}">联系我们</div>
+                    <div class="footer-link" style="color: #60688d" th:text="#{footer_Cooperation}">商务合作：admin@bttmall.com</div>
+                    <div class="footer-link" style="color:#60688d" th:text="#{footer_Customer}">客户支持合作：support@bttmall.com</div>
+                </div>
+            </div>
+            <div style="width: 100%;text-align:center;color: #60688d;height: 50px;"  >
+                © 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited
+            </div>
+        </div>
+    </div>
+
+        <!--<div th:replace="component/basejs :: basejs(~{::script})">
+            <script>
+                seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_index"], function ( a, a0,a1, o, b, c, d) {
+                    d.footer();
+                });
+            </script>
+        </div>-->
+        </body>
+</html>
+<!-- Global site tag (gtag.js) - Google Ads: 754375084 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-754375084"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-754375084'); </script>
+<script>
+    var shopToken = localStorage.getItem("shopToken");
+    var url="https://shop.bttmall.com/";
+    if(shopToken){
+        url = url + "?token=" + shopToken;
+    }
+    function goToShop() {
+        window.open(url);
+    }
+
+</script>
+
+

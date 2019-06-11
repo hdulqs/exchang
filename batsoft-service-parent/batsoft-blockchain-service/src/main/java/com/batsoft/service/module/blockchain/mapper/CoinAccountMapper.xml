@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CoinAccountMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-22 14:22:17 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.blockchain.dao.CoinAccountDao">
+
+
+
+    <update id="updateAddressStatus" parameterType="java.lang.String">
+        UPDATE blockchain_coin_account
+            SET status = 1
+         WHERE coin_address = #{address};
+</update>
+
+    <select id="findAddress" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT coin_address
+        FROM blockchain_coin_account
+        where wallet_code = #{walletCode} AND status=0 LIMIT 1
+    </select>
+
+    <select id="findAddressNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT COUNT(id)
+        FROM blockchain_coin_account
+        where status=0
+    </select>
+</mapper>

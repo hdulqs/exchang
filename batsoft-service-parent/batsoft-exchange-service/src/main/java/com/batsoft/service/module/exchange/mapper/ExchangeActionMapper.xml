@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>C2cOrderMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-07 09:16:15 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.ExchangeActionDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.exchange.ExchangeAction">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="price_code" property="priceCode" jdbcType="VARCHAR"/>
+        <result column="action_name" property="actionName" jdbcType="VARCHAR"/>
+        <result column="start_time" property="startTime" jdbcType="TIMESTAMP"/>
+        <result column="end_time" property="endTime" jdbcType="TIMESTAMP"/>
+        <result column="valide" property="valide" jdbcType="INTEGER"/>
+        <result column="public_date" property="publicDate" jdbcType="DATE"/>
+        <result column="link" property="link" jdbcType="VARCHAR"/>
+        <result column="link_name" property="linkName" jdbcType="VARCHAR"/>
+        <result column="coin_picture" property="coinPicture" jdbcType="VARCHAR"/>
+        <result column="action_date" property="actionDate" jdbcType="DATE"/>
+        <result column="buy_limit_price" property="buyLimitPrice" jdbcType="DECIMAL"/>
+        <result column="sell_limit_price" property="sellLimitPrice" jdbcType="DECIMAL"/>
+        <result column="sell_limit_amout" property="sellLimitAmout" jdbcType="INTEGER"/>
+        <result column="buy_limit_amout" property="buyLimitAmout" jdbcType="INTEGER"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="selectActionByCoinCodeAndPriceCode" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT * FROM exchange_action
+        <where>
+            <if test="coinCode !=null">
+                coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode !=null">
+                AND price_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="date != null">
+                AND start_time > #{date,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+          order by start_time
+    </select>
+
+    <select id="selectLastActionByCoinCodeAndPriceCode" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT * FROM exchange_action
+        <where>
+            <if test="coinCode !=null">
+                coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode !=null">
+                AND price_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="date != null">
+                AND start_time &lt; #{date,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+          order by start_time desc
+    </select>
+
+    <select id="selectNextActionByCoinCodeAndPriceCode" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT * FROM exchange_action
+        <where>
+            <if test="coinCode !=null">
+                coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode !=null">
+                AND price_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="date != null">
+                AND action_date >= #{date,jdbcType=DATE}
+            </if>
+        </where>
+          order by  action_date,start_time
+    </select>
+    <select id="selectNextAllActionByDate" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT * FROM exchange_action
+        <where>
+            <if test="date != null">
+               start_time > #{date,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+          order by  start_time
+    </select>
+
+
+    <update id="updateActionValide" parameterType="java.util.Map" >
+        update exchange_action
+        <set>
+            valide = #{valide,jdbcType=INTEGER}
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+</mapper>

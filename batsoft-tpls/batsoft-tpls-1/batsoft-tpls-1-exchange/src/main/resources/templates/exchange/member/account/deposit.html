@@ -1,0 +1,234 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .divSelect li .ico_notice{display:inline-block;padding-right:10px;}
+        .symbol_tips{color:#ff0000;background:#ffebee;border:1px solid #e57373;text-align:center;line-height:40px;}
+        .disabled{position:relative;z-index:0;}
+        .disabled .disabled_mask{position: absolute;z-index:1;height:34px;width:100%;top:0px;left:0px;}
+        .disabled .chargeBt{background-color:#ecf0f5;}
+        .chargeAddress{word-break: break-all;height:auto;}
+        strong.no-blinding{font-weight:bold;font-size:16px;}
+        span.no-blinding{color:#333;}
+        .popQRcodPic{padding:20px 0px 0px 0px;}
+        .popAddress{width:300px;margin:0 auto;word-break:break-all;text-align:center;padding:10px 0px 20px 0px;}
+        .rechargeR ul{min-height:190px;}
+        .rechargeR li.deposit_memo_tips{padding:0px 10px;color:#ff0000;background:#ffebee;border:1px solid #e57373;text-align:center;line-height:40px;}
+        .conTrade{padding:20px 20px 0px 20px;}
+        .conTrade p{display:inline-block;padding:0px 0px 5px 0px;font-weight:bold;}
+        .conTrade ul li{display:inline-block;padding:5px 10px 5px 0px;}
+        .conTrade ul li a:hover{color:#d4a668;text-decoration: underline;}
+        .deposits_title a:hover{color:#d4a668;text-decoration: underline;}
+        .topColtitWrap {
+            border-bottom: #181B2A 1px solid;
+            color:#C7CCE6 ;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181B2A;
+        }
+        .divSelect ul {
+            width: 99%;
+            border: #dfdfdf 1px solid;
+            position: absolute;
+            z-index: 1;
+            left: 1px;
+            top: 38px;
+            background-color: #fff;
+            display: none;
+            max-height: 200px;
+            overflow-y: auto;
+
+        }
+#sa_kop{
+    display: none;
+}
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <input type="hiden" style="display: none" th:value="${coinCode}" id="coin_code"/>
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="fullScreen_h">
+
+        <div class="topColtitWrap">
+            <div class="colBar moneyBg">
+                <p class="colTit" th:text="#{deposit}">充值</p>
+            </div>
+        </div>
+        <div class="rechargeWrap" style="background: #181B2A;border: 1px solid  #262A42;margin-bottom: 149px; ">
+            <div class="rechargeBox" style="border-bottom: 1px solid  #181B2A;">
+                <div class="rechargeL">
+                    <div class="divSelect" id="divSelect" style="color: #FFFFFF;background-color: #262a42;border:1px solid #4E5B85;">
+                        <cite>
+                            <span class="icoPic fl">
+                            <img src="" alt="">
+                            </span>
+                            <strong class="no-blinding" th:text="${coinCode}" style="color: #C7CCE6" ></strong>
+                            <!--<span class="no-blinding" th:text="${'-'+coinCode}" style="color: #C7CCE6"> </span>-->
+                            <span class="ico_notice fr" >
+                            </span>
+                            <span class="cl"></span>
+                        </cite>
+                        <ul style="display: none;">
+                            <li>
+                                <div class="recharSearch">
+                                    <input type="text" th:placeholder="#{key}" placeholder="请输入币种关键字">
+                                </div>
+                            </li>
+                            <span id="coin_select_render">
+
+
+                             </span>
+
+                            <script id="coin_select_tpl" type="text/x-jsrender">
+ <li>
+                                <a href="/ex/member/account/deposit?coin_code={{:coinCode}}" selectid="{{:coinCode}}" alert_msg="">
+<span class="icoPic fl">
+<img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}"  alt="{{:coinCode}}">
+</span>
+                                    <strong class="no-blinding">{{:coinCode}}</strong>
+                                    <!--<span class="no-blinding"> - {{:coinCode}}</span>-->
+                                    <span class="ico_notice fr">
+</span>
+                                    <span class="cl"></span>
+                                </a>
+                            </li>
+                            </script>
+
+                        </ul>
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <input id="symbol" type="hidden" th:value="${coinCode}" class="selectInput">
+                        <input id="alert_msg" type="hidden" value="">
+                    </div>
+                    <div class="hr10" style="background: #181b2a"></div>
+                    <div id="coin_render"></div>
+
+                    <script id="coin_tpl" type="text/x-jsrender">
+                <div class="conBox" style="height: 230px;padding-left: 20px;background:#181B2A;border: 1px solid  #181B2A;">
+                                        <ul>
+                                            <li><span th:text="#{total_balance}" style="color:#C7CCE6;">总额</span>： <span class="gold"  style="color:#FFFFFF">{{:totalMoney}}</span>&nbsp;&nbsp;<span class="unit" style="color:#5871BF;">{{:coinCode}}</span> </li>
+                                            <li><span th:text="#{frozen_balance}" style="color:#C7CCE6;">冻结</span>： <span class="gold" id="frozen_bal" style="color:#FFFFFF">{{:freeze}}</span>&nbsp;&nbsp;<span class="unit" style="color:#5871BF;">{{:coinCode}}</span></li>
+                                            <li><span th:text="#{available_balance}" style="color:#C7CCE6;">可用余额</span>： <span class="gold" id="available_bal" style="color:#FFFFFF">{{:available}}</span>&nbsp;&nbsp;<span class="unit" style="color:#5871BF;">{{:coinCode}}</span></li>
+
+
+                                        </ul>
+                                    </div>
+                                    <div class="conIntro  hide " style="padding:20px 20px 0px 20px;">
+                                        <a href="javascript:void(0)" target="_blank" class="gold" style="text-decoration:underline;">什么是<span class="unit">{{:coinCode}}</span>?</a>
+                               </div>
+
+                    </script>
+                </div>
+                <div class="rechargeR" style="min-height:260px;border: 1px solid #181B2A;background: #181B2A;">
+
+                    <ul id="coin_address_render">
+
+                    </ul>
+
+                    <script id="coin_address_tpl" type="text/x-jsrender">
+                    <p><span class="unit"  style="color:#C7CCE6">{{:coinCode}}</span> <span th:text="#{deposit.address}" style="color:#C7CCE6">充值地址</span></p>
+ <li class="deposit_memo_tips  hide ">
+                            <div class="memo_tips"></div>
+                        </li>
+                        <li class="deposit_symbol_tips  hide ">
+                            <div class="symbol_tips"></div>
+                        </li>
+                        <li class="chargeAddress_box " >
+                        {{if coinAddress==null}}
+                            <div class="chargeAddress" id="chargeAddress"
+                            style="line-height: 20px;
+                                    padding: 10px 20px;
+                                    height: 20px;
+                                    font-size: 14px;
+                                    border: #4E5B85 1px solid;
+                                    font-family: Arial;
+                                    font-weight: 700;
+                                    color: #FFFFFF ;
+                                    word-break: break-all;
+                                    background: #262a42;">**********************</div>
+                            {{else}}
+                            <div class="chargeAddress" id="chargeAddress"
+                                  style="line-height: 20px;
+                                    padding: 10px 20px;
+                                    height: 42px;
+                                    font-size: 14px;
+                                    border: #4E5B85 1px solid;
+                                    font-family: Arial;
+                                    font-weight: 700;
+                                    color: #FFFFFF ;
+                                    word-break: break-all;
+                                    background: #262a42;margin-bottom:10px"
+                            >{{:coinAddress}}</div>
+                            {{/if}}
+                        </li>
+                        <li class="tr ">
+
+                            {{if coinAddress==null}}
+                            <a href="javascript:void(0)" class="chargeBt copy getAddress" data-code="{{:coinCode}}"  th:text="#{account.getaddress}"  style="color:#C7CCE6;background:#589065;border:none;outline:none;text-indent:-20px;">获取地址</a>
+                            {{/if}}
+                            <a href="javascript:void(0)" class="chargeBt QRcode" dataId="chargeAddress" th:text="#{account.show_qr_code}"  style="color:#C7CCE6;background:#4E5B85;border:none;outline:none;text-indent:-20px;">展示二维码</a>
+                            <a href="javascript:void(0)" class="chargeBt copy" dataId="chargeAddress" th:text="#{account.copy_address}" style="color:#C7CCE6;background:#4E5B85;border:none;outline:none;text-indent:-20px;">复制到剪贴板</a>
+                            <div class="hr10"></div>
+                            <div class="disabled_mask"></div>
+                        </li>
+                        <li class="chargeTip_box  hide " >
+                            <div style="padding:0px 0px 10px 0px;"><span >备注</span>：</div>
+                            <div class="chargeTip"><span class="tips" id="memo">0</span></div>
+                            <div class="tr" style="padding:10px 0px 0px 0px;">
+                                <a href="javascript:void(0)" class="chargeBt QRcode" dataId="memo" th:text="#{account.show_qr_code}">展示二维码</a>
+                                <a href="javascript:void(0)" class="chargeBt copy" dataId="memo" th:text="#{account.copy_address}">复制到剪贴板</a>
+                                <div class="hr10"></div>
+                                <div class="disabled_mask"></div>
+                            </div>
+                        </li>
+                        <li class="icoTip" id="min_deposit_tips" style="display: none;"></li>
+                        <li class="icoTip" id="deposit_notice" style="color:#5871BF;"><span th:text="#{more_toper}">禁止向</span>{{:coinCode}}<span th:text="#{hnda}">地址充值除</span>{{:coinCode}}<span th:text="#{nhda}">之外的资产，任何充入</span>{{:coinCode}}<span th:text="#{jnber}">地址的非</span>{{:coinCode}}<span th:text="#{jnbellr}">资产将不可找回。</span></li>
+                        <li class="icoTip" id="deposit_confirm_tips" style="color:#5871BF;"><span th:text="#{use_post}">使用</span>{{:coinCode}}<span th:text="#{kides}">地址充值需要</span> <span class="gold" style="color:red;">{{:confirm}}</span> <span th:text="#{muth_liut}">个网络确认才能到账。</span></li>
+                         <li  class="ico_Tip" id="sa_kop"><span style="position: relative;top: -1px;   color: red" th:text="#{vsred}">请转账ERC20的USDT，如果转账OMNI的USDT将不可找回，请谨慎操作。</span></li>
+</script>
+                </div>
+
+            </div>
+            <!--<div class="rechargeEnd" style="border:none;"></div>-->
+        </div>
+    </div>
+    <div class="hide">
+
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","numeral","layer","jquery_validate", "messages_zh", "clipboard","qrcode", DEV + "/page_user"], function ( a1,a0,a, i, o, b, c, d) {
+            d.deposit();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

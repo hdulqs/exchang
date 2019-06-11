@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>ExCoinMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-11-18 13:20:52 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.otc.dao.ExCoinDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.otc.ExCoin">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="coin_name" property="coinName" jdbcType="VARCHAR"/>
+        <result column="symbol" property="symbol" jdbcType="VARCHAR"/>
+        <result column="coin_logo" property="coinLogo" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        id, coin_name, symbol, coin_logo
+    </sql>
+    <select id="findListCoins" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM otc_ex_coin c
+        where  c.status=1 AND c.del=0
+        order by  c.sort ASC
+    </select>
+</mapper>

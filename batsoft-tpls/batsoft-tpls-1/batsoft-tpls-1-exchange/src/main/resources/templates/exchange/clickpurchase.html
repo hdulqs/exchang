@@ -1,0 +1,411 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+<style>
+    .red{
+        width:1150px;
+        height: 680px;
+        background: #181B2A;
+        margin: 0 auto;
+        margin-bottom: 40px;
+    }
+    .red-kid{
+        width: 920px;
+        height: 520px;
+        margin: 0 auto;
+    }
+    .red-kid-red{
+        width:880px;
+        height: 90px;
+        margin: 0 auto;
+    }
+    .red-kid-red-yit{
+        width: 50%;
+        height: 90px;
+        line-height: 90px;
+        float: left;
+        text-align: center;
+    }
+    .red-kid-red-yit ul li{
+        list-style: none;
+        float: left;
+        margin-left: 10px;
+        font-size: 16px;
+        font-family:PingFang-SC-Medium;
+        color: #F3F4F8;
+    }
+    .red-kid-red-at{
+        width: 50%;
+        height: 90px;
+        line-height: 90px;
+        float: left;
+        text-align: right;
+        font-size: 14px;
+    }
+    .red-kid-green{
+        width:720px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .red-kid-green-yit{
+        width:720px;
+        height: 50px;
+        line-height: 50px;
+        margin: 0 auto;
+
+    }
+    .red-kid-green-yit ul li{
+        list-style: none;
+        font-family: PingFang-SC-Medium;
+        float: left;
+        margin-left: 16px;
+        color: #F3F4F8;
+        position: relative;
+        left: -18px;
+
+    }
+    .red-kid-pink-yit{
+        width:720px;
+        height: auto;
+
+    }
+
+    #kilh{
+        width:720px;
+        height: auto;
+        margin: 0 auto;
+
+    }
+
+    .td-img{
+        width: 110px;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        border: 1px solid #589065;
+        color: #F3F4F8;
+    }
+    .poer{
+        width:720px;
+        height:50px;
+        background:rgba(56,125,224,1);
+        border-radius:2px;
+        font-size:16px;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        color:#FFFFFF;
+        text-align: center;
+        margin-bottom: 15px;
+        cursor:pointer;
+    }
+    .sate{
+        width:589px;
+        height:50px;
+        text-indent: 25px;
+        line-height: 50px;
+        font-size: 16px;
+        color: #ffffff;
+        border: none;
+        outline: none;
+
+
+    }
+    .start{
+        width:720px;
+        height:50px;
+        border-radius:2px;
+        border:1px solid #262a42;
+        margin-bottom: 20px;
+    }
+    .sate::-webkit-input-placeholder{
+        color:#4E5B85;
+    }
+    .sate-input::-webkit-input-placeholder{
+        color:#4E5B85;
+    }
+    .sate-input{
+        width: 120px;
+        height:50px;
+        text-indent: 70px;
+        line-height: 50px;
+        font-size: 16px;
+        color: #ffffff;
+        border-radius:2px;
+        margin-bottom: 48px;
+        border: none;
+        outline: none;
+
+
+    }
+    .products .red-kid-green.selected {
+        display: block;
+    }
+
+    .reds .red-kid-green.selected {
+        display: block;
+    }
+    .red-kid-red-yit ul li:first-child
+    {
+        color: #387de0;
+    }
+.stext-seleter{
+    outline: none;
+    border:none;
+    color: #F3F4F8;
+    text-align: right;
+    width:100%;
+    height: 43px;
+}
+#show_div_money{
+    background: #181B2A;
+    height: 497px;
+}
+.show_table{
+    width: 80%;
+    height: 70px;
+    height: 70px;
+    line-height: 70px;
+    margin: 0 auto;
+
+  }
+    .show_table_1{
+        width: 100%;
+        height: 50px;
+        margin: 0 auto;
+        background-color: #253235;
+        margin-bottom: 20px;
+
+    }
+    .show_table_one{
+        width: 70%;
+        height: 50px;
+        margin: 0 auto;
+        background-color: #253235;
+        line-height: 50px;
+    }
+    .show_table_two{
+        width: 70%;
+        height: 90px;
+        margin: 0 auto;
+    }
+    .right_input_button{
+        width: 100%;
+        height: 42px;
+        line-height: 42px;
+        outline: none;
+        color: #C7CCE6;
+        background: #387de0;
+        border-radius: 2px;
+        position: relative;
+        top: 17px;
+
+    }
+</style>
+<body>
+
+<div class="wrapper" style="margin-bottom: 40px;">
+
+    <span th:replace="layout/nav :: nav"></span>
+
+</div>
+<div class="red">
+    <div class="red-kid">
+        <div class="red-kid-red">
+            <div class="red-kid-red-yit">
+            </div>
+            <div class="red-kid-red-at">
+                <span style="color:#387DE0;" th:text="#{feel_posts}">USDT参考单价:</span>&nbsp;<span style="color:#ffffff" id="buy_price_text" ></span>
+            </div>
+        </div>
+            <div class="products">
+                <div class="red-kid-green-yit">
+                    <ul>
+                        <li class="math select" style="cursor:pointer;color:#387DE0;height: 39px;" id="cos" onclick="clickList(1)" th:text="#{boofer_nont}">按金额购买</li>
+                        <li class="math" style="cursor:pointer;height: 39px;" id="lst"  onclick="clickList(0)" th:text="#{boofer_prices}">按数量购买</li>
+                    </ul>
+                </div>
+                <div class="reds">
+                    <div class="red-kid-green selected">
+                        <div class="red-kid-pink-yit">
+                            <div class="start">
+                                <input type="text"  th:placeholder="#{fonte_kiss}" class="sate" placeholder="请输入购买金额" th:value="${mount}">
+                                <input type="text"  placeholder="CNY" class="sate-input"  disabled="disabled">
+                            </div>
+                            <table style="margin-bottom: 24px;">
+                                <tr style="height: 50px;color:#F3F4F8">
+                                    <td th:text="#{pay_roots}"> 付款方式</td>
+                                </tr>
+                                <tr style="height:70px;">
+                                    <td style="color:#F3F4F8"><div class="td-img"><a href="/member/security/bindCard" style="color:#F3F4F8"  th:text="#{pay_banks}" > 银行卡</a> </div></td>
+                                </tr>
+                                <tr style="height:45px;">
+                                    <td width="365px" style="color:#F3F4F8;font-size: 14px" th:text="#{pay_kiter}">成交单价：</td>
+                                    <td width="365px" style="text-align: right"  id="text_admin"> CNY/USDT</td>
+                                </tr>
+                                <tr style="height:45px;">
+                                    <td  width="365px" style="color:#F3F4F8;font-size: 14px" th:text="#{pay_lister}">成交数量：</td>
+                                    <td width="365px" style="text-align: right;color: #F3F4F8;" ><input type="text" id="text-input" class="stext-seleter"> </td>
+                                </tr>
+                                <tr style="height:45px;">
+                                    <td width="365px" style="color:#F3F4F8;font-size: 14px" th:text="#{pay_posyr}">成交总额：</td>
+                                    <td width="365px" style="color: #F3F4F8;font-size: 16px;text-align: right" ><input type="text" id="moneys" class="stext-seleter"> </td>
+                                </tr>
+                            </table>
+                            <input type="button" value="立即购买" class="poer" th:value="#{fonte_kjsops}">
+                            <p style="color: #5871BF;font-size: 12px" th:text="#{ifeer}">50000元以下极速购买，按需获取最优单价</p>
+                            <span style="display: none;" th:text="${mount}" id="id_price1"></span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script>
+            var shopToken = localStorage.getItem("shopToken");
+            var shopurls = $("#shop_urls").val();
+            var url=shopurls;
+            if(shopToken){
+                url = url + "?token=" + shopToken;
+            }
+            var coinCode="";
+            var buy_type="1";
+            var dataArray=[];
+            var indexCoin=0;
+            var text_money_admin = "";
+            function showCoinCode(datalists){
+                if(datalists.length>0){
+                    coinCode = datalists[0].coinCode;
+                    $("#buy_price_text").html(datalists[0].buyPrice+  " " +  "CNY/USDT");
+                    $("#text_admin").html(datalists[0].buyPrice+  " " +  "CNY/USDT");
+                    $("#text-input").val((Number($("#id_price1").text())/Number(datalists[0].buyPrice)).toFixed(2)+  " " +  "USDT");
+                    $("#moneys").val($("#id_price1").text()+ " " + "CNY")
+
+                }else{
+                    return
+                }
+                var htmldata = '';
+                htmldata+='<ul>';
+                for (var i = 0; i < datalists.length; i++) {
+                    var list =datalists[i];
+                    htmldata+='<li class="moth active"  onclick="coinCodeClick(\''+list+'\',\''+i+'\')"; style="cursor:pointer;height: 58px;" id="month"> '+datalists[i].coinCode+'</li>'
+                }
+                htmldata+='</ul>';
+                $(".red-kid-red-yit").html(htmldata);
+                dataArray = datalists;
+            }
+            function coinCodeClick(data,index) {
+                indexCoin = index;
+                $('.red-kid-red-yit').find('li').each(function() {
+                    var i = $(this).index();
+                    if(index == i){
+                        $(this).addClass("active").siblings().removeClass("active");
+                        $(this).css("color","#387DE0");
+                        $('.sate').val("");
+                        $("#moneys").val("");
+                        $("#text-input").val("")
+
+                    }else {
+                        $(this).removeClass("active").siblings().removeClass("active");
+                        $(this).css("color","#F3F4F8");
+                        $('.sate').val("");
+                        $("#moneys").val("");
+                        $("#text-input").val("")
+                    }
+                })
+                coinCode = dataArray[index].coinCode;
+                $("#buy_price_text").html(dataArray[index].buyPrice+  " " +  "CNY/USDT");
+                $("#text_admin").html(dataArray[index].buyPrice+  " " +  "CNY/USDT");
+                text_money_admin = dataArray[index].buyPrice+  " " +  "CNY/USDT";
+
+                //赋值
+            }
+            function clickList(type){
+                //1 是金额 0是数量
+                if(type==1){
+                    $("#lst").css("color","#F3F4F8");
+                    $("#cos").css("color","#387DE0");
+                    $('.sate').val("");
+                    $("#moneys").val("");
+                    $("#text-input").val("");
+                    $('.sate').attr('placeholder',"请输入购买金额");
+                    $('.sate-input').attr('placeholder',"CNY");
+                }else{
+                    $("#lst").css("color","#387DE0");
+                    $("#cos").css("color","#F3F4F8");
+                    $('.sate').val("");
+                    $("#moneys").val("");
+                    $("#text-input").val("");
+                    $('.sate').attr('placeholder',"请输入购买数量");
+                    $('.sate-input').attr('placeholder',"USDT");
+                }
+                buy_type = type;
+            }
+            $(".sate").bind('input propertychange',function () {
+                if(buy_type == 0){
+                    $("#text-input").val($('.sate').val()+  " " +  "USDT");
+                    $("#moneys").val((Number($('.sate').val())*Number(dataArray[indexCoin].buyPrice)).toFixed(2) + " " + "CNY");
+
+                }else{
+                    $("#text-input").val((Number($('.sate').val())/Number(dataArray[indexCoin].buyPrice)).toFixed(2)+  " " +  "USDT");
+                    $("#moneys").val($('.sate').val()+ " " + "CNY");
+                }
+
+            });
+
+            $(function () {
+                $.ajax({
+                    type: "GET",
+                    url: "/c2c/findProducts",
+                    dataType: 'json',
+                    async: true,
+                    data:{},
+                    success: function (data) {
+                        var datalists = data.data;
+                        showCoinCode(datalists);
+                    }
+                })
+
+                $(".poer").click(function () {
+                    var number = $(".sate").val();
+                    if(number.length<0|| number<=0 ){
+                        return
+                    }
+                    $.ajax({
+                        type: "POST",
+                        url: "/c2c/transactionC2c",
+                        dataType: 'json',
+                        async: true,
+                        data:{"type":"buy","coinCode":coinCode,"buy_type":buy_type,"number":number},
+                        success: function (data) {
+                            if(data.success == true){
+                                layer.msg('购买成功！', {time: 2000, icon: 6});
+                                window.location.href = "/c2c/clickmoneylist?id="+data.data +'&moner_nost='+$('#text-input').val() + '&money_price='+text_money_admin;
+                                $('.sate').val("");
+                                $("#moneys").val("");
+                                $('#text-input').val("");
+                            }else {
+                                layer.msg(data.msg, {time: 2000, icon: 7});
+                            }
+
+
+                        }
+                    })
+                })
+            })
+            seajs.use([DEV + "/main","numeral","layer","laydate",  DEV + "/page_user"], function ( a,  o, b, c, d) {
+                d.c2c();
+            });
+
+        </script>
+    </div>
+
+</body>
+</html>

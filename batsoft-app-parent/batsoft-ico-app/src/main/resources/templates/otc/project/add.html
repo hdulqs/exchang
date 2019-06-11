@@ -1,0 +1,321 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>新增 <small></small></h5>
+                    <div class="ibox-tools">
+                             <a href="javascript:void(0)" class="toList" data-to-url="/ico/project/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <form  method="post" th:action="@{/ico/project/save}"
+                               class="form form-horizontal">
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">项目名称 <span class="text-danger">*</span></label>
+                                            <div class="col-sm-10"><input type="text" placeholder="项目名称" name="projectName" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">项目阶段 </label>
+                                    <div class="col-sm-10"> <select name="projectLevel"  class="form-control">
+                                                <option value="0" >未启动</option>
+                                                <option value="1" >开发中</option>
+                                                <option value="2" >已上市</option>
+                                                <option value="3" >已盈利</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">真实姓名 <span class="text-danger">*</span></label>
+                                            <div class="col-sm-10"><input type="text" placeholder="真实姓名" name="truename" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">国籍 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="国籍" name="nationality" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">详细地址 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="详细地址" name="adress" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">团队人数 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="团队人数" name="teamNum" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">融资阶段 </label>
+                                    <div class="col-sm-10"> <select name="financingPhase"  class="form-control">
+                                                <option value="0" >天使轮</option>
+                                                <option value="1" >A轮</option>
+                                                <option value="2" >B轮</option>
+                                                <option value="3" >C轮</option>
+                                                <option value="4" >D轮</option>
+                                                <option value="5" >未融资</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">项目简介 </label>
+                                        <div class="col-sm-10"> <textarea class="form-control" placeholder="项目简介" name="projectBrief" ></textarea></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">宣传视频 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="宣传视频" name="propagandaUrl" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">项目介绍 </label>
+                                        <div class="col-sm-10"><div class="summernote editor_projectIntroduction" data-name="projectIntroduction"></div></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">ico细则 </label>
+                                        <div class="col-sm-10"><div class="summernote editor_icoDetails" data-name="icoDetails"></div></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">团队介绍 </label>
+                                        <div class="col-sm-10"><div class="summernote editor_teamIntroduction" data-name="teamIntroduction"></div></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">币种 <span class="text-danger">*</span></label>
+                                    <div class="col-sm-10"> <select name="currency"  class="form-control">
+                                                <option value="BTC" >BTC</option>
+                                                <option value="ETH" >ETH</option>
+                                                <option value="ETC" >ETC</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">投资金额是否限制 </label>
+                                    <div class="col-sm-10"> <select name="ivestLimit"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">投资数额 <span class="text-danger">*</span></label>
+                                            <div class="col-sm-10"><input type="text" placeholder="投资数额" name="amount" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">回报说明 </label>
+                                        <div class="col-sm-10"> <textarea class="form-control" placeholder="回报说明" name="repayment" ></textarea></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">名额限制 </label>
+                                    <div class="col-sm-10"> <select name="numLimit"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">支持限制 </label>
+                                    <div class="col-sm-10"> <select name="supportLimit"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">是否包邮 </label>
+                                    <div class="col-sm-10"> <select name="freeMail"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">回报时间(天)--预计ico结束？天内回报 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="回报时间(天)--预计ico结束？天内回报" name="backTime" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">ICO天数 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="ICO天数" name="icoDays" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">联系人 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="联系人" name="contactPerson" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">联系电话 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="联系电话" name="telphone" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">开始时间(申请多少天开始) </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="开始时间(申请多少天开始)" name="startTime" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">目标金额 </label>
+                                    <div class="col-sm-10"> <select name="targetAmount"  class="form-control">
+                                                <option value="0" >不限</option>
+                                                <option value="1" >限制</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+                                    <div class="form-group"><label class="col-sm-2 control-label">审核状态 </label>
+                                    <div class="col-sm-10"> <select name="status"  class="form-control">
+                                                <option value="0" >申请中</option>
+                                                <option value="2" >审核通过</option>
+                                                <option value="3" >拒绝</option>
+                                        </select></div>
+                                    </div>
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">创建人Id </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="创建人Id" name="createId" class="form-control  "></div>
+                                        </div>
+
+
+
+
+                                <div class="hr-line-dashed"></div>
+
+
+                                        <div class="form-group"><label class="col-sm-2 control-label">创建人 </label>
+                                            <div class="col-sm-10"><input type="text" placeholder="创建人" name="creator" class="form-control  "></div>
+                                        </div>
+
+
+
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div th:replace="layout/common/handler :: handler">
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh", "summernote", DEV + "/page_ico_project"], function (a, e, c,h, b) {
+            b.add();
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

@@ -1,0 +1,62 @@
+server:
+  #Http端口号
+  port: 95
+  # tomcat配置
+  tomcat:
+     # 最大线程数
+     max-threads: 1000
+     # 最小线程数
+     min-spare-threads: 5
+     # 队列长度
+     accept-count: 50
+     # 最大链接数
+     max-connections: 20000
+     #链接建立超时时间
+     connection-timeout: 30000
+### websocket.
+websocket:
+  #url: ws://127.0.0.1::${server.port}
+  url: ws://127.0.0.1::95
+  point: /ws
+  broker: /exchange
+spring:
+  mvc:
+    favicon:
+      enabled: false
+  application:
+    name: batsoft-front
+  cloud:
+    config:
+      profile: dev
+      label:
+      uri: http://127.0.0.1:8899/
+    consul:
+      host: 127.0.0.1
+      port: 8500
+      discovery:
+        healthCheckInterval: 15s
+        instance-id: consul-hello
+
+
+#eureka \u914D\u7F6E
+eureka:
+  client:
+    serviceUrl:
+       defaultZone: http://127.0.0.1:6061/eureka/
+#log setting
+logging:
+  config: classpath:logback-spring.xml
+  path:   /usr/local/bttmall/logs/front
+#log setting
+
+batsoft:
+  Swagger2:
+    title: 交易所前端api
+    description: 交易所前端api
+    termsOfServiceUrl: localhost/swagger-ui.html
+    contact:
+    version: 1.1.RELEASE
+    basePackage: com.batsoft
+
+
+

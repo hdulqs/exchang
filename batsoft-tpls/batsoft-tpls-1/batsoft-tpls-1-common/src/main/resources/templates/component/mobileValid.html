@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta http-equiv="Access-Control-Allow-Origin" content="*">
+
+<body >
+<div th:fragment="mobileValid(mobile)">
+
+    <div th:if="${@globalService.mobileArea()=='1'}">
+        <span th:replace="component/select/select-area :: area"></span>
+    </div>
+    <div th:if="${@globalService.mobileArea()=='0'}">
+        <input type="hidden" name="areaCode" id="areaCode" value="86" />
+    </div>
+
+    <li class="input">
+        <!--<span class="icoReg icoUser"></span>-->
+        <input type="text" class="form-control" id="userName" name="userName" th:placeholder="#{register.telephone}" placeholder="请输入手机号" >
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{register.telephone}" >请输入手机号</b>-->
+    </li>
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password" class="form-control" id="password" name="password" th:placeholder="#{login.password}"
+               placeholder="请输入密码">
+        <b class="tooltip tooltip-top-right f-w" th:text="#{password.remind}">必须使用字母、数字和符号两种及以上组合（6-20）</b>
+    </li>
+
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password" class="form-control" id="confirm_password" name="confirm_password" th:placeholder="#{login.password_again}"
+               placeholder="请再次输入密码">
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{login.password_again}">请再次输入密码</b>-->
+    </li>
+    <li>
+        <input type="hidden"  name="promoterCode" id="id_price1">
+    </li>
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password"  name="tradePwd"
+               placeholder="请输入交易密码" maxlength="6"  id="password_his" th:placeholder="#{huifer}">
+        <b class="tooltip tooltip-top-right f-w" th:text="#{jhda89}">必须使用6位数字交易密码！</b>
+    </li>
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password"  name="passwords"
+               placeholder="请再次输入交易密码" maxlength="6"  id="password_pis" th:placeholder="#{FDATR}" >
+        <!--<b class="tooltip tooltip-top-right f-w" >推荐使用6位数字交易密码！</b>-->
+    </li>
+
+    <li class="input with-secure-verification" >
+        <div id="captcha"></div>
+        <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+        <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+    </li>
+
+
+    <li class="input with-sms-verification">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="text" class="form-control" id="mobileCode" name="mobileCode" th:placeholder="#{register.telephone_verification}" placeholder="请输入短信验证码"  maxlength="6">
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{register.telephone_verification}">请输入短信验证码</b>-->
+        <button type="button" class="btn btn-primary rad-0 btn-sm  sendCode" th:text="#{register.obtain_sms}">获取短信验证码
+        </button>
+
+    </li>
+    <li>
+        <input type="checkbox" checked="checked"  id="cr"> <span th:text="#{GTE}"></span><a style="color:#387de0" href="/agreement"><span th:text="#{HSADA}"></span></a>
+    </li>
+
+
+
+
+
+    <!--load js-->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script th:inline="javascript">
+         /*   seajs.use(["bootstrap","jquery_validate", "messages_zh", DEV + "/page_reg",DEV + "/main"], function (a0,a, h, b,d) {
+
+                b.init();
+            });
+            var shopToken = localStorage.getItem("shopToken");
+            var url="https://shop.bttmall.com/";
+            if(shopToken){
+                url = url + "?token=" + shopToken;
+            }
+            function goToShop() {
+                window.open(url);
+            }*/
+        </script>
+    </div>
+    <!--load js-->
+</div>
+</body>
+</html>

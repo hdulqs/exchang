@@ -1,0 +1,257 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>采购信息新增 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+                             <a href="javascript:void(0)" class="toList" data-to-url="/otc/releaseproject/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <form  method="post" th:action="@{/otc/releaseproject/save}"
+                               class="form">
+
+
+                            <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">发布类型 <span class="text-danger">*</span></label>
+                                    <select name="otcType"  class="form-control">
+                                                <option value="0" >在线出售</option>
+                                                <option value="1" >在线购买</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易币种 </label>
+                                         <input type="text" placeholder="交易币种" name="coin" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">国家 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="国家" name="country" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">货币 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="货币" name="currency" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">开启固定价格 </label>
+                                    <select name="fixed"  class="form-control">
+                                                <option value="0" >关闭</option>
+                                                <option value="1" >开启</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">购买价格 </label>
+                                         <input type="text" placeholder="购买价格" name="price" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易所名称 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="交易所名称" name="exchangeName" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">溢价 </label>
+                                         <input type="text" placeholder="溢价" name="overflowMoney" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">付款方式 </label>
+                                         <input type="text" placeholder="付款方式" name="payType" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">付款方式备注 </label>
+                                       <textarea class="form-control" placeholder="付款方式备注" name="payRemarks" ></textarea>
+                                    </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">交易条款 </label>
+                                       <textarea class="form-control" placeholder="交易条款" name="transaction" ></textarea>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">开启自动回复 </label>
+                                    <select name="automatic"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">是否启用安全选项 </label>
+                                    <select name="security"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">授信交易者 </label>
+                                    <select name="belived"  class="form-control">
+                                                <option value="0" >否</option>
+                                                <option value="1" >是</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">最大交易额 </label>
+                                         <input type="text" placeholder="最大交易额" name="maxMoney" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">最小交易额 </label>
+                                         <input type="text" placeholder="最小交易额" name="minMoney" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">用户帐号 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="用户帐号" name="userName" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">发布人ID <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="发布人ID" name="userId" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">状态 </label>
+                                    <select name="status"  class="form-control">
+                                                <option value="0" >发布</option>
+                                                <option value="1" >已审核</option>
+                                                <option value="2" >交易完成</option>
+                                                <option value="3" >交易关闭</option>
+                                        </select>
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易地点 </label>
+                                         <input type="text" placeholder="交易地点" name="adress" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="row">
+
+
+                                <div class="col-sm-12">
+                                    <label class="">付款期限</label>
+                                    <div class="input-group">
+                                        <input type="text" placeholder="付款期限" name="payTime" class="form-control">
+                                        <span class="input-group-addon">分钟</span>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                        <div th:replace="layout/common/handler :: handler">
+
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",   DEV + "/page_otc_releaseproject"], function (a, e, c, b) {
+            b.add();
+        
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

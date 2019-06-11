@@ -1,0 +1,67 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>batsoft-model-parent</artifactId>
+  <packaging>pom</packaging>
+  
+  <parent>
+    <groupId>com.batsoft</groupId>
+    <artifactId>batsoft-parent</artifactId>
+    <version>1.1.RELEASE</version>
+  </parent>
+  
+  <dependencies>
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        
+		<dependency> 
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+			
+		<dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
+        </dependency>
+       
+        <!-- Mybatis Generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <scope>compile</scope>
+            <optional>true</optional>
+        </dependency>
+       
+        <!--通用Mapper-->
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper</artifactId>
+        </dependency>
+		
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+   </dependencies>
+   
+   <modules>
+  	<module>batsoft-trading-model</module>
+  	<module>batsoft-cms-model</module>
+  	<module>batsoft-member-model</module>
+  	<module>batsoft-base-model</module>
+  	<module>batsoft-system-model</module>
+    <module>batsoft-log-model</module>
+    <module>batsoft-ico-model</module>
+    <module>batsoft-exchange-model</module>
+    <module>batsoft-otc-model</module>
+    <module>batsoft-loan-model</module>
+    <module>batsoft-blockchain-model</module>
+  </modules>
+   
+</project>

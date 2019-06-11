@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <title th:text="#{login}">系统登录</title>
+    <meta charset="utf-8" />
+    <meta name="description" th:content="${@globalService.webSiteRemark()}">
+    <meta name="keywords"  th:content="${@globalService.webSiteKeyWords()}">
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/login_reg.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"
+          type="text/css"/>
+
+
+    <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/i18n/'+${@globalService.lan()}+'.js'}"></script>
+    <!-- loadding button 必须前置-->
+
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+
+</head>
+
+<body>
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div class="wrapper" style="    background: #262A42;">
+    <span th:replace="layout/nav :: nav"></span>
+    <!-- CONTENT -->
+    <div class="wrapMain tabs fullScreen_h operation-menu-wrap">
+        <div class="tit" th:text="#{operation.title}">操作说明</div>
+        <div class="content">
+            <div class="notes" style="border-bottom:none;">
+                <div class="notes-warning" th:text="#{operation.warning}">注意</div>
+                <div class="notes-message" th:text="#{operation.message}">此交易为用户与用户之间的C2C交易。因Qcash每日价格恒定，系统会随机匹配买卖方。仅支持zb实名认证通过的用户，交易前请绑定收款银行卡。</div>
+            </div>
+            <th:block th:each="i: ${#numbers.sequence(1, 11)}">
+                <div class="question-wrap" style="border-bottom:none;">
+                    <div class="question" th:text="#{'operation.question_' + ${i} }"></div>
+                    <div class="answer" th:text="#{'operation.answer_' + ${i}}"></div>
+                </div>
+            </th:block>
+        </div>
+    </div>
+    <!-- /CONTENT -->
+
+
+</div>
+<!-- /wrapper -->
+</div>
+
+<!-- JAVASCRIPT FILES -->
+<span th:replace="layout/footer :: footer"></span>
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use(["bootstrap", "jquery_validate", "messages_zh","layer", DEV + "/page_login",DEV + "/main"], function (a, d,  h,l, b) {
+            b.init();
+        });
+    </script>
+</div>
+
+
+</body>
+</html>

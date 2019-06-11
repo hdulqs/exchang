@@ -1,0 +1,138 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">Google认证</span>
+            </span>
+        </h2>
+        <div class="container">
+            <p>
+                <font>谷歌双重认证能够保证用户安全，不开启不会影响正常的交易</font><font>开户双重验证功能后，系统都会提示您输入手机应用程序上显示的一次性密码，来确保您的资金安全。</font><font> 您可以依照下面的步骤来设置并启用这一功能。</font>                </p>
+       <hr>
+        </div>
+
+                <div class="container">
+
+                    <div class="box-inner">
+
+                        <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+
+                            <!-- ITEM -->
+                            <div class="timeline-item timeline-item-bordered">
+                                <!-- timeline entry -->
+                                <div class="timeline-entry rounded"><!-- .rounded = entry -->
+                                    01<span>offer</span>
+                                    <div class="timeline-vline"><!-- vertical line --></div>
+                                </div>
+                                <!-- /timeline entry -->
+
+                                <h2 class="uppercase bold fs-17">安装双重验证程序：Google Authenticator</h2>
+                                <p class="alert alert-mini alert-warning h-50">Iphone手机：在您的手机上安装双重验证程序：Google Authenticator<a target="_blank" class="btn btn-outline-success btn-sm "  style="float: right" href="http://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8"><span>点击下载</span></a></p>
+                                <p class="alert alert-mini alert-danger mb-30 h-50" >Android手机：在应用市场中搜索“谷歌身份验证器”，或搜索Google Authenticator<a class="btn btn-outline-success btn-sm" style="float: right" target="_blank" href="http://apk.hiapk.com/html/2013/07/1643619.html"><span>点击下载</span></a></p>
+
+                            </div>
+                            <!-- /ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="timeline-item timeline-item-bordered">
+                                <!-- timeline entry -->
+                                <div class="timeline-entry rounded"><!-- .rounded = entry -->
+                                    02<span>offer</span>
+                                    <div class="timeline-vline"><!-- vertical line --></div>
+                                </div>
+                                <!-- /timeline entry -->
+
+                                <h2 class="uppercase bold fs-17">安装完成后，您需要对该应用程序进行如下配置</h2>
+                                <p>在“Google Authenticator (身份验证器)”应用程序中，点击“添加新账户 (iOS 下是 + 号)”，然后选择“扫描条形码”。 将手机上的相机镜头对准下图扫描该条形码</p>
+                                <div id="qrcode" style="width: 256px ;height:256px;"></div>
+                                <p>如果您无法扫描成功上图的条形码，您还可以手动添加账户,并输入如下密钥:<span class="fs-16 text-warning" th:text="${secret}"></span></p>
+
+                            </div>
+                            <!-- /ITEM -->
+
+                            <!-- ITEM -->
+                            <div class="timeline-item timeline-item-bordered">
+                                <!-- timeline entry -->
+                                <div class="timeline-entry rounded"><!-- .rounded = entry -->
+                                    03<span>offer</span>
+                                    <div class="timeline-vline"><!-- vertical line --></div>
+                                </div>
+                                <!-- /timeline entry -->
+
+                                <h2 class="uppercase bold fs-17">配置完成</h2>
+                                    <p>配置完成后，手机上会显示一个 6 位数字，每隔 30 秒变化一次。这个数字即为您的双重验证密码。</p>
+                                    <p >
+                                        请勿删除此双重验证密码账户，否则会导致您无法进行账户操作</p>
+                                    <p >您可将密钥记录下来: <span class="fs-16 text-warning" th:text="${secret}"></span>
+                                        如果误删，可通过手动输入密钥来恢复                    </p>
+                                    <p >
+                                        输入双重验证密码，以开启或关闭双重验证功能                    </p>
+                                <div class="row">
+                                    <input class="hide" id="host" th:value="${host}">
+                                    <form method="post" th:action="@{/ex/member/security/addGoogleAuth}"  class="sky-form  form">
+
+                                        <fieldset class="m-0" >
+                                            <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                            <input class="hide" id="googleCode" name="googleCode" th:value="${secret}">
+
+
+                                            <label class="input">
+                                                <input type="text" style="margin-left: 18px" class="form-control" id="ga" name="ga" placeholder="双重认证密码">
+                                                <b class="tooltip tooltip-top-right f-w">双重认证密码</b>
+                                            </label>
+
+                                        </fieldset>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>
+                            <!-- /ITEM -->
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+            <!-- / -->
+
+        </div>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "qrcode", DEV + "/page_user"], function (a, p, d) {
+            d.googleAuth();
+            var code= {
+                text :"otpauth://totp/"+GLOBAL.user.userName+"-"+$("#host").val()+"?secret="+$("#googleCode").val()
+            };
+            $('#qrcode').qrcode(code);
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

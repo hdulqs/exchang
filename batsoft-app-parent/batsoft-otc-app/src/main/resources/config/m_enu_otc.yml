@@ -1,0 +1,43 @@
+menus:
+  name: otc管理系统
+  key: otc
+  url: /otc
+  icon: fa fa-th-large
+  description: otc管理系统
+  item:
+  - name: 资金账户管理
+    key: otc_exFinance
+    icon: fa fa-th-large
+    url: /otc/exFinance/view/list
+    menu: 1
+    permission: otc:exFinance:list
+    description: 资金账户管理
+    item:
+    - name: 增加
+      key: otc_exFinance_add
+      icon: fa fa-th-large
+      url: /otc/exFinance/view/add
+      menu: 0
+      permission: otc:exFinance:add
+      description: 资金账户增加
+    - name: 修改
+      key: otc_exFinance_edit
+      icon: fa fa-th-large
+      url: /otc/exFinance/view/edit
+      menu: 0
+      permission: otc:exFinance:edit
+      description: 资金账户修改
+    - name: 查看
+      key: otc_exFinance_see
+      icon: fa fa-th-large
+      url: /otc/exFinance/view/see
+      menu: 0
+      permission: otc:exFinance:see
+      description: 资金账户查看
+    - name: 删除
+      key: otc_exFinance_remove
+      icon: fa fa-th-large
+      url: /otc/exFinance/remove
+      menu: 0
+      permission: otc:exFinance:remove
+      description: 资金账户删除

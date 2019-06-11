@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CoinMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:19:04 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CoinDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.exchange.Coin">
+        <result column="coin_name" property="coinName" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="coinLogo" property="coinLogo" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        coin_name, coin_code, coinLogo
+    </sql>
+
+
+    <resultMap id="withdrawResult" type="com.batsoft.model.module.exchange.Coin">
+        <result column="coin_name" property="coinName" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="coinLogo" property="coinLogo" jdbcType="VARCHAR"/>
+        <result column="allow_withdraw" property="allowWithdraw" jdbcType="INTEGER"/>
+        <result column="withdrawRate" property="withdrawRate" jdbcType="DECIMAL"/>
+        <result column="calculation_len" property="calculationLen" jdbcType="INTEGER"/>
+        <result column="withdraw_fee_type" property="withdrawFeeType" jdbcType="INTEGER"/>
+        <result column="withdraw_min" property="withdrawMin" jdbcType="DECIMAL"/>
+        <result column="withdraw_max" property="withdrawMax" jdbcType="DECIMAL"/>
+        <result column="no_auth_withdraw_max" property="noAuthWithdrawMax" jdbcType="DECIMAL"/>
+        <result column="withdraw_ac_max_amt" property="withdrawAcMaxAmt" jdbcType="DECIMAL"/>
+
+        <result column="withdraw_base_fee" property="withdrawBaseFee" jdbcType="DECIMAL"/>
+        <result column="erc20_status" property="erc20Status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="withdraw_column">
+        coin_name, coin_code, coinLogo,allow_withdraw,calculation_len,withdrawRate,withdraw_min,withdraw_max,no_auth_withdraw_max,withdraw_ac_max_amt,withdraw_base_fee,withdraw_fee_type,erc20_status
+    </sql>
+
+    <select id="findWithdrawData" resultMap="withdrawResult" parameterType="java.lang.String">
+        SELECT
+        <include refid="withdraw_column" />
+        FROM exchange_coin c
+        where  c.status=1 AND c.del=0 AND  c.coin_code=#{coinCode,jdbcType=VARCHAR}
+        order by  c.sort DESC
+    </select>
+
+    <select id="findListCoins" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_coin c
+        where  c.status=1 AND c.del=0
+        order by  c.sort DESC
+    </select>
+
+    <select id="selectCoins" parameterType="java.util.HashMap" resultMap="baseResult">
+        SELECT
+        <include refid="base_column"/>
+        FROM
+        exchange_coin
+        <where>
+          <if test="coinCode != null">
+            coin_code LIKE CONCAT('%',#{coinCode,jdbcType=VARCHAR},'%')
+          </if>
+          <if test="1 == 1">
+           AND status = 1 AND del=0 ORDER BY sort DESC limit #{from,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+          </if>
+        </where>
+    </select>
+
+    <select id="selectCoinsTotal" parameterType="java.util.HashMap" resultType="java.lang.Long">
+        SELECT
+        COUNT(coin_name)
+        FROM
+        exchange_coin
+        <where>
+            <if test="coinCode != null">
+                coin_code LIKE CONCAT('%',#{coinCode,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="1 == 1">
+                AND status = 1 AND del=0
+            </if>
+        </where>
+    </select>
+
+    <select id="findListCoinsAllowWithDraw" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_coin c
+        where  c.status=1 AND c.del=0 AND c.allow_withdraw = 1
+        order by  c.sort DESC
+    </select>
+
+    <select id="findListCoinsAllowRecharge" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_coin c
+        where  c.status=1 AND c.del=0 AND c.allow_recharge = 1
+        order by  c.sort DESC
+    </select>
+
+    <select id="findListPriceCoins" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_coin c
+        where  c.status=1 AND c.del=0 AND c.price_coin=1
+        order by  c.sort DESC
+    </select>
+
+</mapper>

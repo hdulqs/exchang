@@ -1,0 +1,18 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+
+资金明细
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_easypiechart", "jquery_appear", "jquery_countTo", DEV + "/page_user"], function (a, o, b, c, d) {
+            d.init();
+        });
+    </script>
+</div>
+
+</body>
+</html>

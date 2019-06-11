@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>batsoft-exchange-service</artifactId>
+    
+    <parent>
+        <artifactId>batsoft-service-parent</artifactId>
+        <groupId>com.batsoft</groupId>
+        <version>1.1.RELEASE</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-blockchain</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-exchange-model</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-mq</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-member-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-socketjs-starter</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-blockchain-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.lmax</groupId>
+            <artifactId>disruptor</artifactId>
+            <version>3.4.0</version>
+        </dependency>
+    </dependencies>
+	    
+</project>

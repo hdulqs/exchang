@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CustomerAccountFreezeMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:21:02 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CustomerAccountFreezeDao">
+
+
+
+    <resultMap id="findPageBySqlMap" type="com.batsoft.model.module.exchange.CustomerAccountFreeze">
+        <id column="id" property="id" javaType="java.lang.String" />
+        <result column="create_time" property="createTime" javaType="java.util.Date" />
+        <result column="update_time" property="updateTime" javaType="java.util.Date" />
+        <result column="account_id" property="accountId" javaType="java.lang.String" />
+        <result column="customer_id" property="customerId" javaType="java.lang.String" />
+        <result column="coin_code" property="coinCode" javaType="java.lang.String" />
+        <result column="freeze_type" property="freezeType" javaType="java.lang.String" />
+        <result column="order_id" property="orderId" javaType="java.lang.String" />
+        <result column="freeze_money" property="freezeMoney" javaType="java.math.BigDecimal" />
+        <result column="user_name" property="userName" javaType="java.lang.String" />
+    </resultMap>
+
+    <!-- 通过sql分页查询 -->
+    <select id="findById" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        select * from ${tablename}
+        <where>
+            <if test="id != null">
+              id = #{id}
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.util.HashMap"  >
+        delete from ${tablename} where id in
+        <foreach  collection="id" item="item" open="(" separator=","  close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+    <!-- 通过sql分页查询 -->
+    <select id="findPageBySql" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        SELECT * FROM ${tablename}
+        <where>
+            <if test="coin_code !=null">
+               coin_code = #{coin_code}
+            </if>
+            <if test="account_id !=null">
+                AND account_id = #{account_id}
+            </if>
+        </where>
+        limit #{from},#{pageSize}
+    </select>
+
+    <select id="findPageBySqlTotal" parameterType="java.util.Map" resultType="java.lang.Long">
+        SELECT COUNT(id) AS vl FROM ${tablename}
+        <where>
+            <if test="coin_code !=null">
+               coin_code = #{coin_code}
+            </if>
+            <if test="account_id !=null">
+                AND account_id = #{account_id}
+            </if>
+        </where>
+    </select>
+
+    <insert id="saveObject" parameterType="java.util.Map" >
+        INSERT INTO ${tablename} (create_time,update_time,account_id,customer_id,coin_code,freeze_type,order_id,freeze_money,user_name)
+        VALUES (#{create_time},#{update_time},#{account_id},#{customer_id},#{coin_code},#{freeze_type},#{order_id},#{freeze_money},#{user_name})
+    </insert>
+
+    <select id="getFreezeSum" resultType="java.math.BigDecimal" parameterType="java.util.Map">
+        select COALESCE (sum(freeze_money),0) as freezesum from ${tables}  where customer_id = #{userId,jdbcType=VARCHAR} and coin_code = #{coinCode,jdbcType=VARCHAR};
+    </select>
+
+</mapper>

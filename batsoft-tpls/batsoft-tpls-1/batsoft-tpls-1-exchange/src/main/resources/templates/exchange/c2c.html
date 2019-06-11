@@ -1,0 +1,361 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+<style>
+    #c2c_productInfo_render form #buy-submit:hover{
+    background: #66A775;
+}
+    #c2c_productInfo_render form #sell-submit:hover{
+        background:#C2585F;
+    }
+
+</style>
+<body>
+
+<div class="wrapper">
+    <!-- New Section -->
+    <!--<div class="coins_info">-->
+        <!--<th:block th:each="i: ${#numbers.sequence(0, 4)}">-->
+            <!--<div class="coins_info-coin green">-->
+                <!--<span class="coins_info-coin__name">BTC/CNY: ¥</span>-->
+                <!--<span class="coins_info-coin__price">42773.97</span>-->
+                <!--<span class="up_down_icon"></span>-->
+            <!--</div>-->
+        <!--</th:block>-->
+    <!--</div>-->
+
+    <span th:replace="layout/nav :: nav"></span>
+
+    <div class="wrapMain tabs fullScreen_h c2c">
+        <div class="marketsTop">
+            <ul class="t_menu" id="c2c_product_render">
+                <!--<li class="cur" type="QQ">QQ</li>-->
+                <!--<li type="USDT">USDT</li>-->
+            </ul>
+            <div class="operation_link">
+                <a href="/c2c/operation-menu" target="_blank">
+                    <div class="operation_icon"></div>
+                    <div th:text="#{operation.title}"></div>
+                </a>
+            </div>
+        </div>
+        <script id="c2c_product_tpl" type="text/x-jsrender">
+            {{for}}
+                {{if #getIndex()==0}}
+                    <li class="cur" type="{{:coinCode}}">{{:coinCode}}</li>
+                {{else}}
+                    <li type="{{:coinCode}}">{{:coinCode}}</li>
+                {{/if}}
+            {{/for}}
+        </script>
+        <div class="marketsTableBox" style="display:block; ">
+            <div class=" gray2" id="c2c_content" >
+
+                <div class="verifyBar full_google">
+
+                    <div id="c2c_productInfo_render" style="margin-bottom:20px;">
+
+                    </div>
+                    <div id="detail_form">
+
+                        <form  class="form detail_form_buy_in" method="post" >
+                        <ul style="height:170px;">
+                            <div class="t_cont positionRel">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl">
+                                    <tr class="theader">
+                                        <th width="20%" th:text="#{merchants}" class="first_th" style="text-align: center">商户</th>
+                                        <th width="50%" align="center" th:text="#{amount}">成交数量</th>
+                                        <th width="15%" align="center" th:text="#{type}">类型</th>
+                                        <th width="15%" align="center" th:text="#{status}">状态</th>
+                                    </tr>
+                                    <tbody id="c2c_buy_render">
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </ul>
+                        </form>
+
+                        <form  class="form detail_form_sell"  method="post">
+                            <ul style="height:170px;">
+                                <div class="t_cont positionRel" >
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl">
+                                        <tr class="theader">
+                                            <th width="20%" th:text="#{merchants}" class="first_th" align="center">商户</th>
+                                            <th width="50%" align="center" th:text="#{amount}">成交数量</th>
+                                            <th width="15%" align="center" th:text="#{type}">类型</th>
+                                            <th width="15%" align="center" th:text="#{status}">状态</th>
+                                        </tr>
+                                        <tbody id="c2c_sell_render">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </ul>
+
+                        </form>
+                    </div>
+                    <div class="usdtnote-wrap">
+                        <div class="usdtnote">
+                            <div class="notecont">
+                                <p th:text="#{note1}">1. 买卖商户均为实地考察认证商户，并提供100万usdt保证金，您每次兑换会冻结商户资产，商户资产不够时，不能接单，可放心兑换；</p>
+                                <p th:text="#{note2}">2. 买卖商户均为实名认证商户，并提供保证金，可放心兑换；</p>
+                                <p th:text="#{note3}">3. 如需申请成为商户请发邮件到support@bttmall.com；</p>
+                                <p th:text="#{note4}" style="color: #AE4E54;">4. 请使用本人绑定的银行卡进行汇款，其他任何方式汇款都会退款。（禁止微信和支付宝）</p>
+                                <p th:text="#{note5}">5. 商家处理时间9:00 - 21:00非处理时间的订单会在第二天9:00开始处理，一般接单后24小时内会完成打款。</p>
+                                <p th:text="#{note6}">6. 单天最多只能发起10笔卖出订单。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- c2c信息渲染模板  -->
+                <script id="c2c_productInfo_tpl" type="text/x-jsrender">
+
+
+                     <form id="buy_form" class="form" style="" method="post">
+                            <ul class="">
+                                <li class="title"><span th:text="#{buy}">买入</span><span class="">{{:coinCode}}</span></li>
+                                <input type="hidden" name="coinCode" id="buy_coinCode" value="{{:coinCode}}"/>
+                                <input type="hidden" name="type" id="buy_type" value="buy"/>
+                                <li class="input">
+                                    <span class="overflow-text" th:text="#{buy_in_price} +  '(¥)'"></span>
+                                    <input  id="buy_price" name="buy_price" value="{{:buyPrice}}" readonly="readonly" placeholder="买入价（￥）">
+                                    <p class="errorTip hide">
+                                        <span class="icoError"></span>
+                                        <span class="error_show"></span>
+                                    </p>
+                                </li>
+                                <li class="input">
+                                    <div class="overflow-text">
+                                        <span th:text="#{buy_in_quantity}">买入量</span>
+                                        <span>({{:coinCode}})</span>
+                                    </div>
+                                    <input type="text" id="buy_vol" name="number" class="buy_numberClass" placeholder="买入量（{{:coinCode}}）">
+                                    <p class="errorTip hide">
+                                        <span class="icoError"></span>
+                                        <span class="error_show"></span>
+                                    </p>
+                                </li>
+                                <li class="total_wrap">
+                                    <span th:text="#{need_total}"></span>
+                                    <span id="buy_total_price"></span>
+                                    <span>CNY</span>
+                                </li>
+                                <li class="">
+                                    <div class="">
+                                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                        <p class="btR"> <button type="button" class="submitBt white " id="buy-submit" th:text="#{buy_now}">确定</button></p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </form>
+                        <form id="sell_form" class="form" style="" method="post" >
+                            <ul class="">
+                                <li class="title"><span th:text="#{sell}">卖出</span><span class="">{{:coinCode}}</span></li>
+                                <input type="hidden" name="coinCode" id="sell_coinCode" value="{{:coinCode}}"/>
+                                <li class="input">
+                                    <span class="overflow-text" th:text="#{sell_price} +  '(¥)'"></span>
+                                    <input  id="sell_price" name="sell_price" value="{{:sellPrice}}" readonly="readonly" placeholder=" 卖出价（￥）">
+                                    <input type="hidden" name="type" id="sell_type" value="sell"/>
+                                    <p class="errorTip hide">
+                                        <span class="icoError"></span>
+                                        <span class="error_show"></span>
+                                    </p>
+                                </li>
+                                <li class="input">
+                                    <div class="overflow-text">
+                                        <span th:text="#{sell_quantity}">卖出量</span>
+                                        <span>({{:coinCode}})</span>
+                                    </div>
+                                    <input type="text" id="sell_vol" name="number"  class="sell_numberClass" placeholder="卖出量（{{:coinCode}}）">
+                                    <p class="errorTip hide">
+                                        <span class="icoError"></span>
+                                        <span class="error_show"></span>
+                                    </p>
+                                </li>
+                                <li class="total_wrap">
+                                    <span th:text="#{get_total}"></span>
+                                    <span id="sell_total_price"></span>
+                                    <span>CNY</span>
+                                </li>
+                                <li class="">
+                                    <div class="">
+                                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                        <p class="btR"> <button type="button" class="submitBt white " id="sell-submit" th:text="#{sell_now}">确定</button></p>
+                                    </div>
+                                </li>
+                            </ul>
+
+                        </form>
+                </script>
+
+                <script id="c2c_sell_tpl" type="text/x-jsrender">
+                     <tr>
+                        <td class="first_td" style="text-align: center;padding: 18px 21px;">{{:userNameStr}}</td>
+                        <td align="center">{{:number}} {{:coinCode}}</td>
+                        <td align="center" style="color:#ae4e54;">{{:operationTypeStr}}</td>
+                        <td align="center">{{:opeationStateStr}}</td>
+                    </tr>
+                </script>
+
+                <script id="c2c_buy_tpl" type="text/x-jsrender">
+                     <tr>
+                        <td class="first_td"  style="text-align: center;padding: 18px 21px;width:15%;">{{:userNameStr}}</td>
+                        <td align="center" style="width:44%;">{{:number}} {{:coinCode}}</td>
+                        <td align="center" sytle="color:#589065;width:15%;">{{:operationTypeStr}}</td>
+                        <td align="center" style="width:15%;">{{:opeationStateStr}}</td>
+                    </tr>
+                </script>
+
+                <!-- 充值返回商户银行信息   -->
+                <div class="c2c-order-info" id="c2c-order-info" style="display:none;background: #181b2a;color:#C7CCE6"  >
+
+
+
+                    <!-- 头部 -->
+                    <div class="mtitle" >
+
+                        <h3 th:text="#{c2c.remittance_orders}" style="text-indent: 14px;color:#C7CCE6;line-height: 25px;position: relative;top: 8px;" >汇款订单</h3>
+                    </div>
+                    <div class="main-bd" style="padding:10px 20px; border:none;">
+                        <div class="mention" id="c2c_pay_render">
+
+                        </div>
+
+                        <script id="c2c_pay_tpl" type="text/x-jsrender">
+                            <div class="privilege" style="background:#181b2a,color:#C7CCE6">
+                            <h5 th:text="#{c2c.prompts}">1.请按提示信息向该卖家汇款；</h5>
+                            <table width="100%" class="tb-list2" style="color:#C7CCE6;margin-bottom:10px;">
+                                <tbody><tr>
+                                    <th scope="row" th:text="#{c2c.neneficiary_name}">收款方户名</th>
+                                    <td>{{:trueName}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" th:text="#{c2c.beneficiary_bank}">收款方开户行</th>
+                                    <td>{{:bankName}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" th:text="#{c2c.bank_account}">收款方账号</th>
+                                    <td>{{:cardNumber}}</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" th:text="#{c2c.amount}">转账金额</th>
+                                    <td><b>{{:opeationMoney}}</b>  </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row" th:text="#{c2c.remark}">汇款时备注内容</th>
+                                    <td><b>{{:remark}}</b> <b th:text="#{c2c.remark_remind}">(请务必填写)</b></td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">状态</th>
+                                    <td>待支付</td>
+                                </tr>
+
+                                </tbody></table>
+                            <h5 style="margin-bottom:10px;">2.汇款时请一定要填写备注信息；</h5>
+                            <h5 style="margin-bottom:10px;">3.卖家确认收到款后，自动充值{{:coinCode}}。如超过24小时未收到币，请向客服反馈解决。</h5>
+                            <h5 style="color:#e00;margin-bottom:10px;">4.请务必使用本人绑定的银行卡通过手机银行或网银进行汇款。</h5>
+                            <p>&nbsp;</p>
+
+                            <div class="bk-divider"></div>
+                            <div class="">
+                                <p>温馨提示：如有任何疑问请联系在线客服或查看帮助中心。</p>
+                            </div>
+                        </div>
+                        </script>
+                    </div>
+                    <!--页面中部内容结束-->
+                    <div class="google_button_box" >
+                        <a href="/c2c" class="gold_button" style="color: #C7CCE6;background:#387de0;">确定</a>
+                    </div>
+
+                </div>
+
+
+
+                <div class="marketsTableBox2" >
+                    <div class="title" th:text="#{recent_history}"></div>
+                    <div class="recent_history">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl">
+                            <tr class="theader">
+                                <th width="16%" th:text="#{time}" class="first_th">时间</th>
+                                <th width="7%" th:text="#{type}">类别</th>
+                                <th width="15%" th:text="#{amount}">数量</th>
+                                <th width="15%" th:text="#{c2c.price}">单价（￥）</th>
+                                <th width="15%" th:text="#{c2c.totle_price}">总价（￥）</th>
+                                <th width="10%" th:text="#{status}">状态</th>
+                                <th width="12%" th:text="#{actions}">操作</th>
+                            </tr>
+                            <tbody id="c2c_userOrder_render">
+                            <!--
+                                <tr>
+                                    <td class="first_td">2018-11-06 17:14:34</td>
+                                    <td align="center">类别</td>
+                                    <td align="center">6000000。00</td>
+                                    <td align="center">1.00</td>
+                                    <td align="center">6000000.00</td>
+                                    <td align="center">卖出</td>
+                                    <td  align="center"  th:text="#{see}">操作</td>
+                                </tr>
+                               -->
+                            </tbody>
+                        </table>
+                        <script id="c2c_userOrder_tpl" type="text/x-jsrender">
+                             <tr >
+                                <td class="first_td" style="text-align: left;padding: 18px 21px;">{{:tradeTime}}</td>
+                                <td align="center">{{:operationTypeStr}}</td>
+                                <td align="center">{{:number}}</td>
+                                <td align="center">{{:price}}</td>
+                                <td align="center">{{:opeationMoney}}</td>
+                                <td align="center">{{:opeationStateStr}}</td>
+                                <td align="center"  th:text="#{see}" id="{{:id}}">查看</td>
+                            </tr>
+                        </script>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+        seajs.use([DEV + "/main","numeral","layer","laydate",  DEV + "/page_user"], function ( a,  o, b, c, d) {
+            d.c2c();
+        });
+    </script>
+</div>
+
+</body>
+</html>

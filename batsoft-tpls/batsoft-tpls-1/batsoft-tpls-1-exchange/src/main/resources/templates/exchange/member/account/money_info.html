@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable{margin:0px;}
+        .operatingBox{height:15px;padding:5px 0px 0px 0px;display:inline-block;}
+        .operatingBox .cancelBt, .operatingBox .sendEmail{background-size:15px 39px;width:15px;height:15px;}
+        .operatingBox .cancelBt{background-position:0px -21px;}
+        /*.marketsTable .t_cont tr:hover .operatingBox{display:block;}*/
+        .operatingBox .arrBt {
+            width: 25px;
+            height: 25px;
+            display: block;
+            position: absolute;
+            z-index: 1;
+            top: 0px;
+            right: 12px;
+            background: url(https://www.GGCOIN.com/images/newindex/select_arr.png) no-repeat center center;
+        }
+        .operatingBox .fold{display:inline-block;}
+        .marketsTable .fold dt{width:auto;}
+        .topColtitWrap {
+            border-bottom: #181B2A 1px solid;
+            color:#C7CCE6 ;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181B2A;
+        }
+        .data.data.total{
+            text-align: center;
+            height: 300px;
+            line-height: 300px;
+        }
+        .t_menu li.cur {
+            margin-left: -1px;
+            height: 39px;
+            line-height: 38px;
+            border-top:  0;
+            border-bottom: #387de0 2px solid;
+            font-size: 16px;
+            background-color: transparent;
+        }
+        #tablelist{
+            display: none;
+        }
+        .page .pagination>li:first-child>a, .page .pagination>li:first-child>span {
+            margin-left: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .page .pagination>li>a, .page .pagination>li>span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #c7cce6;
+            margin-left: 5px;
+            text-decoration: none;
+            background-color: #181B2A;
+            border: 1px solid #4E5B85;
+        }
+.fre{
+    width: 100%;
+}
+        .HDA{
+            width: 100%;
+        }
+        .no-data {
+            padding: 12.8% 0;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap">
+        <div class="colBar historyBg">
+            <p class="colTit"  th:text="#{funwsd_history}">历史记录</p>
+        </div>
+    </div>
+    <div class="wrapMain tabs fullScreen_h">
+        <ul class="searchForm" style="margin-bottom: 50px;position:relative;top: 35px;display: none">
+            <li th:text="#{time}" style="color: #C7CCE6;">时间：</li>
+            <li class="inputCalendar" style="position:relative;left: 28px;">
+                <input type="text" name="test19" id="test19" placeholder="yyyy-mm-dd" class="input inputIcoCalendar" />
+            </li>
+        </ul>
+        <div class="marketsTop">
+            <ul class="t_menu">
+                <!--<li class="cur" type="1" th:text="#{deposit}">充值</li>-->
+                <!--<li type="2" th:text="#{withdraw}">提现</li>-->
+                <!--<li type="3" th:text="#{dxerop}">挖矿流水</li>-->
+            </ul>
+        </div>
+        <div class="marketsTableBox" style="display:block;">
+            <div class="marketsTable borderTable gray2" style="background-color: #181B2A;border-top: none;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl" style="background: #181B2A; margin-bottom: 45px;" id="tablemoney">
+                    <tr class="theader" style=" background-color: #181B2A;color: #C7CCE6;">
+                        <th width="2%" style=" background-color: #181B2A;color: #C7CCE6;"></th>
+                        <th width="20%"  class="fre" style=" background-color: #181B2A;display: none;color: #C7CCE6;text-align: center;" th:text="#{markets}">交易对</th>
+                        <th width="5%"  class="frea" th:text="#{coin}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">币种</th>
+                        <th width="15%" th:text="#{amount}" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">数量</th>
+                        <th width="15%" class="fre" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;display: none;" th:text="#{fdaop}">单位</th>
+                        <th width="15%" th:text="#{time}" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">时间</th>
+                        <th width="37%" th:text="#{information}" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">订单号/txid</th>
+                        <th width="26%"  style=" text-align: center;background-color: #181B2A;color: #C7CCE6;display: none;" class="HDA">提币地址</th>
+                        <th width="7%" th:text="#{progress}"  class="frea" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">进度</th>
+                    </tr>
+                    <tbody id="marketsTable_render">
+                    <!--<div id="memberLoginRender"></div>-->
+                    </tbody>
+                </table>
+                <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl" style="background: #181B2A; margin-bottom: 45px;" id="tablelist">-->
+                    <!--<tr class="theader" style=" background-color: #181B2A;color: #C7CCE6;">-->
+                    <!--<th width="2%" style=" background-color: #181B2A;color: #C7CCE6;"></th>-->
+                    <!--<th width="9%"  style=" background-color: #181B2A;color: #C7CCE6;text-align: center;" th:text="#{markets}">交易对</th>-->
+                    <!--<th width="15%" th:text="#{amount}" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">数量</th>-->
+                        <!--<th width="15%"  style=" text-align: center;background-color: #181B2A;color: #C7CCE6;" th:text="#{fdaop}">单位</th>-->
+                    <!--<th width="15%" th:text="#{time}" style=" text-align: center;background-color: #181B2A;color: #C7CCE6;">时间</th>-->
+                    <!--<th width="39%"  style=" text-align: center;background-color: #181B2A;color: #C7CCE6;" th:text="#{information}" >txid</th>-->
+                    <!--</tr>-->
+                    <!--<tbody id="marketsTable_render1">-->
+                    <!--<tr id="template">-->
+                        <!--<td style=" text-align: center;"> </td>-->
+                        <!--<td style=" text-align: center;" id="nat"></td>-->
+                        <!--<td style=" text-align: center;"  id="nat_1"></td>-->
+                        <!--<td style=" text-align: center;" id="nat_2"></td>-->
+                        <!--<td style=" text-align: center;" id="nat_3"></td>-->
+                        <!--<td style=" text-align: center;" id="nat_4"></td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
+            </div>
+            <div class="page">
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+            <!--<div class="hr30"></div>-->
+        </div>
+        </div>
+    </div>
+
+</div>
+<script id="marketsTable_tpl" type="text/x-jsrender">
+        <tr>
+            <td style=" text-align: center;"> </td>
+             <td style=" text-align: center;display: none;" class="fre">{{:tradeCoinCode}}_{{:tradeCoinRealTimePrice}} </td>
+            <td style=" text-align: center;" class="frea">{{:coinCode}}</td>
+            <td style=" text-align: center;">{{:coinCount}}</td>
+            <td style=" text-align: center;display: none;"  class="fre">{{:coinCode}}</td>
+             <td style=" text-align: center;">{{:createTime}}</td>
+             <td style=" text-align: center;">{{:txOrder}}</td>
+             <td style=" text-align: center;display: none;" class="HDA" >{{:toAddress}}</td>
+             <td style=" text-align: center;"  class="frea">{{:statusValue}}</td>
+        </tr>
+    </script>
+<!--<div style="width:100%;height: 20px;background: red;"></div>-->
+    <!--<div class="page">-->
+    <!--<ul class="pagination" id="pagination"></ul>-->
+<!--</div>-->
+<!--<div class="hr30"></div>-->
+</div>
+</div>
+
+
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","numeral","jquery_pagination","layer","laydate", "clipboard","qrcode", DEV + "/page_user"], function ( a0,a,q, i, o, b, c, d) {
+            d.moneyInfo();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

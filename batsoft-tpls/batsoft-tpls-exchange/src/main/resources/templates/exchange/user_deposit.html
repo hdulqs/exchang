@@ -1,0 +1,28 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">提币</span>
+            </span>
+        </h2>
+
+
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  DEV + "/table_bootstrap",DEV+"/page_exchange"], function (b,c,d) {
+            d.userFinance();
+        });
+    </script>
+</div>
+
+</body>
+</html>

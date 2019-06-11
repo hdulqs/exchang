@@ -1,0 +1,309 @@
+menus:
+  name: 区块链钱包管理
+  key: blockchain
+  path: blockchain
+  icon: appstore-o
+  description: 区块链钱包管理
+  item:
+  - name: 接口回调管理
+    key: blockchain_coinNotify
+    icon: appstore-o
+    path: coinNotify/list
+    menu: 1
+    permission: blockchain:coinNotify:list
+    description: 管理
+    item:
+    - name: 增加
+      key: blockchain_coinNotify_add
+      icon: appstore-o
+      path: coinNotify/add
+      menu: 0
+      permission: blockchain:coinNotify:add
+      description: 增加
+    - name: 修改
+      key: blockchain_coinNotify_edit
+      icon: appstore-o
+      path: coinNotify/edit
+      menu: 0
+      permission: blockchain:coinNotify:edit
+      description: 修改
+    - name: 查看
+      key: blockchain_coinNotify_see
+      icon: appstore-o
+      path: coinNotify/info
+      menu: 0
+      permission: blockchain:coinNotify:see
+      description: 查看
+    - name: 删除
+      key: blockchain_coinNotify_remove
+      icon: appstore-o
+      path: coinNotify/remove
+      menu: 0
+      permission: blockchain:coinNotify:remove
+      description: 删除
+  - name: 钱包API用户管理
+    key: blockchain_coinApiUser
+    icon: appstore-o
+    path: coinApiUser/list
+    menu: 1
+    permission: blockchain:coinApiUser:list
+    description: 钱包API用户管理
+    item:
+    - name: 增加
+      key: blockchain_coinApiUser_add
+      icon: appstore-o
+      path: coinApiUser/add
+      menu: 0
+      permission: blockchain:coinApiUser:add
+      description: 钱包API用户增加
+    - name: 修改
+      key: blockchain_coinApiUser_edit
+      icon: appstore-o
+      path: coinApiUser/edit
+      menu: 0
+      permission: blockchain:coinApiUser:edit
+      description: 钱包API用户修改
+    - name: 查看
+      key: blockchain_coinApiUser_see
+      icon: appstore-o
+      path: coinApiUser/info
+      menu: 0
+      permission: blockchain:coinApiUser:see
+      description: 钱包API用户查看
+    - name: 删除
+      key: blockchain_coinApiUser_remove
+      icon: appstore-o
+      path: coinApiUser/remove
+      menu: 0
+      permission: blockchain:coinApiUser:remove
+      description: 钱包API用户删除
+  - name: 请求日志管理
+    key: blockchain_coinApiLog
+    icon: appstore-o
+    path: coinApiLog/list
+    menu: 1
+    permission: blockchain:coinApiLog:list
+    description: 请求日志管理
+    item:
+    - name: 增加
+      key: blockchain_coinApiLog_add
+      icon: appstore-o
+      path: coinApiLog/add
+      menu: 0
+      permission: blockchain:coinApiLog:add
+      description: 请求日志增加
+    - name: 修改
+      key: blockchain_coinApiLog_edit
+      icon: appstore-o
+      path: coinApiLog/edit
+      menu: 0
+      permission: blockchain:coinApiLog:edit
+      description: 请求日志修改
+    - name: 查看
+      key: blockchain_coinApiLog_see
+      icon: appstore-o
+      path: coinApiLog/info
+      menu: 0
+      permission: blockchain:coinApiLog:see
+      description: 请求日志查看
+    - name: 删除
+      key: blockchain_coinApiLog_remove
+      icon: appstore-o
+      path: coinApiLog/remove
+      menu: 0
+      permission: blockchain:coinApiLog:remove
+      description: 请求日志删除
+  - name: 币地址管理
+    key: blockchain_coinAccount
+    icon: appstore-o
+    path: coinAccount/list
+    menu: 1
+    permission: blockchain:coinAccount:list
+    description: 币地址管理
+    item:
+    - name: 增加
+      key: blockchain_coinAccount_add
+      icon: appstore-o
+      path: coinAccount/add
+      menu: 0
+      permission: blockchain:coinAccount:add
+      description: 币地址增加
+    - name: 生成币地址
+      key: blockchain_coinAccount_createAddress
+      icon: appstore-o
+      path: coinAccount/createAddress
+      menu: 0
+      permission: blockchain:coinAccount:createAddress
+      description: 生成币地址
+    - name: 修改
+      key: blockchain_coinAccount_edit
+      icon: appstore-o
+      path: coinAccount/edit
+      menu: 0
+      permission: blockchain:coinAccount:edit
+      description: 币地址修改
+    - name: 查看
+      key: blockchain_coinAccount_see
+      icon: appstore-o
+      path: coinAccount/info
+      menu: 0
+      permission: blockchain:coinAccount:see
+      description: 币地址查看
+    - name: 删除
+      key: blockchain_coinAccount_remove
+      icon: appstore-o
+      path: coinAccount/remove
+      menu: 0
+      permission: blockchain:coinAccount:remove
+      description: 币地址删除
+  - name: 交易流水管理
+    key: blockchain_coinOrder
+    icon: appstore-o
+    path: coinOrder/list
+    menu: 1
+    permission: blockchain:coinOrder:list
+    description: 交易流水管理
+    item:
+    - name: 增加
+      key: blockchain_coinOrder_add
+      icon: appstore-o
+      path: coinOrder/add
+      menu: 0
+      permission: blockchain:coinOrder:add
+      description: 交易流水增加
+    - name: 修改
+      key: blockchain_coinOrder_edit
+      icon: appstore-o
+      path: coinOrder/edit
+      menu: 0
+      permission: blockchain:coinOrder:edit
+      description: 交易流水修改
+    - name: 查看
+      key: blockchain_coinOrder_see
+      icon: appstore-o
+      path: coinOrder/info
+      menu: 0
+      permission: blockchain:coinOrder:see
+      description: 交易流水查看
+    - name: 删除
+      key: blockchain_coinOrder_remove
+      icon: appstore-o
+      path: coinOrder/remove
+      menu: 0
+      permission: blockchain:coinOrder:remove
+      description: 交易流水删除
+  - name: 代币管理
+    key: blockchain_ercCoin
+    icon: appstore-o
+    path: ercCoin/list
+    menu: 1
+    permission: blockchain:ercCoin:list
+    description: 代币管理
+    item:
+    - name: 增加
+      key: blockchain_ercCoin_add
+      icon: appstore-o
+      path: ercCoin/add
+      menu: 0
+      permission: blockchain:ercCoin:add
+      description: 代币增加
+    - name: 修改
+      key: blockchain_ercCoin_edit
+      icon: appstore-o
+      path: ercCoin/edit
+      menu: 0
+      permission: blockchain:ercCoin:edit
+      description: 代币修改
+    - name: 查看
+      key: blockchain_ercCoin_see
+      icon: appstore-o
+      path: ercCoin/info
+      menu: 0
+      permission: blockchain:ercCoin:see
+      description: 代币查看
+    - name: 删除
+      key: blockchain_ercCoin_remove
+      icon: appstore-o
+      path: ercCoin/remove
+      menu: 0
+      permission: blockchain:ercCoin:remove
+      description: 代币删除
+  - name: 钱包管理
+    key: blockchain_wallet
+    icon: appstore-o
+    path: wallet/list
+    menu: 1
+    permission: blockchain:wallet:list
+    description: 钱包管理
+    item:
+    - name: 增加
+      key: blockchain_wallet_add
+      icon: appstore-o
+      path: wallet/add
+      menu: 0
+      permission: blockchain:wallet:add
+      description: 钱包增加
+    - name: 修改
+      key: blockchain_wallet_edit
+      icon: appstore-o
+      path: wallet/edit
+      menu: 0
+      permission: blockchain:wallet:edit
+      description: 钱包修改
+    - name: 查看
+      key: blockchain_wallet_see
+      icon: appstore-o
+      path: wallet/info
+      menu: 0
+      permission: blockchain:wallet:see
+      description: 钱包查看
+    - name: 删除
+      key: blockchain_wallet_remove
+      icon: appstore-o
+      path: wallet/remove
+      menu: 0
+      permission: blockchain:wallet:remove
+      description: 钱包删除
+  - name: 提币钱包管理
+    key: blockchain_depositWallet
+    icon: appstore-o
+    path: depositWallet/list
+    menu: 1
+    permission: blockchain:depositWallet:list
+    description: 提币钱包管理
+    item:
+    - name: 增加
+      key: blockchain_depositWallet_add
+      icon: appstore-o
+      path: depositWallet/add
+      menu: 0
+      permission: blockchain:depositWallet:add
+      description: 提币钱包增加
+    - name: 修改
+      key: blockchain_depositWallet_edit
+      icon: appstore-o
+      path: depositWallet/edit
+      menu: 0
+      permission: blockchain:depositWallet:edit
+      description: 提币钱包修改
+    - name: 查看
+      key: blockchain_depositWallet_see
+      icon: appstore-o
+      path: depositWallet/info
+      menu: 0
+      permission: blockchain:depositWallet:see
+      description: 提币钱包查看
+    - name: 删除
+      key: blockchain_depositWallet_remove
+      icon: appstore-o
+      path: depositWallet/remove
+      menu: 0
+      permission: blockchain:depositWallet:remove
+      description: 提币钱包删除
+    - name: 生成提币地址
+      key: blockchain_depositWallet_createAddress
+      icon: appstore-o
+      path: depositWallet/createAddress
+      menu: 0
+      permission: blockchain:depositWallet:createAddress
+      description: 生成提币地址

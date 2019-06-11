@@ -1,0 +1,28 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+
+安全策略
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_easypiechart", "jquery_appear", "jquery_countTo", DEV + "/page_user"], function (a, o, b, c, d) {
+            d.init();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

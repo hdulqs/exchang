@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>WithdrawAddressMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-25 15:16:42 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.WithdrawAddressDao">
+
+    <resultMap id="addressResult" type="com.batsoft.model.module.exchange.WithdrawAddress">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="coin_address" property="coinAddress" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id, coin_address,remark
+    </sql>
+
+    <select id="findAddresList" resultMap="addressResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_withdraw_address c
+        where   c.del=0 AND  c.coin_code=#{coinCode,jdbcType=VARCHAR} AND c.user_id=#{userId,jdbcType=VARCHAR}
+    </select>
+
+
+    <delete id="deleteUserCoinAddress" parameterType="java.util.HashMap">
+        DELETE FROM exchange_withdraw_address
+        <where>
+            <if test="user_id != null">
+                user_id =#{user_id,jdbcType=VARCHAR},
+            </if>
+            <if test="address_id != null">
+               AND id =#{address_id,jdbcType=VARCHAR},
+            </if>
+        </where>
+    </delete>
+
+   <!-- <update id="updateWithdrawAddress"  >
+        UPDATE exchange_withdraw_address ua
+        SET ua.default_address = #{defaultAddress}
+        WHERE 1 = 1
+        <choose>
+            <when test="defaultAddress">
+                AND ua.id = #{id}
+            </when>
+            <otherwise>
+                AND ua.user_id = #{userId}
+            </otherwise>
+        </choose>
+
+
+    </update>-->
+
+</mapper>

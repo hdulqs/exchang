@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="left">
+
+<div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+    <div class="side-nav-head ">
+        <button class="fa fa-bars"></button>
+        <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;个人帐户</h4>
+    </div>
+
+    <ul class="list-group list-unstyled">
+        <li class="list-group-item mb-5"><a href="/ex/member/user">账户总览</a></li>
+        <li class="list-group-item mb-5 active"><a href="/ex/member/user/info">基本信息</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/user/safe">安全设置</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/user/log">安全日志</a></li>
+    </ul>
+</div>
+
+<div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+    <div class="side-nav-head">
+        <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;资金管理</h4>
+    </div>
+    <ul class="list-group list-unstyled">
+        <li class="list-group-item mb-5"><a href="/ex/member/account/deposit">资金充值</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/account/withdraw">资金提现</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/account/detail">资金明细</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/account/card">银行卡管理</a></li>
+    </ul>
+
+</div>
+
+<div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+    <div class="side-nav-head">
+        <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;数字资产管理</h4>
+    </div>
+    <ul class="list-group list-unstyled">
+        <li class="list-group-item mb-5"><a href="/ex/member/coinAccount">币账户管理</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/coinAccount/entrust">委托管理</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/coinAccount/trade">交易记录</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/coinAccount/address">提币地址管理</a></li>
+    </ul>
+
+</div>
+
+<div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+    <div class="side-nav-head">
+        <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;ICO项目管理</h4>
+    </div>
+    <ul class="list-group list-unstyled">
+        <li class="list-group-item mb-5"><a href="/ex/member/ico/support">我支持的项目</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/ico/project">我发布的项目</a></li>
+    </ul>
+
+</div>
+
+<div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+    <div class="side-nav-head">
+        <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;消息中心</h4>
+    </div>
+    <ul class="list-group list-unstyled">
+        <li class="list-group-item mb-5"><a href="/ex/member/message">我的消息</a></li>
+        <li class="list-group-item mb-5"><a href="/ex/member/message/setting">消息提醒</a></li>
+    </ul>
+</div>
+
+
+</body>
+</html>
+

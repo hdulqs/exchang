@@ -1,0 +1,629 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+<script th:src="@{${@globalService.staticUrl()}+'/static/t1/src/script/jquery.qrcode.min.js'}"></script>
+<script th:src="@{${@globalService.staticUrl()}+'/static/t1/src/script/canvas2image.js'}"></script>
+<script th:src="@{${@globalService.staticUrl()}+'/static/t1/src/script/html2canvas.min.js'}"></script>
+<style>
+    .deep {
+        width: 100%;
+        min-width: 1200px;
+        height: 40px;
+    }
+    .seep {
+        width: 100%;
+        height: 666px;
+        min-width: 1200px;
+        background: linear-gradient(360deg, rgba(35, 39, 69, 1) 0%, rgba(24, 27, 42, 1) 100%);
+    }
+
+    .seep_1 {
+        width: 1100px;
+        height: 535px;
+        margin: 0 auto;
+    }
+
+    .seep_1_1 {
+        width: 880px;
+        height: 535px;
+        float: left;
+    }
+
+    .seep_1_2 {
+        width: 220px;
+        height: 445px;
+        float: left;
+        padding-top: 80px;
+
+    }
+
+
+
+    .seep_1_1_2 {
+        width: 80%;
+        height: 225px;
+        margin: 0 auto;
+        padding-left: 66px;
+    }
+
+    .seep_1_1_2 span {
+        font-size: 18px;
+        font-family: PingFang-SC-Medium;
+        font-weight: 500;
+        color: #F9F9F9;
+        margin-bottom: 10px;
+        display: block;
+
+    }
+
+    .seep_1_1_2 div {
+        font-size: 14px;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        color: #CCCCCC;
+        line-height: 22px;
+    }
+
+    .sree {
+        width: 100%;
+        height: 1330px;
+        min-width: 1200px;
+        background: #181B2A;
+    }
+
+    .sree_1 {
+        width: 100%;
+        height: 60px;
+    }
+
+    .sree_2 {
+        width: 850px;
+        height: 55px;
+        margin: 0 auto;
+        margin-bottom: 104px;
+    }
+
+    .sree_2 div {
+        float: left;
+
+    }
+
+    .sree_1_1 {
+        color: #F9F9F9;
+        font-size: 18px;
+        font-family: PingFang-SC-Medium;
+        font-weight: 500;
+        line-height: 55px;
+        margin-right: 30px;
+    }
+    /*.layui-layer-ico {*/
+        /*background: url(https://cdn.bttmall.com/upload/attach/20190515/5d92d0ddd1da4b9e8e477cde8e658866.png) no-repeat;*/
+    /*}*/
+    .sree_1_2 {
+        font-size: 14px;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        color: #FFFFFF;
+        width: 520px;
+        height: 50px;
+        line-height: 50px;
+        text-indent: 23px;
+        border: 1px solid #262A42;
+        margin-right: 30px;
+    }
+
+    .sree_1_3 {
+        width: 130px;
+        height: 52px;
+        line-height: 52px;
+        text-align: center;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        background: #589065;
+        cursor: pointer;
+    }
+
+    .seep_1_2_1 {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 18px;
+    }
+
+    .seep_1_2_2 {
+        width:120px;
+        height:32px;
+        line-height: 32px;
+        text-align: center;
+        cursor: pointer;
+        border-radius:17px;
+        font-size: 14px;
+        color: #E3B73E;
+        border:1px solid #E3B73E;
+        margin: 0 auto;
+        position: relative;
+        left: -15px;
+    }
+    canvas {
+        width: 160px;
+        height: 160px;
+        position: relative;
+        top: 10px;
+        left: 10px;
+    }
+    .sree_3 {
+        width: 1000px;
+        height: 80px;
+        margin: 0 auto;
+        margin-bottom: 104px;
+    }
+
+    .sree_3_1 {
+        width: 33%;
+        height: 80px;
+        float: left;
+        border-right: 1px dashed #262A42;
+
+    }
+
+    .text_str {
+        width: 100%;
+        height: 40px;
+        line-height: 3px;
+        text-align: center;
+        color: #8489A0;
+        font-size: 14px;
+        font-family: PingFang-SC-Medium;
+        font-weight: 500;
+    }
+
+    .text_res {
+        width: 100%;
+        height: 40px;
+        line-height: 35px;
+        text-align: center;
+        color: #E3B73E;
+        font-size: 38px;
+        font-family: PangMenZhengDao;
+
+    }
+    .mate_lisa_H{
+        width: 500px;
+        height: 571px;
+        z-index: 1111111111;
+        position: absolute;
+        top: 0px;
+    }
+    .layui-layer-rim {
+        border: 1px solid #F9F9F9;
+        border-radius: 12px;
+        box-shadow: none;
+    }
+    .gree {
+        width: 960px;
+        height: 25px;
+        line-height: 25px;
+        color: #F9F9F9;
+        font-size: 18px;
+        font-family: PingFang-SC-Bold;
+        font-weight: bold;
+        margin: 0 auto;
+        margin-bottom: 12px;
+
+    }
+    .no-data-tr{
+        border-bottom: none;
+    }
+
+    .gree_1 {
+        width: 960px;
+        height: 765px;
+        margin: 0 auto;
+
+
+    }
+
+    .gree_1 table {
+        width: 960px;
+
+
+
+    }
+
+    .gree_1 table th {
+        line-height: 60px;
+        height: 60px;
+        color: #8489A0;
+        font-size: 12px;
+        font-family: PingFang-SC-Bold;
+        font-weight: bold;
+        text-align: left;
+
+    }
+
+    /*.FS tr {*/
+        /*border-bottom: 1px solid #262A42;*/
+    /*}*/
+
+    .FS tr td {
+        line-height: 60px;
+        height: 60px;
+        font-size: 14px;
+        font-family: PingFang-SC-Regular;
+        font-weight: 400;
+        color: #F9F9F9;
+        text-align: left;
+    }
+    .FR{
+        text-indent: 98px;
+    }
+    .pink {
+        min-width: 1200px;
+        width: 100%;
+        height: 180px;
+        background: #0C0E15;
+    }
+
+    .pink_1 {
+        width: 1200px;
+        height: 16px;
+        margin: 0 auto;
+    }
+
+    .pink_3{
+        width: 150px;
+        height: 47px;
+        margin: 0 auto;
+    }
+    .pink_4 {
+
+        width: 600px;
+        height: 22px;
+        margin: 0 auto;
+        color: #60688D;
+        font-size: 12px;
+        font-family: PingFang-SC-Regular;
+        text-align: center;
+        line-height: 33px;
+
+    }
+    #code {
+        width: 180px;
+        height: 180px;
+        background: #FFFFFF;
+        margin: 0 auto;
+    }
+    #coco {
+        width:100% ;
+        height:100%;
+        background: #FFFFFF;
+    }
+    #coco canvas {
+        width: 110px;
+        height: 110px;
+        position: relative;
+        top: 18px;
+        left: 17px;
+    }
+    .layui-layer-page .layui-layer-content {
+        height: 608px;
+    }
+    #str_HB{
+        width: 100%;
+        height:50px;
+        line-height: 50px;
+        color: #FFFFFF;
+    }
+    .page {
+        margin-top: 10px;
+        margin-bottom: 40px;
+    }
+    .page .pagination>li:first-child>a, .page .pagination>li:first-child>span {
+        margin-left: 0;
+        border-top-left-radius: 4px;
+        border-bottom-left-radius: 4px;
+    }
+
+    .page .pagination>li>a, .page .pagination>li>span {
+        position: relative;
+        float: left;
+        padding: 6px 12px;
+        margin-left: -1px;
+        line-height: 1.42857143;
+        color: #c7cce6;
+        margin-left: 5px;
+        text-decoration: none;
+        background-color: #181B2A;
+        border: 1px solid #4E5B85;
+    }
+    #layui-layer5{
+        z-index: 19891019;
+
+        /*border: 20px solid #F9F9F9;*/
+    }
+    /*.layui-layer-rim {*/
+        /*border: 10px solid #F9F9F9;*/
+        /*border-radius: 12px;*/
+        /*box-shadow: none;*/
+    /*}*/
+    .layui-layer-title {
+        padding: 0 80px 0 20px;
+        height: 0px;
+        border-bottom: none;
+        font-size: 14px;
+        color: #333;
+        overflow: hidden;
+        background-color: #333333;
+        border-radius: 2px 2px 0 0;
+    }
+    .layui-layer-content{
+        background: linear-gradient(360deg, rgba(35, 39, 69, 1) 0%, rgba(24, 27, 42, 1) 100%);
+    }
+    .mate_lis{
+        width: 100%;
+        height: 28px;
+        line-height: 50px;
+        color: #F9F9F9;
+        font-size: 14px;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        /*letter-spacing:9px;*/
+        margin-bottom: 44px;
+        text-align: center;
+    }
+    .mate_lisa{
+        width: 180px;
+        height: 52px;
+        margin: 0 auto;
+        margin-bottom: 60px;
+        }
+.mate_lisa_z{
+    width: 100%;
+    height: 20px;
+}
+    .mate_lisa_j {
+        width: 474px;
+        height: 120px;
+        position: fixed;
+        bottom: 3%;
+        left: 47%;
+        font-size: 14px;
+        color: white;
+    }
+    .mate_lisa_x{
+        width: 144px;
+        height: 144px;
+        padding-top: 50px;
+        margin: 0 auto;
+    }
+    .mate_lisa_y{
+        width: 114px;
+        height: 40px;
+        padding-top: 7px;
+        font-size:14px;
+        font-family:PingFang-SC-Regular;
+        font-weight:400;
+        color: #F9F9F9;
+        margin: 0 auto;
+    }
+    #show_str{
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(360deg, rgba(35, 39, 69, 1) 0%, rgba(24, 27, 42, 1) 100%);
+    }
+    #show_img{
+        width: 100%;
+        height: 100%;
+        background: #F9F9F9;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 12px;
+    }
+
+    #show_div {
+        position: relative;
+        height: 100%;
+    }
+    .layui-layer-content {
+        border-radius: 12px;
+        background: linear-gradient(360deg, rgba(35, 39, 69, 1) 0%, rgba(24, 27, 42, 1) 100%);
+    }
+    /*https://cdn.bttmall.com/upload/attach/20190515/5d92d0ddd1da4b9e8e477cde8e658866.png*/
+</style>
+
+<body style="background: none" >
+<div class="seep">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="deep"></div>
+    <div style="width: 100%;height: 535px;min-width: 1200px;">
+     <div class="seep_1">
+        <div class="seep_1_1">
+            <div class="seep_1_1_1"></div>
+            <div class="seep_1_1_2">
+                <span>温馨提示:</span>
+                <div>1.好友需要注册成功并通过平台KYC认证；<br/>
+                    2.A用户推荐B用户，B用户推荐C用户，如果C用户通过KYC认证，A用户可得10BT佣金，B用户可获得20BT佣金；<br/>
+                    3.活动奖励总量为500万枚，送完即止；<br/>
+                    4.活动的推荐关系永久有效，将适用于未来商城的购物挖矿分利活动；<br/>
+                    5.如有任何恶意刷币行为，一经查实所得奖励将不予兑现，Bttmall对邀请活动保留最终解释权。<br/>
+                    如有任何疑问，敬请咨询Bttmall.com QQ官方8群（群号：558476400）。
+                </div>
+            </div>
+        </div>
+        <div class="seep_1_2">
+            <div class="seep_1_2_1"><div id="code"></div></div>
+            <div class="seep_1_2_2">点击分享</div>
+
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="sree">
+    <div class="sree_1">
+    </div>
+    <div class="sree_2">
+        <div class="sree_1_1">我的邀请码</div>
+       <div class="sree_1_2"><input type="text"  value=""  id="str_HB" readonly/></div>
+        <div class="sree_1_3">复制链接</div>
+    </div>
+    <div style="display:none;" id="show_div">
+        <div style="position: relative" id="show_img">
+            <div style="position: relative" id="show_str">
+                <div class="mate_lis">
+                    全球首个数字资产交易及跨境电商创新交易平台
+                </div>
+                <div class="mate_lisa_a">
+                </div>
+                <div class="mate_lisa_z">
+                </div>
+                <div class="mate_lisa_b">
+                </div>
+                <div class="mate_lisa_x">
+                    <div id="coco"></div>
+                </div>
+                <div class="mate_lisa_y">
+                    扫码成为种子用户<br/> 享受平台至尊福利
+                </div>
+                <div class="mate_lisa_j"  >
+                    【截图分享】
+                </div>
+                <!--<div class="mate_lisa_j"  >-->
+                    <!--【点击右键保存】-->
+                <!--</div>-->
+            </div>
+        </div>
+        <!--<div class="mate_lisa_H">-->
+        <!--</div>-->
+    </div>
+    <div class="sree_3">
+        <div class="sree_3_1">
+            <div class="text_str">邀请人数</div>
+            <div class="text_res" id="text_res"></div>
+        </div>
+        <div class="sree_3_1">
+            <div class="text_str">总佣金</div>
+            <div class="text_res"  id="text_resc"></div>
+        </div>
+        <div class="sree_3_1">
+            <div class="text_str">有效佣金</div>
+            <div class="text_res"  id="text_resd"></div>
+        </div>
+    </div>
+    <div class="gree">
+        邀请记录
+    </div>
+    <div class="gree_1">
+        <table style="border-collapse: collapse" ; class="FS">
+            <tr style="border-bottom: 1px solid #262A42;">
+                <th width="35%" class="FR">时间</th>
+                <th width="25%">邀请人</th>
+                <th width="20%">奖励</th>
+                <th width="20%">KYC状态</th>
+            </tr>
+            <tbody id="marketsTable_render">
+            <!--<div id="memberLoginRender"></div>-->
+            </tbody>
+        </table>
+        <div class="page">
+            <ul class="pagination" id="pagination"></ul>
+        </div>
+    </div>
+
+    <script id="marketsTable_tpl" type="text/x-jsrender">
+        <tr style="border-bottom: 1px solid #262A42;">
+             <td style="text-indent: 44px;">{{:createTime}}</td>
+             <td>{{:promoterName}}</td>
+              <td>+{{:award}} </td>
+             <td style="color:#589065">{{:status == 0?'未审核':'审核通过'}}</td>
+        </tr>
+    </script>
+    <div class="pink">
+        <div class="pink_1"></div>
+        <div class="pink_2"></div>
+        <div class="pink_6"></div>
+        <!--<div class="pink_3">-->
+        <!--<div class="pink_3_1"></div>-->
+        <!--<div class="pink_3_2"></div>-->
+        <!--<div class="pink_3_3"></div>-->
+        <!--<div class="pink_3_4"></div>-->
+        <!--</div>-->
+        <div class="pink_4">&#169 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited</div>
+    </div>
+</div>
+</body>
+<div th:replace="component/basejs :: basejs(~{::script})">
+
+    <script>
+        seajs.use([DEV + "/main","numeral","jquery_pagination","layer","laydate", "clipboard","qrcode", DEV + "/page_user"], function ( a0,a,q, i, o, b, c, d) {
+            d.referral();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+
+        function toUtf8(str) {
+            var out, i, len, c;
+            out = "";
+            len = str.length;
+            for(i = 0; i < len; i++) {
+                c = str.charCodeAt(i);
+                if ((c >= 0x0001) && (c <= 0x007F)) {
+                    out += str.charAt(i);
+                } else if (c > 0x07FF) {
+                    out += String.fromCharCode(0xE0 | ((c >> 12) & 0x0F));
+                    out += String.fromCharCode(0x80 | ((c >>  6) & 0x3F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                } else {
+                    out += String.fromCharCode(0xC0 | ((c >>  6) & 0x1F));
+                    out += String.fromCharCode(0x80 | ((c >>  0) & 0x3F));
+                }
+            }
+            return out;
+        }
+        var string;
+        $.ajax({
+            type: "get",
+            url: "/promoterCode",
+            dataType: 'json',
+            async: false,
+            data:{},
+            success: function (data) {
+                if(data.success){
+                    string =data.data;
+                    $("#str_HB").val("https://bttmall.com/register"+"?promoterCode="+data.data)
+
+                }
+            }
+        });
+        var  str = toUtf8("https://bttmall.com/mobile/#/register"+"?code="+ string);
+        $('#code').qrcode(str);
+        $("#coco").qrcode(str);
+        $(".sree_1_3").on("click", function () {
+            var ele = document.getElementById("str_HB");
+            ele.select();
+            document.execCommand("Copy");
+            // layer.msg('复制成功！', {time: 2000, icon: 6});
+
+            })
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</html>

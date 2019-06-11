@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        #page-menu{
+            height: 52px !important;
+            font-size: 16px;
+            padding:0 auto !important;
+        }
+        #page-menu ul>li {
+        #page-menu ul>li {
+            line-height: 50px !important;
+            float: left;
+        }
+        #page-menu .list-inline>li {
+            padding-right: 50px !important;
+            padding-left: 50px !important;
+        }
+        #page-menu ul>li>a {
+            height: 50px !important;
+        }
+    </style>
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent clearfix')"></span>
+
+    <!-- SLIDER -->
+    <span th:replace="component/banner/bannerTemp :: banner_background"></span>
+
+    <!-- /SLIDER -->
+    <section class="info-bar info-bar-clean  banner-bottom-menu"  style="padding-top: 0;padding-bottom: 0">
+        <div id="page-menu" class="page-menu-dark" >
+            <div class="container">
+
+                <nav ><!-- page menu -->
+                    <!--
+                        .menu-scrollTo - for scrollto page menu / no external links
+                        add class .external for an external link
+                    -->
+                    <ul class="list-inline menu-scrollTo " id="coinsRender">
+
+                    </ul>
+
+                    <script id="coinsTpl" type="text/x-jsrender">
+
+                      {{if #getIndex()==0}}
+                                  <li class="active" data-symbol="{{:symbol}}"><a href="javascript:void(0)"> 对{{:symbol}}交易</a></li>
+                                 {{else}}
+                                 <li class=""  data-symbol="{{:symbol}}"><a  href="javascript:void(0)"> 对{{:symbol}}交易</a></li>
+                                {{/if}}
+                    </script>
+
+                </nav><!-- /page menu -->
+
+            </div>
+        </div>
+    </section>
+
+    <!-- projects -->
+    <section class="section-sm pt-0">
+
+        <div class="container">
+
+            <div class="table-responsive">
+                <table class="table table-hover table-vertical-middle">
+                    <thead>
+                    <tr>
+                        <th class="text-center">币种对 <spanc class="price-coin"></spanc></th>
+                        <th class="text-center">价格（<span class="price-coin"></span>）</th>
+                        <th class="text-center">最高价（<span class="price-coin"></span>）</th>
+                        <th class="text-center">最低价（<span class="price-coin"></span>）</th>
+                        <th class="text-center">交易量</th>
+                        <th class="text-center">日涨跌</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody id="tradeCoinsRender">
+                    <tr><td colspan="7">
+                        <span th:replace="component/load/spinner4 :: spinner4"></span>
+                    </td></tr>
+
+
+                    </tbody>
+                </table>
+                <script id="tradeCoinsTpl" type="text/x-jsrender">
+
+                    <tr class="H_{{:tradeCoinSymbol}}{{:priceCoinSymbol}}_Market">
+                        <td class="text-center"><img class="user-head img-circle" style="width: 20px;height: 20px"  th:src="@{${@globalService.fileHost()}+'{{:tradeCoinLogo}}'}">&nbsp;&nbsp;<span><b>{{:tradeCoinSymbol}}</b></span><span>/{{:priceCoinSymbol}}</span></td>
+                        <td class="text-center"><b><span class="text-danger fs-14 price">--</span></b></td>
+                        <td class="text-center"><span class="fs-14 height">--</span></td>
+                        <td class="text-center">
+                            <span class="fs-14 low">--</span>
+                        </td>
+                        <td class="text-center">
+                            <span class="fs-14 vol">--</span><span>{{:priceCoinSymbol}}</span>
+                        </td>
+                        <td class="text-center"><span class="text-danger fs-14 change">--</span> &nbsp;<span class="text-danger">%</span></td>
+                        <td class="text-center text-danger"><a href="/market?symbol={{:tradeCoinSymbol}}_{{:priceCoinSymbol}}" class="text-danger">专业交易</a>&nbsp;&nbsp;<a href="/market?symbol={{:tradeCoinSymbol}}_{{:priceCoinSymbol}}" class="text-danger"><i class="fa fa-line-chart"></i></a> </td>
+                    </tr>
+                    </script>
+            </div>
+        </div>
+    </section>
+    <!-- /projects -->
+
+
+    <section class="text-center mt-10  pb-0" >
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+                    <h2 class="fs-17 mt-6">快速买卖</h2>
+                    <a href="javascript:void(0)" id="test-socket">点击</a>
+                    <span id="finance">0000</span>
+                    <p class="text-muted"><span th:text="${@globalService.webSiteTitle()}"></span>是一个不涉及第三方的P2P交易平台，交易过程方便快捷</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-lock fa-5x"></i>
+                    <h2 class="fs-17 mt-6">安全可靠</h2>
+                    <p class="text-muted">冷存储、SSL、多重加密等银行级别安全技术，十年金融安全经验的安全团队</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-comments-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">及时掌控</h2>
+                    <p class="text-muted">WEB、APP多终端，行情及时掌握，交易随时随地</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- 文章 -->
+    <section>
+        <div class="container" >
+
+            <div class="row" id="articleRender">
+                <span th:replace="component/load/spinner4 :: spinner4"></span>
+            </div>
+
+        </div>
+
+        <script id="articleTmpl" type="text/x-jsrender">
+            <div class="col-md-6 col-xs-6">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>{{:name}}</h3>
+                        <a href="/article/list/{{:typeKey}}"   style="float: right">
+                            查看更多
+                        </a>
+                    </div>
+
+                    <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+                        <div class="timeline-hline"><!-- horizontal line --></div>
+                     {{for articleVos}}
+
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                {{:~formatDate(updateTime,"dd")}}<span>{{:~formatDate(updateTime,"MM")}}</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="/article/{{:id}}">{{:title}}</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">{{:~formatDate(updateTime,"yyyy-MM-dd")}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-eye"></i>
+                                        <span class="font-lato">{{:hits}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">{{:author}}</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                            <p>{{:shortContent}}</p>
+                        </div>
+                        <!-- /POST ITEM -->
+                         {{/for}}
+                    </div>
+
+
+                </div>
+       </script>
+    </section>
+    <!-- 文章/ -->
+
+    <!-- 友情链接-->
+    <span th:replace="component/friend/friendTemp :: friendLink"></span>
+    <!-- /友情链接-->
+
+    <section style="padding: 0px; border: 0px;">
+
+        <div class="download">
+            <div class="container">
+                <div class="h2"><span th:text="${@globalService.webSiteTitle()}"></span> App</div>
+                <div class="decs">更简单 更专业 更安全</div>
+                <div class="btn-cont">
+                    <a class="btn" href="https://itunes.apple.com/us/app/coincola/id1234231551?ls=1&amp;mt=8"><span class="icon-ios"></span><span class="btn-text">iPhone 下载</span></a>
+                    <a class="btn" href="http://download.coincola.com/android"><span class="icon-android"></span><span class="btn-text">Android 下载</span></a>
+                </div>
+                <div class="qrcode">
+                    <img class="qrcode-img" src="/static/imgs/qrcode-download.png" alt="otc-bitcoin-marketplace-qrcode">
+                    <div class="text">扫描下载APP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_backstretch",DEV+"/page_cms_article",DEV+"/page_exchange"], function (a,c,article,d) {
+            d.index();
+            article.index();
+        });
+    </script>
+</div>
+
+</body>
+</html>

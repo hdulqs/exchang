@@ -1,0 +1,89 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">设置资金密码</span>
+            </span>
+        </h2>
+        <form class="m-0 sky-form form" th:action="@{/ex/member/security/editTradePassword}"  method="post" >
+            <fieldset>
+                <div class="row">
+                    <span th:replace="layout/csrfToken :: csrfToken"></span>
+                    <div class="col-md-12 col-sm-12">
+                        <label >原始资金密码 *</label>
+                        <label class="input mb-10">
+                            <i class="ico-append fa fa-lock"></i>
+                            <input type="password" name="oldPassword" id="oldPassword" placeholder="请输入原始资金密码">
+                            <b class="tooltip tooltip-bottom-right">请输入原始资金密码</b>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <label >资金密码 *</label>
+                        <label class="input mb-10">
+                            <i class="ico-append fa fa-lock"></i>
+                            <input type="password" name="password" id="password" placeholder="请输入资金密码">
+                            <b class="tooltip tooltip-bottom-right">推荐使用字母、数字和符号两种及以上组合（6-20）</b>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                        <label >确认密码 *</label>
+                        <label class="input mb-10">
+                            <i class="ico-append fa fa-lock"></i>
+                            <input  type="password" id="confirm_password" name="confirm_password" placeholder="请再次输入资金密码">
+                            <b class="tooltip tooltip-bottom-right">请再次输入资金密码</b>
+                        </label>
+                    </div>
+
+                </div>
+
+            </fieldset>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  DEV + "/page_user"], function (a, d) {
+            d.updatePassword();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

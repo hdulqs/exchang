@@ -1,0 +1,238 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+<div class="ibox-title">
+                    <h5> 订单编辑</h5>
+                    <div class="ibox-tools">
+                    <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+    <a href="javascript:void(0)" class="toList" data-to-url="/otc/projectOrder/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+</div>
+</div>
+                <div class="ibox-content">
+    <form  method="post" class="form" th:action="@{/otc/projectOrder/save}" >
+    <div id="projectOrderRender"></div>
+    <script id="projectOrderTpl" type="text/x-jsrender">
+
+            <div class="hr-line-dashed hidden"></div>
+            <div class="form-group hidden"><label class="control-label">id</label>
+               <input type="text" name="id" value="{{:id}}" class="form-control">
+            </div>
+
+
+
+
+
+
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">订单号<span class="text-danger">*</span></label>
+               <input type="text" name="orderNum"
+                                              value="{{:orderNum}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">项目id<span class="text-danger">*</span></label>
+               <input type="text" name="projectId"
+                                              value="{{:projectId}}"
+                                              class="form-control "></div>
+
+                </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易币种<span class="text-danger">*</span></label>
+               <input type="text" name="orderCoin"
+                                              value="{{:orderCoin}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">交易类型 <span class="text-danger">*</span></label>
+                     <select name="orderType"  class="form-control">
+                            <option value="0" {{if orderType==0}}selected{{/if}}>出售</option>
+                            <option value="1" {{if orderType==1}}selected{{/if}}>购买</option>
+                    </select>
+                </div>
+                </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易数量<span class="text-danger">*</span></label>
+               <input type="text" name="orderCount"
+                                              value="{{:orderCount}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易金额<span class="text-danger">*</span></label>
+               <input type="text" name="orderMoney"
+                                              value="{{:orderMoney}}"
+                                              class="form-control "></div>
+
+                </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">币种</label>
+               <input type="text" name="currency"
+                                              value="{{:currency}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易手续费<span class="text-danger">*</span></label>
+               <input type="text" name="orderFee"
+                                              value="{{:orderFee}}"
+                                              class="form-control "></div>
+
+                </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">用户<span class="text-danger">*</span></label>
+               <input type="text" name="userName"
+                                              value="{{:userName}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">用户id<span class="text-danger">*</span></label>
+               <input type="text" name="userId"
+                                              value="{{:userId}}"
+                                              class="form-control "></div>
+
+                </div>
+                            </div>
+
+
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">付款备注</label>
+               <input type="text" name="orderRemarkNum"
+                                              value="{{:orderRemarkNum}}"
+                                              class="form-control "></div>
+
+                </div>
+
+
+
+
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">状态 </label>
+                     <select name="status"  class="form-control">
+                            <option value="0" {{if status==0}}selected{{/if}}>未付款</option>
+                            <option value="1" {{if status==1}}selected{{/if}}>已付款</option>
+                            <option value="2" {{if status==2}}selected{{/if}}>已完成</option>
+                            <option value="3" {{if status==3}}selected{{/if}}>已取消</option>
+                            <option value="4" {{if status==4}}selected{{/if}}>申诉中</option>
+                    </select>
+                </div>
+                </div>
+                            </div>
+
+
+
+ </script>
+    <div class="hr-line-dashed"></div>
+        <div class="row">
+    <div th:replace="layout/common/handler :: handler">
+
+    </div>
+        </div>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script >
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",   DEV + "/page_otc_projectOrder"], function (a, e, c, b) {
+            b.edit();
+        
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

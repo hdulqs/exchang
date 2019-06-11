@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CoinOrderMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-23 23:07:19 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.blockchain.dao.CoinOrderDao">
+
+
+	<select id="hashHash" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+        count(*)
+        FROM blockchain_coin_order
+        where   tx_hash=#{hash}
+    </select>
+</mapper>

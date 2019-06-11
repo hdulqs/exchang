@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style type="text/css">
+        .validCode {
+            position: absolute;
+            right: 0;
+        }
+        .sky-form .tooltip{
+            position: absolute;
+            z-index: 1;
+            left: -9999px;
+            padding: 2px 8px 3px;
+            font-size: 11px;
+            line-height: 16px;
+            font-weight: 400;
+            /* background: rgba(0,0,0,.9); */
+            color: #638BD4;
+            opacity: 0;
+            transition: margin .3s,opacity .3s;
+            -o-transition: margin .3s,opacity .3s;
+            -ms-transition: margin .3s,opacity .3s;
+            -moz-transition: margin .3s,opacity .3s;
+            -webkit-transition: margin .3s,opacity .3s;
+            background: #FFFFFF!important;
+            border-radius: 2px 2px 2px 0!important;
+            border: none!important;
+        }
+    </style>
+</head>
+
+<body >
+<div th:fragment="innerMobileValid(mobile)">
+
+    <div th:if="${@globalService.mobileArea()=='1'}">
+        <span th:replace="component/select/select-area :: area"></span>
+    </div>
+    <div th:if="${@globalService.mobileArea()=='0'}">
+        <input type="hidden" name="areaCode" id="areaCode" value="86" />
+    </div>
+
+    <li class="input">
+        <!--<i class="ico-append fa fa-phone"></i>-->
+        <!--<span class="icoReg icoUser"></span>-->
+        <input type="text" class="input" id="userName" name="userName" th:placeholder="#{register.telephone}" placeholder="请输入手机号">
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{register.telephone}"></b>-->
+    </li>
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password" name="password" th:placeholder="#{user.modify_password_new}" id="pass1_tel" placeholder="请输入新密码">
+        <b class="tooltip tooltip-top-right f-w"  th:text="#{password.remind}">必须使用6位数字交易密码！</b>
+    </li>
+    <li class="input">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="password" name="confirm_password" id="pass2_tel" th:placeholder="#{user.modify_password_confirm}" placeholder="请再次输入新密码">
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{user.modify_password_confirm}"></b>-->
+    </li>
+    <li class="input with-secure-verification" id="input_captcha">
+        <div id="captcha"></div>
+        <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+        <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+    </li>
+
+    <li class="input with-sms-verification">
+        <!--<span class="icoReg icoPass"></span>-->
+        <input type="text" class="form-control" id="mobileCode" name="code" th:placeholder="#{register.telephone_verification}" placeholder="短信验证码">
+        <!--<b class="tooltip tooltip-top-right f-w" th:text="#{register.telephone_verification}"></b>-->
+        <button type="button" class="btn sendCode" th:text="#{register.obtain_sms}" style="height: 50px;">
+            短信验证码
+        </button>
+    </li>
+
+
+
+
+    <!--load js-->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script th:inline="javascript">
+            // seajs.use(["jquery_validate", "messages_zh", DEV + "/page_sendCode"], function (b,c,d) {
+            //     d.sendMobileCode();
+            //
+            // });
+        </script>
+    </div>
+    <!--load js-->
+</div>
+</body>
+</html>

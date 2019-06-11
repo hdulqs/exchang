@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ The MIT License (MIT)
+  ~
+  ~ Copyright (c) 2014-2016 abel533@gmail.com
+  ~
+  ~ Permission is hereby granted, free of charge, to any person obtaining a copy
+  ~ of this software and associated documentation files (the "Software"), to deal
+  ~ in the Software without restriction, including without limitation the rights
+  ~ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  ~ copies of the Software, and to permit persons to whom the Software is
+  ~ furnished to do so, subject to the following conditions:
+  ~
+  ~ The above copyright notice and this permission notice shall be included in
+  ~ all copies or substantial portions of the Software.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  ~ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  ~ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  ~ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  ~ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  ~ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  ~ THE SOFTWARE.
+  -->
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.menu.AppMenuDao">
+
+<resultMap id="RootResultMapVO" type="com.batsoft.model.module.system.menu.vo.AppMenuVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="path" property="path" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="level_path" property="levelPath" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="menu_key" property="menuKey" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+        <result column="main_nav" property="mainNav" jdbcType="INTEGER" />
+        <result column="display" property="display" jdbcType="INTEGER" />
+        <result column="menu" property="menu" jdbcType="INTEGER" />
+        <result column="permission" property="permission" jdbcType="INTEGER" />
+        <result column="external" property="external" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="MenuListTree" type="com.batsoft.model.module.system.menu.vo.AppMenuVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="path" property="path" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+        <result column="name" property="title" jdbcType="VARCHAR" />
+        <result column="main_nav" property="mainNav" jdbcType="INTEGER" />
+        <result column="display" property="display" jdbcType="INTEGER" />
+        <result column="menu" property="menu" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="JsTreeResultMapVO" type="com.batsoft.core.common.JsTree" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="text" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="menu_key" property="nodeKey" jdbcType="VARCHAR" />
+
+        <result column="name" property="label" jdbcType="VARCHAR" />
+        <result column="id" property="value" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="AppMenuTreeResult" type="com.batsoft.model.module.system.menu.vo.AppMenuTree" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="menu_key" property="menuKey" jdbcType="VARCHAR" />
+        <result column="path" property="path" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="ResultByKey" type="com.batsoft.model.module.system.menu.AppMenu" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="menu_key" property="menuKey" jdbcType="VARCHAR" />
+    </resultMap>
+    
+     <sql id="Base_Column_List" >
+        id, name, path, parent_id, sort, level,level_path,description,permission,display,menu ,icon,external,main_nav,menu_key
+    </sql>
+
+    <sql id="Menu_List_Tree" >
+        id, name, path, parent_id, sort, description,display,menu ,main_nav
+    </sql>
+    <sql id="JsTree_Column_List" >
+        id, name,  parent_id, sort,icon,menu_key
+    </sql>
+
+    <sql id="appMenuTree_Column" >
+       id, name, parent_id, sort,icon,menu_key,path
+    </sql>
+
+      <select id="findChildList" resultMap="MenuListTree" >
+        SELECT
+        <include refid="Menu_List_Tree" />,
+        (select count(*) from system_app_menu s1 where s1.parent_id=s.id) has_child
+        FROM system_app_menu s
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+          <if test="display != null">
+              AND s.display=#{display,jdbcType=INTEGER}
+          </if>
+
+        order by s.level, s.sort ASC
+    </select>
+
+    <select id="findChildMenus" resultMap="AppMenuTreeResult" >
+        SELECT
+        <include refid="appMenuTree_Column" />
+        FROM system_app_menu s
+
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+        <if test="menu != null">
+            AND s.menu=#{menu,jdbcType=INTEGER}
+        </if>
+        order by s.level, s.sort ASC
+    </select>
+
+    <select id="findJsTreeChildList" resultMap="JsTreeResultMapVO" >
+        SELECT
+        <include refid="JsTree_Column_List" />
+        FROM system_app_menu s
+
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+        order by s.level, s.sort ASC
+    </select>
+
+    <!--根据parentId，得到id plash-->
+    <select id="findParentId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT parent_id
+        FROM system_app_menu
+        where id = #{pid}
+    </select>
+
+    <!--根据Id，得到父name-->
+    <select id="findParentName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT name
+        FROM system_app_menu
+        where id = #{id}
+    </select>
+
+    <!--根据key，得到appmenu-->
+    <select id="findByKey" parameterType="java.lang.String" resultMap="ResultByKey">
+        SELECT
+        id,name,sort,parent_id,menu_key
+        FROM system_app_menu
+        where menu_key = #{menuKey}
+    </select>
+    <!--根据 pid 获取最大的 排序值-->
+    <select id="findMaxSort" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT
+        sort
+        FROM system_app_menu
+        where  parent_id=#{pid} ORDER BY sort DESC LIMIT 1
+    </select>
+
+</mapper>

@@ -1,0 +1,169 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+
+
+    <!-- -->
+    <section class="pt-20 pb-10">
+        <div class="container" >
+
+            <div class="row m-0">
+
+                <div class="col-md-8 col-sm-8">
+
+                    <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/2.jpg" alt="">
+
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+
+                    <div class="card card-default">
+                        <div class="card-block">
+                            <div class="box-title">
+                                <h4>借贷链（UGT）</h4>
+                            </div>
+                            <p class="font-lato fs-12">借贷链是基于区块链的大数据征信平台。 借贷链的本质是利用区块链的去中心化、不可更改性等优势，来解决传统征信体系中信</p>
+
+                            <ul class="portfolio-detail-list list-unstyled m-0">
+                                <li><span><i class="fa fa-user"></i>目标金额:</span> ETH 1000.00</li>
+                                <li><span><i class="fa fa-calendar"></i>开始时间:</span> 29th June 2017</li>
+                                <li><span><i class="fa fa-calendar"></i>结束时间:</span> 29th June 2017</li>
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6 text-left">
+                                        <a href="javascript:;" >ETH 8000.00</a>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6 text-right">
+                                        <a href="javascript:;" >70%</a>
+                                    </div>
+                                </div>
+                                <div class="progress mb-0">
+                                    <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    </div>
+                                </div>
+                            </ul>
+
+                        </div>
+
+                        <div class="card-footer p-0">
+
+                            <a href="javascript:void(0)" rel="nofollow"  class="btn btn-xlg btn-warning fs-20 fullwidth m-0 rad-0">
+				<span class="font-lato fs-30">
+					<strong>我要支持 »</strong>
+				</span>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- -->
+    <section class="pt-10 pb-80">
+        <div class="container" >
+            <div class="row m-0">
+                <div class="col-md-8 col-sm-8">
+                    <ul class="nav nav-tabs nav-bottom-border" >
+                        <li class="nav-item ml-60"><a class="nav-link active" href="#home_3" data-toggle="tab" aria-expanded="true">项目介绍</a></li>
+                        <li class="nav-item ml-60"><a class="nav-link" href="#profile_3" data-toggle="tab" aria-expanded="false">ICO细则</a></li>
+                        <li class="nav-item ml-60"><a class="nav-link" href="#profile_4" data-toggle="tab" aria-expanded="false">团队介绍</a></li>
+                        <li class="nav-item ml-60"><a class="nav-link" href="#profile_5" data-toggle="tab" aria-expanded="false">常见问题</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="home_3" aria-expanded="true">
+                            <div class="container">
+                                项目介绍
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile_3" aria-expanded="false">
+                            <p> ICO 细则</p>
+                        </div>
+
+                        <div class="tab-pane fade" id="profile_4" aria-expanded="false">
+                            <p>团队介绍</p>
+                        </div>
+                        <div class="tab-pane fade" id="profile_5" aria-expanded="false">
+                            <p>常见问题</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-4">
+                    <div class="box-static box-border-top mb-60">
+                        <div class="box-title">
+                            <h4>参投方式</h4>
+                        </div>
+                        <ul class="list-unstyled list-icons p-15 pb-0">
+                            <li class="mb-20">
+                                <i class="fa fa-check text-success fs-18"></i>
+                                <span class="block bold fs-18">不限人数</span>
+                                <p>LendingChain 初始发放数量为15亿的LDC（LendingChain Token），永不增发。</p>
+                                <p>本次ICO从北京时间2017年8月23日10：00正式开始兑换，到北京时间2017年9月6日22:00结束</p>
+                            </li>
+                            <li class="mb-10">
+                                <i class="fa fa-check text-success fs-18"></i>
+                                <span class="block bold fs-18">回报时间</span>
+                                <small>项目ICO成功结束后60天内</small>
+                            </li>
+
+                        </ul>
+
+                        <hr>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","countdown",DEV+"/page_ico"], function (a,b,c) {
+            c.list();
+        });
+    </script>
+</div>
+
+</body>
+</html>

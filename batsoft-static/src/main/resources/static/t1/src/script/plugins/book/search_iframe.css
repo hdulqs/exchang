@@ -1,0 +1,133 @@
+body {
+  font: 12px/1.5 'MicroSoft YaHei';
+  background: white;
+}
+body,
+body dl,
+body dt,
+body dd {
+  margin: 0;
+}
+a {
+  text-decoration: none;
+}
+.search {
+  background: #FFF;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border-bottom: 1px solid #D6D6D6;
+  color: #666;
+  display: -webkit-box;
+  display: -ms-flexbox;
+}
+.search label {
+  line-height: 36px;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  display: block;
+}
+.search label.close {
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  display: block;
+  width: 3em;
+  font-size: 16px;
+  text-align: center;
+}
+.search input[type=submit] {
+  display: none;
+}
+.search label.so {
+  position: relative;
+}
+.search label.so span.del {
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  width: 14px;
+  height: 14px;
+  line-height: 2em;
+  background: url('../../../img/book/close1.png') no-repeat 0 0;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  text-indent: -5em;
+  display: block;
+  overflow: hidden;
+}
+.search label.so input.key {
+  width: 100%;
+  border-radius: 15px;
+  padding: 8px 2em;
+  outline: 0;
+  box-sizing: border-box;
+  border: 0;
+  background: #ededed url('../../../img/book/search.png') no-repeat 10px center;
+  background-size: 1em 1em;
+  font-size: 14px;
+  line-height: 14px;
+}
+.LIST {
+  font-size: 16px;
+  margin-top: .5em;
+}
+.LIST dt {
+  color: #999;
+  line-height: 30px;
+  border-bottom: 1px solid #D6D6D6;
+  padding: 5px 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+}
+.LIST dt .tit {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  display: block;
+}
+.LIST dt .del {
+  -webkit-box-flex: 0;
+  -ms-flex: 0;
+  display: block;
+  width: 3em;
+  text-align: center;
+  height: 30px;
+  border: 1px solid #D6D6D6;
+  border-radius: 5px;
+}
+.LIST .Block a {
+  padding: 0 1em;
+  color: #666;
+  display: block;
+  line-height: 40px;
+  border-bottom: 1px solid #D6D6D6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+}
+.LIST .Block a .tit {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  display: block;
+}
+.LIST .Block a .more {
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  display: block;
+  color: #999;
+  padding-right: 15px;
+  font-size: 12px;
+  text-align: right;
+  background: url('../../../img/book/arr_right.png') no-repeat right center;
+  background-size: .6em 1em;
+}
+.LIST .Inline {
+  overflow: hidden;
+}
+.LIST .Inline a {
+  font-size: 14px;
+  border: 1px solid #D6D6D6;
+  margin: .5em;
+  padding: 0 .5em;
+  color: #666;
+  float: left;
+  line-height: 2;
+}

@@ -1,0 +1,655 @@
+header.Nav {
+    background: #fafafa;
+    border-color: #f5f5f5;
+    height: 45px
+}
+
+header.Nav a {
+    width: 2em
+}
+
+header.Nav a.back {
+    background: url(../../../img/book/l_back.png) no-repeat center center;
+    background-size: 10px
+}
+
+header.Nav a.home {
+    background: url(../../../img/book/gohome.png) no-repeat center center;
+    background-size: 20px
+}
+
+header.Nav a.bookshelf {
+    background: url(../../../img/book/booklist_ico_03.png) no-repeat center center;
+    background-size: 20px
+}
+
+body {
+    background: #fff
+}
+
+.bookhome_top {
+    margin: 1em;
+    position: relative;
+    background: #fff;
+    overflow: hidden
+}
+
+.bookhome_top img.sign {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 4px;
+    top: 2px
+}
+
+.bookhome_top img.cover {
+    float: left;
+    margin-right: 1em
+}
+
+@media screen and (max-width: 359px) {
+    .bookhome_top img.cover {
+        width: 4.5em;
+        height: 6.5em
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 410px) {
+    .bookhome_top img.cover {
+        width: 5em;
+        height: 7.2em
+    }
+}
+
+@media screen and (min-width: 411px) and (max-width: 474px) {
+    .bookhome_top img.cover {
+        width: 5.5em;
+        height: 7.9em
+    }
+}
+
+@media screen and (min-width: 475px) and (max-width: 499px) {
+    .bookhome_top img.cover {
+        width: 6em;
+        height: 8.65em
+    }
+}
+
+@media screen and (min-width: 500px) {
+    .bookhome_top img.cover {
+        width: 6.5em;
+        height: 9.35em
+    }
+}
+
+.bookhome_top p {
+    color: #757575
+}
+
+@media screen and (max-width: 359px) {
+    .bookhome_top p {
+        font-size: .6em
+    }
+}
+
+@media screen and (min-width: 360px) and (max-width: 410px) {
+    .bookhome_top p {
+        font-size: .8em
+    }
+}
+
+@media screen and (min-width: 410px) {
+    .bookhome_top p {
+        font-size: 1em
+    }
+}
+
+.bookhome_top p.title {
+    width: 40%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #0f0f0f;
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: 700
+}
+
+.bookhome_top p span {
+    padding: .4em .6em;
+    color: #aaa;
+    background: #efefef;
+    border-radius: .2em;
+    font-size: .8em
+}
+
+.bookhome_top p a {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 1em;
+    max-width: 45%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.bookhome_top p i {
+    font-style: normal;
+    margin-right: .2em
+}
+
+.bookhome_top p:nth-last-of-type(1) {
+    margin: 0
+}
+
+.bookhome_top a.share {
+    position: absolute;
+    right: 1em;
+    top: 1.2em;
+    padding-left: 1.2em;
+    background: url(bookhome/share.png) no-repeat left center;
+    -webkit-background-size: 1em auto;
+    background-size: 1em auto;
+    font-size: .8em
+}
+
+.bookhome_top a.book_status {
+    padding-right: 1em;
+    background: url(../../../img/book/arr_right_red.png) no-repeat center right;
+    background-size: .5em auto;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #eb413d;
+    font-size: .6em
+}
+
+.toolbar_menu {
+    background: #fff;
+    padding: 0 1em;
+    padding-bottom: 1em
+}
+
+.toolbar_menu div:nth-of-type(1) {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.toolbar_menu div:nth-of-type(1) a {
+    width: 45%;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    height: 1.8em;
+    line-height: 1.8em;
+    text-align: center;
+    border-radius: .2em;
+    font-size: 1em
+}
+
+.toolbar_menu div:nth-of-type(1) a.read {
+    background: #ff8624;
+    border: 1px solid #ff8624;
+    color: #fff
+}
+
+.toolbar_menu div:nth-of-type(1) a.addBookshelf {
+    border: 1px solid #ff8624;
+    color: #ff8624;
+    margin-left: 1.6em
+}
+
+.toolbar_menu div:nth-of-type(1) a.addBookshelf img {
+    width: .8em
+}
+
+.toolbar_menu div:nth-of-type(2) {
+    margin-top: 1em;
+    overflow: hidden
+}
+
+.toolbar_menu div:nth-of-type(2) a {
+    font-size: .8em;
+    color: #333
+}
+
+.toolbar_menu div:nth-of-type(2) a:nth-of-type(1) {
+    float: left;
+    max-width: 20%;
+    font-size: 1.1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.toolbar_menu div:nth-of-type(2) a:nth-of-type(2) {
+    padding-right: 1em;
+    float: right;
+    max-width: 75%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-align: right;
+    background: url(../skin/bookhome/arr_new.png) no-repeat right center;
+    -webkit-background-size: .5em auto;
+    background-size: .5em auto
+}
+
+.toolbar_menu div:nth-of-type(2) a:nth-of-type(2) span {
+    display: inline-block;
+    font-size: .8em;
+    color: #ff8624;
+    border: 1px solid #ff8624;
+    border-radius: .2em;
+    padding: 0 .2em;
+    margin-right: .4em
+}
+
+.hongbao {
+    border-top: 1px solid #f3f3f3;
+    background: #fff;
+    border-bottom: 1em solid #f5f5f5
+}
+
+.hongbao div.hb_top {
+    padding: 1em 0;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.hongbao div.hb_top span {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+.hongbao div.hb_top span:nth-of-type(1) {
+    width: 25%;
+    text-align: right
+}
+
+.hongbao div.hb_top span:nth-of-type(1) img {
+    width: 3.5em
+}
+
+.hongbao div.hb_top span:nth-of-type(2) {
+    color: #515151;
+    text-align: center
+}
+
+.hongbao div.hb_top span:nth-of-type(2) i.total {
+    display: inline-block;
+    margin: 0 .2em;
+    color: #eb413d
+}
+
+.hongbao div.hb_top span:nth-of-type(2) em {
+    font-style: normal;
+    color: #515151;
+    font-size: .9em
+}
+
+.hongbao div.hb_top span:nth-of-type(2) em i {
+    font-style: normal
+}
+
+.hongbao div.hb_top span:nth-of-type(3) {
+    width: 20%
+}
+
+.hongbao div.hb_top span:nth-of-type(3) img {
+    width: 2em;
+    position: relative;
+    top: 1em
+}
+
+.hongbao div.hb_bottom a.btn {
+    display: block;
+    margin: 0 1em;
+    height: 2.2em;
+    background: #eb413d;
+    line-height: 2.2em;
+    font-size: 1.2em;
+    text-align: center;
+    color: #fff;
+    border-radius: .4em
+}
+
+.hongbao div.hb_bottom dl {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.hongbao div.hb_bottom dl dd {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    padding: 1em;
+    width: 30%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.hongbao div.hb_bottom dl dd a {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: .8em;
+    color: #0f0f0f
+}
+
+.hongbao div.hb_bottom dl dd a img {
+    margin-right: .5em;
+    width: 2em;
+    height: 2em;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.hongbao div.hb_bottom dl dd div {
+    margin-top: .5em;
+    text-align: center;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #ff1212;
+    font-size: .8em
+}
+
+.sns_box_title {
+    margin: 0;
+    font-size: 1.3em
+}
+
+.sns_box {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.sns_box a {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+.sns_box a span {
+    display: block;
+    width: 62px;
+    height: 86px;
+    margin: auto;
+    background: url(http://img.17k.com/touch/skin/share.png) no-repeat;
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%
+}
+
+.sns_box a span.weibo {
+    background-position: -158px 0
+}
+
+.sns_box a span.qzone {
+    background-position: -82px 0
+}
+
+.sns_box a span.qq {
+    background-position: -1px 0
+}
+
+.sns_weixin {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .7) url(http://img.17k.com/touch/skin/weixinbg.png) no-repeat right top;
+    -webkit-background-size: 70% auto;
+    background-size: 70% auto
+}
+
+dl.tab {
+    background: #fff;
+    padding: 1.5em 1em 1em
+}
+
+dl.tab dt {
+    font-size: 1em;
+    color: #666
+}
+
+dl.tab dt label {
+    margin-right: 1em
+}
+
+dl.tab dt label.now span {
+    display: inline-block;
+    border-bottom: 1px solid #ff8624;
+    color: #ff8624
+}
+
+section.description p {
+    margin: 0 1em;
+    font-size: .9em;
+    color: #666;
+    line-height: 1.6em;
+    word-wrap: break-word;
+    word-break: break-all
+}
+
+section.comment dl {
+    padding: 1em 1em .5em;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    border-bottom: 1px solid #CDCDCD
+}
+
+section.comment dl dd:first-child {
+    width: 4em
+}
+
+section.comment dl dd:first-child img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
+}
+
+section.comment dl dd:last-child {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+section.comment dl a {
+    padding: 0 !important;
+    border: 0 !important
+}
+
+section.comment dl p {
+    margin: 0;
+    font-size: 1.2em;
+    word-break: break-all
+}
+
+section.comment dl p a {
+    display: block;
+    padding: .5em 0 !important;
+    color: #333;
+    font-size: .8em
+}
+
+section.comment dl .name {
+    font-size: 1.2em;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+section.comment dl .name span {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+section.comment dl .name span:first-child a {
+    color: #333;
+    font-size: .9em
+}
+
+section.comment dl .name span:last-child {
+    text-align: right;
+    color: #6d6d6d;
+    font-size: .7em;
+    padding-top: .2em
+}
+
+section.comment dl .toolbar {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+section.comment dl .toolbar a {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+section.comment dl .toolbar a:last-child {
+    text-align: right;
+    width: 3em
+}
+
+.commentPut {
+    padding: .5em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.commentPut input {
+    padding: 5px 10px;
+    border: 0;
+    line-height: 1.5em;
+    font-size: 1.2em
+}
+
+.commentPut input[type=text] {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    border: 1px solid #CDCDCD;
+    box-shadow: 0 0 .5em rgba(0, 0, 0, .3) inset
+}
+
+.commentPut input[type=button] {
+    -webkit-appearance: none;
+    width: 4em;
+    background: #F60;
+    color: #fff;
+    border: 1px solid #F60
+}
+
+.commentPut.code {
+    display: block
+}
+
+.commentPut.code > div {
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.commentPut.code > div .code {
+    box-shadow: none
+}
+
+dl.more dd {
+    padding: 1em 0 1.5em;
+    text-align: center
+}
+
+dl.more dd a {
+    color: #333
+}
+
+dl.more dd.loading {
+    background: url(../../../img/book/loading.gif) no-repeat center center;
+    height: 1em
+}
+
+dl.more dd.loading a {
+    display: none
+}
+
+section.MODLE {
+    border-top: 1em solid #f5f5f5;
+    border-bottom: none
+}
+
+section.MODLE .TIT {
+    border: none;
+    margin: 1.5em 1em 1em .5em
+}
+
+section.MODLE dl.readerLikeList {
+    height: 27em
+}
+
+section.MODLE dl.readerLikeList dd {
+    margin: 0;
+    height: 7em;
+    border: none
+}
+
+.xianmian {
+    font-size: .8em;
+    height: 39px
+}
+
+.xianmian span {
+    display: inline-block;
+    height: 3.2em;
+    line-height: 3.2em
+}
+
+.xianmian span:nth-of-type(1) {
+    padding-left: 4em;
+    color: #fff;
+    margin-right: .5em
+}
+
+.xianmian span:nth-of-type(2) {
+    color: #fbc7b5;
+    margin-right: .5em
+}
+
+.xianmian span:nth-of-type(3) {
+    color: #fff
+}
+
+.limitStateFalse {
+    background: #ee5b25 url(bookhome/xianmian.jpg) no-repeat
+}
+
+.limitStateTrue {
+    background: #ee5b25 url(bookhome/xianmian.jpg) no-repeat 0 -39px
+}
+
+.float_wwls {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 7em;
+    width: 7em;
+    z-index: 20
+}
+
+.float_wwls img {
+    width: 7em
+}

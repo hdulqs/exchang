@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable{margin:0px;}
+        #pass:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #pass1:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #pass2:focus{
+                 border: 1px solid #638BD4;
+                 cursor: pointer;
+                 color:#C7CCE6;
+             }
+        .full_height {
+            min-height: 632px;
+            height: calc(100vh - 210px);
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="fullScreen_h full_height" style="background-color: #F3F4F8;">
+        <div class="topColtitWrap">
+            <div class="colBar passBg">
+                <p class="colTit" th:text="#{user.modify_password}">修改登陆密码</p>
+            </div>
+        </div>
+        <div class="verifyBar">
+            <!--<div style="margin:0 30px 0 30px;background-color: #fcf8e5;color:#b48728;text-align: center;padding:10px;" th:text="#{user.modify_password_info}">*为了您的资产安全，登录密码修改后24h以内不允许提现</div>-->
+            <div class="modifyBox">
+                <div class="tit" th:text="#{user.modify_password}">修改登陆密码</div>
+                <div class="errorTip">
+                    <p class="hide" id="error">
+                        <span class="icoError"></span>
+                        <span id="error_show"></span>
+                    </p>
+                </div>
+                <form id="form-data" class="form" method="post" >
+                        <div class="regForm">
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <ul>
+                            <li class="input"><span class="icoReg icoPass"  style="position: absolute;left: 10px;top: 10px"></span>
+                                <input type="password" name="oldPassword" id="pass" th:placeholder="#{user.modify_password_old}" style="text-indent: 19px;">
+                            </li>
+                            <li class="input"><span class="icoReg icoPass"  style="position: absolute;left: 10px;top: 10px"></span>
+                                <input type="password" name="password" id="pass1" th:placeholder="#{user.modify_password_new}" style="text-indent: 19px;">
+                            </li>
+                            <li class="input"><span class="icoReg icoPass"  style="position: absolute;left: 10px;top: 10px"></span>
+                                <input type="password" name="confirm_password" id="pass2" th:placeholder="#{user.modify_password_confirm}" style="text-indent: 19px;">
+                            </li>
+                            <li>
+                                <input type="hidden" name="type" value="google" />
+                                <input type="hidden" name="code" id="google_code" value="" />
+                                <input type="hidden" name="google_state" id="google_state"  th:value="${@globalService.googleAuth()}" />
+                                <input type="hidden" name="google_title" id="google_title" th:value="#{input_google_code}" />
+                                <input type="button" id="submit_pass" class="submitBt white" th:value="#{user.modify_password}">
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="googleVerify" id="googleVerifyPop" style="display:none;" th:if="${@globalService.googleAuth()}">
+        <div class="google_input_title" th:text="#{input_google_code}">请输入谷歌验证码：</div>
+        <div class="google_input_box">
+            <input type="text" class="google_input" />
+        </div>
+        <!--<form action=""   class="sky-form boxed form">
+            <span th:replace="component/innerMobileValid :: innerMobileValid('')"></span>
+        </form>-->
+        <div class="google_button_box">
+            <a href="javascript:void(0);" class="gold_button" th:text="#{confirm}">确定</a>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_user_security"], function ( a, a0,a1, o, b, c, d) {
+            d.updatePassword();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

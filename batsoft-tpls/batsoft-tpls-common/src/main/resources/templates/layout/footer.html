@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	
+	
+	<div  th:fragment="footer">
+        <footer id="footer">
+            <div class="container pt-0 pb-0">
+
+                <div class="row mt-60 mb-0 fs-13">
+
+                    <!-- col #1 -->
+                    <div class="col-md-4 col-sm-4 mb-0">
+
+                        <!-- Footer Logo -->
+                        <img class="footer-logo"
+                             th:src="@{${@globalService.fileHost()}+${@globalService.logoLightPath()}}" alt="">
+
+                        <p>
+                            <i class="fa fa-map-marker" aria-hidden="true"></i> 北京市朝阳区北苑东路中国铁建广场B-1205
+                        </p>
+                        <!--<p>
+                            <i class="fa fa-envelope"></i> <a href="mailto:support@qq.com">support@qq.com</a>
+                        </p>-->
+
+                        <h2><i class="fa fa-phone" aria-hidden="true"></i> (800) 123-4567</h2>
+
+                        <!-- Social Icons -->
+                        <div class="clearfix">
+
+                            <a href="#"
+                               class="social-icon social-icon-sm social-icon-border  social-facebook float-left"
+                               data-toggle="tooltip" data-placement="top" title="" data-original-title="weibo">
+                                <i class="fa fa-weibo"></i>
+                                <i class="fa fa-weibo"></i>
+                            </a>
+
+                            <a href="#" class="social-icon social-icon-sm social-icon-border  social-rss float-left"
+                               data-toggle="tooltip" data-placement="top" title="" data-original-title="weixin">
+                                <i class="fa fa-weixin"></i>
+                                <i class="fa fa-weixin"></i>
+                            </a>
+
+                            <a href="#" class="social-icon social-icon-sm social-icon-border social-facebook float-left"
+                               data-toggle="tooltip" data-placement="top" title="" data-original-title="Facebook">
+                                <i class="icon-facebook"></i>
+                                <i class="icon-facebook"></i>
+                            </a>
+
+                            <a href="#" class="social-icon social-icon-sm social-icon-border social-twitter float-left"
+                               data-toggle="tooltip" data-placement="top" title="" data-original-title="Twitter">
+                                <i class="icon-twitter"></i>
+                                <i class="icon-twitter"></i>
+                            </a>
+
+                        </div>
+                        <!-- /Social Icons -->
+
+                    </div>
+                    <!-- /col #1 -->
+
+                    <!-- col #2 -->
+                    <div class="col-md-8 col-sm-8 mb-0">
+
+                        <div class="row">
+
+                            <div class="col-md-4 hidden-sm hidden-xs-down">
+                                <h4 class="letter-spacing-1"><a href="/about" target="_blank">关于我们</a></h4>
+                                <ul class="list-unstyled footer-list half-paddings b-0">
+
+                                    <li><a class="block" href="/about/about_team" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 团队管理</a></li>
+                                    <li><a class="block" href="/about/about_aptitude" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 公司资质</a></li>
+                                    <li><a class="block" href="/about/about_contact" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 联系我们</a></li>
+                                    <li><a class="block" href="/about/about_media" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 媒体报道</a></li>
+                                    <li><a class="block" href="/about/about_cooperation" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 合作伙伴</a></li>
+
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4 hidden-sm hidden-xs-down">
+                                <h4 class="letter-spacing-1"><a href="/help" target="_blank">帮助中心</a></h4>
+                                <ul class="list-unstyled footer-list half-paddings b-0">
+                                    <li><a class="block" href="/help/help_security" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 安全保障</a></li>
+                                    <li><a class="block" href="/help/help_law" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 法律声明</a></li>
+                                    <li><a class="block" href="/help/help_protocol" target="_blank"><i
+                                            class="fa fa-angle-right"></i> 用户协议</a></li>
+                                    <li><a class="block" href="/help/help_app" target="_blank"><i
+                                            class="fa fa-angle-right"></i> APP下载</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-4 mb-0">
+                                <h4 class="letter-spacing-1">风险 提示</h4>
+                                <p>
+                                    投资有风险数字货币具有极高的风险性，数字货币具有极高的风险性，数字货币具有极高的风险性，数字货币具有极高的风险性，数字货币具有极高的风险性，数字货币具有极高的风险性</p>
+                                <p>    <!-- see assets/images/_smarty/cc/ for more icons -->
+                                    <img src="assets/images/_smarty/cc/Visa.png" alt="">
+                                    <img src="assets/images/_smarty/cc/Mastercard.png" alt="">
+                                    <img src="assets/images/_smarty/cc/Maestro.png" alt="">
+                                    <img src="assets/images/_smarty/cc/PayPal.png" alt="">
+                                </p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /col #2 -->
+
+                </div>
+
+            </div>
+
+            <div class="copyright">
+                <div class="container">
+                    <ul class="float-right m-0 list-inline mobile-block">
+                        <li><a href="#">京ICP证150247号</a></li>
+                        <li>•</li>
+                        <li><a href="#">京公网安备11010802021377号</a></li>
+                    </ul>
+                    <span th:text="${@globalService.company()}"></span> © 2013-2017 www.batsoft.com
+                </div>
+            </div>
+        </footer>
+
+    </div>
+	
+</body>
+</html>
+

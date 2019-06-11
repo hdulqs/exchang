@@ -1,0 +1,446 @@
+@charset "utf-8";
+.focusBar {
+    min-width: 1200px;
+    height: 450px;
+    background-color: #010c12;
+    position: relative
+}
+
+ul.focusList li {
+    display: none;
+    width: 100%;
+    height: 450px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: auto 450px
+}
+
+ul.focusList li a.focusLink {
+    display: block;
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    text-indent: -999px;
+    text-align: left;
+    font-size: 0
+}
+
+.focusBar .pagination {
+    width: 100%;
+    position: absolute;
+    bottom: 60px;
+    left: 0;
+    z-index: 2;
+    text-align: center
+}
+
+.focusBar .pagination a {
+    display: inline-block;
+    width: 26px;
+    overflow: hidden;
+    height: 20px;
+    opacity: .3;
+    margin: 0 2px;
+    cursor: pointer
+}
+
+.focusBar .pagination a.curr {
+    opacity: 1
+}
+
+.focusBar .pagination a span {
+    display: block;
+    width: 100%;
+    height: 10px;
+    border-bottom: #fff 1px solid;
+    text-indent: -999px;
+    overflow: hidden
+}
+
+.noticeBar {
+    width: 100%;
+    height: 25px;
+    padding: 10px 0;
+    line-height: 25px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    background-color: rgba(0, 0, 0, .6)
+}
+
+.noticeBar a {
+    color: #999
+}
+
+.noticeBar a:hover {
+    color: #fff
+}
+
+.noticeBar ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.noticeBar ul li {
+
+}
+
+.noticeBar .operation {
+    float: right;
+    margin-right: 10px
+}
+
+.noticeBar .listBt, .noticeBar .closeBt {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    overflow: hidden;
+    text-indent: -999px
+}
+
+.noticeBar .listBt {
+    background-position: 0 -105px
+}
+
+.noticeBar .closeBt {
+    background-position: 0 -140px
+}
+
+.hotMarketsBar {
+    width: 100%;
+    min-width: 1200px;
+    padding: 18px 0;
+
+    position: relative
+}
+
+.switchHotBt {
+    display: block;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    left: 50%;
+    margin-left: -13px;
+    bottom: -13px;
+    z-index: 1;
+    background: url(../img/hot_arr.png) no-repeat center 0;
+    cursor: pointer
+}
+
+ul.hotMarkets {
+    width: 1200px;
+    /*margin-left: -5px;*/
+    height: 91px;
+    overflow: hidden
+}
+
+.hotMarketsBar.autoH ul.hotMarkets {
+    height: auto
+}
+
+.hotMarketsBar.autoH .switchHotBt {
+    background: url(../img/hot_arr.png) no-repeat center -75px
+}
+
+ul.hotMarkets li {
+    width: 217px;
+    height: 88px;
+}
+
+ul.hotMarkets li .item {
+    width: 230px;
+    height: 56px;
+    padding-top: 28px;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #4e5b85;
+    /*border-top: #387de0 3px solid;*/
+    margin-left: 0 !important;
+}
+
+ul.hotMarkets .tit {
+    font-size: 14px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    padding-top: 2px;
+    line-height: 25px;
+    font-weight: 700;
+    padding-left: 15px;
+
+    font-size: 16px;
+    color: #C7CCE6;
+}
+
+/*ul.hotMarkets li:hover .item {*/
+    /*border-top: #4E5B85 3px solid;*/
+/*}*/
+
+ul.hotMarkets li:hover .tit {
+    background: url(../img/hot_titbg_hover.png) no-repeat 0 0;
+    width: 96px;
+    padding-left: 16px;
+    height: 25px;
+    line-height: 19px;
+    position: absolute;
+    top: -2px;
+    z-index: 1;
+    color: #181B2A;
+    font-weight: 700;
+    animation: ani_titMove .3s ease-out
+}
+
+@keyframes ani_titMove {
+    0% {
+        transform: translateX(-10px)
+    }
+    100% {
+        transform: translateX(-1px)
+    }
+}
+
+ul.hotMarkets .priceInfo {
+    line-height: 20px;
+    padding: 0 15px
+}
+
+.force-white{
+    color: white !important;
+}
+
+.dealPrice {
+    color: #C7CCE6;
+}
+
+ul.hotMarkets .priceChange {
+    position: absolute;
+    z-index: 1;
+    height: 18px;
+    line-height: 18px;
+    top: 5px;
+    right: 15px;
+    padding-left: 20px;
+    background-image: url(../img/ico_order.png);
+    background-repeat: no-repeat
+}
+
+ul.hotMarkets .priceChange.asc {
+    color: #459261;
+    background-position: 0 -28px
+}
+
+ul.hotMarkets .priceChange.desc {
+    color: #AE4E54;
+    background-position: 0 0
+}
+
+ul.hotMarkets .kLine {
+    width: 100%;
+    height: 40px;
+    position: absolute;
+    left: 0;
+    bottom: 0
+}
+
+ul.hotMarkets .kLine svg {
+    width: 100%;
+    height: 40px;
+    display: block
+}
+
+/*New bottom section*/
+.intro-wrap{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    height: 340px;
+    background: #1f2234;
+    margin-top: 60px;
+}
+
+.intro-wrap-col{
+    text-align: center;
+}
+
+.intro-wrap-col-img{
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 30px
+}
+
+.intro-wrap-col-img.img-1{
+    background-image: url(../img/intro-1.png);
+}
+
+.intro-wrap-col-img.img-2{
+    background-image: url(../img/intro-2.png);
+}
+
+.intro-wrap-col-img.img-3{
+    background-image: url(../img/intro-3.png);
+}
+
+.intro-wrap-col-tit{
+    font-size: 18px;
+    color: #C7CCE6;
+    padding-bottom: 3px;
+}
+
+.intro-wrap-col-text{
+    font-size: 14px;
+    color: #8489A0;
+    padding-top: 5px;
+}
+
+/* new info section */
+.info-wrap{
+    display: flex;
+    flex-direction: row;
+
+    justify-content: center;
+    align-items: center;
+
+    background: #181B2A;
+}
+.info-wrap-col{
+    border-left: 1px solid #252A42;
+
+    padding-left: 40px;
+    padding-right: 120px;
+}
+
+.info-wrap-col:last-child{
+    border-right: 1px solid #252A42;
+}
+
+.info-wrap-col-tit{
+    font-size: 13px;
+    color: #8489A0;
+    margin-top: 15px;
+}
+.info-wrap-col-text{
+    font-size: 17px;
+    font-weight: bold;
+    color: #C7CCE6;
+    margin-bottom: 18px;
+}
+
+/**new table title**/
+.marketTitle{
+    padding: 18px 0 18px 30px;
+    color: #C7CCE6;
+    font-size: 15px;
+}
+
+.marketTitle span:nth-child(1){
+    font-size: 18px;
+}
+
+.more-btn{
+    line-height: 54px;
+    padding-left: 20px;
+}
+
+.more-btn a{
+    color: #8489A0 !important;
+}
+
+.hotMarkets-row{
+    position: absolute;
+    left:0;
+    top:0;
+    background-image: url(../img/stock_back.png);
+    background-repeat: no-repeat;
+}
+
+.jiaoyi_icon{
+    background: url(../img/jiaoyi.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width:18px;
+    height: 18px;
+    display: inline-block;
+}
+
+.BTC_ETH_img{
+    background: url(../img/BTC_ETH.png);
+}
+
+.BT_ETH_img{
+    background: url(../img/BT_ETH.png);
+}
+
+/*New Icons*/
+.new_coin_icon{
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: 8px;
+}
+
+.sorting_icon{
+    background: url(../img/sorting.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 16px;
+    height: 12px;
+    display: inline-block;
+}
+
+.up_down_icon{
+    background-image: url(../img/ico_market_arr.png);
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 0;
+    height: 16px;
+}
+
+.green .up_down_icon{
+    background-position: 0px -5px;
+    width: 15px;
+}
+
+.red .up_down_icon{
+    background-position: -34px -5px;
+    width: 15px;
+}
+
+/*
+span.dayrate.red:before {
+    content: "- ";
+}
+
+span.dayrate.green:before {
+    content: "+ ";
+}
+*/
+
+/*Mock*/
+.coins_info{
+    background-color: #181b2a;
+    min-width: 1200px;
+    padding: 5px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 12px;
+    color: #8489a0;
+    border-bottom: 1px solid #002C00;
+}
+
+.coins_info .coins_info-coin__name{
+    color: #8489a0 !important;
+}
+
+.coins_info .coins_info-coin__price{
+}

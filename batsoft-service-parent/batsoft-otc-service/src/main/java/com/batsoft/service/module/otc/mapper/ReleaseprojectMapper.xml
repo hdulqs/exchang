@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>ReleaseprojectMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-11-19 12:42:46 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.otc.dao.ReleaseprojectDao">
+
+    <resultMap id="baseResult" type="com.batsoft.model.module.otc.vo.ReleaseprojectVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="coin" property="coin" jdbcType="VARCHAR"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="userNick" property="userNick" jdbcType="VARCHAR"/>
+        <result column="transaction" property="transaction" jdbcType="VARCHAR"/>
+        <result column="userId" property="userId" jdbcType="VARCHAR"/>
+        <result column="trustNum" property="trustNum" jdbcType="INTEGER"/>
+        <result column="otcType" property="otcType" jdbcType="INTEGER"/>
+        <result column="exchangeNum" property="exchangeNum" jdbcType="INTEGER"/>
+        <result column="payType" property="payType" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="currency" property="currency" jdbcType="VARCHAR"/>
+        <result column="maxMoney" property="maxMoney" jdbcType="DECIMAL"/>
+        <result column="minMoney" property="minMoney" jdbcType="DECIMAL"/>
+        <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        id, coin, userName, userNick,price,maxMoney,minMoney,currency,payType,otcType,userId
+    </sql>
+    <select id="findProjectIndex" resultMap="baseResult" >
+        SELECT
+        c.id,
+        c.coin,
+        c.userName,
+        c.userNick,
+        c.userId,
+        c.price,
+        c.payType,
+        c.maxMoney,
+        c.minMoney,
+        c.currency ,
+
+        u.user_avatar as user_avatar,
+        u.exchangeNum as exchangeNum,
+        u.trustNum as trustNum
+        FROM otc_releaseproject c LEFT  JOIN
+        member_user as u on c.userId =u.id
+        where c.coin=#{coin,jdbcType=VARCHAR}
+        AND c.otcType =#{otcType,jdbcType=INTEGER}
+        AND c.status=1 AND c.del=0
+        LIMIT #{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="findPageBySql" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT
+        c.id,
+        c.coin,
+        c.userName,
+        c.userNick,
+        c.userId,
+        c.price,
+        c.payType,
+        c.maxMoney,
+        c.minMoney,
+        c.currency ,
+        c.otcType,
+        u.user_avatar as user_avatar,
+        u.exchangeNum as exchangeNum,
+        u.trustNum as trustNum
+        FROM otc_releaseproject c LEFT  JOIN
+        member_user as u on c.userId =u.id
+        where 1=1
+        <if test="coin!= null and coin!='' ">
+            AND c.coin=#{coin,jdbcType=VARCHAR}
+        </if>
+        <if test="country!= null and country!='' ">
+            AND c.country=#{country,jdbcType=VARCHAR}
+        </if>
+        <if test="payType!= null and payType!='' ">
+            AND c.payType like #{payType,jdbcType=VARCHAR}
+        </if>
+        <if test="otcType!= null and otcType!='' ">
+            AND c.otcType=#{otcType,jdbcType=INTEGER}
+        </if>
+        <if test="currency!= null and currency!='' ">
+            AND c.currency=#{currency,jdbcType=VARCHAR}
+        </if>
+        <if test="userId!= null and userId!='' ">
+            AND c.userId=#{userId,jdbcType=VARCHAR}
+        </if>
+        AND c.status=1 AND c.del=0
+
+    </select>
+
+    <select id="find" resultMap="baseResult" parameterType="java.lang.String">
+        SELECT
+        c.id,
+        c.coin,
+        c.userName,
+        c.userNick,
+        c.userId,
+        c.price,
+        c.payType,
+        c.maxMoney,
+        c.minMoney,
+        c.currency,
+        c.otcType,
+        c.transaction,
+        c.country
+        FROM otc_releaseproject c
+        where c.id=#{id,jdbcType=VARCHAR}
+        AND c.status=1 AND c.del=0
+    </select>
+</mapper>

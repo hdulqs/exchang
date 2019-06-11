@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<style>
+
+    table thead {
+        width: 100%;
+        height: 50px !important;
+        background-color: #eeeeee;
+        border-spacing: 0;
+        border-radius: 6px 6px 0 0;
+    }
+</style>
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <form>
+        <div class="ibox-content m-b-sm border-bottom paramsPanel">
+
+            <div class="row">
+                                        <div class="col-sm-2">
+                                <input type="text" name="userName_lk" value="" placeholder="用户名" class="form-control">
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="text" name="coin_lk" value="" placeholder="币种" class="form-control">
+                            </div>
+                                <div class="col-sm-2">
+                                    <select name="status_EQ"  class="form-control">
+                                        <option value="" >选择状态</option>
+                                            <option value="0" >正常</option>
+                                            <option value="1" >冻结</option>
+                                    </select>
+                                </div>
+                <div class="col-sm-2">
+                    <button class="ladda-button  btn btn-success search" type="button" data-style="zoom-in">查询</button>
+                    <button class="btn btn-primary" type="reset">重置</button>
+
+                </div>
+
+            </div>
+
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <div class="toolbar">
+                                <button shiro:hasPermission="otc:exFinance:add"
+                                        class="btn btn-success add" type="button"><i class="fa  fa-paste"></i> <span
+                                        class="bold">新建</span></button>
+                                <button shiro:hasPermission="otc:exFinance:remove"
+                                        class="btn btn-warning remove" type="button" disabled><i class="fa fa-trash-o"></i>
+                                    <span class="bold">删除</span></button>
+
+                    </div>
+                    <table id="table"
+                           data-toolbar=".toolbar"
+                    >
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", DEV + "/table_bootstrap", DEV + "/page_otc_exFinance"], function (a, b, c) {
+
+            c.list();
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

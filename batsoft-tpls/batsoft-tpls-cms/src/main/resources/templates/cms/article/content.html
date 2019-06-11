@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+    <section class="page-header page-header-xs">
+        <div class="container">
+
+            <h1 th:text="${typeName}"></h1>
+
+            <!-- breadcrumbs -->
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li><a href="/article">资讯</a></li>
+                <li class="active"><a th:href="@{'/article/list/'+${typeKey}}"><span th:text="${typeName}"></span></a></li>
+            </ol><!-- /breadcrumbs -->
+
+        </div>
+    </section>
+
+    <section style="padding-top: 30px; min-height: 520px">
+        <div class="container">
+
+            <div class="text-center  clearfix">
+                <h1 class="font-cinzel-decorative  mb-0" th:text="${articleVo.title}"></h1>
+                <ul class="blog-post-info list-inline">
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-clock-o"></i>
+                            <span th:text="${#dates.format(articleVo.updateTime,'yyyy-MM-dd')}" class="font-lato"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-eye"></i>
+                            <span th:text="${articleVo.hits}" class="font-lato"></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0)">
+                            <i class="fa fa-user"></i>
+                            <span th:text="${articleVo.author}" class="font-lato"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            <span>文章关键字:</span><span th:text="${articleVo.seoKey}"  class="font-lato"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class=" clearfix">
+                <div class="alert alert-bordered-dashed mb-30 mt-10"><!-- THEME COLOR --></span>
+                    <h3 th:utext="${articleVo.shortContent}?${articleVo.shortContent}:''"></h3>
+                </div>
+                <div>
+                    <p th:utext="${articleVo.content}"></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main"], function () {
+
+        });
+    </script>
+</div>
+
+</body>
+</html>

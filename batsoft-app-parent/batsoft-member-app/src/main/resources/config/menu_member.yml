@@ -1,0 +1,122 @@
+menus:
+  name: member管理系统
+  key: member
+  path: member
+  icon: appstore-o
+  description: member管理系统
+  item:
+  - name: 管理
+    key: member_finance
+    icon: appstore-o
+    path: finance/list
+    menu: 1
+    permission: member:finance:list
+    description: 管理
+    item:
+    - name: 增加
+      key: member_finance_add
+      icon: appstore-o
+      path: finance/add
+      menu: 0
+      permission: member:finance:add
+      description: 增加
+    - name: 修改
+      key: member_finance_edit
+      icon: appstore-o
+      path: finance/edit
+      menu: 0
+      permission: member:finance:edit
+      description: 修改
+    - name: 查看
+      key: member_finance_see
+      icon: appstore-o
+      path: finance/info
+      menu: 0
+      permission: member:finance:see
+      description: 查看
+    - name: 删除
+      key: member_finance_remove
+      icon: appstore-o
+      path: finance/remove
+      menu: 0
+      permission: member:finance:remove
+      description: 删除
+  - name: 会员管理
+    key: member_user
+    icon: appstore-o
+    path: user/list
+    menu: 1
+    permission: member:user:list
+    description: 会员管理
+    item:
+    - name: 增加
+      key: member_user_add
+      icon: appstore-o
+      path: user/add
+      menu: 0
+      permission: member:user:add
+      description: 会员增加
+    - name: 修改
+      key: member_user_edit
+      icon: appstore-o
+      path: user/edit
+      menu: 0
+      permission: member:user:edit
+      description: 会员修改
+    - name: 查看
+      key: member_user_see
+      icon: appstore-o
+      path: user/info
+      menu: 0
+      permission: member:user:see
+      description: 会员查看
+    - name: 删除
+      key: member_user_remove
+      icon: appstore-o
+      path: user/remove
+      menu: 0
+      permission: member:user:remove
+      description: 会员删除
+    - name: 身份审核
+      key: member_user_review
+      icon: appstore-o
+      path: user/review
+      menu: 0
+      permission: member:user:review
+      description: 身份审核
+  - name: 用户银行卡管理管理
+    key: member_bankcard
+    icon: appstore-o
+    path: bankcard/list
+    menu: 1
+    permission: member:bankcard:list
+    description: 用户银行卡管理管理
+    item:
+    - name: 增加
+      key: member_bankcard_add
+      icon: appstore-o
+      path: bankcard/add
+      menu: 0
+      permission: member:bankcard:add
+      description: 用户银行卡管理增加
+    - name: 修改
+      key: member_bankcard_edit
+      icon: appstore-o
+      path: bankcard/edit
+      menu: 0
+      permission: member:bankcard:edit
+      description: 用户银行卡管理修改
+    - name: 查看
+      key: member_bankcard_see
+      icon: appstore-o
+      path: bankcard/info
+      menu: 0
+      permission: member:bankcard:see
+      description: 用户银行卡管理查看
+    - name: 删除
+      key: member_bankcard_remove
+      icon: appstore-o
+      path: bankcard/remove
+      menu: 0
+      permission: member:bankcard:remove
+      description: 用户银行卡管理删除

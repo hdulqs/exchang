@@ -1,0 +1,48 @@
+
+.footerNavBar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+    min-width: 1200px;
+    padding: 0 5%;
+
+    background: #181B2A;
+    height: 200px;
+}
+
+.footerNavBar div[class^="footer-section-"]{
+    flex: 1;
+    font-size: 12px;
+    color: #60688D;
+    padding-left: 5%;
+    min-height: 200px;
+}
+
+.footerNavBar div[class^="footer-section-"] > div{
+    padding: 10px 0;
+}
+
+.footerNavBar .footer-section-logo .footer-logo-img{
+    width: 173px;
+    height: 49px;
+    overflow: hidden;
+    text-indent: -999px;
+    background: url(../img/ttmall_logo.png) no-repeat 0 0;
+}
+
+
+.footerNavBar div[class^="footer-section-"] .footer-title{
+    font-size: 13px;
+    color: white;
+}
+
+.footerNavBar a,
+.footerNavBar a:visited{
+    color: #60688D;
+}
+
+.footerNavBar a:hover{
+    color: #fff;
+}

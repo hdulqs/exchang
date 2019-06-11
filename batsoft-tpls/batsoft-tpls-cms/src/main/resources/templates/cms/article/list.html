@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+    <input type="hidden" id="article_type" th:value="${typeKey}">
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+    <section class="page-header page-header-xs">
+        <div class="container">
+
+            <h1 th:text="${typeName}"></h1>
+
+            <!-- breadcrumbs -->
+            <ol class="breadcrumb">
+                <li><a href="/">首页</a></li>
+                <li><a href="/article">资讯</a></li>
+                <li class="active"><a th:href="@{'/article/list/'+${typeKey}}"><span th:text="${typeName}"></span></a></li>
+            </ol><!-- /breadcrumbs -->
+
+        </div>
+    </section>
+    <section>
+        <div class="container" >
+
+                <div  id="articleList">
+
+                </div>
+
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12 ">
+                    <div class="float-right" id="articlePage"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <script id="articleListTmpl" type="text/x-jsrender">
+
+
+
+
+        <div class="blog-post-item"><!-- .blog-post-item-inverse = image right side [left on RTL] -->
+
+						<!-- IMAGE -->
+						<figure class="blog-item-small-image mb-20">
+							<img th:src="@{${@globalService.fileHost()}+'{{:filePath}}'}" class="img-fluid" alt="{{:title}}" style="width:300px; height:200px;">
+						</figure>
+
+						<div class="blog-item-small-content">
+
+							<h2><a href="/article/{{:id}}">{{:title}}</a></h2>
+
+							<ul class="blog-post-info list-inline">
+								<li><i class="fa fa-clock-o"></i> <span class="text-warning">发布时间:{{:updateTime}}</span></li>
+										<li><i class="fa fa-user"></i><span>作者：{{:author}}</span> </li>
+										<li><i class="fa fa-eye"></i><span>点击量：{{:hits}}</span> </li>
+							</ul>
+
+							<p>{{:shortContent}}</p>
+							<a href="/article/{{:id}}" class="btn btn-reveal btn-default">
+								<i class="fa fa-plus"></i>
+								<span>Read More</span>
+							</a>
+
+						</div>
+
+					</div>
+       </script>
+    </section>
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_backstretch","jquery_pagination",DEV+"/page_cms_article"], function (a,j,b,c) {
+            c.listArticles();
+        });
+    </script>
+</div>
+
+</body>
+</html>

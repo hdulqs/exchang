@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>C2cOrderMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-07 09:16:15 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.C2cOrderDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.exchange.C2cOrder">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="account_id" property="accountId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="direction" property="direction" jdbcType="INTEGER"/>
+        <result column="operation_type" property="operationType" jdbcType="VARCHAR"/>
+        <result column="price" property="price" jdbcType="DECIMAL"/>
+        <result column="number" property="number" jdbcType="DECIMAL"/>
+        <result column="opeation_money" property="opeationMoney" jdbcType="DECIMAL"/>
+        <result column="trade_time" property="tradeTime" jdbcType="TIMESTAMP"/>
+        <result column="opeation_state" property="opeationState" jdbcType="VARCHAR"/>
+        <result column="transaction_id" property="transactionId" jdbcType="VARCHAR"/>
+        <result column="transaction_name" property="transactionName" jdbcType="VARCHAR"/>
+        <result column="tra_bankcard" property="traBankcard" jdbcType="VARCHAR"/>
+        <result column="tra_bankname" property="traBankname" jdbcType="VARCHAR"/>
+        <result column="tra_number" property="traNumber" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="base_column">
+        id,user_id, user_name, coin_code,direction,operation_type,number,price,opeation_state,opeation_money,trade_time,transaction_name,tra_bankcard,tra_bankname,remark
+    </sql>
+
+    <select id="findUserOrders" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_c2c_order c
+        where  c.opeation_state=1 AND c.del=0 AND c.coin_code=#{coinCode,jdbcType=VARCHAR}
+        AND c.operation_type=#{type,jdbcType=INTEGER}
+        order by  c.trade_time DESC
+        LIMIT #{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+    </select>
+
+    <select id="findOrderByUserId" resultMap="baseResult" >
+        SELECT
+        <include refid="base_column" />
+        FROM exchange_c2c_order c
+        where c.del=0 AND c.coin_code=#{coinCode,jdbcType=VARCHAR}
+        <if test = 'opeationState!=null'>
+          AND c.opeation_state=#{opeationState,jdbcType=INTEGER}
+        </if>
+        <if test = 'type!=null'>
+            AND c.operation_type=#{type,jdbcType=INTEGER}
+        </if>
+        AND c.user_id=#{userId,jdbcType=VARCHAR}
+        order by  c.trade_time DESC
+        LIMIT #{start,jdbcType=INTEGER},#{limit,jdbcType=INTEGER}
+    </select>
+</mapper>

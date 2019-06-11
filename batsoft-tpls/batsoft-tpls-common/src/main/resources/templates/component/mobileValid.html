@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+<div th:fragment="mobileValid(mobile)">
+
+    <div th:if="${@globalService.mobileArea()=='1'}">
+        <span th:replace="component/select/select-area :: area"></span>
+    </div>
+    <div th:if="${@globalService.mobileArea()=='0'}">
+        <input type="hidden" name="areaCode" id="areaCode" value="86" />
+    </div>
+
+    <label class="input">
+        <i class="ico-append fa fa-phone"></i>
+        <input type="text" class="form-control" id="userName" name="userName" th:value="${mobile}" placeholder="请输入手机号" >
+        <b class="tooltip tooltip-top-right f-w">请输入手机号</b>
+    </label>
+
+    <label class="input">
+        <input type="text" class="form-control" id="mobileCode" name="mobileCode" placeholder="请输入短信验证码" maxlength="6" ><b class="tooltip tooltip-top-right f-w">请输入短信验证码</b>
+        <button type="button" class="btn btn-primary rad-0 btn-sm  sendCode" style="height: 38px">获取短信验证码
+        </button>
+
+    </label>
+    <label class="input">
+        <input type="text" class="form-control" id="validCode" name="validCode"
+               placeholder="请输入验证码" maxlength="4"><b class="tooltip tooltip-top-right f-w">请输入验证码</b>
+        <a class="reload-vify validCode" href="javascript:;">
+            <img src="/static/manage/dist/img/captcha.png" th:attr="src=@{/validCode}"
+                 onclick="this.src='/validCode?d='+new Date()*1" style="height: 34px ;width: 89px">
+        </a>
+
+    </label>
+
+<!--load js-->
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script th:inline="javascript">
+        seajs.use(["jquery_validate", "messages_zh", DEV + "/page_sendCode"], function (b,c,d) {
+            d.sendMobileCode();
+
+        });
+    </script>
+</div>
+<!--load js-->
+</div>
+</body>
+</html>

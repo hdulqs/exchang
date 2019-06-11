@@ -1,0 +1,460 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent clearfix')"></span>
+
+    <!-- SLIDER -->
+    <span th:replace="component/banner/bannerTemp :: banner_background"></span>
+
+    <!-- /SLIDER -->
+    <style>
+        .filter-search {
+            border: 2px solid #69B0E4;
+            width: 845px;
+        }
+        .filter-search .select2-container--default .select2-selection--single{
+            border: 0px;
+        }
+        .filter-search .btn{
+            border-radius: 0px;
+            margin-right: 0px;
+            margin-left: 34px;
+        }
+
+
+    </style>
+
+    <!-- projects -->
+    <section class="section-sm">
+
+        <div class="container">
+            <header class="text-center mb-60">
+                <h2>双向交易 买卖自由 安全可靠</h2>
+                <p class="lead font-lato">我们的故事，从<span th:text="${@globalService.webSiteTitle()}"></span>开始。 <a href="/otc/list" >查看更多广告</a>或者<a href="/otc/advertise" >发布广告</a></p>
+                <hr />
+            </header>
+
+
+            <div class="row property-item-list" id="buyRender">
+                <span th:replace="component/load/spinner3 :: spinner3"></span>
+
+            </div>
+
+            <script id="buyTpl" type="text/x-jsrender">
+              <div class="col-md-3 col-sm-3">
+							<div class="price-clean price-clean-popular">
+								<h4>
+									<sup></sup>{{:price}}<em>{{:currency}}</em>
+								</h4>
+								<a href="/otc/user/{{:userId}}">
+								 {{if userAvatar!=null}}
+                            <img th:src="@{${@globalService.fileHost()}+'{{:userAvatar}}'}" alt="用户头像" class="img-circle" style="width:40px ;height:40px;">
+                            {{else}}
+                            <img th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/avatar.png'}" alt="用户头像" >
+                            {{/if}}（{{:userNick}}）</a><h5>信任: <span>{{:trustNum}}人</span>   交易: <span>{{:exchangeNum}}</span>笔</h5>
+								<hr />
+								<p>交易方式:{{:payType}}<br>
+							     交易限额:{{:minMoney}} - {{:maxMoney}}<em>{{:currency}}</em>
+								</p>
+								<hr />
+								<a href="/otc/info/{{:id}}" class="btn btn-primary">购买{{:coin}}</a>
+							</div>
+
+						</div>
+
+
+            </script>
+        </div>
+    </section>
+    <!-- /projects -->
+    <!-- projects -->
+    <section class="section-sm">
+        <div class="container">
+
+            <div class="row property-item-list" id="sellRender">
+                <span th:replace="component/load/spinner3 :: spinner3"></span>
+
+            </div>
+
+            <script id="sellTpl" type="text/x-jsrender">
+              <div class="col-md-3 col-sm-3">
+							<div class="price-clean price-clean-popular">
+								<h4>
+									<sup></sup>{{:price}}<em>{{:currency}}</em>
+								</h4>
+								<a href="/otc/user/{{:userId}}">
+								 {{if userAvatar!=null}}
+                            <img th:src="@{${@globalService.fileHost()}+'{{:userAvatar}}'}" alt="用户头像" class="img-circle" style="width:40px ;height:40px;">
+                            {{else}}
+                            <img th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/avatar.png'}" alt="用户头像" >
+                            {{/if}}（{{:userNick}}）</a><h5>信任: <span>{{:trustNum}}人</span>   交易: <span>{{:exchangeNum}}</span>笔</h5>
+								<hr />
+								<p>交易方式:{{:payType}}<br>
+							     交易限额:{{:minMoney}} - {{:maxMoney}}<em>{{:currency}}</em>
+								</p>
+								<hr />
+								<a href="/otc/info/{{:id}}" class="btn btn-primary">出售{{:coin}}</a>
+							</div>
+
+						</div>
+
+
+            </script>
+        </div>
+    </section>
+    <!-- /projects -->
+
+    <section class="text-center mt-10" >
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-shopping-cart fa-5x"></i>
+                    <h2 class="fs-17 mt-6">快速买卖</h2>
+                    <p class="text-muted"><span th:text="${@globalService.webSiteTitle()}"></span>是一个不涉及第三方的P2P交易平台，交易过程方便快捷</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-lock fa-5x"></i>
+                    <h2 class="fs-17 mt-6">安全可靠</h2>
+                    <p class="text-muted">冷存储、SSL、多重加密等银行级别安全技术，十年金融安全经验的安全团队</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-comments-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">及时掌控</h2>
+                    <p class="text-muted">WEB、APP多终端，行情及时掌握，交易随时随地</p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- -->
+    <section>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>官方公告</h3>
+                        <a href="#"   style="float: right">
+                            查看更多
+                        </a>
+                    </div>
+
+                    <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+                        <div class="timeline-hline"><!-- horizontal line --></div>
+
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                29<span>11</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="blog-single-default.html">BLOG CAROUSEL POST</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">June 29, 2017</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-comment-o"></i>
+                                        <span class="font-lato">28 Comments</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">John Doe</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+
+                        </div>
+                        <!-- /POST ITEM -->
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                29<span>11</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="blog-single-default.html">BLOG CAROUSEL POST</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">June 29, 2017</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-comment-o"></i>
+                                        <span class="font-lato">28 Comments</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">John Doe</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+
+                        </div>
+                        <!-- /POST ITEM -->
+                    </div>
+
+
+                </div>
+
+                <div class="col-md-6">
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>行业动态</h3>
+                        <a href="#"   style="float: right">
+                            查看更多
+                        </a>
+                    </div>
+
+                    <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+                        <div class="timeline-hline"><!-- horizontal line --></div>
+
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                29<span>11</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="blog-single-default.html">BLOG CAROUSEL POST</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">June 29, 2017</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-comment-o"></i>
+                                        <span class="font-lato">28 Comments</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">John Doe</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+
+                        </div>
+                        <!-- /POST ITEM -->
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                29<span>11</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="blog-single-default.html">BLOG CAROUSEL POST</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">June 29, 2017</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-comment-o"></i>
+                                        <span class="font-lato">28 Comments</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">John Doe</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
+
+                        </div>
+                        <!-- /POST ITEM -->
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </section>
+    <!-- / -->
+
+    <!-- 友情链接-->
+    <section class="section-sm">
+        <div class="container">
+
+            <header class="text-center mb-60">
+                <h4>合作伙伴11</h4>
+                <hr />
+            </header>
+
+
+            <ul class="row clients-dotted list-inline">
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/3.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/4.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/5.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/6.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/7.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/8.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <!-- /友情链接-->
+
+    <section style="padding: 0px; border: 0px;">
+
+        <div class="download">
+            <div class="container">
+                <div class="h2"><span th:text="${@globalService.webSiteTitle()}"></span> App</div>
+                <div class="decs">更简单 更专业 更安全</div>
+                <div class="btn-cont">
+                    <a class="btn" href="https://itunes.apple.com/us/app/coincola/id1234231551?ls=1&amp;mt=8"><span class="icon-ios"></span><span class="btn-text">iPhone 下载</span></a>
+                    <a class="btn" href="http://download.coincola.com/android"><span class="icon-android"></span><span class="btn-text">Android 下载</span></a>
+                </div>
+                <div class="qrcode">
+                    <img class="qrcode-img" src="/static/imgs/qrcode-download.png" alt="otc-bitcoin-marketplace-qrcode">
+                    <div class="text">扫描下载APP</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","select2", "jquery_backstretch",DEV+"/page_otc"], function (a,b,c,d) {
+            d.index();
+        });
+    </script>
+</div>
+
+</body>
+</html>

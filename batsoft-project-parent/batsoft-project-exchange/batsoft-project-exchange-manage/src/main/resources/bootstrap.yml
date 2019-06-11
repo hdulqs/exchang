@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: batsoft-admin
+  cloud:
+    config:
+      profile: dev
+      label:
+      uri: http://localhost:8899/
+
+#eureka \u914D\u7F6E
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:6061/eureka/
+
+#log setting
+logging:
+  config: classpath:logback-spring.xml
+  path: /usr/local/bttmall/logs/manage
+#log setting
+
+
+
+
+

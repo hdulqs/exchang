@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="join-wrap">
+        <div class="about-topHeader">
+            <div class="jWrap">
+                <h1 th:text="${singleVo.title}">服务条款</h1>
+            </div>
+        </div>
+        <div class="about-main clearfix">
+            <div class="about-list">
+                <section class="article-info">
+                    <div class="article-content">
+                        <div class="article-body" th:utext="${singleVo.singleForm}"></div>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+
+</body>
+</html>

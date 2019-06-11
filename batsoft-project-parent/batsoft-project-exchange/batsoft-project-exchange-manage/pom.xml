@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>batsoft-project-exchange-manage</artifactId>
+    
+    <parent>
+        <artifactId>batsoft-project-exchange</artifactId>
+        <groupId>com.batsoft</groupId>
+        <version>1.1.RELEASE</version>
+    </parent>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-system-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-cms-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-member-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-log-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-ico-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-otc-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-exchange-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-blockchain-app</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+    </dependencies>
+    
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>exchange-manage</finalName>
+    </build>
+    
+</project>

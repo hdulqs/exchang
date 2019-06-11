@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>登录</title>
+    <span th:replace="book/layout/head :: head"></span>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/book/main.css'}">
+
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+
+</head>
+<body>
+<header class="Nav">
+    <a class="back" href="javascript:history.back()"></a>
+    <span>登录</span>
+    <a href="/h5/register">注册</a>
+</header>
+<section class="login">
+    <form name="login" method="post"  th:action="@{/loginCheck}"  class="sky-form boxed form">
+        <input type="hidden" name="isCode" value="0"/>
+        <label>&nbsp;</label>
+        <label><span>账号</span> <input name="userName" type="text" placeholder="请输入手机号" /></label>
+        <label><span>密码</span> <input name="password" type="password" placeholder="请输入密码" /></label>
+        <label class="verificationCode" ><span>验证码</span>
+            <input name="validCode" type="text" placeholder="请输入验证码" />
+            <img src="/static/manage/dist/img/captcha.png" th:attr="src=@{/validCode}"  onclick = "this.src='/validCode?d='+new Date()*1"  />
+        </label>
+        <p class="p-hide tip"></p>
+        <button type="submit" class="Btn red" disabled>确定</button>
+        <div style="text-align: right;margin-top:0px ; margin-right:12px;"  ><a href="/forget/pass" target="_blank">忘记密码？</a> </div>
+
+    </form>
+</section>
+<dl class="login3">
+    <dt>第三方账号登录</dt>
+    <dd>
+        <div>
+            <a class="qq" onclick="sensorsdata('qq')" href="http://passport.aishu8.com/sns/connect/2?s=4&nextUrl=http://h5.aishu8.com/h5/user/bookshelf.action"></a>
+        </div>
+        <div>
+            <a class="weibo" onclick="sensorsdata('weibo')" href="http://passport.aishu8.com/sns/connect/3?s=4&nextUrl=http://h5.aishu8.com/h5/user/bookshelf.action"></a>
+        </div>
+
+    </dd>
+</dl>
+
+<!-- 全局脚文件 -->
+<span th:replace="book/layout/footer :: footer"></span>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh",DEV+"/page_login"], function (a,o,y,b) {
+            b.init();
+        });
+    </script>
+</div>
+</body>
+</html>

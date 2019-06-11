@@ -1,0 +1,569 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .symbol_tips {
+            color: #ff0000;
+            background: #ffebee;
+            border: 1px solid #e57373;
+            text-align: center;
+            line-height: 40px;
+            padding: 30px 0px;
+        }
+
+        .withdraw_forbid ul {
+            min-height: 190px;
+        }
+
+        .market_symbol_tips {
+            color: #ff0000;
+            background: #ffebee;
+            border: 1px solid #e57373;
+            text-align: center;
+            line-height: 40px;
+            padding: 30px 0px;
+        }
+
+        .divSelect.cashAddressBar ul li {
+            padding: 0px 10px;
+        }
+        .divSelect.cashAddressBar ul li {
+            height: auto;
+            line-height: 18px;
+            padding: 10px;
+            width: 93%;
+            border-bottom: #ddd 1px dashed;
+            margin: 0 auto;
+        }
+
+        .divSelect.cashAddressBar ul li a {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .address_li {
+            position: relative;
+        }
+
+        .address_li .icon_del {
+            position: absolute;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            right: 0px;
+            top: 5px;
+        }
+        .topColtitWrap {
+            border-bottom: #181B2A 1px solid;
+            color:#C7CCE6 ;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181B2A;
+        }
+        .submitBt {
+            display: block;
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            background-color: #387de0;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 auto;
+            color: #fff;
+            border-radius: 2px;
+        }
+        .rechargeEnd {
+            overflow: hidden;
+            height: 2px;
+            width: 100%;
+            background: none;
+            padding-bottom: 2px;
+        }
+
+        #withdraw_input::-webkit-input-placeholder{
+            color:#60688D;
+        }
+        .jhu::-webkit-input-placeholder{
+            color:#60688D;
+        }
+        .cashInputBar .unit_r{
+            min-width: 100px;
+            float: right;
+            height: 40px;
+            background-color: #f8f8f8;
+            border-left: #4E5B85  1px solid;
+            font-weight: 700;
+        }
+        .address-input{
+            width:400px;
+            height:200px;
+            margin: 0 auto;
+        }
+        .select-r{
+            width: 90px;
+            height: 28px;
+            border: 1px solid #EFEFEF;
+            font-size: 12px;
+            color: #999;
+            text-indent: 12px;
+        }
+        .yidun_popup.yidun_popup--light .yidun_modal {
+            position: relative;
+            top: 32%;
+            left: 11%;
+            border-radius: 2px;
+            border: 1px solid #e4e7eb;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,.3);
+        }
+        .rights{
+            width: 292px;
+            height: 25px;
+            border: 1px solid #EFEFEF;
+            font-size: 12px;
+            color: #999;
+            text-indent: 12px;
+        }
+        sasad::-webkit-input-placeholder{
+            color:#d4a668;
+        }
+        .baocun{
+            color: white;background:#387de0;
+            outline:none;
+            width:90px;
+            height: 29px;
+            font-size: 12px;
+            position: relative;
+            left: 69px;
+            top:15px;
+        }
+        #validCode{
+            width: 517px;
+            height: 40px;
+            border: 1px solid #4E5B85;
+            text-indent: 12px;
+            margin-bottom: 11px;
+            outline: none;
+            color: #C7CCE6;
+
+        }
+        #validCode::-webkit-input-placeholder {
+            color: #60688D;
+        }
+        /*.yidun.yidun--light .yidun_control {*/
+            /*position: relative;*/
+            /*border: 1px solid #e4e7eb;*/
+            /*background-color: #f7f9fa;*/
+            /*height: 40px;*/
+            /*border-radius: 2px;*/
+            /*width: 517px;*/
+        /*}*/
+
+        #mobileCode{
+                  width: 517px;
+                  height: 40px;
+                  border: 1px solid #4E5B85;
+                  text-indent: 12px;
+                  margin-bottom: 11px;
+                 outline: none;
+                 color: #C7CCE6;
+              }
+        #mobileCode::-webkit-input-placeholder {
+            color: #60688D;
+        }
+        #password_trd{
+            width: 706px;
+            height: 40px;
+            border: 1px solid #4E5B85;
+            text-indent: 12px;
+            outline: none;
+            color: #C7CCE6;
+            margin-bottom: 11px;
+        }
+        #password_trd::-webkit-input-placeholder {
+            color:#60688D;
+        }
+        #memo_trd{
+            width: 706px;
+            height: 40px;
+            border: 1px solid #4E5B85;
+            text-indent: 12px;
+            outline: none;
+            color: #C7CCE6;
+            margin-bottom: 11px;
+        }
+        #memo_trd::-webkit-input-placeholder {
+            color: #60688D;
+        }
+
+
+        #button_pot{
+            margin-left: 15px;
+            width: 167px;
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 179px;
+            flex: 0 0 179px;
+            background-color: #589065;
+            border-radius: 2px;
+            height: 44px;
+            font-size: 16px;
+            color: #f3f4f8;
+            letter-spacing: 0;
+        }
+
+        .divSelect.cashAddressBar .addAddressBt {
+            display: inline-block;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 10px 0 15px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            position: relative;/**/
+            left: -282px;
+            color: #387DE0;
+            font-size: 14px;
+        }
+        .login-wrap__form .alert.alert-mini {
+            margin-right: 5%;
+            margin-top: 5px;
+        }
+
+        .alert.alert-mini {
+            padding: 3px 10px;
+            border-left: 0;
+            position: relative;
+            top: -1px;
+        }
+
+        .alert-danger {
+            background-color: #f2dede;
+            border-color: #ebcccc;
+            color: #a94442;
+        }
+        .p-hide {
+            display: none!important;
+        }
+        .mb-30 {
+            margin-bottom: 30px!important;
+        }
+        .address_li .icon_del {
+            position: absolute;
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            right: 0px;
+            top: 10px;
+        }
+        #googleCode{
+            width: 706px;
+            height: 40px;
+            border: 1px solid #4E5B85;
+            text-indent: 12px;
+            outline: none;
+            color: #C7CCE6;
+            margin-bottom: 11px;
+        }
+        #googleCode::-webkit-input-placeholder {
+            color: #60688D;
+        }
+        .divSelect.cashAddressBar cite::-webkit-input-placeholder {
+            color: #60688D;
+        }
+        #red_green{
+            display: none;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="fullScreen_h">
+        <input type="hiden" style="display: none" th:value="${coinCode}" id="coin_code"/>
+        <div class="topColtitWrap">
+            <div class="colBar moneyBg">
+                <p class="colTit" th:text="#{withdraw}">提现</p>
+            </div>
+        </div>
+        <div class="rechargeWrap" style="background: #181B2A;border: 1px solid  #262A42; ">
+            <div class="rechargeBox" style="border: 0;">
+                <div class="rechargeL">
+                    <div class="divSelect" id="divSelect" style="color: #C7CCE6;background-color: #181B2A;border:1px solid #4E5B85;">
+                        <cite>
+                        <span class="icoPic fl">
+                        <img src="https://batsoft.s3.ap-southeast-1.amazonaws.com/images/9893256fa6f2ab367b2982449cd8af1f.png" alt="">
+                        </span>
+                            <strong class="no-blinding" th:text="${coinCode}"></strong>
+                            <!--<span class="no-blinding" th:text="${' -'+coinCode}"></span>-->
+                            <span class="ico_notice fr">
+                            </span>
+                            <span class="cl"></span>
+                        </cite>
+                        <ul style="display: none;">
+                            <li>
+                                <div class="recharSearch">
+                                    <input type="text" th:placeholder="#{key}" placeholder="请输入币种关键字">
+                                </div>
+                            </li>
+                            <span id="coin_select_render">
+
+
+                             </span>
+
+                            <script id="coin_select_tpl" type="text/x-jsrender">
+                                <li>
+                                <a href="/ex/member/account/withdraw?coin_code={{:coinCode}}" selectid="{{:coinCode}}" alert_msg="">
+                                    <span class="icoPic fl">
+                                    <img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}"  alt="{{:coinCode}}">
+                                    </span>
+                                    <strong class="no-blinding">{{:coinCode}}</strong>
+                                    <!--<span class="no-blinding"> - {{:coinCode}}</span>-->
+                                    <span class="ico_notice fr">
+                                    </span>
+                                    <span class="cl"></span>
+                                </a>
+                            </li>
+
+                            </script>
+                        </ul>
+                        <input id="symbol" type="hidden" th:value="${coinCode}" class="selectInput"/>
+                        <input id="alert_msg" type="hidden" value=""/>
+                    </div>
+                    <div class="hr10"></div>
+                    <div id="coin_render"></div>
+
+                    <script id="coin_tpl" type="text/x-jsrender">
+<div class="conBox" style="height: 230px;padding-left: 20px;background:#181B2A;border: 1px solid  #181B2A;">
+                        <ul>
+                            <!--<li><span th:text="#{total_balance}"  style="color:#C7CCE6;">总额</span>： <span class="gold" id="bal" style="color:#FFFFFF" >{{:account.totalMoney}}</span>&nbsp;&nbsp;<span class="unit"  style="color:#5871BF;">{{:coin.coinCode}}</span> </li>-->
+                                                        <li><span th:text="#{total_balance}"  style="color:#C7CCE6;">总额</span>： <span class="gold" style="color:#FFFFFF" >{{:account.totalMoney}}</span>&nbsp;&nbsp;<span class="unit"  style="color:#5871BF;">{{:coin.coinCode}}</span> </li>
+                            <li><span th:text="#{frozen_balance}"  style="color:#C7CCE6;">冻结</span>： <span class="gold" id="frozen_bal" style="color:#FFFFFF">{{:account.freeze}}</span>&nbsp;&nbsp;<span class="unit"  style="color:#5871BF;">{{:coin.coinCode}}</span></li>
+                            <li><span th:text="#{available_balance}"  style="color:#C7CCE6;">可用余额</span>： <span class="gold" id="available_bal" style="color:#FFFFFF">{{:account.available}}</span>&nbsp;&nbsp;<span class="unit"  style="color:#5871BF;">{{:coin.coinCode}}</span></li>
+
+                        </ul>
+                    </div>
+                    <div class="conIntro  hide " style="padding:20px 20px 0px 20px;">
+                        <a href="javascript:void(0)" target="_blank" class="gold" style="text-decoration:underline;">什么是<span class="unit">{{:coin.coinCode}}</span>?</a>
+                    </div>
+
+
+                    </script>
+                </div>
+
+
+                <div class="rechargeR" style="background:#181b2a; border:none;">
+                    <p><span class="unit" th:text="#{withdraw.address}" style="color:#C7CCE6;"> 提现地址</span></p>
+
+                    <div class="withdraw_operation ">
+                        <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+                        </div>
+                        <form id="withdraw-form" onsubmit="return false;" action="" class="form">
+                            <ul>
+                                <li class="input with-secure-verification" style="margin-bottom:16px; ">
+                                    <div class="divSelect cashAddressBar" id="cashAddressBar" style="background: #181B2A;border: 1px solid  #4E5B85;">
+                                        <cite th:text="#{withdraw.select_Address}" style=" color: #60688D;border-right:none;"  id="wqw">选择提现地址</cite>
+                                        <span class="selectBt"  style="border-left: #4E5B85 1px solid; "></span>
+                                        <ul style="display: none;">
+                                            <li class="tc">
+                                                <input type="button" th:value="#{withdraw.new_Address}" class="addAddressBt gold">
+                                            </li>
+                                        </ul>
+                                        <input name="selected_address" type="hidden" value="0" class="selectInput">
+                                    </div>
+                                </li>
+                                <li class="input"style="display: none;">
+                                    <input type="text" class="form-control" id="userName" name="userName" th:value="${@globalService.getUserName()}" placeholder="请输入手机号" >
+                                </li>
+                                <li class="input with-secure-verification" >
+                                    <div id="captcha"></div>
+                                    <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+                                    <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+                                </li>
+                                <li>
+                                    <input type="text" class="form-control" id="mobileCode" name="mobileCode" th:placeholder="#{register.telephone_verification}" placeholder="请输入短信验证码"  maxlength="6">
+                                    <!--<b class="tooltip tooltip-top-right f-w" th:text="#{register.telephone_verification}">请输入短信验证码</b>-->
+                                    <button type="button" class="btn btn-primary rad-0 btn-sm  sendCode" th:text="#{register.obtain_sms}" id="button_pot" autocomplete="off">获取短信验证码
+                                    </button>
+                                </li>
+
+                                <li style="display: none">
+                                    <input type="text" class="memo" id="memo_trd" name="memo"
+                                           th:placeholder="#{more_remake}">
+                                    <!--<b class="tooltip tooltip-top-right f-w" th:text="#{password.remind}">推荐使用字母、数字和符号两种及以上组合（6-20）</b>-->
+                                </li>
+                                <li >
+                                    <input type="password" class="form-control" id="password_trd" name="password"
+                                           th:placeholder="#{more_password}" maxlength="6" autocomplete="off">
+                                    <!--<b class="tooltip tooltip-top-right f-w" th:text="#{password.remind}" >推荐使用字母、数字和符号两种及以上组合（6-20）</b>-->
+                                </li>
+
+                            </ul>
+                            <ul id="addNewAddressBox" class="addNewAddressBox" style="display: none;">
+                                <div class="row col-sm-12" style="display:none;" id="show_div">
+                                    <div class="address-input">
+
+                                        <table>
+                                            <tr style="height: 55px">
+                                                <td style="width: 65px" th:text="#{Bat_biubiu}">地址</td>
+                                                <td><input type="text" class="rights" id="addresslist"></td>
+                                            </tr>
+                                            <tr style="height: 30px;">
+                                                <td style="width: 65px" th:text="#{biu_label}">标签</td>
+                                                <td><input type="text" class="rights" id="reskerlist"></td>
+                                                <td style="display: none"><input type="text" class="rights" id="molilist"></td>
+                                            </tr>
+                                        </table>
+                                        <input type="button" value="保存地址" class="baocun" id="buttoniop" th:value="#{bs}" >
+
+                                    </div>
+                                </div>
+                                <li>
+                                    <div class="cashAddress cashRemark">
+                                        <input name="memo" type="text" placeholder="备注(非必填)">
+                                    </div>
+                                </li>
+                            </ul>
+                            <p th:text="#{amount}" style="color:#C7CCE6;">提现数量</p>
+
+                            <ul id="coin_address_render">
+
+                            </ul>
+
+                            <script id="coin_address_tpl" type="text/x-jsrender">
+
+                                  <li>
+                                    <div class="cashInputBar" style="background: #181B2A;border: 1px solid  #4E5B85;">
+                                        <p class="unit_r gray unit" style="color: #C7CCE6;background: #181B2A">{{:coin.coinCode}}</p>
+                                        <p class="unit_m font12 aLine" id="all_withdraw" th:text="#{withdraw.all}" style="color: #C7CCE6;">全部提现</p>
+                                        <p class="unit_l">
+                                            <input type="text" name="amt" id="withdraw_input" th:placeholder="#{available_balance}" placeholder="可用余额：{{:account.available}}" style="color: #C7CCE6;" >
+                                        </p>
+                                    </div>
+                                </li>
+
+                                <li class="font12">
+                                    <div class="hr10"></div>
+                                    <span th:text="#{fee}" style="color:#C7CCE6;">手续费</span>：<span id="fee" style="color:#C7CCE6;">0</span>
+                                    <span class="fr"  style="color:#C7CCE6;"><span th:text="#{account.you_will_get}"></span><span id="trueamt" style="color:#C7CCE6;">0</span></span>
+                                </li>
+                                 <li  style="display: none" id="google_math">
+                                    <input type="text"  id="googleCode" name="googleCode"  placeholder="请输入谷歌验证码" autocomplete="off" maxlength="6">
+                                </li>
+
+
+                                <li>
+                                    <a href="javascript:void(0);" class="submitBt white" th:text="#{withdraw}" id="withdraw_submit">提现</a>
+                                </li>
+                                <li>
+                                    <p class="icoTip margin_tb">
+                                        <span th:text="#{withdraw.minimal_withdrawal}" style="color: #5871BF;">最小提现数量：</span>
+                                        <span class="gold">
+                                <span id="withdraw_min_amt" style="color:#C7CCE6;">{{:coin.withdrawMin}}</span>&nbsp;
+                                <span class="unit" style="color:#5871BF;">{{:coin.coinCode}}</span>
+                                </span>。 <span th:text="#{withdraw.remind1}" style="color: #5871BF;">请勿直接提现至众筹或ICO地址，我们不会处理未来币的发放。</span> </p>
+                                                                </li>
+                                                                <!--<li class="withdraw_ac_max_amt_tips ">-->
+                                                                    <!--<p class="icoTip margin_tb">-->
+                                                                        <!--<span th:text="#{withdraw.remind2}" style="color: #5871BF;">单笔提现小于</span> <span class="gold" style="color:#C7CCE6;">-->
+                                <!--<span id="withdraw_ac_max_amt" style="color:#C7CCE6;">{{:coin.withdrawAcMaxAmt}}</span>-->
+                                <!--<span class="unit" style="color: #5871BF;">{{:coin.coinCode}}</span>-->
+                                <!--</span>-->
+                                        <!--<span th:text="#{withdraw.remind3}" style="color: #5871BF;">无需人工审核</span> 。 </p>-->
+                                <!--</li>-->
+                                <li class="not_auth_withdraw_tips ">
+                                    <p class="icoTip margin_tb">
+                                        <span th:text="#{withdraw.remind4}" style="color: #5871BF;">未实名认证的用户，单日最大提现数量</span>：<span class="gold" style="color:#C7CCE6;"><span id="notauth_max_withdraw_amt" style="color:#C7CCE6;">{{:coin.noAuthWithdrawMax}}</span> <span class="unit" style="color: #5871BF;">{{:coin.coinCode}}</span></span>
+                                    </p>
+                                </li>
+                                 <li class="ico_Tip"  id="red_green"><span style="position: relative;top: -1px;  color: red;" th:text="#{vsred}">请转账ERC20的USDT，如果转账OMNI的USDT将不可找回，请谨慎操作。</span></li>
+
+                            </script>
+                            <div class="hide">
+                                <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                <input type="hidden" name="symbol" th:value="${coinCode}"/>
+                                <input type="hidden" name="valid_code"/>
+                                <input type="hidden" name="valid_type" value="google"/>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="withdraw_forbid  hide ">
+                        <ul>
+                            <li>
+                                <div class="symbol_tips" id="symbol_tips"></div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="rechargeEnd"></div>
+            <p class="rechargeTxt font12"><span th:text="#{withdraw.tips}" style="color: #5871BF;">温馨提示</span>：<span th:text="#{withdraw.remind5}" style="color: #5871BF;">提现请求申请成功后，您可以进入</span><a
+                    href="/ex/member/account/money_info?type=2" class="gold aLine"><span th:text="#{fund_history}">历史记录</span></a></p>
+        </div>
+    </div>
+    <div class="hr50"></div>
+
+    <div class="hide">
+        <input type="hidden" id="page_data" value=""/>
+    </div>
+    <div class="googleVerify" id="googleVerifyPop" style="display:none;">
+        <div class="google_input_title">请输入谷歌验证码：</div>
+        <div class="google_input_box">
+            <input type="text" class="google_input"/>
+        </div>
+        <div class="google_button_box">
+            <a href="javascript:void(0);" class="gold_button">确定</a>
+        </div>
+    </div>
+    <!--<div class="popBox" id="withdraw_success_pop" style="display:none;">
+        <span class="closePopBt">X</span>
+        <div class="prompt">
+            <p><img th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/img/warning.png'}"   alt=""></p>
+            <p class="promptTit">已向您的注册邮箱发送验证邮件，<br>请点击邮件中的链接确认本次提现请求</p>
+        </div>
+    </div>-->
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script src="https://cstaticdun.126.net/load.min.js"></script>
+    <script>
+        seajs.use([DEV + "/main", "numeral", "layer", "jquery_validate", "messages_zh", "clipboard", DEV + "/page_user"], function (a1, a0, a, i, o, b, d) {
+            d.withdraw();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+
+        <artifactId>batsoft-parent</artifactId>
+        <groupId>com.batsoft</groupId>
+        <version>1.1.RELEASE</version>
+    </parent>
+    <packaging>pom</packaging>
+    <modules>
+        <module>batsoft-project-exchange</module>
+    </modules>
+    <modelVersion>4.0.0</modelVersion>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+        <!--consul中健康检查需要用到actuator，不添加会check failing-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+       <!-- <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-consul-discovery</artifactId>
+        </dependency>-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-eureka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-utils</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-core</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-base-model</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-shiro-starter</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+
+    </dependencies>
+    <artifactId>batsoft-project-parent</artifactId>
+
+
+</project>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+   <div th:fragment="imgUpload(inputName,showImg)" >
+       <div class="row imgUpload">
+           <div class="col-md-5">
+               <div class="dropzone">
+                   <input class="hide" type="text" th:name="${inputName}">
+               </div>
+           </div>
+           <div class="col-md-5 ml-50">
+               <div class="img-show" th:if="${showImg == ''}" >
+                   <img />
+               </div>
+               <div class="img-show" th:if="${showImg != ''}" >
+                   <img   th:src="@{${@globalService.fileHost()+showImg}}">
+               </div>
+
+           </div>
+       </div>
+
+       <!--load js-->
+       <div th:replace="component/basejs :: basejs(~{::script})">
+           <script th:inline="javascript">
+               seajs.use([DEV+"/plugins/dropzone/min/dropzone.min.css",DEV + "/main", "dropzone", DEV + "/page_upload"], function (f,a, b, upload) {
+                   upload.imageUpload();
+               });
+           </script>
+       </div>
+       <!--load js-->
+
+   </div>
+
+</body>
+</html>
+

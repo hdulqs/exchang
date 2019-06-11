@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>EntrustHistoryMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:22:21 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.EntrustHistoryDao">
+
+    <resultMap id="findPageBySqlMap" type="com.batsoft.model.module.exchange.vo.EntrustHistoryVo">
+        <id column="id" property="id" javaType="java.lang.String" />
+        <result column="create_time" property="createTime" javaType="java.util.Date" />
+        <result column="update_time" property="updateTime" javaType="java.util.Date" />
+        <result column="account_id" property="accountId" javaType="java.lang.String" />
+        <result column="customer_id" property="customerId" javaType="java.lang.String" />
+        <result column="trade_coin_code" property="tradeCoinCode" javaType="java.lang.String" />
+        <result column="pricing_coin_code" property="pricingCoinCode" javaType="java.lang.String" />
+        <result column="entrust_type" property="entrustType" javaType="java.lang.String" />
+        <result column="order_id" property="orderId" javaType="java.lang.String" />
+        <result column="entrust_price" property="entrustPrice" javaType="java.math.BigDecimal" />
+        <result column="entrust_amout_sql" property="entrustAmoutSql" javaType="java.math.BigDecimal" />
+        <result column="entrust_amout" property="entrustAmout" javaType="java.math.BigDecimal" />
+        <result column="traded_avg" property="tradedAvg" javaType="java.math.BigDecimal" />
+        <result column="traded_coins" property="tradedCoins" javaType="java.math.BigDecimal" />
+        <result column="total_money" property="totalMoney" javaType="java.math.BigDecimal" />
+        <result column="entrust_state" property="entrustState" javaType="java.lang.Integer" />
+        <result column="entrust_time" property="entrustTime" javaType="java.util.Date" />
+        <result column="user_name" property="userName" javaType="java.lang.String" />
+        <result column="category" property="category" javaType="java.lang.Integer" />
+
+    </resultMap>
+
+    <!-- 通过sql分页查询 -->
+    <select id="findPageBySql" parameterType="java.util.Map"
+            resultMap="findPageBySqlMap">
+        SELECT * FROM ${tablename}
+        <where>
+            <!-- 用户ID -->
+            <if test="account_id!=null">
+               account_id = #{account_id}
+            </if>
+            <!-- 交易类型 -->
+            <if test="customer_id!=null">
+                AND customer_id = #{customer_id}
+            </if>
+            <if test="entrustPrice!=null">
+                AND entrust_price = #{entrustPrice}
+            </if>
+            <if test="entrustAmout!=null">
+                AND entrust_amout = #{entrustAmout}
+            </if>
+            <if test="entrustState!=null">
+                AND entrust_state = #{entrustState}
+            </if>
+            <if test="category!=null">
+                AND category = #{category}
+            </if>
+        </where>
+        ORDER BY create_time DESC limit #{from},#{pageSize}
+    </select>
+
+    <select id="findPageBySqlTotal" parameterType="java.util.Map"
+            resultType="java.lang.Long">
+        SELECT COUNT(id) FROM ${tablename}
+        <where>
+            <!-- 用户ID -->
+            <if test="account_id!=null">
+                account_id = #{account_id}
+            </if>
+            <!-- 交易类型 -->
+            <if test="customer_id!=null">
+                AND customer_id = #{customer_id}
+            </if>
+            <if test="entrustPrice!=null">
+                AND entrust_price = #{entrustPrice}
+            </if>
+            <if test="entrustAmout!=null">
+                AND entrust_amout = #{entrustAmout}
+            </if>
+            <if test="entrustState!=null">
+                AND entrust_state = #{entrustState}
+            </if>
+            <if test="category!=null">
+                AND category = #{category}
+            </if>
+        </where>
+    </select>
+
+
+    <!-- 通过sql分页查询 -->
+    <select id="findById" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        select * from ${tablename}
+        <where>
+            <if test="id != null">
+              id = #{id}
+            </if>
+        </where>
+    </select>
+
+
+
+    <!-- 通过userId分页查询 -->
+    <select id="findPageByUserId" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+    SELECT * from ${tablename}
+      <where>
+          <if test="user_id != null ">
+            customer_id = #{user_id}
+          </if>
+          <if test="coin_code != null">
+              AND trade_coin_code LIKE CONCAT('%', #{coin_code},'%')
+          </if>
+          <if test="price_code != null">
+              AND  pricing_coin_code like CONCAT('%',#{price_code},'%')
+          </if>
+      </where>
+        order by  entrust_state asc,create_time desc limit #{from},#{pageSize}
+    </select>
+
+    <!-- 通过userId分页查询 -->
+    <select id="findPageByUserIdTotal" parameterType="java.util.Map"
+            resultType="java.lang.Long">
+    SELECT COUNT(*) from ${tablename}
+      <where>
+          <if test="user_id != null ">
+             customer_id = #{user_id}
+          </if>
+          <if test="coin_code != null">
+              AND (trade_coin_code LIKE CONCAT('%', #{coin_code},'%') or  pricing_coin_code like CONCAT('%',#{coin_code},'%'))
+          </if>
+      </where>
+    </select>
+
+    
+    <!-- 通过订单号查询委托历史是否存在 -->
+    <select id="findByOrderIdExist" parameterType="java.util.Map" resultType="java.math.BigInteger">
+    	SELECT COUNT(*) FROM exchange_entrust_history 
+    	<where>
+    		<if test="customerId != null">
+    		customer_id = #{userId}
+    		</if>
+    		<if test="orderId != null">
+    		AND order_id = #{orderId}
+    		</if>
+    	</where>
+    </select>
+
+    <delete id="deleteById" parameterType="java.util.HashMap"  >
+        delete from ${tablename} where id in
+        <foreach  collection="id" item="item" open="(" separator=","  close=")">
+            #{item}
+        </foreach>
+    </delete>
+
+
+
+    <select id="sumOfAmoutByStartTimeAndId" parameterType="java.util.Map" resultType="BigDecimal">
+        select COALESCE(sum(entrust_amout_sql),0) from ${tablename}
+        <where>
+            <if test=" id != null">
+                customer_id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="coinCode != null ">
+                AND trade_coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode != null ">
+                AND pricing_coin_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="type !=null">
+                AND entrust_type = #{type,jdbcType=VARCHAR}
+            </if>
+            <if test="create_time != null ">
+                AND create_time >= #{create_time,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+
+	    
+</mapper>

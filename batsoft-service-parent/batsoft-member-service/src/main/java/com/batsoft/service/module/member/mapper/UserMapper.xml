@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>UserMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-07-06 17:45:44 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.member.dao.UserDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.member.vo.UserVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="trustNum" property="trustNum" jdbcType="INTEGER"/>
+        <result column="exchangeNum" property="exchangeNum" jdbcType="INTEGER"/>
+        <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+        <result column="user_mobile" property="userMobile" jdbcType="VARCHAR"/>
+        <result column="real_state" property="realState" jdbcType="INTEGER"/>
+        <result column="real_state_remark" property="realStateRemark" jdbcType="VARCHAR"/>
+        <result column="user_nick" property="userNick" jdbcType="VARCHAR"/>
+        <result column="area_code" property="areaCode" jdbcType="VARCHAR"/>
+        <result column="promoter_code" property="promoterCode" jdbcType="VARCHAR"/>
+        <result column="promoter_parent_code" property="promoterParentCode" jdbcType="VARCHAR"/>
+        <result column="promotion_award" property="promotionAward" jdbcType="DECIMAL"/>
+        <result column="user_card_front" property="userCardFront" jdbcType="VARCHAR"/>
+        <result column="user_card_back" property="userCardBack" jdbcType="VARCHAR"/>
+        <result column="user_card_all" property="userCardAll" jdbcType="VARCHAR"/>
+        <result column="user_card_number" property="userCardNumber" jdbcType="VARCHAR"/>
+        <result column="user_card_type" property="userCardType" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="old_login_time" property="oldLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="login_num" property="loginNum" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="loginResult" type="com.batsoft.model.module.member.User">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_nick" property="userNick" jdbcType="VARCHAR"/>
+        <result column="google_code" property="googleCode" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="promoter_code" property="promoterCode" jdbcType="VARCHAR"/>
+        <result column="promoter_parent_code" property="promoterParentCode" jdbcType="VARCHAR"/>
+        <result column="promotion_award" property="promotionAward" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <resultMap id="userInfoResult" type="com.batsoft.model.module.member.vo.UserVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_email" property="userEmail" jdbcType="VARCHAR"/>
+        <result column="user_mobile" property="userMobile" jdbcType="VARCHAR"/>
+        <result column="google_code" property="googleCode" jdbcType="VARCHAR"/>
+        <result column="open_google_auth" property="openGoogleAuth" jdbcType="VARCHAR"/>
+        <result column="trade_password" property="tradePassword" jdbcType="VARCHAR"/>
+        <result column="real_state" property="realState" jdbcType="INTEGER"/>
+        <result column="real_state_remark" property="realStateRemark" jdbcType="VARCHAR"/>
+        <result column="real_name" property="realName" jdbcType="VARCHAR"/>
+        <result column="old_login_time" property="oldLoginTime" jdbcType="TIMESTAMP"/>
+        <result column="login_time" property="loginTime" jdbcType="TIMESTAMP"/>
+        <result column="login_ip" property="loginIp" jdbcType="VARCHAR"/>
+        <result column="old_login_ip" property="oldLoginIp" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="login_num" property="loginNum" jdbcType="INTEGER"/>
+        <result column="user_nick" property="userNick" jdbcType="VARCHAR"/>
+        <result column="user_card_type" property="userCardType" jdbcType="INTEGER"/>
+        <result column="user_card_number" property="userCardNumber" jdbcType="VARCHAR"/>
+        <result column="promoter_code" property="promoterCode" jdbcType="VARCHAR"/>
+        <result column="promoter_parent_code" property="promoterParentCode" jdbcType="VARCHAR"/>
+        <result column="promotion_award" property="promotionAward" jdbcType="DECIMAL"/>
+    </resultMap>
+
+    <sql id="base_column">
+        id, user_name, user_nick,trustNum, exchangeNum, user_avatar,user_mobile,user_email,real_state,real_state_remark,remark,promoter_code,promoter_parent_code,promotion_award,user_card_front,user_card_back,user_card_number,user_card_type,real_name,user_card_all,status,area_code,old_login_time,login_num
+    </sql>
+
+    <sql id="login_column">
+        id, user_name,user_nick,google_code, password, salt, status,promoter_code,promoter_parent_code,promotion_award
+    </sql>
+
+    <sql id="userInfo_column">
+        id, user_name,user_nick,user_card_type,user_card_number, password,user_email, user_mobile, google_code,open_google_auth,trade_password,real_state,real_state_remark,real_name,status,old_login_time,login_time,user_avatar,salt,login_num,login_ip,old_login_ip,promoter_code,promoter_parent_code,promotion_award
+    </sql>
+
+
+    <select id="findUser" resultMap="loginResult" parameterType="java.lang.String">
+        SELECT
+        <include refid="login_column"/>
+        FROM member_user
+        where user_name=#{userName} or user_mobile = #{userName} or user_email=#{userName} and del='0'
+    </select>
+
+    <select id="findUserInfo" resultMap="userInfoResult" parameterType="java.lang.String">
+        SELECT
+        <include refid="userInfo_column"/>
+        FROM member_user
+        where user_name=#{userName} and del='0'
+    </select>
+
+    <select id="findUserById" resultMap="userInfoResult" parameterType="java.lang.String">
+        SELECT
+        <include refid="userInfo_column"/>
+        FROM member_user
+        where id=#{id} and status=0 and del='0'
+    </select>
+
+    <select id="findUserNum" resultMap="baseResult" parameterType="java.lang.Integer">
+        SELECT
+        COUNT(id)
+        FROM member_user
+    </select>
+
+    <select id="findUserHavePromotionAward" resultMap="loginResult" parameterType="java.util.HashMap">
+        SELECT
+        <include refid="login_column"/>
+        FROM member_user
+        <where>
+            <if test="createTime != null">
+                create_time &lt; #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+         status = 0 AND promotoin_award > 0 ORDER BY create_time limit #{from},#{pageSize}
+    </select>
+
+    <select id="findUserHavePromotionAwardSum" resultType="java.lang.Long" parameterType="java.util.HashMap">
+        SELECT
+        SUM(id)
+        FROM member_user
+        <where>
+            <if test="createTime != null">
+                create_time &lt; #{createTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        status = 0 AND promotoin_award > 0
+    </select>
+
+    <select id="findUnauditedUserNum" resultMap="baseResult" parameterType="java.lang.Integer">
+        SELECT
+        COUNT(id)
+        FROM member_user
+        where real_state=0
+    </select>
+
+    <update id="updateUserByUserIdSetRealStateSuccess" parameterType="java.util.List" >
+        UPDATE member_user  SET real_state = 1 WHERE id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="updateUserByUserIdSetRealStateFail" parameterType="java.util.List" >
+        UPDATE member_user  SET real_state = 3 WHERE id IN
+        <foreach collection="list" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+    
+    <select id="findUnKYCUser" parameterType="java.util.HashMap" resultMap="baseResult">
+        SELECT
+        <include refid="base_column"/>
+        FROM member_user
+        <where>
+            <if test="userName != null">
+                user_name like CONCAT('%', #{userName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="realName != null">
+              AND real_name like CONCAT('%', #{realName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="mobile != null">
+                AND user_mobile like CONCAT('%', #{mobile,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="userCardType != null">
+                AND user_card_type = #{userCardType,jdbcType=INTEGER}
+            </if>
+            <if test="userCardNumber != null">
+                AND user_card_number LIKE CONCAT('%', #{userCardNumber,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+       ORDER BY  locate(real_state,'2,0,3,1'),create_time  limit #{from},#{pageSize}
+    </select>
+
+    <select id="findUnKYCUserTotal" parameterType="java.util.HashMap" resultType="java.lang.Long">
+        SELECT
+        COUNT(id)
+        FROM member_user
+        <where>
+            <if test="userName != null">
+                user_name like CONCAT('%', #{userName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="realName != null">
+                AND real_name like CONCAT('%', #{realName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="mobile != null">
+                AND user_mobile like CONCAT('%', #{mobile,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="userCardType != null">
+                AND user_card_type = #{userCardType,jdbcType=INTEGER}
+            </if>
+            <if test="userCardNumber != null">
+                AND user_card_number LIKE CONCAT('%', #{userCardNumber,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        ORDER BY locate(real_state,'2,0,3,1'),create_time
+    </select>
+
+    <select id="findUserByCard" parameterType="java.util.HashMap" resultType="Long">
+        SELECT
+        COUNT(id)
+        FROM member_user
+        WHERE id != #{id,jdbcType=VARCHAR}  AND user_card_number = #{card,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findUserByPromotionCode"  parameterType="java.lang.String" resultMap="userInfoResult">
+        SELECT
+        <include refid="userInfo_column"/>
+        FROM member_user
+        WHERE promoter_code = #{promotionCode,jdbcType=VARCHAR}
+    </select>
+</mapper>

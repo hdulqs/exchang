@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <!--<link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"-->
+          <!--type="text/css"/>-->
+    <!--<link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/login_reg.min.css'}" rel="stylesheet"-->
+          <!--type="text/css"/>-->
+
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable{margin:0px;}
+        #button-des {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 179px;
+            flex: 0 0 179px;
+            background-color: #589065;
+            border-radius: 2px;
+            height: 50px;
+            font-size: 16px;
+            color: #f3f4f8;
+            letter-spacing: 0;
+            margin-left: 10px;
+            position: relative;
+            top: -51px;
+            left: 205px;
+        }
+        #input_captcha{
+            margin-bottom: 71px;
+        }
+        .yidun.yidun--light .yidun_control {
+            position: relative;
+            border: 1px solid #e4e7eb;
+            background-color: #f7f9fa;
+            height: 40px;
+            border-radius: 2px;
+            width: 350px;
+        }
+
+        .login-wrap__form .alert.alert-mini {
+            margin-right: 5%;
+        }
+
+        .alert.alert-mini {
+            padding: 6px 10px;
+            border-left: 0;
+            position: relative;
+            top: -25px;
+        }
+        .yidun_control{
+            height: 40px;
+            border-radius: 2px;
+            width: 350px;
+        }
+        .alert-danger {
+            background-color: #f2dede;
+            border-color: #ebcccc;
+            color: #a94442;
+        }
+        #password:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #confirm_password:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #mobileCode:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        .p-hide {
+            display: none!important;
+        }
+        .mb-30 {
+            margin-bottom: 30px!important;
+        }
+        body, html {
+            height: 100%;
+            background-color: #F3F4F8;
+        }
+        .full_height {
+            min-height: 632px;
+            height: calc(100vh - 210px);
+        }
+    </style>
+
+</head>
+
+<body style="background: #F3F4F8;">
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="fullScreen_h full_height" style="background:#F3F4F8;margin-bottom: 30px; ">
+        <div class="topColtitWrap">
+            <div class="colBar passBg">
+                <p class="colTit" th:text="#{footer_Modify}">修改交易密码</p>
+            </div>
+        </div>
+        <div class="verifyBar">
+            <!--<div style="margin:0 30px 0 30px;background-color: #fcf8e5;color:#b48728;text-align: center;padding:10px;" th:text="#{foer_security}" >*为了您的资产安全，交易密码修改后24h以内不允许提现</div>-->
+            <div class="modifyBox">
+                <div class="tit" th:text="#{footer_Modify}">修改交易密码</div>
+                <div class="errorTip">
+                    <p class="hide" id="error">
+                        <span class="icoError"></span>
+                        <span id="error_show"></span>
+                    </p>
+                </div>
+                <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+                    <input type="text" style="display: none" id="redirectUrl" th:value="${redirectUrl}" name="redirectUrl" >
+                </div>
+                <form id="form" class="form" method="post" >
+                    <div class="regForm">
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <ul>
+                            <li class="input"style="display: none;">
+                                <!--<span class="icoReg icoUser"></span>-->
+                                <input type="text" class="form-control" id="userName" name="userName" th:value="${userName}" placeholder="请输入手机号" >
+                                <!--<b class="tooltip tooltip-top-right f-w" th:text="${userName}">请输入手机号</b>-->
+                            </li>
+                            <li class="input">
+                                <!--<span class="icoReg icoPass" style="position: absolute;top: 8px;" ></span>-->
+                                <input type="password" name="tradePassword"  id="password"  th:placeholder="#{footer_enter}"    placeholder="请输入新密码" maxlength="6"   >
+                            </li>
+                            <li class="input">
+                                <!--<span class="icoReg icoPass" style="position: absolute;top: 8px;"></span>-->
+                                <input type="password" name="confirm_password"  id="confirm_password" th:placeholder="#{footer_passord}"  placeholder="请再次输入新密码"   maxlength="6"     >
+                            </li>
+                            <li class="input with-secure-verification" id="input_captcha">
+                                <div id="captcha"></div>
+                                <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+                                <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+                            </li>
+
+                            <li class="input with-sms-verification" style="position: relative;top: -51px;">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <input type="text" class="form-control" id="mobileCode" name="mobileCode"  placeholder="请输入短信验证码"
+                                       style="width:200px;" maxlength="6"  th:placeholder="#{footer_verification_via}">
+                                <b class="tooltip tooltip-top-right f-w" style="color:white;" th:placeholder="#{footer_verification_via}">请输入短信验证码</b>
+                                <button type="button" id="button-des"   class="btn btn-primary rad-0 btn-sm  sendCode" th:text="#{register.obtain_sms}" style="width:140px; cursor:pointer">获取短信验证码</button>
+                            </li>
+                            <li style="position: relative;top: -100px;">
+                                <input type="hidden" name="type" value="google" />
+                                <input type="hidden" name="code" id="google_code" value="" />
+                                <input type="hidden" name="google_state" id="google_state"  th:value="${@globalService.googleAuth()}" />
+                                <input type="hidden" name="google_title" id="google_title" th:value="#{input_google_code}" />
+                                <input type="button" id="submit_pass"  class="submitBt white" value="修改交易密码"  th:value="#{footer_Modify}">
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="googleVerify" id="googleVerifyPop" style="display:none;" th:if="${@globalService.googleAuth()}">
+        <div class="google_input_title" th:text="#{input_google_code}">请输入谷歌验证码：</div>
+        <div class="google_input_box">
+            <input type="text" class="google_input" />
+        </div>
+        <!--<form action=""   class="sky-form boxed form">
+            <span th:replace="component/innerMobileValid :: innerMobileValid('')"></span>
+        </form>-->
+        <div class="google_button_box">
+            <a href="javascript:void(0);" class="gold_button" th:text="#{confirm}">确定</a>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script src="https://cstaticdun.126.net/load.min.js"></script>
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_user_security"], function ( a, a0,a1, o, b, c, d) {
+            d.sendMobileCode();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

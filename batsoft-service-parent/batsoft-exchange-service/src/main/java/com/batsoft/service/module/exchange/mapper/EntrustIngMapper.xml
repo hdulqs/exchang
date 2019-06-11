@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>EntrustIngMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:23:08 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.EntrustIngDao">
+
+    <resultMap id="findPageBySqlMap" type="com.batsoft.model.module.exchange.vo.EntrustIngVo">
+        <id column="id" property="id" javaType="java.lang.String" />
+        <result column="create_time" property="createTime" javaType="java.util.Date" />
+        <result column="update_time" property="updateTime" javaType="java.util.Date" />
+        <result column="account_id" property="accountId" javaType="java.lang.String" />
+        <result column="customer_id" property="customerId" javaType="java.lang.String" />
+        <result column="trade_coin_code" property="tradeCoinCode" javaType="java.lang.String" />
+        <result column="pricing_coin_code" property="pricingCoinCode" javaType="java.lang.String" />
+        <result column="entrust_type" property="entrustType" javaType="java.lang.String" />
+        <result column="entrust_state" property="entrustState" javaType="java.lang.Integer" />
+        <result column="order_id" property="orderId" javaType="java.lang.String" />
+        <result column="entrust_price" property="entrustPrice" javaType="java.math.BigDecimal" />
+        <result column="entrust_amout_sql" property="entrustAmoutSql" javaType="java.math.BigDecimal" />
+        <result column="entrust_amout" property="entrustAmout" javaType="java.math.BigDecimal" />
+        <result column="entrust_time" property="entrustTime" javaType="java.util.Date" />
+        <result column="user_name" property="userName" javaType="java.lang.String" />
+        <result column="traded_coins" property="tradedCoins" javaType="java.math.BigDecimal" />
+        <result column="total_money" property="totalMoney" javaType="java.math.BigDecimal" />
+    </resultMap>
+
+    <!-- 通过sql分页查询 -->
+    <select id="findPageBySql" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+        select a.*,b.user_name
+        from exchange_entrust_ing
+        as a left join member_user as b on a.customer_id = b.id
+        order by a.create_time desc
+    </select>
+
+    <select id="sumOfAmoutByStartTimeAndId" parameterType="java.util.Map" resultType="BigDecimal">
+        select  COALESCE(sum(entrust_amout),0) from exchange_entrust_ing
+        <where>
+            <if test=" id != null">
+               customer_id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="coinCode != null ">
+                AND trade_coin_code = #{coinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="priceCode != null ">
+                AND pricing_coin_code = #{priceCode,jdbcType=VARCHAR}
+            </if>
+            <if test="type != null">
+                AND entrust_type = #{type,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <!-- 通过userId分页查询 -->
+    <select id="findPageByUserId" parameterType="java.util.Map"
+            resultMap="findPageBySqlMap">
+        select a.*,b.user_name
+        from exchange_entrust_ing
+        as a left join member_user as b on a.customer_id = b.id
+        where a.customer_id=#{userId}
+        order by a.create_time desc
+    </select>
+    
+    <!-- 根据用户ID分组查询交易对 -->
+    <select id="findCoinPairGroupByUserId" parameterType="String" resultType="String">
+    	SELECT DISTINCT(CONCAT(trade_coin_code, '_', pricing_coin_code)) FROM exchange_entrust_ing WHERE customer_id = #{userId}
+    </select>
+    
+</mapper>

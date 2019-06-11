@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CoinWithdrawMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-25 16:15:19 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CoinWithdrawDao">
+
+    <resultMap id="baseResult" type="com.batsoft.model.module.exchange.vo.CoinWithdrawVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="to_address" property="toAddress" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="coin_count" property="coinCount" jdbcType="DECIMAL"/>
+        <result column="actual_count" property="actualCount" jdbcType="DECIMAL"/>
+        <result column="fee" property="fee" jdbcType="DECIMAL"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="tx_order" property="txOrder" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="hash_tx" property="hashTx" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="remark" property="remark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="sumResult" type="com.batsoft.model.module.exchange.vo.CoinWithdrawVo">
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="totleMoney" property="totleMoney" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findList" resultMap="baseResult" parameterType="java.util.Map" >
+        SELECT
+        f.id,
+        f.to_address,
+        f.coin_code,
+        f.coin_count,
+        f.actual_count,
+        f.fee,
+        f.status,
+        f.tx_order,
+        f.hash_tx,
+        f.user_id,
+        f.create_time,
+        f.remark
+        FROM  exchange_coin_withdraw f
+        <where>
+            <if test="userId !=null">
+                f.user_id=#{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+        ORDER  BY  f.create_time  DESC  LIMIT #{from,jdbcType=INTEGER},#{pageSize,jdbcType=INTEGER}
+    </select>
+
+    <select id="findListTotal" resultType="java.lang.Long" parameterType="java.util.Map">
+        SELECT
+        COUNT(id)
+        FROM  exchange_coin_withdraw
+        <where>
+            <if test="userId !=null">
+                user_id=#{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+    <select id="getTotleMoneyByDays" resultType="java.math.BigDecimal">
+        SELECT
+        IFNULL(sum(actual_count+fee),0)
+        FROM  exchange_coin_withdraw f
+        WHERE  f.user_id=#{userId,jdbcType=VARCHAR}
+        and f.coin_code= #{coinCode,jdbcType=VARCHAR}
+        <if test="type=='day'">
+            and DATE(create_time)=DATE(NOW())
+        </if>
+        and `status` in(0,1)
+    </select>
+
+    <select id="getTotleMoneyByUnaudited" parameterType="java.math.BigDecimal">
+        SELECT
+        IFNULL(sum(actual_count+fee),0)
+        FROM  exchange_coin_withdraw
+        WHERE
+        and status=0
+    </select>
+
+    <select id="getTotleWithdrawsByCode" resultMap="sumResult">
+        SELECT
+        IFNULL(SUM(actual_count + fee), 0) AS totleMoney,
+        coin_code
+        FROM  exchange_coin_withdraw f
+        WHERE
+        (`status` = 1 OR `status` = 0)
+        <if test="day!=null and day!=''">
+          and Date(update_time) = DATE(NOW())
+        </if>
+        GROUP BY coin_code
+    </select>
+
+    <select id="getCoins" resultMap="sumResult">
+        SELECT
+                coin_code
+            FROM
+                exchange_coin_withdraw
+            WHERE
+                `status` = 1
+            GROUP BY
+                coin_code
+    </select>
+
+</mapper>

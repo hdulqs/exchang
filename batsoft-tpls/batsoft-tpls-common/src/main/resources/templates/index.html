@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent clearfix')"></span>
+    <span th:replace="component/banner/bannerTemp :: banner_background"></span>
+
+
+    <section class="mt-10">
+        <div class="container">
+            <ul class="nav nav-tabs nav-bottom-border">
+                <li class="nav-item"><a class="nav-link active" href="#home_3" data-toggle="tab" aria-expanded="true">人民币交易区</a></li>
+                <li class="nav-item"><a class="nav-link" href="#profile_3" data-toggle="tab" aria-expanded="false">创新实验区</a></li>
+            </ul>
+
+
+            <div class="tab-content">
+                <div class="tab-pane active show" id="home_3" aria-expanded="true">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-vertical-middle">
+                                <thead>
+                                <tr>
+                                    <th>币种名称</th>
+                                    <th>最新成交价(CNY)</th>
+                                    <th>24小时成交额(CNY)</th>
+                                    <th>24小时成交量</th>
+                                    <th>日涨跌</th>
+                                    <th>价格趋势（3日）</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>UG Token UGT</td>
+                                    <td>0.396</td>
+                                    <td>100万</td>
+                                    <td>100万</td>
+                                    <td>100%</td>
+                                    <td>趋势</td>
+                                    <td>去交易</td>
+                                </tr>
+                                <tr>
+                                    <td>UG Token UGT</td>
+                                    <td>0.396</td>
+                                    <td>100万</td>
+                                    <td>100万</td>
+                                    <td>100%</td>
+                                    <td>趋势</td>
+                                    <td>去交易</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="profile_3" aria-expanded="false">
+                    <div class="container">
+                        <div class="table-responsive">
+                            <table class="table table-hover table-vertical-middle">
+                                <thead>
+                                <tr>
+                                    <th>币种名称</th>
+                                    <th>最新成交价(CNY)</th>
+                                    <th>24小时成交额(CNY)</th>
+                                    <th>24小时成交量</th>
+                                    <th>日涨跌</th>
+                                    <th>价格趋势（3日）</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>UG Token UGT</td>
+                                    <td>0.396</td>
+                                    <td>100万</td>
+                                    <td>100万</td>
+                                    <td>100%</td>
+                                    <td>趋势</td>
+                                    <td>去交易</td>
+                                </tr>
+                                <tr>
+                                    <td>UG Token UGT</td>
+                                    <td>0.396</td>
+                                    <td>100万</td>
+                                    <td>100万</td>
+                                    <td>100%</td>
+                                    <td>趋势</td>
+                                    <td>去交易</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+
+                    </div>                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="text-center mt-10" >
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-info-circle fa-5x"></i>
+                    <h2 class="fs-17 mt-6">WHY SMARTY IS DOWN?</h2>
+                    <p class="text-muted">We are working hard to migrate the data to a new datacenter. We'll be back online soon as possible, we really apologize for this inconvenience.</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">WHAT IS THE DOWNTIME?</h2>
+                    <p class="text-muted">Unfortunately we do not know the exact downtime, but we esitmate less than an hour.</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-comments-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">SUPPORT</h2>
+                    <p class="text-muted">If you have questions, please do not hesitate to write us an email at <a href="mailto:support@domaain.com">support@domaain.com</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- 文章 -->
+    <section>
+        <div class="container" >
+
+            <div class="row" id="articleRender">
+                <span th:replace="component/load/spinner4 :: spinner4"></span>
+
+            </div>
+
+        </div>
+
+        <script id="articleTmpl" type="text/x-jsrender">
+            <div class="col-md-6 col-xs-6">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>{{:name}}</h3>
+                        <a href="/article/list/{{:typeKey}}"   style="float: right">
+                            查看更多
+                        </a>
+                    </div>
+
+                    <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+                        <div class="timeline-hline"><!-- horizontal line --></div>
+                     {{for articleVos}}
+
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                {{:~formatDate(updateTime,"dd")}}<span>{{:~formatDate(updateTime,"MM")}}</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="/article/{{:id}}">{{:title}}</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">{{:~formatDate(updateTime,"yyyy-MM-dd")}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-eye"></i>
+                                        <span class="font-lato">{{:hits}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">{{:author}}</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                            <p>{{:shortContent}}</p>
+                        </div>
+                        <!-- /POST ITEM -->
+                         {{/for}}
+                    </div>
+
+
+                </div>
+       </script>
+    </section>
+    <!-- 文章/ -->
+
+    <!-- 友情链接-->
+    <span th:replace="component/friend/friendTemp :: friendLink"></span>
+    <!-- /友情链接-->
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",DEV+"/page_cms_article"], function (a,b) {
+            b.main();
+        });
+    </script>
+</div>
+
+</body>
+</html>

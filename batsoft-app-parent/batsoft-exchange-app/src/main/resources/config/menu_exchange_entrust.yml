@@ -1,0 +1,151 @@
+menus:
+  name: 交易所委托管理
+  key: exchange_entrust
+  path: exchange_entrust
+  icon: appstore-o
+  description: 交易所委托管理
+  item:
+  - name: 成交明细管理
+    key: exchange_customerAccountRecord
+    icon: appstore-o
+    path: customerAccountRecord/list
+    menu: 1
+    permission: exchange:customerAccountRecord:list
+    description: 成交明细管理
+    item:
+    - name: 增加
+      key: exchange_customerAccountRecord_add
+      icon: appstore-o
+      path: customerAccountRecord/add
+      menu: 0
+      permission: exchange:customerAccountRecord:add
+      description: 成交明细增加
+    - name: 修改
+      key: exchange_customerAccountRecord_edit
+      icon: appstore-o
+      path: customerAccountRecord/edit
+      menu: 0
+      permission: exchange:customerAccountRecord:edit
+      description: 成交明细修改
+    - name: 查看
+      key: exchange_customerAccountRecord_see
+      icon: appstore-o
+      path: customerAccountRecord/info
+      menu: 0
+      permission: exchange:customerAccountRecord:see
+      description: 成交明细查看
+    - name: 删除
+      key: exchange_customerAccountRecord_remove
+      icon: appstore-o
+      path: customerAccountRecord/remove
+      menu: 0
+      permission: exchange:customerAccountRecord:remove
+      description: 成交明细删除
+  - name: 历史委托管理
+    key: exchange_entrustHistory
+    icon: appstore-o
+    path: entrustHistory/list
+    menu: 1
+    permission: exchange:entrustHistory:list
+    description: 历史委托管理
+    item:
+    - name: 增加
+      key: exchange_entrustHistory_add
+      icon: appstore-o
+      path: entrustHistory/add
+      menu: 0
+      permission: exchange:entrustHistory:add
+      description: 历史委托增加
+    - name: 修改
+      key: exchange_entrustHistory_edit
+      icon: appstore-o
+      path: entrustHistory/edit
+      menu: 0
+      permission: exchange:entrustHistory:edit
+      description: 历史委托修改
+    - name: 查看
+      key: exchange_entrustHistory_see
+      icon: appstore-o
+      path: entrustHistory/info
+      menu: 0
+      permission: exchange:entrustHistory:see
+      description: 历史委托查看
+    - name: 删除
+      key: exchange_entrustHistory_remove
+      icon: appstore-o
+      path: entrustHistory/remove
+      menu: 0
+      permission: exchange:entrustHistory:remove
+      description: 历史委托删除
+  - name: 委托详情管理
+    key: exchange_entrustInfo
+    icon: appstore-o
+    path: entrustInfo/list
+    menu: 1
+    permission: exchange:entrustInfo:list
+    description: 委托详情管理
+    item:
+    - name: 增加
+      key: exchange_entrustInfo_add
+      icon: appstore-o
+      path: entrustInfo/add
+      menu: 0
+      permission: exchange:entrustInfo:add
+      description: 委托详情增加
+    - name: 修改
+      key: exchange_entrustInfo_edit
+      icon: appstore-o
+      path: entrustInfo/edit
+      menu: 0
+      permission: exchange:entrustInfo:edit
+      description: 委托详情修改
+    - name: 查看
+      key: exchange_entrustInfo_see
+      icon: appstore-o
+      path: entrustInfo/info
+      menu: 0
+      permission: exchange:entrustInfo:see
+      description: 委托详情查看
+    - name: 删除
+      key: exchange_entrustInfo_remove
+      icon: appstore-o
+      path: entrustInfo/remove
+      menu: 0
+      permission: exchange:entrustInfo:remove
+      description: 委托详情删除
+  - name: 委托中管理
+    key: exchange_entrustIng
+    icon: appstore-o
+    path: entrustIng/list
+    menu: 1
+    permission: exchange:entrustIng:list
+    description: 委托中管理
+    item:
+    - name: 增加
+      key: exchange_entrustIng_add
+      icon: appstore-o
+      path: entrustIng/add
+      menu: 0
+      permission: exchange:entrustIng:add
+      description: 委托中增加
+    - name: 修改
+      key: exchange_entrustIng_edit
+      icon: appstore-o
+      path: entrustIng/edit
+      menu: 0
+      permission: exchange:entrustIng:edit
+      description: 委托中修改
+    - name: 查看
+      key: exchange_entrustIng_see
+      icon: appstore-o
+      path: entrustIng/info
+      menu: 0
+      permission: exchange:entrustIng:see
+      description: 委托中查看
+    - name: 删除
+      key: exchange_entrustIng_remove
+      icon: appstore-o
+      path: entrustIng/remove
+      menu: 0
+      permission: exchange:entrustIng:remove
+      description: 委托中删除

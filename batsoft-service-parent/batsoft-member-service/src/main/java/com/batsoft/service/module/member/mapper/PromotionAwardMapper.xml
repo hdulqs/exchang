@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.member.dao.PromotionAwardDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.member.PromotionAward">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="promoter_id" property="promoterId" jdbcType="VARCHAR"/>
+        <result column="promoter_name" property="promoterName" jdbcType="VARCHAR"/>
+        <result column="promoter_parent_id" property="promoterParentId" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="INTEGER"/>
+        <result column="award" property="award" jdbcType="DECIMAL"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <select id="findPromotionAward" resultMap="baseResult" parameterType="java.util.HashMap">
+        SELECT
+        *
+        FROM
+        cms_promoter_award
+        where promoter_parent_id = #{id,jdbcType=VARCHAR}  ORDER BY create_time DESC limit #{from},#{pageSize}
+    </select>
+
+    <select id="findParentPromotionAward" resultMap="baseResult" parameterType="java.util.HashMap">
+        SELECT
+        *
+        FROM
+        cms_promoter_award
+        where promoter_id = #{id,jdbcType=VARCHAR} AND status = 0
+    </select>
+
+    <select id="findPromotionAwardTotal" resultType="java.lang.Long" parameterType="java.util.HashMap">
+        SELECT
+        COUNT(id)
+        FROM
+        cms_promoter_award
+        where promoter_parent_id = #{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="findPromotionAwardSumStatus" resultType="java.math.BigDecimal" parameterType="java.util.HashMap">
+        SELECT COALESCE(SUM(award),0) FROM cms_promoter_award
+        <where>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="id != null ">
+              AND  promoter_parent_id = #{id,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+
+
+
+
+</mapper>

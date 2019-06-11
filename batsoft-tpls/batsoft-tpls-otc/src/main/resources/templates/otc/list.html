@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky clearfix')"></span>
+    <!-- projects -->
+    <section class="section-sm">
+        <div class="container">
+            <style>
+                .select2{width: 150px}
+                .filter-search {
+                    border: 2px solid #69B0E4;
+                    width: 995px;
+                }
+                .filter-search .select2-container--default .select2-selection--single{
+                    border: 0px;
+                }
+                .filter-search .btn{
+                    border-radius: 0px;
+                    margin-right: 0px;
+                    margin-left: 60px;
+                }
+
+            </style>
+            <form>
+                <div class="panel filter-search mb-10 ml-70 row">
+
+                    <div class="col-md-10 paramsPanel">
+
+                        <select class="form-control select2 " id="coinsRender" name="coin" style="width: 150px">
+
+                        </select>
+                        <script id="coinsTpl" type="text/x-jsrender">
+                                 {{if #getIndex()==0}}
+                                 <option value="{{:coinCode}}" selected="true"><img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}" style="width:20px"> {{:coinCode}}</option>
+                                 {{else}}
+                                  <option value="{{:coinCode}}" ><img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}" style="width:20px"> {{:coinCode}}</option>
+                                {{/if}}
+                                </script>
+                        <span th:replace="component/select/select-country:: country('country','')"></span>
+                        <select class="form-control select2" name="otcType"  style="width: 150px">
+                            <option value="">所有交易类型</option>
+                            <option value="1">购买</option>
+                            <option value="0">出售</option>
+                        </select>
+                        <span th:replace="component/select/select-currency:: currency('currency','')"></span>
+                        <span th:replace="component/select/select-payType:: payType('payType','')"></span>
+                    </div>
+                    </form>
+                    <div class="col-md-2">
+                        <button  class="btn btn-info search"  type="button"  id="btn-search"><i class="fa fa-search"></i> 搜索</button>
+                    </div>
+                </div>
+
+        </div>
+
+        <div class="container">
+            <table id="table">
+
+            </table>
+        </div>
+
+    </section>
+    <!-- /projects -->
+
+
+
+
+
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","select2","jquery_validate", "messages_zh", DEV + "/table_bootstrap", "jquery_backstretch",DEV+"/page_otc"], function (a,o,b,f1,f2,c,d) {
+            d.list();
+        });
+    </script>
+</div>
+
+</body>
+</html>

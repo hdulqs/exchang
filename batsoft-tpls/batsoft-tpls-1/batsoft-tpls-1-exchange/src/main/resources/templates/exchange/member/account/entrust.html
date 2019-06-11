@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable{margin:0px;}
+        .theader th{
+            background-color: #181B2A;
+            color: #FFFFFF;
+        }
+        .topColtitWrap {
+            border-bottom: #181B2A 1px solid;
+            color:#C7CCE6 ;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181B2A;
+        }
+        .page .pagination>li:first-child>a, .page .pagination>li:first-child>span {
+            margin-left: 0;
+            border-top-left-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+
+        .page .pagination>li>a, .page .pagination>li>span {
+            position: relative;
+            float: left;
+            padding: 6px 12px;
+            margin-left: -1px;
+            line-height: 1.42857143;
+            color: #c7cce6;
+            margin-left: 5px;
+            text-decoration: none;
+             background-color: #181B2A;
+            border: 1px solid #4E5B85;
+        }
+        .no-data {
+            padding: 12.8% 0;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap" >
+        <div class="colBar clockBg">
+            <p class="colTit" th:text="#{open_order}">当前委托</p>
+        </div>
+    </div>
+    <div class="wrapMain fullScreen_h">
+        <div class="marketsTableBox" style="display:none;">
+            <div class="hr20" style="border: 0"></div>
+
+            <div class="marketsTable borderTable" style="background-color: #181B2A;border-top: none;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl" style="background: #181B2A;">
+                    <tr class="theader" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">
+                        <th width="2%"  style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">&nbsp;</th>
+                        <th width="13%" th:text="#{time}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">时间</th>
+                        <th width="10%" th:text="#{markets}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">市场</th>
+                        <th width="9%" th:text="#{type}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">类型</th>
+                        <!--<th width="9%" th:text="#{side}">买卖</th>-->
+                        <th width="12%" th:text="#{price}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">价格</th>
+                        <th width="10%" th:text="#{amount}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">数量</th>
+                        <th width="10%" th:text="#{vol}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">成交率%</th>
+                        <th width="15%" th:text="#{total}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">成交金额</th>
+                        <th width="10%" th:text="#{actions}" style=" background-color: #181B2A;color: #C7CCE6;text-align: center;">操作</th>
+                        <!--<th width="10%"><a href="javascript:void(0)" class="editCommBt revokeAll" th:text="#{cancel_all}">全撤</a></th>-->
+                    </tr>
+                    <tbody id="entrust_render">
+                    <!--<tr class="no-data-tr">
+                        <td colspan="100">
+                            <div class="no-data">
+                              <span th:text="#{no_data}"> 暂无数据 </span> </div>
+                        </td>
+                    </tr>-->
+                    <!--<div id="entrust_render"></div>-->
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="page">
+                <ul class="pagination" id="pagination"></ul>
+            </div>
+            <div class="hr30"></div>
+        </div>
+    </div>
+
+    <script id="entrust_tpl" type="text/x-jsrender">
+        <tr class="no-data-tr" style="background-color: #181B2A;
+            color: #FFFFFF;">
+            <td style=" text-align: center;"> </td>
+            <td style=" text-align: center;">{{:entrustTime}}</td>
+            <td value="{{:tradeCoinCode}}_{{:pricingCoinCode}}" style=" text-align: center;">{{:tradeCoinCode}}_{{:pricingCoinCode}}</td>
+            <td style=" text-align: center;">{{:typeStr}}</td>
+             <!--<td>{{:category}}</td>-->
+             <td style=" text-align: center;">{{:entrustPrice}}</td>
+             <td style=" text-align: center;">{{:entrustAmoutSql}}</td>
+             <td style=" text-align: center;">{{:tradeAmout}}</td>
+             <td style=" text-align: center;">{{:((entrustAmoutSql-entrustAmout)*entrustPrice).toFixed(2)}}</td>
+             {{if entrustState==0}}
+             <td style=" text-align: center;"><a href="javascript:void(0);" id="{{:orderId}}" style="color:#387DE0" th:text="#{bger}">撤销</a></td>
+             {{else}}
+             <td></td>
+             {{/if }}
+        </tr>
+    </script>
+
+    <div class="popBox" id="popBox" style="display: none;">
+        <span class="closePopBt">X</span>
+        <div class="prompt">
+            <!--<p><img src="https://www.GGCOIN.com/images/newindex/warning.png" alt=""></p>-->
+            <p class="promptTit" th:text="#{gterui}">确认是否要全部撤销?</p>
+            <div class="hr30"></div>
+        </div>
+        <div class="tc">
+            <a href="javascript:void(0)" class="bt1 gray1" th:text="#{jshy}">取消</a>
+            <a href="javascript:void(0)" class="bt2 white" th:text="#{hudata}">确定</a>
+        </div>
+    </div>
+
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","numeral","jquery_pagination","layer","laydate", "clipboard","qrcode", DEV + "/page_user"], function ( a0,a,q, i, o, b, c, d) {
+            d.entrust();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+
+    </script>
+</div>
+
+</body>
+</html>

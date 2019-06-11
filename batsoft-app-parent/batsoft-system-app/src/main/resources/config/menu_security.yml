@@ -1,0 +1,144 @@
+menus:
+  name: 权限管理系统
+  key: security
+  path: security
+  icon: appstore-o
+  description: 权限管理系统
+  item:
+  - name: 菜单管理
+    key: security_appMenu
+    icon: appstore-o
+    path: appmenu/appMenu/list
+    menu: 1
+    permission: system:manage:appMenu:list
+    description: 菜单管理
+    item:
+    - name: 增加
+      key: security_appMenu_add
+      icon: appstore-o
+      path: appmenu/appMenu/add
+      menu: 0
+      permission: system:manage:appMenu:add
+      description: 菜单增加
+    - name: 修改
+      key: security_appMenu_edit
+      icon: appstore-o
+      path: appmenu/appMenu/edit
+      menu: 0
+      permission: system:manage:appMenu:edit
+      description: 菜单修改
+    - name: 删除
+      key: security_appMenu_remove
+      icon: appstore-o
+      path: appmenu/appMenu/remove
+      menu: 0
+      permission: system:manage:appMenu:remove
+      description: 菜单删除
+  - name: 前台导航管理
+    key: security_appNavigation
+    icon: appstore-o
+    path: navigation/appNavigation/list
+    menu: 1
+    permission: system:navigation:appNavigation:list
+    description: 前台导航管理
+    item:
+    - name: 增加
+      key: security_appNavigation_add
+      icon: appstore-o
+      path: navigation/appNavigation/add
+      menu: 0
+      permission: system:navigation:appNavigation:add
+      description: 前台导航增加
+    - name: 修改
+      key: security_appNavigation_edit
+      icon: appstore-o
+      path: navigation/appNavigation/edit
+      menu: 0
+      permission: system:navigation:appNavigation:edit
+      description: 前台导航修改
+    - name: 删除
+      key: security_appNavigation_remove
+      icon: appstore-o
+      path: navigation/appNavigation/remove
+      menu: 0
+      permission: system:navigation:appNavigation:remove
+      description: 前台导航删除
+  - name: 系统用户管理
+    key: system_appuser
+    icon: appstore-o
+    path: manage/appUser/list
+    menu: 1
+    permission: system:manage:appUser:list
+    description: 系统用户管理管理
+    item:
+    - name: 增加
+      key: system_appuser_add
+      icon: appstore-o
+      path: manage/appUser/add
+      menu: 0
+      permission: system:manage:appUser:add
+      description: 系统用户增加
+    - name: 修改
+      key: system_appuser_edit
+      icon: appstore-o
+      path: manage/appUser/edit
+      menu: 0
+      permission: system:manage:appUser:edit
+      description: 系统用户修改
+    - name: 查看
+      key: system_appuser_see
+      icon: appstore-o
+      path: manage/appUser/see
+      menu: 0
+      permission: system:manage:appUser:see
+      description: 系统用户查看
+    - name: 删除
+      key: system_appuser_remove
+      icon: appstore-o
+      path: manage/appUser/remove
+      menu: 0
+      permission: system:manage:appUser:remove
+      description: 系统用户删除
+  - name: 系统角色管理
+    key: system_appRole
+    icon: appstore-o
+    path: manage/appRole/list
+    menu: 1
+    permission: system:manage:appRole:list
+    description: 系统角色管理
+    item:
+    - name: 增加
+      key: system_appRole_add
+      icon: appstore-o
+      path: manage/appRole/add
+      menu: 0
+      permission: system:manage:appRole:add
+      description: 系统角色增加
+    - name: 修改
+      key: system_appRole_edit
+      icon: appstore-o
+      path: manage/appRole/edit
+      menu: 0
+      permission: system:manage:appRole:edit
+      description: 系统角色修改
+    - name: 查看
+      key: system_appRole_see
+      icon: appstore-o
+      path: manage/appRole/info
+      menu: 0
+      permission: system:manage:appRole:see
+      description: 系统角色查看
+    - name: 删除
+      key: system_appRole_remove
+      icon: appstore-o
+      path: manage/appRole/remove
+      menu: 0
+      permission: system:manage:appRole:remove
+      description: 系统角色删除
+    - name: 授权
+      key: system_appRole_perm
+      icon: appstore-o
+      path: manage/appRole/savePerm
+      menu: 0
+      permission: system:manage:appRole:perm
+      description: 系统角色授权

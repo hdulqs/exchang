@@ -1,0 +1,57 @@
+menus:
+  name: 机器人管理
+  key: exchange_robot
+  path: exchange_robot
+  icon: appstore-o
+  description: 机器人管理
+  item:
+  - name: 交易机器人管理
+    key: exchange_robotTrade
+    icon: appstore-o
+    path: robotTrade/list
+    menu: 1
+    permission: exchange:robotTrade:list
+    description: 交易机器人管理
+    item:
+    - name: 增加
+      key: exchange_robotTrade_add
+      icon: appstore-o
+      path: robotTrade/add
+      menu: 0
+      permission: exchange:robotTrade:add
+      description: 交易机器人增加
+    - name: 修改
+      key: exchange_robotTrade_edit
+      icon: appstore-o
+      path: robotTrade/edit
+      menu: 0
+      permission: exchange:robotTrade:edit
+      description: 交易机器人修改
+    - name: 查看
+      key: exchange_robotTrade_see
+      icon: appstore-o
+      path: robotTrade/info
+      menu: 0
+      permission: exchange:robotTrade:see
+      description: 交易机器人查看
+    - name: 删除
+      key: exchange_robotTrade_remove
+      icon: appstore-o
+      path: robotTrade/remove
+      menu: 0
+      permission: exchange:robotTrade:remove
+      description: 交易机器人删除
+    - name: 开启
+      key: exchange_robotTrade_open
+      icon: appstore-o
+      path: robotTrade/open
+      menu: 0
+      permission: exchange:robotTrade:open
+      description: 开启
+    - name: 关闭
+      key: exchange_robotTrade_stop
+      icon: appstore-o
+      path: robotTrade/stop
+      menu: 0
+      permission: exchange:robotTrade:stop
+      description: 关闭

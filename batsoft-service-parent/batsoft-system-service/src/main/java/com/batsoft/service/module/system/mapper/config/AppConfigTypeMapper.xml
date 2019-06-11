@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppConfigTypeMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-06-26 15:11:40 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.config.AppConfigTypeDao">
+    <resultMap id="configType" type="com.batsoft.model.module.system.config.vo.AppConfigTypeVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+        <result column="type_key" property="typeKey" jdbcType="VARCHAR" />
+
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, type_name, type_key
+    </sql>
+
+    <!-- 查询Types -->
+    <select id="findTypes"
+            resultMap="configType">
+        SELECT  <include refid="Base_Column_List" />
+        from system_app_config_type
+        where del=0 order by sort ASC
+
+    </select>
+</mapper>

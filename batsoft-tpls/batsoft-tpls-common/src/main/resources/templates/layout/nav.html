@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<div th:fragment="nav(headerStyle)">
+              <div id="header" th:class="${headerStyle}">
+
+
+                      <!-- TOP NAV -->
+                      <header id="topNav">
+                              <!-- Top Bar -->
+                              <!-- /Top Bar -->
+
+                              <div class="container">
+
+                                      <!-- Mobile Menu Button -->
+                                      <button class="btn btn-mobile" data-toggle="collapse" data-target=".nav-main-collapse">
+                                              <i class="fa fa-bars"></i>
+                                      </button>
+                                      <!-- login-->
+                                      <span th:replace="component/loginState::loginState"></span>
+                                      <!-- /login-->
+                                      <!-- Logo -->
+                                      <span th:replace="component/logo::logo"></span>
+
+                                      <!--
+                                          Top Nav
+
+                                          AVAILABLE CLASSES:
+                                          submenu-dark = dark sub menu
+                                      -->
+                                      <div class="navbar-collapse collapse float-right nav-main-collapse">
+                                              <!--nav-->
+                                              <nav class="nav-main">
+
+                                                      <!--
+                                                          NOTE
+
+                                                          For a regular link, remove "dropdown" class from LI tag and "dropdown-toggle" class from the href.
+                                                          Direct Link Example:
+
+                                                          <li>
+                                                              <a href="#">HOME</a>
+                                                          </li>
+                                                      -->
+
+                                                      <ul id="topMain" class="nav nav-pills nav-main top-nav">
+
+                                                      </ul>
+
+                                                      <script id="topNavTmpl" type="text/x-jsrender">
+                                                          {{for}}
+                                                          {{if #getIndex()==0}}
+                                                            <li class="active"><a href="{{:remark}}">{{:text}}</a></li>
+                                                          {{else}}
+                                                            <li><a href="{{:remark}}" >{{:text}}</a></li>
+                                                          {{/if}}
+                                                          {{/for}}
+
+                                                       </script>
+
+
+                                                     <!-- <ul id="topMain" class="nav nav-pills nav-main">
+                                                              <li class=" active">&lt;!&ndash; HOME &ndash;&gt;
+                                                                      <a  href="/">
+                                                                              首页
+                                                                      </a>
+
+                                                              </li>
+                                                              <li class="">&lt;!&ndash; PAGES &ndash;&gt;
+                                                                      <a href="/market/btc2cny">
+                                                                              行情中心
+                                                                      </a>
+                                                              </li>
+                                                              <li class=" ">&lt;!&ndash; PORTFOLIO &ndash;&gt;
+                                                                      <a  href="/ex/member/user">
+                                                                              财务中心
+                                                                      </a>
+                                                              </li>
+                                                              <li class="">&lt;!&ndash; FEATURES &ndash;&gt;
+                                                                      <a  href="#">
+                                                                              ICO
+                                                                      </a>
+                                                              </li>
+                                                              <li class="">&lt;!&ndash; PORTFOLIO &ndash;&gt;
+                                                                      <a href="/templates.article">
+                                                                              新闻
+                                                                      </a>
+                                                              </li>
+
+                                                              &lt;!&ndash;<li class="dropdown mega-menu nav-animate-fadeIn nav-hover-animate hover-animate-bounceIn">&lt;!&ndash; THEMATIC &ndash;&gt;
+                                                                  <a class="dropdown-toggle noicon" href="#">
+                                                                      <span class="badge badge-danger float-right fs-11">v2</span>
+                                                                      <b>NEW</b>
+                                                                  </a>
+                                                                  <ul class="dropdown-menu dropdown-menu-clean">
+                                                                      <li>
+                                                                          <div class="row">
+
+                                                                              <div class="col-md-5th">
+                                                                                  <ul class="list-unstyled">
+                                                                                      <li><span>PACKS : READY TO USE</span></li>
+                                                                                      <li class="divider"></li>
+                                                                                      <li>
+                                                                                          <span class="fs-11 mt-0 pb-15 pt-15 text-info">NEW AND HOT: COMPLETE PACKAGES READY TO USE</span>
+                                                                                      </li>
+                                                                                      <li class="divider"></li>
+                                                                                      <li><a target="_blank" href="pack-realestate-home-1.html">REAL ESTATE</a></li>
+                                                                                      <li><a target="_blank" href="pack-megashop-home-1.html">MEGA SHOP</a></li>
+                                                                                      <li><a target="_blank" href="pack-hotel-home-1.html">HOTEL v1</a></li>
+                                                                                      <li><a target="_blank" href="pack-hotel-v2-home-1.html">HOTEL v2</a></li>
+                                                                                      <li><a target="_blank" href="pack-photography-home-1.html">PHOTOGRAPHY / PORTFOLIO</a></li>
+                                                                                      <li><a target="_blank" href="pack-caffe-home-1.html">CAFFE</a></li>
+                                                                                      <li><a target="_blank" href="pack-caffe-onepage.html">CAFFE - ONEPAGE</a></li>
+                                                                                  </ul>
+                                                                              </div>
+
+                                                                          </div>
+                                                                      </li>
+                                                                  </ul>
+                                                              </li>&ndash;&gt;
+                                                      </ul>-->
+
+                                              </nav>
+                                              <!--end nav-->
+
+                                      </div>
+
+                              </div>
+                      </header>
+                      <!-- /Top Nav -->
+
+              </div>
+        <div th:replace="component/basejs :: basejs(~{::script})">
+                <script>
+                    seajs.use([DEV + "/main",DEV+"/page_common"], function (a,b) {
+                        b.loadTopMenu();
+                    });
+                </script>
+        </div>
+      </div>
+
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+<!-- banner作为背景图滚动  -->
+<div th:fragment="banner_background" >
+    <!-- SLIDER -->
+    <div id="banner_background"></div>
+    <!-- SLIDER -->
+    <script id="banner_background_Temp" type="text/x-jsrender">
+        <section id="slider" class="fullheight m-0"
+                 data-background-delay="3500"
+                 data-background-fade="1000"
+                 data-background="{{:images}}">
+            <a class="bs-next" href="#"></a>
+            <a class="bs-prev" href="#"></a>
+            <div class="display-table">
+                <div class="display-table-cell vertical-align-middle">
+
+                    <div class="container text-center">
+                        <h1 class="fw-300 mt-30 mb-0 wow fadeIn animated" data-wow-delay="0.6s">SMARTY BACKSTRETCH</h1>
+                    </div>
+
+                </div>
+            </div>
+            <span class="raster overlay dark-3 z-index-0"><!-- dark|light overlay [0 to 9 opacity] --></span>
+        </section>
+    </script>
+    <!-- js加载项 -->
+    <div th:replace="component/basejs :: basejs(~{::script})">
+        <script>
+            seajs.use([DEV + "/main","jquery_backstretch",DEV+"/page_banner"], function (a,c,d) {
+                d.list();
+            });
+        </script>
+    </div>
+</div>
+
+<!-- nanner图循环滚动 -->
+<div th:fragment="banner_runner">
+
+</div>
+
+</body>
+</html>

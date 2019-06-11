@@ -1,0 +1,1 @@
+define(function(require,exports,module){require("bootstrap"),require("jsviews"),require("sweetalert"),require("jquery_validate"),require("messages_zh"),module.exports={Init:function(){}}});

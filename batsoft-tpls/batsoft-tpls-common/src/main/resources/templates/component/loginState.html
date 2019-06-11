@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body >
+<div th:fragment="loginState">
+    <span th:replace="component/lan :: lan"></span>
+    <!-- 登录注册 -->
+    <ul class="float-right nav nav-pills nav-social nav-second-main login-not">
+
+        <li>
+            <a href="/login" target="_blank" class="social-facebook text-center " data-toggle="tooltip" data-placement="bottom" title="" data-original-title="登录">
+                <i class="glyphicon glyphicon-user"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/register" target="_blank" class="social-twitter text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="注册">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+        </li>
+    </ul>
+    <!-- /登录注册 -->
+    <!-- 退出登录 -->
+    <ul class="float-right nav nav-pills nav-social nav-second-main p-hide login-success">
+        <li>
+            <a href="/ex/member/user"
+               class="social-twitter text-center user-name">
+
+            </a>
+        </li>
+        <li>
+            <a href="/logout" class="social-twitter text-center"
+               data-toggle="tooltip" data-placement="bottom" title=""
+               data-original-title="退出登录">
+                <i class="fa fa-sign-out"></i>
+            </a>
+        </li>
+    </ul>
+
+    <!-- /退出登录 -->
+</div>
+</body>
+</html>

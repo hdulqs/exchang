@@ -1,0 +1,359 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <title th:text="#{register}">系统注册</title>
+    <meta charset="utf-8" />
+    <meta name="description" th:content="${@globalService.webSiteRemark()}">
+    <meta name="keywords"  th:content="${@globalService.webSiteKeyWords()}">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{${@globalService.fileHost()}+${@globalService.iconPath()}}">
+    <!-- mobile settings -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />-->
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/login_reg.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/i18n/'+${@globalService.lan()}+'.js'}"></script>
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+    <style type="text/css">
+
+        #login-container  .chosen-container-single .chosen-single {
+            background-color: rgba(0,0,0,0.2) !important;
+            -webkit-background-clip: padding-box;
+            -moz-background-clip: padding;
+            background-clip: padding-box;
+
+            border: #615A63 2px solid !important;
+            border-radius: 0 !important;
+            color: #fff !important;
+            display: block;
+            height: 34px;
+            overflow: hidden;
+            line-height: 24px;
+            padding: 0 0 0 8px;
+            position: relative;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .yidun.yidun--light .yidun_control {
+            position: relative;
+            border: 1px solid #e4e7eb;
+            background-color: #f7f9fa;
+            height: 40px;
+            border-radius: 2px;
+            width: 350px;
+        }
+
+        .login-wrap__form .alert.alert-mini {
+            margin-right: 5%;
+        }
+
+        .alert.alert-mini {
+            padding: 6px 10px;
+            border-left: 0;
+            position: relative;
+            top: 6px;
+        }
+        .yidun.yidun--light .yidun_control {
+            position: relative;
+            border: 1px solid #e4e7eb;
+            background-color: #f7f9fa;
+            height: 40px;
+            border-radius: 2px;
+            width: 400px;
+        }
+            #userName-error{
+                color: #f3f4f8;
+                margin-bottom: -20px;
+            }
+        #confirm_password-error{
+            color: #f3f4f8;
+            margin-bottom: -20px;
+        }
+        #password_pis-error{
+            color: #f3f4f8;
+            margin-bottom: -20px;
+        }
+        .alert-danger {
+            background-color: #f2dede;
+            border-color: #ebcccc;
+            color: #a94442;
+        }
+        .p-hide {
+            display: none!important;
+        }
+        .mb-30 {
+            margin-bottom: 30px!important;
+        }
+        #userName:focus{
+            border:1px solid #638BD4;
+        }
+        #password:focus{
+            border:1px solid #638BD4;
+        }
+        #confirm_password:focus{
+            border:1px solid #638BD4;
+        }
+        #password_his:focus{
+            border:1px solid #638BD4;
+        }
+        #password_pis:focus{
+            border:1px solid #638BD4;
+        }
+        #mobileCode:focus{
+            border:1px solid #638BD4;
+        }
+        .sky-form .tooltip-top-right:after {
+            top: 100%!important;
+            right: auto!important;
+            left: 0!important;
+            border-top: 4px solid #FFFFFF!important;
+            border-right: 4px solid transparent;
+            border-left: 4px solid transparent;
+        }
+        .sky-form .tooltip {
+            background: #FFFFFF!important;
+            border-radius: 2px 2px 2px 0!important;
+            border: none!important;
+        }
+        #password_his::-webkit-input-placeholder {
+                   color:#636c72;
+               }
+        /*#password_his::-moz-input-placeholder {*/
+            /*color:#636c72;*/
+        /*}*/
+
+        #password_his::-ms-input-placeholder {
+            color:#636c72;
+        }
+        #password_his::placeholder {
+            color:#636c72;
+        }
+        /*#password_pis::-moz-input-placeholder {*/
+                          /*color:#636c72;*/
+                      /*}*/
+
+        #password_pis::-ms-input-placeholder {
+            color:#636c72;
+        }
+        #password_pis::-webkit-input-placeholder {
+                  color:#636c72;
+              }
+        #password_pis::placeholder {
+            color:#636c72;
+        }
+        element.style {
+        }
+        .sky-form .tooltip-top-right {
+            bottom: 100%;
+            margin-bottom: 15px;
+        }
+        .sky-form .tooltip {
+            position: absolute;
+            z-index: 1;
+            left: -9999px;
+            padding: 2px 8px 3px;
+            font-size: 11px;
+            line-height: 16px;
+            font-weight: 400;
+            /*background: rgba(0,0,0,.9);*/
+            color: #638BD4;
+            opacity: 0;
+            transition: margin .3s,opacity .3s;
+            -o-transition: margin .3s,opacity .3s;
+            -ms-transition: margin .3s,opacity .3s;
+            -moz-transition: margin .3s,opacity .3s;
+            -webkit-transition: margin .3s,opacity .3s;
+            background: #FFFFFF!important;
+            border-radius: 2px 2px 2px 0!important;
+            border: none!important;
+        }
+        .regForm li:active, :focus {
+            outline: 0!important;
+            -webkit-box-shadow: none!important;
+            box-shadow: none!important;
+            -webkit-tap-highlight-color: transparent;
+
+
+        }
+        .new_header .navBar li a {
+            font-size: 14px;
+            color: #c7cce6;
+            letter-spacing: 0;
+            position: relative;
+        }
+        .new_header .navBar li a:hover{
+            font-size: 14px;
+            color: #c7cce6;
+            letter-spacing: 0;
+            position: relative;
+        }
+        .navBar li a{display:block;height:50px;line-height:50px;padding:0 15px;color:#999}
+        .footerNavBar div[class^=footer-section-] {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            font-size: 12px;
+            color: #60688d;
+            padding-left: 0%;
+            min-height: 200px;
+        }
+        .ladda-spinner{
+            display: none;
+        }
+    </style>
+</head>
+
+<body >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div class="wrapper  white-bg">
+    <span th:replace="layout/nav :: nav"></span>
+
+    <div class="wrapMain tabs fullScreen_h">
+        <!-- ALERT -->
+        <div class="regBox" id="register-box">
+            <!-- /ALERT -->
+            <div class="tit" th:text="#{register}">用户注册</div>
+            <div class="errorTip">
+                <p class="hide" id="error">
+                    <span class="icoError"></span>
+                    <span id="error_show"></span>
+                </p>
+            </div>
+            <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+
+            </div>
+
+            <form method="post" th:action="@{/reg}"  class="sky-form boxed form" style="border:none;background: transparent;">
+
+                <div class="regForm">
+                    <ul>
+                	 <span th:replace="component/mobileValid :: mobileValid('')"></span>
+                        <li>
+                            <button type="submit" class="submitBt white" style="width: 400px" disabled><span th:text="#{register}"> 立即注册</span>
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+          <span id="kiu" th:text="#{infger}" style="display: none"></span>
+
+
+    <!--
+                <div class="login-forgot-password float-left f-w">
+                    <a href="/login" class="f-w" th:text="#{login}">已有账户?</a>
+                </div>
+                -->
+            </form>
+            <!-- /login form -->
+
+        </div>
+    </div>
+    <!-- /SLIDER -->
+</div>
+<!-- /wrapper -->
+
+<!-- JAVASCRIPT FILES -->
+<div style=" background: #181b2a;">
+<div  th:fragment="footer" style="height: 280px;width: 100%;min-width: 1200px;background:#181b2a; ">
+    <div class="footerNavBar" style="height: 200px;padding-top: 50px;">
+        <div class="footer-section-logo">
+            <div class="footer-logo-img" style="position: relative;top: 0px;"></div>
+            <div style=" font-size: 12px;color: #4E5B85;height: 22px;" th:text="#{main_page_currency}"></div>
+            <div style=" font-size: 12px;color: #4E5B85;height: 50px;width: 130px;">比特天猫官方8群</div>
+            <div class="fotop" style="position: relative;top: -13px;width: 80px;height: 80px;">
+                <!--<table>-->
+                <!--<tr>-->
+                <!--<th class="foter1" style="width: 32px;"></th>-->
+                <!--<th class="foter2" style="width: 32px;"></th>-->
+                <!--<th class="foter3" style="width: 32px;"></th>-->
+                <!--<th class="foter4" style="width: 32px;"></th>-->
+                <!--</tr>-->
+                <!--</table>-->
+            </div>
+        </div>
+
+        <div class="footer-section-service">
+            <div class="footer-title" th:text="#{footer.service}">服务</div>
+            <div class="footer-link"><a target="_blank" href="/market?symbol=BT_USDT" th:text="#{footer.center}">交易中心</a></div>
+            <div class="footer-link"><a target="_blank" href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></div>
+            <div class="footer-link"><a target="_blank" href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></a></div>
+
+        </div>
+        <div class="footer-section-terms">
+            <div class="footer-title" ><a target="_blank"  th:text="#{footer.terms}" style="color: #fff;">条款说明</a></div>
+            <div class="footer-link"><a target="_blank" href="/privacys" th:text="#{footer.privacy}">隐私政策</a></div>
+            <div class="footer-link"><a target="_blank" href="/agreement" th:text="#{footer.user_terms}">用户协议</a></div>
+            <div class="footer-link"><a target="_blank" href="/handlingfee" th:text="#{footer.fee}">手续费</a></div>
+        </div>
+        <div class="footer-section-about-us">
+            <div class="footer-title" th:text="#{footer.about_us}">联系我们</div>
+            <div class="footer-link" style="color:#60688d"  th:text="#{footer_Cooperation}">商务合作：admin@bttmall.com</div>
+            <div class="footer-link" style="color:#60688d"  th:text="#{footer_Customer}">客户支持合作：support@bttmall.com</div>
+        </div>
+    </div>
+    <div style="width: 100%;text-align:center;color: #60688d;height: 50px;" >
+        © 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited
+    </div>
+</div>
+</div>
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script src="https://cstaticdun.126.net/load.min.js"></script>
+    <!-- Global site tag (gtag.js) - Google Ads: 754375084 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-754375084"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-754375084'); </script>
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_user_security"], function ( a, a0,a1, o, b, c, d) {
+            d.registerPost();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+
+        function goToShop() {
+            window.open(url);
+        }
+        var url = document.location.toString();//获取url地址
+        var urlParmStr = url.slice(url.indexOf('?')+1);//获取问号后所有的字符串
+        var urlParmr = url.slice(url.indexOf('r')+1);
+        var arr = urlParmStr.split('&');//通过&符号将字符串分割转成数组
+        var courseId = arr[0].split("=")[1];//获取数组中第一个参数//第二个参数
+        unit_title=decodeURI(courseId);//转码将解码方式unscape换为decodeURI，将中文参数获取
+        if ((/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) {
+            if(urlParmr.length < 8){
+                window.location.href = 'https://bttmall.com/mobile/#/register'
+            }else {
+                window.location.href = 'https://bttmall.com/mobile/#/register?code='+unit_title;
+            }
+        }
+
+
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+
+</div>
+
+</body>
+</html>

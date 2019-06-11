@@ -1,0 +1,155 @@
+.btn {
+    border: 1px solid #CDCDCD;
+    border-width: 1px 0;
+    padding: 0 1.5em;
+    margin-top: -1px
+}
+
+.btn a {
+    font-size: 1.5em;
+    line-height: 2.5em;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.btn a span {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+.btn a span.gray, .btn a span.red {
+    text-align: right;
+    font-size: .75em;
+    background: url(../../../img/book/arr_right.png) no-repeat right center;
+    -webkit-background-size: .4em .8em;
+    background-size: .4em .8em;
+    padding-right: 13px;
+    width: 40%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.btn a span.red {
+    color: #F60
+}
+
+.btn a span.flag {
+    color: #F60;
+    font-size: .75em
+}
+
+.listCont {
+    display: none
+}
+
+.listCont dt {
+    background: #eee
+}
+
+.listCont dd.btn a span {
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+.listCont dd.btn a span.gray, .listCont dd.btn a span.red {
+    width: auto
+}
+
+.listCont dd.app {
+    font-size: 1.2em;
+    text-align: center;
+    padding: 10px 0
+}
+
+.listCont dd.app a {
+    display: inline-block;
+    background: #F60;
+    color: #fff;
+    padding: 0 10px;
+    border-radius: 5px
+}
+
+section.book_list {
+    margin: 1em;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+section.book_list .list_selectbox {
+    position: relative;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    padding: 0 1em
+}
+
+section.book_list .list_selectbox select {
+    -webkit-appearance: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    background: url(../../../img/book/arr_bottom.png) #FEC no-repeat 95% center;
+    color: #EE5B23;
+    border-radius: 3px;
+    background-size: 15px;
+    border: 1px solid #EE5B23
+}
+
+section.book_list .but_next, section.book_list .but_prev, section.book_list .list_atz, section.book_list .list_zta {
+    width: 6em;
+    height: 3em;
+    line-height: 3em;
+    border: 1px solid #EE5B23;
+    border-radius: 3px;
+    text-align: center;
+    color: #EE5B23
+}
+
+section.book_list .but_prev {
+    margin-right: 1em
+}
+
+section.book_list .but_next, section.book_list .list_atz, section.book_list .list_zta {
+    margin-left: 1em
+}
+
+section.book_list .but_disabled {
+    border: 1px solid #D3D3D3;
+    color: #D3D3D3
+}
+
+dl.listCont dd.btn a, dl.listCont dt.btn a {
+    font-size: 1.2em
+}
+
+dl.listCont dd.btn a span, dl.listCont dt.btn a span {
+    width: 70%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap
+}
+
+dl.listCont dd.btn a span.gray, dl.listCont dd.btn a span.red, dl.listCont dt.btn a span.gray, dl.listCont dt.btn a span.red {
+    width: auto
+}
+
+header.list em {
+    font-style: normal;
+    margin-left: .8em;
+    font-size: 1em
+}
+
+.alert .list_tip {
+    text-align: center;
+    font-size: 1.2em;
+    padding-top: 1em
+}

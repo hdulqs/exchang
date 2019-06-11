@@ -1,0 +1,562 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent clearfix')"></span>
+
+    <!-- SLIDER -->
+    <section id="slider" class="fullheight m-0"
+             data-background-delay="3500"
+             data-background-fade="1000"
+             data-background="
+					http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/1.jpg
+					,http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/2.jpg
+					,http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/3.jpg
+			">
+
+
+        <!-- Backstretch Navigation -->
+        <a class="bs-next" href="#"></a>
+        <a class="bs-prev" href="#"></a>
+
+
+        <div class="display-table">
+            <div class="display-table-cell vertical-align-middle">
+
+                <div class="container text-center">
+
+                    <h1 class="fw-300 mt-30 mb-0 wow fadeIn animated" data-wow-delay="0.6s">SMARTY BACKSTRETCH</h1>
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+        <span class="raster overlay dark-3 z-index-0"><!-- dark|light overlay [0 to 9 opacity] --></span>
+
+
+    </section>
+    <!-- /SLIDER -->
+    <style>
+        .filter-search {
+            border: 2px solid #69B0E4;
+            width: 845px;
+        }
+        .filter-search .select2-container--default .select2-selection--single{
+            border: 0px;
+        }
+        .filter-search .btn{
+            border-radius: 0px;
+            margin-right: 0px;
+            margin-left: 34px;
+        }
+
+    </style>
+
+    <!-- projects -->
+    <section class="section-sm">
+        <div class="container">
+            <header class="text-center mb-60">
+                <h2>Our Pricing</h2>
+                <p class="lead font-lato">Lorem ipsum dolor sit amet adipiscium elit</p>
+                <hr />
+            </header>
+
+
+            <div class="row property-item-list" id="buyRender">
+
+            </div>
+
+            <script id="buyTpl" type="text/x-jsrender">
+              <div class="col-md-3 col-sm-3">
+							<div class="price-clean">
+								<h4>
+									<sup></sup>{{:price}}<em>{{:currency}}</em>
+								</h4>
+								<h5>购买 {{:coin}} </h5>
+								<hr />
+								<p>交易方式:{{:payType}}<br>
+							     交易限额:{{:minMoney}} - {{:maxMoney}}<em>{{:currency}}</em>
+							     <br>
+								</p>
+								<hr />
+								<a href="#" class="btn btn-3d btn-teal">我要购买</a>
+							</div>
+
+						</div>
+
+
+            </script>
+        </div>
+    </section>
+    <!-- /projects -->
+
+    <section>
+        <div class="container mb-20">
+            <ul class="nav nav-tabs nav-bottom-border" id="coinsRender">
+            </ul>
+            <script id="coinsTpl" type="text/x-jsrender">
+                                 {{if #getIndex()==0}}
+                                 <li class="nav-item"><a class="nav-link active" data-coin="{{:coinCode}}" href="javascript:void(0)" data-toggle="tab" aria-expanded="true"><img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}" style="width:20px">  {{:coinCode}}</a></li>
+                                 {{else}}
+                                  <li class="nav-item"><a class="nav-link" data-coin="{{:coinCode}}" href="javascript:void(0)" data-toggle="tab" aria-expanded="false"><img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}" style="width:20px">  {{:coinCode}}</a></li>
+                                {{/if}}
+                                </script>
+        </div>
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-9">
+
+                    <div class="panel filter-search mb-10 ml-2 row">
+                        <div class="col-md-10">
+                            <select class="form-control select2" style="width: 150px">
+                                <option value="">中国</option>
+                                <option value="1">United States</option>
+                                <option value="2">Germany</option>
+                                <option value="3">France</option>
+                                <option value="4">Russia</option>
+                                <option value="5">United Kingdom</option>
+                                <option value="6">Ukraina</option>
+                                <option value="7">Albania</option>
+                                <option value="8">Romania</option>
+                            </select>
+                            <select class="form-control select2" style="width: 150px">
+                                <option value="">所有交易类型</option>
+                                <option value="buy">所有购买</option>
+                                <option value="sell">所有出售</option>
+                                <option value="sellOnline">在线出售</option>
+                                <option value="buyOnline">在线购买</option>
+                                <option value="sellForCash">本地出售</option>
+                                <option value="buyWithCash">本地购买</option>
+                            </select>
+                            <select class="form-control select2" style="width: 150px">
+                                <option value="">所有货币</option>
+
+                                <option value="BTC">BTC</option>
+
+                                <option value="ETH">ETH</option>
+
+                                <option value="CNY">CNY</option>
+
+                            </select>
+                            <select class="form-control select2" style="width: 180px">
+                                <option value="">所有付款方式</option>
+
+                                <option value="001">国际电汇</option>
+
+                                <option value="002">支付宝</option>
+
+                                <option value="003">微信</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button  class="btn btn-info" id="btn-search"><i class="fa fa-search"></i> 搜索</button>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-vertical-middle">
+
+                        <tbody >
+
+                        </tbody>
+                    </table>
+
+                    <table class="table table-hover table-vertical-middle">
+                        <script id="sellTpl" type="text/x-jsrender">
+                             <tr>
+                            <td  class="text-center"><img src="http://127.0.0.1:8881/static/front/dist/img/a7.jpg" alt="" width="20"></td>
+                            <td>
+                            <div style="width:35px; height:50px; padding-left:15px;">
+                             {{if userAvatar!=null}}
+                            <img th:src="@{${@globalService.fileHost()}+'{{:userAvatar}}'}" alt="用户头像" class="img-circle" style="width:40px ;height:40px;">
+                            {{else}}
+                            <img th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/avatar.png'}" alt="用户头像" >
+                            {{/if}}
+                            </div>
+                            <div>
+                            {{:userName}}
+                            </div></td>
+                            <td><p class="trade-span-blue" style="padding-top: 25px;">
+                                信任 <span>{{:trustNum}}</span><br>
+                                交易 <span>{{:exchangeNum}}</span><br>
+                                回复时间 5-10分钟
+                                </p>
+                            </td>
+                            <td><p style="padding-top: 25px;">
+                                {{:~strNewLine(payType,',')}}
+                                </p>
+                            </td>
+                            <td>
+                            <p class="text-ellipsis wid-80" style="padding-top: 25px;">{{:minMoney}} - {{:maxMoney}}</p>
+                            </td>
+                            <td><span class="fs-24 text-orange">{{:price}} </span>{{:currency}}</td>
+                            <td class="text-right"><a href="#" class="btn btn-primary btn-sm"><i class="fa fa-edit white"></i> 卖出 </a></td>
+                        </tr>
+                                </script>
+                        <tbody id="sellRender">
+
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-md-3">
+
+                    <div class="card card-default">
+                        <div class="card-heading">
+                            <h2 class="card-title">明星交易员</h2>
+                        </div>
+                        <div >
+
+                            <div class="toggle toggle-transparent toggle-bordered-full mt-0">
+
+                                <div class="toggle active">
+                                    <label class="fs-12"><span class="badge badge-danger mr-6">1</span>Bat Admin</label>
+                                    <div class="toggle-content">
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+
+                                <div class="toggle">
+                                    <label class="fs-12"><span class="badge badge-danger mr-6">2</span>Bat Admin</label>
+                                    <div class="toggle-content">
+                                        <p>Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc.</p>
+                                    </div>
+                                </div>
+
+                                <div class="toggle">
+                                    <label class="fs-12"><span class="badge badge-danger mr-6">3</span>Bat Admin</label>
+                                    <div class="toggle-content">
+                                        <p>Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
+                                    </div>
+                                </div>
+                                <div class="toggle">
+                                    <label class="fs-12"><span class="badge badge-danger mr-6">4</span>Bat Admin</label>
+                                    <div class="toggle-content">
+                                        <p>Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
+                                    </div>
+                                </div>
+                                <div class="toggle">
+                                    <label class="fs-12"><span class="badge badge-danger mr-6">5</span>Bat Admin</label>
+                                    <div class="toggle-content">
+                                        <p>Ut enim massa, sodales tempor convallis et, iaculis ac massa.</p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-heading">
+                            <h2 class="card-title">最新交易</h2>
+                        </div>
+                        <table class="table">
+
+                            <tbody>
+                            <tr>
+                                <td>Y***</td>
+                                <td>在线购买</td>
+                                <td>32 minutes ago</td>
+                            </tr>
+                            <tr>
+                                <td>Y***</td>
+                                <td>在线购买</td>
+                                <td>32 minutes ago</td>
+                            </tr>
+                            <tr>
+                                <td>Y***</td>
+                                <td>在线购买</td>
+                                <td>32 minutes ago</td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <section class="text-center mt-10" >
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-info-circle fa-5x"></i>
+                    <h2 class="fs-17 mt-6">WHY SMARTY IS DOWN?</h2>
+                    <p class="text-muted">We are working hard to migrate the data to a new datacenter. We'll be back online soon as possible, we really apologize for this inconvenience.</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">WHAT IS THE DOWNTIME?</h2>
+                    <p class="text-muted">Unfortunately we do not know the exact downtime, but we esitmate less than an hour.</p>
+                </div>
+
+                <div class="col-md-4 col-sm-4">
+                    <i class="fa fa-comments-o fa-5x"></i>
+                    <h2 class="fs-17 mt-6">SUPPORT</h2>
+                    <p class="text-muted">If you have questions, please do not hesitate to write us an email at <a href="mailto:support@domaain.com">support@domaain.com</a></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- -->
+    <section>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Passion</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Precision</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>Simplicity</h3>
+                        <a href="#"   style="float: right">
+                            Read More
+                        </a>
+                    </div>
+                    <ul class="list-unstyled">
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION GABANNA
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                FASHION VERSAICE
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                NEW VERSAICE TREND
+                            </a>
+                        </li>
+
+                        <li class="clearfix border-bottom-dotted relative mb-10">
+                            <a class="clearfix  block relative p-10" href="#">
+                                <span class="float-right text-black ">2017/01/01</span>
+                                HALLOWEEN FASHION
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+    <!-- / -->
+
+    <!-- 友情链接-->
+    <section class="section-sm">
+        <div class="container">
+
+            <header class="text-center mb-60">
+                <h4>合作伙伴</h4>
+            </header>
+
+
+            <ul class="row clients-dotted list-inline">
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/3.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/4.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/5.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/6.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/7.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/8.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/1.jpg" alt="client">
+                    </a>
+                </li>
+                <li class="col-md-5th col-sm-5th col-xs-6">
+                    <a href="#">
+                        <img class="img-fluid" src="demo_files/images/brands/2.jpg" alt="client">
+                    </a>
+                </li>
+            </ul>
+
+        </div>
+    </section>
+
+    <!-- /友情链接-->
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","select2", "jquery_backstretch",DEV+"/page_otc"], function (a,b,c,d) {
+            d.index();
+        });
+    </script>
+</div>
+
+</body>
+</html>

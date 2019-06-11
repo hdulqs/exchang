@@ -1,0 +1,38 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">基本信息</span>
+            </span>
+        </h2>
+        <table id="table">
+
+        </table>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_easypiechart", "jquery_datepicker", "jquery_daterangepicker", "jquery_appear", "jquery_countTo", DEV + "/table_bootstrap", DEV + "/page_user"], function (i, a, f, o, b, c, p, d) {
+            d.logList();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

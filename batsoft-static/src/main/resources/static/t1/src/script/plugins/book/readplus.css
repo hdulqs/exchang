@@ -1,0 +1,563 @@
+body, html {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    background: #F8F8F8;
+    padding: 0 !important;
+    overflow: hidden
+}
+
+body.read2, html.read2 {
+    position: static;
+    height: auto;
+    min-height: 100%;
+    overflow: visible
+}
+
+body, dd, dl, dt {
+    margin: 0
+}
+
+img {
+    border: 0
+}
+
+a {
+    text-decoration: none
+}
+
+a:hover {
+    text-decoration: underline
+}
+
+.ChapterBar {
+    padding-top: 1em
+}
+
+.ChapterBar dt {
+    font-size: 12px;
+    padding: 5px
+}
+
+.ChapterBar dt input {
+    vertical-align: middle
+}
+
+.ChapterBar dd {
+    display: block;
+    text-align: center
+}
+
+.ChapterBar dd label {
+    display: inline-block;
+    text-align: center
+}
+
+.ChapterBar dd label a, .ChapterBar dd label span {
+    font-size: 12px;
+    background: rgba(255, 255, 255, .5);
+    border-radius: 5px;
+    display: block;
+    padding: 5px 1em;
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+    text-decoration: none;
+    margin: 0 .5em
+}
+
+.DingPop {
+    font-size: 14px;
+    text-align: center
+}
+
+.dingyue_login {
+    font-size: 14px;
+    color: grey;
+    margin-bottom: 1em
+}
+
+.dingyue_login .fdjf {
+    font-size: 18px;
+    color: #F60;
+    text-align: center;
+    line-height: 3;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px
+}
+
+.dingyue_login label {
+    display: block
+}
+
+.yd_text2 {
+    font-size: 14px;
+    line-height: 26px;
+    padding: 10px 0px;
+    color: #333;
+    height: auto !important;
+    height: 1200px;
+    min-height: 1200px;
+}
+
+.dingyue_login label a, .dingyue_login label span {
+    border-radius: 5px;
+    display: block;
+    padding: 5px 1em;
+    text-align: center;
+    line-height: 2;
+    text-decoration: none;
+    margin: .5em 0
+}
+
+.dingyue_login label span {
+    background: #F60;
+    color: #fff
+}
+
+.dingyue_login label a {
+    border: 1px solid #ccc;
+    background: #fefefe;
+    color: #ddd
+}
+
+.dingyue_login a.red {
+    color: #F60 !important
+}
+
+.yunying_bottom {
+    box-sizing: border-box;
+    margin: 10px auto;
+    font-size: 14px;
+    color: #333;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: .5em
+}
+
+section.ReadAD {
+    margin-bottom: .5em;
+    overflow: hidden;
+    padding: 0
+}
+
+section.ReadAD a {
+    display: block
+}
+
+section.ReadAD img {
+    display: block;
+    width: 100%
+}
+
+section.readplus {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    cursor: pointer
+}
+
+section.readplus div.page {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    line-height: 2;
+    opacity: .3
+}
+
+section.readplus article.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+    -webkit-transform: translate3d(0, 0, 0)
+}
+
+section.readplus article.page a {
+    color: inherit
+}
+
+section.readplus article.page div.page_17k {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden
+}
+
+section.readplus article.page div.page_17k > div {
+    text-align: justify;
+    width: 200%;
+    height: 100%;
+    -webkit-column-count: 2;
+    -webkit-column-gap: 0;
+    position: absolute;
+    left: 0;
+    word-break: break-all
+}
+
+section.readplus article.page div.page_17k > div p {
+    margin-bottom: 0
+}
+
+section.readplus article.page div.page_17k > div img {
+    width: 100% !important;
+    height: auto !important
+}
+
+.Menu {
+    background: rgba(0, 0, 0, 0);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 2147483648;
+    top: 0;
+    left: 0
+}
+
+.Menu section {
+    position: absolute;
+    left: 30%;
+    width: 70%;
+    height: 100%;
+    background: #fff;
+    padding: .5em;
+    -webkit-box-sizing: border-box;
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .6);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .6)
+}
+
+.Menu section dl dt {
+    font-size: 1.1em;
+    margin: 1em 0 .5em;
+    line-height: 2;
+    border-bottom: 1px solid #F4F4F4;
+    color: #333
+}
+
+.Menu section dl dd {
+    overflow: hidden
+}
+
+.Menu section dl dd label {
+    margin: .6em 5px;
+    float: left;
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 .5em
+}
+
+.Menu section .fonts label {
+    line-height: 24px;
+    height: 26px;
+    border: 1px solid #E1E1E1
+}
+
+.Menu section .fonts label a {
+    font-size: 14px;
+    color: #666;
+    display: block
+}
+
+.Menu section .fonts label a:hover {
+    text-decoration: none
+}
+
+.Menu section .fonts label span {
+    display: block;
+    font-size: 14px;
+    color: #333
+}
+
+.Menu section .fonts label.fbtn {
+    line-height: 20px;
+    height: 22px
+}
+
+.Menu section .fonts label.fbtn span {
+    color: #999
+}
+
+.Menu section .fonts label.Q_read_fontsize {
+    border: 0
+}
+
+.Menu section .bars label {
+    line-height: 18px;
+    font-size: 12px
+}
+
+.Menu section .bars label.btn1 {
+    border: 1px solid #333
+}
+
+.Menu section .bars label.btn2 {
+    padding-left: 1.5em;
+    background: url(readplus/list.png) no-repeat 0 center;
+    -webkit-background-size: auto 1.2em;
+    background-size: auto 1.2em;
+    width: 3em;
+    text-align: left
+}
+
+.Menu section .bars label.list {
+    background-image: url(readplus/list.png);
+    background-position: .5em center;
+    -webkit-background-size: auto .8em;
+    background-size: auto .8em
+}
+
+.Menu section .bars label.hongbao {
+    background-image: url(readplus/hongbao.png)
+}
+
+.Menu section .bars label.pinlun {
+    background-image: url(readplus/pinlun.png)
+}
+
+.Menu section .bars label.qiandao {
+    background-image: url(readplus/qiandao.png)
+}
+
+.Menu section .bars label.bookhome {
+    background-image: url(readplus/bookhome.png)
+}
+
+.Menu section .bars label.shujia {
+    background-image: url(readplus/shujia.png)
+}
+
+.Menu section .bars label.home {
+    background-image: url(readplus/home.png)
+}
+
+.Menu section .bars label.lr {
+    background-image: url(readplus/rl.png);
+    width: 4em;
+    padding-left: 2em
+}
+
+.Menu section .bars label.tb {
+    background-image: url(readplus/tb.png);
+    width: 4em;
+    padding-left: 1.5em;
+    -webkit-background-size: auto 1.5em;
+    background-size: auto 1.5em;
+    border-radius: 0
+}
+
+.Menu section .bgmenu label {
+    border-radius: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    line-height: 2.5em;
+    padding: 0
+}
+
+.Menu section .bgmenu label.bg1 {
+    background: #DDD;
+    color: #444
+}
+
+.Menu section .bgmenu label.bg2 {
+    background: #81C6E7;
+    color: #3B4A5E
+}
+
+.Menu section .bgmenu label.bg3 {
+    background: #E7B681;
+    color: #5E1B1E
+}
+
+.Menu section .bgmenu label.bg4 {
+    background: #FFCBE8;
+    color: #c71585
+}
+
+.Menu section .bgmenu label.bg5 {
+    background: #F1F1F1 url(bg/maobianzhi.png);
+    color: rgba(0, 0, 0, .7)
+}
+
+.Menu section .bgmenu label.bg6 {
+    background: #586E2D;
+    color: #fff
+}
+
+.Menu section .bgmenu label.bg7 {
+    background: #DC9983;
+    color: #5E1B1E
+}
+
+.Menu section .bgmenu label.bg8 {
+    background: #595959;
+    color: #C1C1C1
+}
+
+.Menu section .navmenu label {
+    background: #79A7D3;
+    padding: 5px 10px
+}
+
+.Menu section .navmenu a {
+    color: #fff
+}
+
+#TextContent {
+    /*visibility: hidden;*/
+    position: absolute;
+    top: 20px;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    overflow-x:auto;
+    word-break: break-all;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: justify
+}
+
+#TextContent h1 {
+    font-size: 1.5em;
+    margin: .5em 0;
+    text-align: center
+}
+
+#TextContent.read2 {
+    visibility: visible;
+    position: static;
+    padding: 20px
+}
+
+#TextContent.read2 a {
+    color: inherit
+}
+
+section.readplus article.page {
+    background: #F1F1F1;
+    color: #333
+}
+
+section.readplus {
+    font-size: 18px;
+    line-height: 1.6
+}
+
+section.readplus article.page h1 {
+    font-size: 1.5em;
+    margin: .5em 0;
+    text-align: center
+}
+
+section.readplus article.page .k17_text {
+    font-size: .8em;
+    opacity: .6
+}
+
+.ToolPOP {
+    background: rgba(0, 0, 0, .5) url(readplus/head.png) no-repeat center center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-background-size: 40% auto;
+    background-size: 40% auto
+}
+
+#ad_iwanvi {
+    overflow: hidden
+}
+
+.footer_bot {
+    display: none
+}
+
+body.vip #ad_iwanvi {
+    display: none
+}
+
+body.vip section.ReadAD {
+    display: none
+}
+
+.Read_top {
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 10px 20px;
+    background: #f1f1f1;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 1.8;
+    border-bottom: 3px solid #F60
+}
+
+.Read_top .cover {
+    height: 80px;
+    float: left;
+    margin-right: 1em
+}
+
+.Read_top .h2 {
+    font-size: 1.2em;
+    margin: 0
+}
+
+.Read_top .btn {
+    background: #F60;
+    display: inline-block;
+    padding: 0 1em;
+    color: #fff;
+    border-radius: 1em;
+    line-height: 1.5
+}
+
+.Read_top .close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    width: 2em;
+    height: 2em;
+    background: url(all/close1.png) no-repeat center center;
+    background-size: 50%
+}
+
+.Qiangxiankan {
+    margin: 100px auto
+}
+
+.Qiangxiankan dd {
+    font-size: 18px;
+    text-align: center
+}
+
+.Qiangxiankan dd.time {
+    text-align: center;
+    margin-bottom: 10px
+}
+
+.Qiangxiankan dd.time span {
+    background: #ccc;
+    color: red;
+    padding: 5px;
+    font-size: 1.3em;
+    border-radius: 4px;
+    font-family: "Source Sans Pro", "Helvetica Neue", Arial, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif
+}
+
+.Qiangxiankan dd.btn a {
+    background: #F60;
+    color: #fff !important;
+    line-height: 2;
+    border-radius: 18px;
+    display: inline-block;
+    text-align: center;
+    width: 300px
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="head">
+
+        <meta charset="utf-8" />
+        <title  th:text="${@globalService.webSiteTitle()}"></title>
+          <link rel="shortcut icon" type="image/x-icon" th:href="@{${@globalService.fileHost()}+${@globalService.iconPath()}}">
+
+          <meta name="description" th:content="${@globalService.webSiteRemark()}">
+        <meta name="keywords"  th:content="${@globalService.webSiteKeyWords()}">
+
+        <!-- mobile settings 123 -->
+         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />-->
+        <!--<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />-->
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+              <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"
+                    type="text/css"/>
+          <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/i18n/'+${@globalService.lan()}+'.js'}"></script>
+          <!-- loadding button 必须前置-->
+          <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/spin.min.js'}"></script>
+          <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/ladda.min.js'}"></script>
+          <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/jquery-3.2.0.min.js'}"></script>
+
+
+
+</html>
+

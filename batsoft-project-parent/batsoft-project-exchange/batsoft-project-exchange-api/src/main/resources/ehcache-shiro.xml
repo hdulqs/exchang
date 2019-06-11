@@ -1,0 +1,22 @@
+<ehcache>
+    <!-- <diskStore path="c:\\temp" /> -->
+    <!-- <diskStore path="/Users/batsoft/shop/trunk/filebase" /> -->
+    <defaultCache maxElementsInMemory="25600" eternal="false" overflowToDisk="true"/>
+    <cache name="goodsClassTreeCache" maxElementsInMemory="1000" timeToLiveSeconds="100" timeToIdleSeconds="100"
+           eternal="false" overflowToDisk="true"/>
+    <cache name="articlesCache" maxElementsInMemory="1000" timeToLiveSeconds="60" timeToIdleSeconds="60" eternal="false"
+           overflowToDisk="true"/>
+
+    <cache name="shiro-activeSessionCache"
+           maxElementsInMemory="10000"
+           eternal="false"
+           timeToIdleSeconds="120"
+           timeToLiveSeconds="120"
+           overflowToDisk="true"
+           maxElementsOnDisk="10000000"
+           diskPersistent="false"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LRU">
+    </cache>
+
+</ehcache>

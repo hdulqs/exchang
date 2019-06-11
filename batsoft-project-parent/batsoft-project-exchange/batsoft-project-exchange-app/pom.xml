@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>batsoft-project-exchange-app</artifactId>
+    
+    <parent>
+	   <groupId>com.batsoft</groupId>
+	   <artifactId>batsoft-project-exchange</artifactId>
+	   <version>1.1.RELEASE</version>
+	</parent>
+    
+    <dependencies>
+    	<dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-core</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+	        <groupId>com.batsoft</groupId>
+	        <artifactId>batsoft-cms-service</artifactId>
+	        <version>1.1.RELEASE</version>
+	    </dependency>
+	    
+	    <dependency>
+	        <groupId>com.batsoft</groupId>
+	        <artifactId>batsoft-system-service</artifactId>
+	        <version>1.1.RELEASE</version>
+	    </dependency>
+	    
+	    <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-member-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-otc-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-blockchain-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-exchange-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-ico-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-loan-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-log-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+		        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-mq</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+    
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-third-sms</artifactId>
+            <version>1.1.RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>exchange-app</finalName>
+    </build>
+
+</project>

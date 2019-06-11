@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>MemberLoginMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-24 14:27:23 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.log.dao.MemberLoginDao">
+
+    <resultMap id="memberLogModel" type="com.batsoft.model.module.log.MemberLogin">
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="ip" property="ip" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="loginTime" property="loginTime" javaType="java.util.Date" />
+        <result column="userId" property="userId" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="memberLog_Column" >
+        id, ip, address, loginTime,userId
+    </sql>
+
+    <!--  按用户ID查询 -->
+    <select id="find" resultMap="memberLogModel" >
+        SELECT
+        <include refid="memberLog_Column" />
+        FROM log_member_login as b
+        WHERE
+        b.userId = #{userId}
+        order by loginTime desc
+        limit 0,3
+    </select>
+</mapper>

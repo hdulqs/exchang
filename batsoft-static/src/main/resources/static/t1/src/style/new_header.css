@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+.new_header{
+    background-color: #181B2A;
+    height: 81px;
+    min-width: 1200px;
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.new_header > div {
+    height: 50px;
+}
+
+.new_header .logo{
+    background: url(../img/ttmall_logo.png) no-repeat 0 0;
+    margin: 0;
+}
+
+.new_header .navBar li a{
+    font-size: 14px;
+    color: #C7CCE6;
+    letter-spacing: 0;
+}
+
+.new_header div:nth-child(2):after{
+    clear:both;
+}
+
+.new_header a:focus,
+.new_header a:hover{
+    color: white;
+}
+
+.userStatus,
+.new_header a,
+#languageBt,
+.new_header a:visited,
+.new_header a:active{
+    color: #C7CCE6;
+    font-size: 14px;
+}
+
+.new_header .ico {
+    background-image: url(../img/dropdown_w.png);
+    background-repeat: no-repeat;
+    background-position: 5px 9px;
+}
+
+.new_header .shop{
+    position:relative;
+}
+.new_header .shop .shop-icon{
+    background-image: url(../img/shop.png);
+    width: 50px;
+    height: 16px;
+    position: absolute;
+    top: -5px;
+    right: -35px;
+    background-repeat: no-repeat;
+    background-position: center;
+}

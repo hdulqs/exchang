@@ -1,0 +1,35 @@
+server:
+  #Http端口号
+  port: 80
+  # tomcat配置
+  tomcat:
+     # 最大线程数
+     max-threads: 1000
+     # 最小线程数
+     min-spare-threads: 5
+     # 队列长度
+     accept-count: 50
+     # 最大链接数
+     max-connections: 20000
+     #链接建立超时时间
+     connection-timeout: 30000
+spring:
+  application:
+    name: batsoft-api
+  cloud:
+    config:
+      profile: dev
+      label:
+      uri: http://localhost:8899/
+
+#eureka \u914D\u7F6E
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:6061/eureka/
+
+#log setting
+logging:
+  config: classpath:logback-spring.xml
+  path: /usr/local/bttmall/logs/api
+#log setting

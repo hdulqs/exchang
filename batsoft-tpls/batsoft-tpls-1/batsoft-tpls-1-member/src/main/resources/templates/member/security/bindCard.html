@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable{margin:0px;}
+        .selectView .ds_cont {
+            border: 1px solid #dfdfdf;
+            background: #fff;
+            height: 50px;
+            width: 348px;
+            overflow: hidden;
+            position: relative;
+            top: -112px;
+        }
+        #button-des {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 179px;
+            flex: 0 0 179px;
+            background-color: #589065;
+            border-radius: 2px;
+            height: 50px;
+            font-size: 16px;
+            color: #f3f4f8;
+            letter-spacing: 0;
+            margin-left: 10px;
+            position: relative;
+            top: -51px;
+            left: 205px;
+        }
+
+        .selectView .ds_title {
+            float: left;
+            padding-left: 20px;
+            line-height: 50px;
+        }
+        .selectView .ds_list {
+            position: absolute;
+            top: -62px;
+            left: 0;
+            background: #fff;
+            width: 100%;
+        }
+
+        .yidun.yidun--light .yidun_control {
+            position: relative;
+            border: 1px solid #e4e7eb;
+            background-color: #f7f9fa;
+            height: 40px;
+            border-radius: 2px;
+            width: 350px;
+        }
+        .verifyBar {
+            width: 1198px;
+            margin: 20px auto 30px;
+            background-color: #fff;
+            border: #eaeaea 1px solid;
+            overflow: hidden;
+            padding-top: 20px;
+            padding-bottom: 60px;
+        }
+
+        .login-wrap__form .alert.alert-mini {
+            margin-right: 5%;
+        }
+
+        .alert.alert-mini {
+            padding: 6px 10px;
+            border-left: 0;
+            position: relative;
+            top: 11px;
+        }
+        .yidun_popup.yidun_popup--light .yidun_modal {
+            position: relative;
+            top: 34%;
+            border-radius: 2px;
+            border: 1px solid #e4e7eb;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,.3);
+        }
+        .yidun.yidun--light .yidun_control {
+            border: 1px solid #e4e7eb;
+            background-color: #f7f9fa;
+            height: 40px;
+            border-radius: 2px;
+            width: 320px;
+        }
+
+        .alert-danger {
+            background-color: #f2dede;
+            border-color: #ebcccc;
+            color: #a94442;
+        }
+        .p-hide {
+            display: none!important;
+        }
+        .mb-30 {
+            margin-bottom: 30px!important;
+        }
+        #input_captcha{
+            margin-bottom: 71px;
+        }
+        .s-blk-01 .s-upload-btn {
+            background: #387DE0;
+            font-size: 14px;
+            color: #fff;
+            width: 112px;
+            height: 41px;
+            text-align: center;
+            line-height: 41px;
+            cursor: pointer;
+            float: left;
+        }
+        .s-blk-01 .s-upload-btn:hover {
+            background: #387DE0;
+            font-size: 14px;
+            color: #fff;
+            width: 112px;
+            height: 41px;
+            text-align: center;
+            line-height: 41px;
+            cursor: pointer;
+            float: left;
+        }    body, html {
+                 height: 100%;
+                 background-color: #F3F4F8;
+             }
+    </style>
+
+</head>
+
+<body style="background:#F3F4F8 ">
+<div class="wrapper" style="margin-bottom: 27px">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="fullScreen_h full_height" style="background-color: #F3F4F8;">
+        <div class="topColtitWrap" >
+            <div class="colBar passBg">
+                <p class="colTit" th:text="#{footer_verif}">绑定银行卡</p>
+            </div>
+        </div>
+        <div class="verifyBar">
+            <div style="margin:0 30px 11px 30px;background-color: #fcf8e5;color:#b48728;text-align: center;padding:10px;" th:text="#{footer_verifcard}">*请确认您的银行卡为您本人的银行卡，充值、提现请以该银行卡进行交易</div>
+            <div class="modifyBox">
+                <!--<div class="tit"  style="height: 20px;">绑定银行卡</div>-->
+                <div class="errorTip">
+                    <p class="hide" id="error">
+                        <span class="icoError"></span>
+                        <span id="error_show"></span>
+                    </p>
+                </div>
+                <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+
+                </div>
+                <form id="form" class="form" method="post" action="/member/security/addBankCard">
+                    <div class="regForm" style="height: 468px;">
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <ul class="s-select-cont">
+                            <li class="input"style="display: none;">
+                                <!--<span class="icoReg icoUser"></span>-->
+                                <input type="text" class="form-control" id="userName" name="userName" th:value="${user.userName}" placeholder="请输入手机号"     >
+                                <!--<b class="tooltip tooltip-top-right f-w" th:text="${userName}">请输入手机号</b>-->
+                            </li>
+                            <li class="input">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <input type="text" name="userName" id="userName" readonly="readonly"  placeholder="开户名" th:value="${user.realName}">
+                            </li>
+                            <li class="input with-secure-verification"  id="input_captcha">
+                                <div id="captcha"></div>
+                                <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+                                <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+                            </li>
+                            <li class="input with-sms-verification" style="position: relative;top: -51px;">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <input type="text" class="form-control" id="mobileCode" name="mobileCode"  placeholder="请输入短信验证码"
+                                       style="width:200px;" maxlength="6" th:placeholder="#{footer_verification_via}" >
+                                <b class="tooltip tooltip-top-right f-w" style="color:white;" th:placeholder="#{footer_verification_via}">请输入短信验证码</b>
+                                <button type="button"   class="btn btn-primary rad-0 btn-sm  sendCode" th:text="#{register.obtain_sms}" style="width:140px; cursor:pointer" id="button-des">获取短信验证码
+                                </button>
+                            </li>
+                            <li class="input" style="margin-bottom: 35px;">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <div >
+                                <select placeholder="开户银行" name="bankName" id="bankName" class="s-select" style="width:350px;margin-top:8px;">
+                                </select>
+                                    <script id="bank_tpl" type="text/x-jsrender">
+                                        <option value="{{:text}}">{{:text}}</option>
+                                    </script>
+                                </div>
+                            </li>
+
+                            <li class="input">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <input type="text" name="branchName" id="branchName" placeholder="支行名称" style=" position: relative;top: -95px;" th:placeholder="#{footer_samost}" >
+                            </li>
+                            <li class="input">
+                                <!--<span class="icoReg icoPass"></span>-->
+                                <input type="text" name="bankCard" id="bankCard" placeholder="银行卡号" style="position: relative; top: -99px;" th:placeholder="#{footer_samosout}">
+                            </li>
+
+                            <li>
+                                <input type="hidden" name="userId" th:value="${user.id}" />
+                            </li>
+                            <li>
+                                    <input type="button" id="bindCard_button" class="submitBt white" value="确认绑定" style="position: relative;top: -102px;" th:value="#{footer_samosou1t}">
+                            </li>
+                        </ul>
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script src="https://cstaticdun.126.net/load.min.js"></script>
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_user"], function ( a,a0,a1, o, b, c, d) {
+            d.bindCard();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

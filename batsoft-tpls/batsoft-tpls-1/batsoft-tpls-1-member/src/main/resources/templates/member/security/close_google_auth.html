@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .googleS4Box li{position:relative;}
+        .googleS4Box li .errorTip{position: absolute;left:100%;top:0px;display:block;padding:5px 0px;width:100%;}
+        .googleS4Box li .hide{display:none;}
+    </style>
+
+</head>
+
+<body>
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap">
+        <div class="verifyHeader">
+            <p class="colTit">解除谷歌验证</p>
+        </div>
+    </div>
+    <div class="verifyBar full_google">
+        <form id="form" class="form" method="post" action="/member/security/updateGoogleAuthState">
+            <ul class="googleS4Box">
+                <li class="font16"><span class="gold">解除谷歌验证</span></li>
+                <li class="input">
+                    <input type="password" id="password" name="password" placeholder="登录密码">
+                    <p class="errorTip hide">
+                        <span class="icoError"></span>
+                        <span class="error_show"></span>
+                    </p>
+                </li>
+                <li class="input">
+                    <input type="text" id="google_code" name="code" placeholder="谷歌验证码">
+                    <p class="errorTip hide">
+                        <span class="icoError"></span>
+                        <span class="error_show"></span>
+                    </p>
+                </li>
+                <li class="btBar">
+                    <div class="overflowH">
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <p class="btR"> <button type="submit" class="submitBt white submitBtDisabled" >确定</button></p>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","qrcode",  DEV + "/page_user_security"], function ( a, a0,a1, o, b, c, d) {
+            d.closeGoogleAuth();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="slider">
+
+<section id="slider" class="thirdheight mobile-fullheight m-0 parallax-slider"
+         th:style="'background-image:url('+@{${@globalService.fileHost()}+${@globalService.userBanner()}}+')'  ">
+    <div class="overlay "><!-- dark overlay [0 to 9 opacity] --></div>
+
+    <div class="display-table">
+        <div class="display-table-cell vertical-align-middle">
+            <div class="container" id="user_content">
+                <div class="banner-center clearfix" id="userInfoRender">
+
+                </div>
+                <script id="userInfoTmpl" type="text/x-jsrender">
+                     <div class="head-left wow fadeInLeft animation-visible animated">
+                       <a href="/ex/member/security/setAvatar" title="设置头像"> <div class="user-avatar" >
+                          {{if userAvatar!=null}}
+                            <img th:src="@{${@globalService.fileHost()}+'{{:userAvatar}}'}" alt="用户头像" style="width:128px ;height:128px">
+                          {{else}}
+                          <img th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/avatar.png'}" alt="用户头像" >
+                          {{/if}}
+                        </div>
+                        </a>
+                        <div class="head-info mt-10">
+                            <span class="user-name">{{:userName}}-（{{:userNick}}）</span>
+                            <p class="last-login-time">最近登录时间：{{:oldLoginTime}}</p>
+                            <div class="svg-group">
+                                <a href="javascript:void(0)"  class="{{if hasEmailValid }} text-white {{else}} text-gray {{/if}}" title="{{if hasEmailValid }} 邮箱已认证 {{else}} 邮箱未认证 {{/if}}">
+                                    <i class="fa fa-envelope"></i>
+                                </a>
+                                <a href="javascript:void(0)" class="{{if realState==1 }} text-white ml-10 {{else}} text-gray ml-10 {{/if}}" title="{{if realState==1 }} 实名已认证 {{else}} 实名未认证 {{/if}}">
+                                <i class="fa  fa-user"></i>
+
+                                </a>
+                                <a href="javascript:void(0)" class="{{if hasMobileValid }} text-white ml-10 {{else}} text-gray ml-10 {{/if}}" title="{{if hasMobileValid }} 手机已认证 {{else}} 手机未认证 {{/if}}">
+                                   <i class="fa  fa-mobile"></i>
+                                </a>
+                                 <a href="javascript:void(0)" class="{{if hasGoogleValid }} text-white ml-10 {{else}} text-gray ml-10 {{/if}}" title="{{if hasGoogleValid }} Google二次已认证 {{else}} Google二次未认证 {{/if}}">
+                                   <i class="fa fa-google "></i>
+                                </a>
+                                <a href="/ex/member/security" class=" text-white ml-10" title="设置">
+                                    <i class="fa fa-cog"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="head-right wow fadeInRight animation-visible animated">
+                        <div id="security_rate" class="account-security" data-factor="80">
+                            <!-- Text -->
+                            <div class="piechart" data-color="#F0AD4E" data-trackcolor="rgba(0,0,0,0.04)"
+                                 data-size="100" data-percent="
+                                 {{if realState==1 && hasEmailValid &&hasMobileValid  &&hasGoogleValid}}
+                                 100
+                                 {{else realState==1 ||(hasEmailValid && hasMobileValid)}}
+                                 80
+                                 {{else hasEmailValid || hasMobileValid}}
+                                 50
+                                 {{else hasEmailValid || hasMobileValid||hasGoogleValid}}
+                                 30
+                                 {{else}}
+                                 10
+                                 {{/if}}
+                                 " data-width="8" data-animate="3000">
+                                <span class="f-w">账户安全</span>
+                            </div>
+                        </div>
+                        <div class="authentication sprite-item auth-bg">
+                            <div class="identity-auth">
+                                <i></i>
+                                <span>实名认证：</span>
+                                <a href="javascript:void(0)">
+                                {{if realState==1}}
+                                已认证
+                                {{else}}
+                                未认证
+                                {{/if}}
+                                </a>
+                            </div>
+                            <div class="email-auth">
+                                <i></i>
+                                <span>电子邮箱：</span>
+                                <a href="javascript:void(0)" class="">
+                                {{if hasEmailValid}}
+                                {{:userEmail}}
+                                {{else}}
+                                未认证
+                                {{/if}}
+                                </a>
+                            </div>
+                            <div class="phone-auth phoneDisplay">
+                                <i></i>
+                                <span>手机号码：</span>
+                                <a href="javascript:void(0)">
+                                {{if hasMobileValid}}
+                                {{:userMobile}}
+                                {{else}}
+                                未认证
+                                {{/if}}
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </script>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_easypiechart",   DEV + "/page_user"], function (f, c, d) {
+            d.globalInit();
+        });
+    </script>
+</div>
+</body>
+</html>
+

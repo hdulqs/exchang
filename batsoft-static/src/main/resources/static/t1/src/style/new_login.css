@@ -1,0 +1,170 @@
+@charset "utf-8";
+
+
+.login-wrap{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    background-color: #262a42;
+    height: 619px;
+    width: 100%;
+}
+
+.login-wrap__left-img{
+    flex: 1;
+    height: inherit;
+    background-image: url(../img/login-img.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.login-wrap__form{
+    flex: 1;
+}
+
+.login-wrap__inline-style{
+    display: flex !important;
+    flex-direction: row;
+    align-items: center;
+}
+
+.login-wrap__form .tit{
+    font-size: 34px;
+    color: #F3F4F8;
+    letter-spacing: 0;
+    line-height: 19px;
+}
+
+.login-wrap__form form{
+    color: #fff;
+    position: relative;
+    width: 520px;
+}
+
+
+.login-wrap__form form > div{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.login-wrap__form form .input input{
+    background-color: #181B2A;
+    border-radius: 2px;
+    height: 50px;
+    width: 220px;
+    font-size: 14px;
+    color: #60688D;
+    letter-spacing: 0;
+    border: none;
+}
+
+.login-wrap__form form label.error{
+    display: none !important;
+}
+.login-wrap__form form input.error{
+    border: 2px solid #AE4E54 !important;
+    background-color: #181b2a !important;
+}
+
+.login-wrap__form form input.long-input{
+    width: 520px;
+}
+
+.login-wrap__form form .input-with-code{
+    display: flex;
+    flex-direction: row;
+}
+
+.login-wrap__form form a{
+    font-size: 14px;
+    color: #387DE0;
+    letter-spacing: 0;
+    padding-left: 5px;
+}
+
+.login-wrap__form form button{
+    width: 220px;
+    height: 50px;
+    background-color: #387DE0;
+    border-radius: 2px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.login-wrap__inline-style .reload-vify.validCode{
+    padding-left: 10px;
+}
+
+.login-wrap__inline-style .reload-vify.validCode img{
+    height: 46px;
+    width: 100px;
+}
+
+.login-wrap__inline-style.login-btn-row {
+    align-items: flex-end;
+}
+
+.login-wrap__inline-style.login-btn-row .forget-password{
+    padding-left: 20px;
+}
+
+/*Button spinner*/
+.login-wrap__form form button .ladda-spinner [role="progressbar"]{
+    top: 2110px !important;
+    left: 510% !important;
+}
+
+/*Error*/
+.login-wrap__form .sky-form .tooltip{
+
+}
+/*
+.login-wrap__form form input.error{
+    border: 2px solid #AE4E54 !important;
+    border-radius: 2px;
+    background-color: transparent;
+    color: white;
+}
+
+.login-wrap__form form #userName-error{
+    position: absolute;
+    top: -29px;
+    right: 82px;
+    background-color: #AE4E54;
+    border-radius: 2px 2px 2px 0px;
+    padding: 2px 18px;
+}
+
+.login-wrap__form form label#userName-error{
+    position: absolute;
+    top: -29px;
+    right: 82px;
+    background-color: #AE4E54;
+    border-radius: 2px 2px 2px 0px;
+    padding: 2px 18px;
+}
+
+.login-wrap__form form label#password-error {
+    position: absolute;
+    top: 38px;
+    right: 82px;
+    background-color: #AE4E54;
+    border-radius: 2px 2px 2px 0px;
+    padding: 2px 18px;
+}
+
+.login-wrap__form form  label#validCode-error {
+    position: absolute;
+    top: 141px;
+    right: 135px;
+    background-color: #AE4E54;
+    border-radius: 2px 2px 2px 0px;
+    padding: 2px 18px;
+}
+*/
+
+.login-wrap__form .alert.alert-mini{
+    margin-right: 5%;
+}

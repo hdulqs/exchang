@@ -1,0 +1,162 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<style>
+    .alert-bordered-dotted{
+        padding: 10px  20px !important;
+    }
+    .
+</style>
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300" >基本信息</span>
+            </span>
+        </h2>
+
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16 "><i class="fa fa-envelope"></i> &nbsp;安全邮箱</span>
+                        <span class="text-gray " th:if="${userInfo.hasEmailValid==true}" th:text="${userInfo.emailSecurity}"></span>
+                        <span class="text-gray " th:if="${userInfo.hasEmailValid==false}" >未验证</span>
+                        <span class="text-green fs-18 "><i class="fa fa-check-circle-o" th:if="${userInfo.hasEmailValid==true}"></i> <i class="fa fa-exclamation-circle" th:if="${userInfo.hasEmailValid==false}"></i></span>
+                    </div><!-- /left text -->
+
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/set_email" class="btn btn-warning btn-sm toggle" th:if="${userInfo.hasEmailValid==false}">去验证</a>
+                        <a href="javascript:void(0)" class="btn btn-warning btn-sm toggle" th:if="${userInfo.hasEmailValid==true}">已验证</a>
+                    </div><!-- /right btn -->
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16"><i class="fa  fa-mobile fa-2x"></i> &nbsp;手机认证</span>
+                        <span class="text-gray " th:if="${userInfo.hasMobileValid==true}" th:text="${userInfo.mobileSecurity}"></span>
+                        <span class="text-green fs-18 "><i class="fa fa-check-circle-o" th:if="${userInfo.hasMobileValid==true}"></i> <i class="fa fa-exclamation-circle" th:if="${userInfo.hasMobileValid==false}"></i></span>
+                    </div><!-- /left text -->
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/set_mobile"  class="btn btn-warning btn-sm" th:if="${userInfo.hasMobileValid==false}">去认证</a>
+                        <a href="/ex/member/security/update_mobile"  class="btn btn-warning btn-sm" th:if="${userInfo.hasMobileValid==true}">去修改</a>
+                    </div><!-- /right btn -->
+
+                </div>
+
+            </div>
+
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16"><i class="fa  fa-user "></i> &nbsp;实名认证</span>
+                        <span class="text-gray " th:if="${userInfo.realState==1}" th:text="${userInfo.realNameSecurity}"></span>
+                        <span class="text-green fs-18 "><i class="fa  fa-exclamation-circle" th:if="${userInfo.realState==0}"></i><i class="fa  fa-check-circle-o" th:if="${userInfo.realState==1}"></i></span>
+                    </div><!-- /left text -->
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/userauth"  class="btn btn-warning btn-sm" th:if="${userInfo.realState==0}">去认证</a>
+                        <a href="javascript:void(0)"  class="btn btn-warning btn-sm" th:if="${userInfo.realState==1}">已认证</a>
+
+                    </div><!-- /right btn -->
+
+                </div>
+
+            </div>
+
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16"><i class="fa fa-google fa-lg"></i> &nbsp;Google</span>
+                        <span class="text-gray " th:if="${userInfo.hasGoogleValid==true}">已认证</span>
+                        <span class="text-gray " th:if="${userInfo.hasGoogleValid==false}">未认证</span>
+                        <span class="text-gray " th:if="${userInfo.hasGoogleValid==true}">，如需修改请先关闭认证，然后重新认证！</span>
+                        <span class="text-green fs-18 "><i class="fa fa-check-circle-o" th:if="${userInfo.hasGoogleValid==true}"></i> <i class="fa fa-exclamation-circle" th:if="${userInfo.hasGoogleValid==false}"></i></span>
+
+                    </div><!-- /left text -->
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/googleauth"  class="btn btn-warning btn-sm" th:if="${userInfo.hasGoogleValid==false}">去认证</a>
+                        <a href="/ex/member/security/close_ga"  class="btn btn-warning btn-sm" th:if="${userInfo.hasGoogleValid==true}">关闭认证</a>
+                    </div><!-- /right btn -->
+
+                </div>
+
+            </div>
+
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16"><i class="fa fa-lock fa-lg"></i> &nbsp;登录密码</span>
+                        <span class="text-gray ">***********</span>
+                        <span class="text-green fs-18 "><i class="fa fa-check-circle-o"></i></span>
+                    </div><!-- /left text -->
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/updatepwd"  target="_blank" class="btn btn-warning btn-sm">去修改</a>
+                    </div><!-- /right btn -->
+
+                </div>
+
+            </div>
+            <div class="callout alert alert-bordered-dotted  mb-10">
+
+                <div class="row">
+
+                    <div class="col-md-8 col-sm-8 pt-8"><!-- left text -->
+                        <span class="text-green fs-16"><i class="fa fa-lock fa-lg"></i> &nbsp;资金密码</span>
+                        <span class="text-gray ">***********</span>
+                        <span class="text-green fs-18 "><i class="fa fa-check-circle-o" th:if="${userInfo.hasTradePassword==true}"></i> <i class="fa fa-exclamation-circle" th:if="${userInfo.hasTradePassword==false}"></i></span>
+                    </div><!-- /left text -->
+
+                    <div class="col-md-4 col-sm-4 text-right"><!-- right btn -->
+                        <a href="/ex/member/security/settradepwd"  class="btn btn-warning btn-sm toggle" th:if="${userInfo.hasTradePassword==false}">去设置</a>
+                        <a href="/ex/member/security/updatetradepwd"  class="btn btn-warning btn-sm toggle" th:if="${userInfo.hasTradePassword==true}">去修改</a>
+                    </div><!-- /right btn -->
+
+                </div>
+
+            </div>
+
+
+    </div>
+</div>
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  DEV + "/page_user"], function (a,  d) {
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

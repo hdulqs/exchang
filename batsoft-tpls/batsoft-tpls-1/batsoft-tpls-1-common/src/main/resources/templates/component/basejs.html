@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+   <div th:fragment="basejs(use)" >
+       <script th:inline="javascript">
+           var d=new Date();
+           var         CONST              = {},
+               GLOBAL = [# th:utext="${@globalService.findGlobInfo()}"/],
+               BATSOFTVER          = CONST['BATSOFTVER']          = d.getTime(),
+               HTTP_STATIC_DOMAIN = CONST['HTTP_STATIC_DOMAIN'] = [# th:text="${@globalService.staticUrl()}"/],
+               BASE_PATH = CONST['BASE_PATH'] = [# th:text="${@globalService.webSiteHost()}"/],
+               FILE_PATH = CONST['FILE_PATH'] = [# th:text="${@globalService.fileHost()}"/],
+               DEV = CONST['DEV'] = [# th:text="${@globalService.staticDev()}"/]
+
+
+       </script>
+
+       <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/sea.js?v=1'}"></script>
+       <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/sea-css.js'}"></script>
+       <script th:replace="${use}">
+
+       </script>
+
+  </div>
+</body>
+</html>
+

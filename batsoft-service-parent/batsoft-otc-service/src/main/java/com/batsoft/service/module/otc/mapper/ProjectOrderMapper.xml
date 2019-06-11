@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>ProjectOrderMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-11-28 17:39:53 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.otc.dao.ProjectOrderDao">
+    <resultMap id="baseResult" type="com.batsoft.model.module.otc.vo.ProjectOrderVo">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="orderNum" property="orderNum" jdbcType="VARCHAR"/>
+        <result column="userName" property="userName" jdbcType="VARCHAR"/>
+        <result column="projectId" property="projectId" jdbcType="VARCHAR"/>
+        <result column="userId" property="userId" jdbcType="VARCHAR"/>
+        <result column="orderCoin" property="orderCoin" jdbcType="INTEGER"/>
+        <result column="orderType" property="orderType" jdbcType="INTEGER"/>
+        <result column="orderRemarkNum" property="orderRemarkNum" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="DATE"/>
+        <result column="currency" property="currency" jdbcType="VARCHAR"/>
+        <result column="orderCount" property="orderCount" jdbcType="DECIMAL"/>
+        <result column="orderMoney" property="orderMoney" jdbcType="DECIMAL"/>
+        <result column="orderFee" property="orderFee" jdbcType="DECIMAL"/>
+        <result column="project_userId" property="projectUserId" jdbcType="VARCHAR"/>
+        <result column="project_userName" property="projectUserName" jdbcType="VARCHAR"/>
+        <result column="project_userNick" property="projectUserNick" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findPageBySql" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT
+        o.id,
+        o.orderNum,
+        o.userName,
+        o.userId,
+        o.projectId,
+        o.orderCoin,
+        o.orderType,
+        o.currency,
+        o.orderRemarkNum ,
+        o.orderCount,
+        o.orderMoney,
+        o.orderFee,
+        p.userId as project_userId,
+        p.userNick as project_userNick,
+        p.userName as project_userName
+        FROM otc_project_order o LEFT  JOIN
+        otc_releaseproject as p on o.projectId =p.id
+        where 1=1
+        <if test="status!= null ">
+            AND o.status=#{status,jdbcType=INTEGER}
+        </if>
+        <if test="userId!= null and userId!='' ">
+            AND o.userId=#{userId,jdbcType=VARCHAR}
+        </if>
+        AND o.del=0
+
+    </select>
+
+</mapper>

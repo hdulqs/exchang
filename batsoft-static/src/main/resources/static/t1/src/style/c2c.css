@@ -1,0 +1,215 @@
+@charset "utf-8";
+
+.c2c .verifyBar{
+    height: auto !important;
+    background: transparent;
+    border: none;
+    margin: 0;
+    padding-top: 20px;
+}
+
+.c2c .marketsTop{
+    background: #181b2a;
+    margin-top: 30px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 30px;
+}
+
+.c2c .marketsTop .t_menu{
+    height: auto;
+}
+.c2c .marketsTop .t_menu li{
+    border: none;
+    font-size: 20px;
+    color: #c7cce6;
+    text-align: left;
+    line-height: 28px;
+    height: 28px;
+}
+
+.usdtnote-wrap{
+    background: #181B2A;
+    padding: 20px;
+}
+
+.usdtnote-wrap .usdtnote{
+    border: 4px solid #AE4E54;
+}
+
+.usdtnote-wrap .usdtnote .notecont{
+    font-size: 14px;
+    padding: 30px;
+}
+
+.usdtnote-wrap .usdtnote .notecont p{
+    padding-bottom: 6px;
+}
+
+#detail_form{
+    margin-bottom: 30px;
+    color: #8489A0;
+}
+
+#detail_form,
+#c2c_productInfo_render{
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+}
+
+#detail_form form,
+#c2c_productInfo_render #buy_form,
+#c2c_productInfo_render #sell_form{
+    flex: 1;
+    background: #181b2a;
+}
+
+#c2c_productInfo_render #buy_form,
+#c2c_productInfo_render #sell_form{
+    padding: 30px 40px;
+}
+
+#detail_form form{
+    padding: 75px 40px 30px;
+    min-height: 111px;
+}
+
+#detail_form .detail_form_buy_in,
+#c2c_productInfo_render #buy_form{
+    margin-right: 10px;
+}
+
+#detail_form .detail_form_sell,
+#c2c_productInfo_render #sell_form{
+    margin-left: 10px;
+}
+
+.c2c .marketsTableBox2 table .first_td,
+#detail_form form table .first_td,
+#detail_form form table .first_th{
+    text-align: left;
+    padding: 17px 30px;
+}
+
+
+#detail_form form table{
+    border: 1px solid #262a42;
+}
+
+.c2c .marketsTableBox2 table th,
+#detail_form form table th{
+    border-bottom: 1px solid #262a42;
+}
+
+#c2c_productInfo_render form .input{
+    position: relative;
+}
+
+#c2c_productInfo_render form .input input{
+    background: #181B2A;
+    border: 1px solid #262A42;
+    border-radius: 2px;
+    color: #8489A0;
+    width: 100%;
+    height: 50px;
+    font-size: 14px;
+    text-align: right;
+    padding-right: 20px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+.input .overflow-text{
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    font-size: 14px;
+    color: #60688D;
+}
+
+#c2c_productInfo_render form .title{
+    font-size: 16px;
+    color: #C7CCE6;
+    margin-bottom: 30px;
+}
+
+
+#c2c_productInfo_render form #buy-submit,
+#c2c_productInfo_render form #sell-submit{
+    border-radius: 2px;
+    width: 100%;
+    color: white;
+}
+
+#c2c_productInfo_render form #buy-submit{
+    background: #589065;
+}
+
+#c2c_productInfo_render form #sell-submit{
+    background: #AE4E54;
+}
+
+#c2c_productInfo_render form #buy_total_price{
+ color: #589065;
+}
+
+#c2c_productInfo_render form #sell_total_price{
+    color: #AE4E54;
+}
+
+#c2c_productInfo_render form .total_wrap{
+    padding-bottom: 10px;
+}
+
+.c2c .marketsTableBox2{
+    background: #181b2a;
+    padding: 30px 40px;
+    margin-bottom: 30px;
+}
+
+.c2c .marketsTableBox2 .title{
+    font-size: 16px;
+    color: #C7CCE6;
+    margin-bottom: 20px;
+}
+
+.c2c .marketsTableBox2 .first_th{
+    text-align: left;
+    padding: 17px 30px;
+}
+
+.c2c .marketsTableBox2 table{
+    border: 1px solid #262a42;
+}
+
+.c2c .operation_link a{
+    font-size: 14px;
+    color: #387DE0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c2c .operation_icon{
+    background: url(../img/operation.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    width:18px;
+    height: 18px;
+    display: inline-block;
+    padding-right: 6px;
+}
+
+.c2c table tr:hover td {
+    background: none;
+}
+
+.recent_history{
+    color: #8489A0;
+}
+
+.recent_history table tr:nth-child(2n) td{
+    background: #262A42;
+}

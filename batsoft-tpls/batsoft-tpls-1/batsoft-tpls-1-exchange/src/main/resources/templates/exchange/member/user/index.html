@@ -1,0 +1,275 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .securityBar .bt.no-blinding{background:#181b2a;color:#FFFFFF;border:1px solid #262A42;}
+        .securityBar .bt.no-blinding:hover{background:#181b2a;border:1px solid #262A42;}
+        #miuBar li.item {
+            width: 388px;
+            height: 170px;
+            padding: 9px 9px;
+            float: left;
+        }
+        /*.userPic .icoCamera{display:block;width:22px;height:20px;background:url(../img/ico_camera.png) no-repeat 0 0;position:absolute;z-index:1;bottom:1px;right:2px}*/
+        .userInfo {
+            padding: 0 20px;
+            float: left;
+            height: auto;
+            border-right: #181b2a 1px solid;
+            margin-right: 25px;
+            min-width: 200px;
+            max-width: 500px;
+            overflow: hidden;
+            color: #999;
+            /* line-height: 18px; */
+            /* font-size: 12px; */
+            margin-top: 5px;
+            padding-right: 90px;
+            position: relative;
+        }
+        .securityBar li.item .box{
+            padding: 25px 20px 0 30px;
+            height: 143px;
+            position: relative;
+            background-color: #181b2a;
+            border: #181b2a 1px solid;
+        }
+        .securityBar .bt {
+            width: 90px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: #262A42  1px solid;
+            display: block;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1;
+            font-size: 12px;
+        }
+        .securityBar .bt:hover{
+            width: 90px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: #262A42  1px solid;
+            display: block;
+            position: absolute;
+            right: 20px;
+            bottom: 20px;
+            z-index: 1;
+            font-size: 12px;
+        }
+    </style>
+</head>
+
+<body style="">
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+
+
+    <div class="topColtitWrap" style="background: #181b2a;border-bottom: none;    border-top: 1px solid #262A42;">
+        <div class="userCenterBg" style="background: #181b2a;">
+            <div class="userPic"><span class="icoCamera"></span></div>
+            <div class="userInfo" id="userInfoRender" >
+            </div>
+
+            <script id="userInfoTmpl" type="text/x-jsrender">
+              {{if realState==0}}
+                <a href="/member/security/userauth"  class="notCertified" id="identity_auth" th:text="#{user.uncertified}" style="background:#4E5B85;
+                     outline:none;color:#c7cce6;border:none;border:1px solid #4E5B85;" >未认证</a>
+                      <p class="accountTit" style="color:#c7cce6;">{{:userName}}</p>
+                <p style="color:#5871BF"><span th:text="#{user.last_login_time}">最后登录时间</span>:
+                    <span>{{:oldLoginTime}}</span>
+                    <br>
+                    <span th:text="#{user.login_ip}">最后登录IP</span>:
+                    {{:oldLoginIp}}
+                </p>
+                {{/if }}
+                {{if realState==1}}
+                 <a href="javascript:void(0)"  class="notCertified" th:text="#{user.certified}" style="background:#589065;outline:none;color:#c7cce6;border:none;border:1px solid #589065;">已认证</a>
+                 <p class="accountTit" style="color:#c7cce6;">{{:userName}}</p>
+                <p style="color:#5871BF"><span th:text="#{user.last_login_time}">最后登录时间</span>:
+                    <span >{{:oldLoginTime}}</span>
+                    <br>
+                    <span th:text="#{user.login_ip}">最后登录IP</span>:
+                    {{:oldLoginIp}}
+                </p>
+                {{/if}}
+                 {{if realState==2}}
+                 <a href="javascript:void(0)"  class="notCertified" th:text="#{user.verify}" style="background:#AE4E54; outline:none;color:#c7cce6;border:none;border:1px solid #AE4E54;">审核中</a>
+                  <p class="accountTit" style="color:#c7cce6;">{{:userName}}</p>
+                    <p style="color:#5871BF"><span th:text="#{user.last_login_time}">最后登录时间</span>:
+                        <!--<span timestamp="1524305572">{{:oldLoginTime}}</span>-->
+                           <span >{{:oldLoginTime}}</span>
+                        <br>
+                        <span th:text="#{user.login_ip}">最后登录IP</span>:
+                        {{:oldLoginIp}}
+                    </p>
+
+                {{/if}}
+                {{if realState==3}}
+                <div style="width:500px;height:40px;position: relative;left: 199px;">
+                    <a href="/member/security/userauth"  class="notCertified" th:text="#{user.verify_fail}" style="background:#666666; outline:none;color:#c7cce6;border:none;border:1px solid #66666;    position: absolute;right: 424px;top: 10px;">审核失败</a>
+                     <br>
+                    <a style="width: auto;height: 30PX;line-height: 41px;position: relative;top: -9px;left: 89px;color: #AE4E54;font-size: 12px;">{{:realStateRemark}}</a>
+                 </div>
+                <p class="accountTit" style="color:#c7cce6;width:100px;position: relative;top: -46px;">{{:userName}}</p>
+                <p style="color:#5871BF;position: relative;top: -43px;"><span th:text="#{user.last_login_time}">最后登录时间</span>:
+                    <span >{{:oldLoginTime}}</span>
+                    <br>
+                    <span th:text="#{user.login_ip}">最后登录IP</span>:
+                    {{:oldLoginIp}}
+                </p>
+                {{/if}}
+                </script>
+            <div class="myAssetsR">
+                <p class="font16" style="color: #c7cce6;"><span th:text="#{luher}" style="color: #c7cce6;"> 总当前估值</span>≈
+                    <!--<span th:text="${@globalService.userTotalMoney()}"></span> -->
+                    <span  id ="money_HD"></span>
+   </p>
+                <p class="gold" style="color:#5871BF;height: auto;width: 273px;" ><span th:text="#{user.tip1}">不要给声称为</span> <span th:text="${@globalService.webSiteTitle()}"></span> <span th:text="#{user.tip2}">工作人员转账和透露密码信息</span></p>
+            </div>
+            <!--<form id="form" method="post" action="">-->
+                <!--<div class="userFree">g}" style="color: #c7cce6;"></span>&ndash;&gt;-->
+                        <!--<span th:text="${@globalService.webSiteTitle()}" style="color: #c7cce6;"></span>-->
+                        <!--<span th:text="#{user.to_pay_for_fees}" style="color: #c7cce6;">支付交易手续费</span>-->
+                        <!--<span class="gray" style="color: #c7cce6;">（50%<span th:text="#{user.discount}"></span>）</span>-->
+                    <!--</p>-->
+                    <!--<div class="freeSwitch"><i></i><span th:text="#{user.close}">关闭</span></div>-->
+                <!--</div>-->
+            <!--</form>-->
+        </div>
+    </div>
+
+    <div class="wrapMain">
+        <ul class="securityBar" id="miuBar">
+            <li class="item" >
+                <div class="box">
+                    <p class="securitIco s_1"></p>
+                    <div class="txt">
+                        <p class="tit" th:text="#{user.login_password}" style="color: #c7cce6">登录密码</p>
+                        <span th:text="#{user.login_password_tip1}" style="color:#5871BF">修改登录使用的密码</span></div>
+                    <a href="/member/security/updatepwd" class="bt" th:text="#{user.change}" style="color:#387DE0;">修改</a></div>
+            </li>
+            <li class="item">
+                <div class="box">
+                    <p class="securitIco s_2"></p>
+                    <div class="txt">
+                        <p class="tit" th:text="#{user.google_authentication}" style="color: #c7cce6">谷歌二次验证</p>
+                        <span th:text="#{user.google_auth_tip}" style="color:#5871BF">提现，修改密码，及安全设置时用以验证谷歌二次验证</span> </div>
+                    <a href="/member/security/googleauth" class="bt no-blinding"  th:if="${!@globalService.googleAuth()}" th:text="#{user.open}" style="color:#387DE0;background: #181b2a;">开启</a>
+                    <a href="/member/security/close_ga" class="bt "  th:if="${@globalService.googleAuth()}" th:text="#{user.close}" style="color:#387DE0;background: #181b2a;">关闭</a>
+
+                </div>
+            </li>
+            <li class="item">
+                <div class="box">
+                    <p class="securitIco s_1"></p>
+                    <div class="txt">
+                        <p class="tit" style="color: #c7cce6"  th:text ="#{more_transac1tionpassword}">交易密码</p>
+                        <span style="color:#5871BF" th:text="#{more_transactionpassword}">设置，及修改交易使用的密码</span></div>
+                    <a href="/member/security/rpdatepwd" class="bt"   th:if="${@globalService.tradePasswdValid()}" style="color:#387DE0;" th:text="#{more_modify}" >修改</a>
+                    <a href="/member/security/settingdatapwd" class="bt" th:if="${!@globalService.tradePasswdValid()}"  th:text="#{more_Setting}" style="color:#387DE0;">设置</a>
+                </div>
+            </li>
+            <li class="item" th:if="${@globalService.bankOpen()=='1'}"  style="position: relative;top: 8px;">
+                <div class="box" id="bankInfoRender">
+                    <p class="securitIco s_3"></p>
+                    <div class="txt">
+                        <p class="tit" th:text="#{user.bind_card_title}" style="color: #c7cce6">绑定银行卡</p>
+                        <span th:text="#{user.bind_card_info}" style="color:#5871BF">请绑定您的绑定银行卡信息</span>
+                    </div>
+                    <a href="/member/security/bindCard" class="bt" id="s" th:text="#{user.bind_card}" style="color:#387DE0;">绑定</a>
+
+                </div>
+            </li>
+        </ul>
+
+        <script id="bankInfoTmpl_bind" type="text/x-jsrender">
+              <p class="securitIco s_3"></p>
+                    <div class="txt" style="color: #c7cce6">
+                        <p class="tit" th:text="#{user.bind_card_title}"  style="color: #c7cce6">绑定银行卡</p>
+                        <span th:text="#{user.bank_name}"  style="color: #c7cce6">银行卡名称</span>: {{:bankName}}<br>
+                        <span th:text="#{user.bank_card}"  style="color: #c7cce6">银行卡号</span>: {{:bankCardStr}}
+                     </div>
+                    <a href="/member/security/bindCard" class="bt" th:text="#{user.bind_card_agin}" style="color:#387DE0;">重新绑定</a>
+        </script>
+        <script id="bankInfoTmpl_unbind" type="text/x-jsrender">
+              <p class="securitIco s_3"></p>
+                    <div class="txt">
+                        <p class="tit" th:text="#{user.bind_card_title}" style="color: #c7cce6">绑定银行卡</p>
+                        <span th:text="#{user.bind_card_info}"  style="color:#5871BF">请绑定您的绑定银行卡信息</span></div>
+                    <a href="/member/security/bindCard" class="bt" th:text="#{user.bind_card}" style="color:#387DE0;background: #181b2a;">绑定</a>
+        </script>
+        <div class="colTitBar" th:text="#{user.last_login}" style="color: #c7cce6;">最近登录</div>
+        <div class="marketsTable borderTable gray2" style="color:#5871BF;background: #181b2a;border-top:none;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#5871BF;background: #181b2a;">
+                <tr class="theader">
+                    <th width="20%" th:text="#{user.login_time}" style="background: #181b2a;color:#c7cce6;">登录时间</th>
+                    <th width="35%" th:text="#{user.login_ip}"  style="background: #181b2a;color:#c7cce6;">IP地址</th>
+                    <th width="45%" th:text="#{user.login_address}"  style="background: #181b2a;color:#c7cce6;">登录所在地</th>
+                </tr>
+                <tbody id="memberLoginRender">
+
+                <!--<div id="memberLoginRender"></div>-->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <script id="memberLoginTmpl" type="text/x-jsrender">
+        <tr>
+            <td><span timestamp="1524305572">{{:loginTime}}</span></td>
+            <td>{{:ip}}</td>
+            <td>{{:address}}</td>
+        </tr>
+    </script>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+
+
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","numeral","layer","laydate",  DEV + "/page_user"], function ( a,  o, b, c, d) {
+            d.init();
+            d.globalInit();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        $.ajax({
+            type:"get",
+            url:"/ex/member/account/financeData",
+            dataType: 'json',
+            success: function(data) {
+                if(data.success){
+                    $("#money_HD").text(data.data.total+" " +"CNY")
+                }
+            },
+
+        });
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

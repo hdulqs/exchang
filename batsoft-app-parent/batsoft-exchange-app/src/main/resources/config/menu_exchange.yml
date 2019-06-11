@@ -1,0 +1,215 @@
+menus:
+  name: 交易所产品管理
+  key: exchange
+  path: exchange
+  icon: appstore-o
+  description: 交易所产品管理
+  item:
+  - name: 币种管理
+    key: exchange_coin
+    icon: appstore-o
+    path: coin/list
+    menu: 1
+    permission: exchange:coin:list
+    description: 币种管理
+    item:
+    - name: 增加
+      key: exchange_coin_add
+      icon: appstore-o
+      path: coin/add
+      menu: 0
+      permission: exchange:coin:add
+      description: 币种增加
+    - name: 修改
+      key: exchange_coin_edit
+      icon: appstore-o
+      path: coin/edit
+      menu: 0
+      permission: exchange:coin:edit
+      description: 币种修改
+    - name: 查看
+      key: exchange_coin_see
+      icon: appstore-o
+      path: coin/info
+      menu: 0
+      permission: exchange:coin:see
+      description: 币种查看
+    - name: 删除
+      key: exchange_coin_remove
+      icon: appstore-o
+      path: coin/remove
+      menu: 0
+      permission: exchange:coin:remove
+      description: 币种删除
+    - name: 开启
+      key: exchange_coin_updateStatus
+      icon: appstore-o
+      path: coin/updateStatus
+      menu: 0
+      permission: exchange:coin:updateStatus
+      description: 币种开启
+    - name: 关闭
+      key: exchange_coin_closeStatus
+      icon: appstore-o
+      path: coin/closeStatus
+      menu: 0
+      permission: exchange:coin:closeStatus
+      description: 币种关闭
+  - name: 交易对管理
+    key: exchange_coinPair
+    icon: appstore-o
+    path: coinPair/list
+    menu: 1
+    permission: exchange:coinPair:list
+    description: 交易对管理
+    item:
+    - name: 增加
+      key: exchange_coinPair_add
+      icon: appstore-o
+      path: coinPair/add
+      menu: 0
+      permission: exchange:coinPair:add
+      description: 交易对增加
+    - name: 修改
+      key: exchange_coinPair_edit
+      icon: appstore-o
+      path: coinPair/edit
+      menu: 0
+      permission: exchange:coinPair:edit
+      description: 交易对修改
+    - name: 查看
+      key: exchange_coinPair_see
+      icon: appstore-o
+      path: coinPair/info
+      menu: 0
+      permission: exchange:coinPair:see
+      description: 交易对查看
+    - name: 删除
+      key: exchange_coinPair_remove
+      icon: appstore-o
+      path: coinPair/remove
+      menu: 0
+      permission: exchange:coinPair:remove
+      description: 交易对删除
+    - name: 推荐设置
+      key: exchange_coinPair_recommend
+      icon: appstore-o
+      path: coinPair/recommend
+      menu: 0
+      permission: exchange:coinPair:recommend
+      description: 交易对推荐设置
+    - name: 取消推荐
+      key: exchange_coinPair_unRecommend
+      icon: appstore-o
+      path: coinPair/unRecommend
+      menu: 0
+      permission: exchange:coinPair:unRecommend
+      description: 交易对取消推荐
+  - name: 提币地址管理
+    key: exchange_withdrawAddress
+    icon: appstore-o
+    path: withdrawAddress/list
+    menu: 1
+    permission: exchange:withdrawAddress:list
+    description: 提币地址管理
+    item:
+    - name: 增加
+      key: exchange_withdrawAddress_add
+      icon: appstore-o
+      path: withdrawAddress/add
+      menu: 0
+      permission: exchange:withdrawAddress:add
+      description: 提币地址增加
+    - name: 修改
+      key: exchange_withdrawAddress_edit
+      icon: appstore-o
+      path: withdrawAddress/edit
+      menu: 0
+      permission: exchange:withdrawAddress:edit
+      description: 提币地址修改
+    - name: 查看
+      key: exchange_withdrawAddress_see
+      icon: appstore-o
+      path: withdrawAddress/info
+      menu: 0
+      permission: exchange:withdrawAddress:see
+      description: 提币地址查看
+    - name: 删除
+      key: exchange_withdrawAddress_remove
+      icon: appstore-o
+      path: withdrawAddress/remove
+      menu: 0
+      permission: exchange:withdrawAddress:remove
+      description: 提币地址删除
+  - name: 提币管理
+    key: exchange_coinWithdraw
+    icon: appstore-o
+    path: coinWithdraw/list
+    menu: 1
+    permission: exchange:coinWithdraw:list
+    description: 提币管理
+    item:
+    - name: 增加
+      key: exchange_coinWithdraw_add
+      icon: appstore-o
+      path: coinWithdraw/add
+      menu: 0
+      permission: exchange:coinWithdraw:add
+      description: 提币增加
+    - name: 修改
+      key: exchange_coinWithdraw_edit
+      icon: appstore-o
+      path: coinWithdraw/edit
+      menu: 0
+      permission: exchange:coinWithdraw:edit
+      description: 提币修改
+    - name: 查看
+      key: exchange_coinWithdraw_see
+      icon: appstore-o
+      path: coinWithdraw/info
+      menu: 0
+      permission: exchange:coinWithdraw:see
+      description: 提币查看
+    - name: 删除
+      key: exchange_coinWithdraw_remove
+      icon: appstore-o
+      path: coinWithdraw/remove
+      menu: 0
+      permission: exchange:coinWithdraw:remove
+      description: 提币删除
+  - name: K线数据管理
+    key: exchange_kline
+    icon: appstore-o
+    path: kline/list
+    menu: 1
+    permission: exchange:kline:list
+    description: K线数据管理
+    item:
+    - name: 增加
+      key: exchange_kline_add
+      icon: appstore-o
+      path: kline/add
+      menu: 0
+      permission: exchange:kline:add
+      description: K线数据增加
+    - name: 修改
+      key: exchange_kline_edit
+      icon: appstore-o
+      path: kline/edit
+      menu: 0
+      permission: exchange:kline:edit
+      description: K线数据修改
+    - name: 查看
+      key: exchange_kline_see
+      icon: appstore-o
+      path: kline/info
+      menu: 0
+      permission: exchange:kline:see
+      description: K线数据查看
+    - name: 删除
+      key: exchange_kline_remove
+      icon: appstore-o
+      path: kline/remove
+      menu: 0
+      permission: exchange:kline:remove
+      description: K线数据删除

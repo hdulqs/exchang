@@ -1,0 +1,65 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">关闭Google认证</span>
+            </span>
+        </h2>
+
+
+                <div class="container">
+
+
+                        <form method="post" th:action="@{/ex/member/security/updateGoogleAuthState}"  class="sky-form  form">
+
+                            <fieldset class="m-0" >
+                                <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                <label class="input">
+                                    <input type="text" style="margin-left: 18px" class="form-control" id="ga" name="ga" placeholder="双重认证密码">
+                                    <b class="tooltip tooltip-top-right f-w">双重认证密码</b>
+                                </label>
+
+                            </fieldset>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+
+            <!-- / -->
+
+        </div>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "qrcode", DEV + "/page_user"], function (a, p, d) {
+            d.googleAuth();
+            var code= {text: $("#googleCode").val()};
+            $('#qrcode').qrcode(code);
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,525 @@
+body, dd, dl, dt, form {
+    margin: 0
+}
+
+body {
+    min-width: 320px;
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 14px;
+    padding-bottom: 80px
+}
+
+a {
+    color: #666;
+    text-decoration: none
+}
+
+.red, a.red {
+    color: #f60
+}
+
+.Btn {
+    display: block;
+    padding: 0 1em;
+    line-height: 2;
+    font-size: 14px;
+    color: #fff;
+    background: #F60;
+    border-radius: 4px
+}
+
+.Btn.min {
+    display: inline-block
+}
+
+.Btn.max {
+    display: block
+}
+
+.Btn.red {
+    background: #F60;
+    color: #fff
+}
+
+.loading {
+    padding: 50px;
+    background: url(../../../img/book/loading2.gif) no-repeat center center
+}
+
+.alert_bg {
+    position: fixed;
+    z-index: 2147483647;
+    right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, .3)
+}
+
+.alert {
+    border-radius: 5px;
+    background: #fff;
+    padding: 3em 1.5em 1.5em;
+    width: 90%;
+    text-align: center;
+    left: 5%;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: fixed;
+    z-index: 2147483647;
+    top: 40%;
+    min-height: 20%;
+    opacity: 0;
+    color: #333;
+    box-shadow: 0 0 6px rgba(0, 0, 0, .5);
+    line-height: 1.5;
+    -webkit-transition: all .3s ease;
+    transition: all .3s ease
+}
+
+.alert .close {
+    position: absolute;
+    right: .5em;
+    top: .5em;
+    width: 2em;
+    height: 2em;
+    background: url(../../../img/book/close1.png) no-repeat center center;
+    -webkit-background-size: 50% 50%;
+    background-size: 50% 50%
+}
+
+.alert .btn {
+    display: inline-block;
+    padding: .5em 1em;
+    border-radius: 5px;
+    margin: .5em;
+    text-align: center
+}
+
+.alert .btn.definite {
+    background: #F60;
+    color: #fff
+}
+
+.alert .btn.cancel {
+    background: #999;
+    color: #000
+}
+
+.alert.open {
+    opacity: 1;
+    top: 30%
+}
+
+.alert.close {
+    opacity: 0;
+    top: 30%
+}
+
+.UserLoginPop {
+    background: rgba(0, 0, 0, .8);
+    position: fixed;
+    z-index: 2147483647;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transition: top .3s ease;
+    transition: top .3s ease
+}
+
+.UserLoginPop .close {
+    position: absolute;
+    background: url(../../../img/book/x.png);
+    -webkit-background-size: 100% 100%;
+    background-size: 100% 100%;
+    width: 2em;
+    height: 2em;
+    right: 1em;
+    top: 1em
+}
+
+.UserLoginPop .K17 {
+    width: 80%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.UserLoginPop .K17 a {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    font-size: 1.2em;
+    color: #fff;
+    text-decoration: underline
+}
+
+.UserLoginPop .K17 a:nth-of-type(2) {
+    text-align: center
+}
+
+.UserLoginPop .K17 a:nth-of-type(3) {
+    text-align: right
+}
+
+.UserLoginPop > a {
+    display: block;
+    margin: 1em auto;
+    width: 80%;
+    height: 3em;
+    background: #fff;
+    border-radius: 10px;
+    background-position: center center;
+    background-repeat: no-repeat
+}
+
+.UserLoginPop > a.qq {
+    background-image: url(../../../img/book/qq.png);
+    -webkit-background-size: auto 2em;
+    background-size: auto 2em;
+    margin-top: 10em
+}
+
+.UserLoginPop > a.weibo {
+    background-image: url(../../../img/book/weibo.png);
+    -webkit-background-size: auto 1.9em;
+    background-size: auto 1.9em
+}
+
+.UserLoginPop > a.renren {
+    background-image: url(../../../img/book/renren.png);
+    -webkit-background-size: auto 1.5em;
+    background-size: auto 1.5em
+}
+
+.footer_bot {
+    text-align: center;
+    line-height: 2;
+    padding: .5em 0 1em;
+    background: 0 0
+}
+
+.footer_bot a {
+    color: #666;
+    padding: 8px;
+    font-size: .8em
+}
+
+.footer_bot .copy {
+    text-align: center;
+    font-size: 10px;
+    color: #999
+}
+
+header.Nav {
+    background: #f1f1f3;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    font-size: 1.5em;
+    line-height: 2.5;
+    border-bottom: 1px solid #ececec;
+    overflow: hidden
+}
+
+header.Nav a {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+    width: 3.5em;
+    text-align: center;
+    display: block
+}
+
+header.Nav a.back {
+    background: url(../../../img/book/arr_left.png) no-repeat 1em center;
+    -webkit-background-size: .4em .8em;
+    background-size: .4em .8em
+}
+
+header.Nav span {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    text-align: center
+}
+
+section.MODLE {
+    border-bottom: 10px solid #f5f5f5
+}
+
+section.MODLE .TIT {
+    margin: 1em;
+    font-size: 1.2em;
+    border-left: 6px solid #f60;
+    text-indent: .4em;
+    line-height: 1em;
+    font-weight: 400
+}
+
+section.MODLE .TIT .more {
+    font-weight: 400;
+    color: #999;
+    float: right;
+    font-size: .8em
+}
+
+section.MODLE .TIT .more.swap {
+    padding-left: .7em;
+    background: url(../../../img/book/newlist_ico.png) no-repeat left center;
+    -webkit-background-size: 1em auto;
+    background-size: 1em auto;
+    color: #F60
+}
+
+.LIST_IMG {
+    overflow: hidden
+}
+
+.LIST_IMG dd {
+    border-top: 1px solid #ececec;
+    margin: -1px 0 0;
+    padding: 1em;
+    overflow: hidden
+}
+
+.LIST_IMG dd a.main .cover {
+    width: 5em;
+    float: left;
+    margin-right: 1em;
+    transform: perspective(800px) rotateX(8deg) rotateY(-25deg) rotateZ(0);
+    border-right: 5px solid #DDD;
+    border-bottom: 3px solid #CCC;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, .3)
+}
+
+.LIST_IMG dd a.main h2, .LIST_IMG dd a.main p {
+    margin: 5px 0
+}
+
+.LIST_IMG dd a.main p {
+    color: #666
+}
+
+.LIST_IMG dd a.main h2 {
+    font-size: 1.1em;
+    margin-top: 0;
+    line-height: 1;
+    margin-bottom: .5em;
+    font-weight: 400;
+    color: #333
+}
+
+.LIST_IMG dd a.main span {
+    color: #999;
+    font-size: .8em;
+    line-height: 1.5em
+}
+
+.LIST_IMG dd a.main span.sign {
+    border: 1px solid #ececec;
+    padding: 0 2px
+}
+
+.LIST_IMG dd a.main span.author {
+    font-size: .8em
+}
+
+.feedback {
+    background: #eaeaea;
+    position: fixed;
+    overflow: auto;
+    z-index: 90;
+    top: 100%;
+    opacity: 0;
+    width: 100%;
+    max-width: 600px;
+    height: 120%;
+    -webkit-transition: all .5s ease-in-out;
+    transition: all .5s ease-in-out
+}
+
+.feedback iframe {
+    display: none
+}
+
+.feedback .h1 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    line-height: 1.2em;
+    background: #fff;
+    padding: 1em
+}
+
+.feedback .h1 span {
+    text-align: center;
+    font-size: 1em;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block
+}
+
+.feedback .h1 a {
+    width: 3em;
+    text-align: center;
+    color: red;
+    -webkit-box-flex: 0;
+    -ms-flex: 0;
+    display: block
+}
+
+.feedback p {
+    margin: 1em;
+    font-size: .6em;
+    line-height: 1.2
+}
+
+.feedback p a {
+    color: #F60
+}
+
+.feedback p.warn {
+    font-size: 10px;
+    color: #999;
+    line-height: 1.2em;
+    text-align: right
+}
+
+.feedback form {
+    padding: .1em 1em 1em;
+    background: #fff
+}
+
+.feedback form .info {
+    display: none;
+    color: #F60;
+    text-align: right;
+    margin: 0;
+    font-size: 10px
+}
+
+.feedback input, .feedback textarea {
+    border: 1px solid #F60;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin-top: 1em;
+    font-size: 1em;
+    line-height: 1.8
+}
+
+.feedback textarea {
+    height: 7em
+}
+
+.feedback input[type=submit] {
+    background: #F60;
+    color: #fff;
+    line-height: 2em;
+    -webkit-appearance: none
+}
+
+img.cover {
+    transform: perspective(800px) rotateX(8deg) rotateY(-25deg) rotateZ(0);
+    border-right: 5px solid #ddd;
+    border-bottom: 3px solid #ccc;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, .3)
+}
+
+.booklist {
+    background: #fff;
+    border: 1px solid #ececec;
+    border-width: 1px 0;
+    padding-left: 2em;
+    display: block
+}
+
+.booklist a {
+    display: block;
+    border-bottom: 1px solid #ececec;
+    overflow: hidden;
+    padding: 2em 2em 2em 0
+}
+
+.booklist a img {
+    width: 8em;
+    float: left;
+    margin-right: 1em
+}
+
+.booklist a span {
+    display: block
+}
+
+.booklist a span.tit {
+    font-size: 1.7em;
+    line-height: 1.2
+}
+
+.booklist a span.author {
+    margin-bottom: 1em;
+    font-size: .8em;
+    color: #999
+}
+
+.nav_bottom {
+    border-top: 1px solid #ececec;
+    background: #fff;
+    width: 100%;
+    max-width: 600px;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    font-size: .9em;
+    display: -webkit-box;
+    display: -ms-flexbox
+}
+
+.nav_bottom a {
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+    display: block;
+    text-align: center;
+    padding: 2.5em 0 1em;
+    background: no-repeat center .5em;
+    background-size: auto 2em;
+    height: .8em
+}
+
+.nav_bottom a.now {
+    border-top: 2px solid #F60;
+    color: #F60
+}
+
+.nav_bottom a.list {
+    background-image: url(../../../img/book/booklib.png)
+}
+
+.nav_bottom a.list.now {
+    background-image: url(../../../img/book/booklib_a.png)
+}
+
+.nav_bottom a.so {
+    background-image: url(../../../img/book/bookso.png)
+}
+
+.nav_bottom a.so.now {
+    background-image: url(../../../img/book/bookso_a.png)
+}
+
+.nav_bottom a.bbs {
+    background-image: url(../../../img/book/bbs.png)
+}
+
+.nav_bottom a.bbs.now {
+    background-image: url(../../../img/book/bbs_a.png)
+}
+
+.nav_bottom a.me {
+    background-image: url(../../../img/book/me.png)
+}
+
+.nav_bottom a.me.now {
+    background-image: url(../../../img/book/me_a.png)
+}

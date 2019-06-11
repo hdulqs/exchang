@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/help.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{${@globalService.fileHost()}+${@globalService.iconPath()}}">
+
+</head>
+
+<body>
+<style>
+
+    .notice_page .main_wrap ul li .tit b {
+        font-weight: 400;
+        float: left;
+        font-size: 12px;
+        color: #C7CCE6;
+        padding: 0 5px;
+        background: #4e5b85;
+    }
+    .notice_page .main_wrap ul li .tit s {
+        float: left;
+        border: 5px solid transparent;
+        border-left-color:  #4e5b85;
+        width: 0;
+        height: 0;
+        margin-right: 10px;
+        margin-top: 7px;
+    }
+    .notice_page {
+        padding: 20px 0;
+        min-width: 1200px;
+        width: 100%;
+    }
+    .notice_page .main_wrap ul li .tit {
+        font-weight: 400;
+        overflow: hidden;
+        padding: 15px 0;
+    }
+    #doc_body .doc_section {
+        position: relative;
+        z-index: 1;
+        min-width: 1200px;
+    }
+    .notice_page .main_wrap ul li {
+        padding-right: 12%;
+         border-bottom: none;
+        padding-bottom: 10px;
+        line-height: 24px;
+    }
+
+    .notice_page .main_wrap {
+        padding-right: 330px;
+        background: #fff;
+        padding-bottom: 347px;
+        padding-left: 37px;
+    }
+    .notice_page .main_wrap ul li {
+        padding-right: 12%;
+        border-bottom: none;
+        padding-bottom: 2px;
+        line-height: 24px;
+    }
+    body, html {
+        height: 100%;
+        background-color: #F3F4F8;
+    }
+</style>
+
+<div id="doc_head">
+    <span th:replace="cms/layout/nav :: nav"></span>
+</div>
+<div id="doc_body" style="background: #F3F4F8;margin: 0 auto;width: 1200px;">
+    <input type="hidden" id="article_type" th:value="${typeKey}">
+    <div class="section doc_section">
+        <div class="notice_page">
+            <div class="notice_right">
+                <h3 style="color: #333333;position: relative;top: 14px;">重要公告</h3>
+                <ul  id="notice_render">
+                </ul>
+                <script id="notice_tpl" type="text/x-jsrender">
+               <li><a href="/article/{{:id}}" target="_blank" style="color:#333333;"> {{:title}}</a></li>
+                </script>
+            </div>
+            <div class="main_wrap">
+                <ul class="notice detail" id="articleList">
+
+                </ul>
+                <script id="articleListTmpl" type="text/x-jsrender">
+
+                   <li>
+                        <h4 class="tit">
+                            <b style="color:#C7CCE6;">{{:typeName}}</b><s></s>
+                            <a href="/article/{{:id}}" style="color:#333333;">{{:title}}</a>
+                        </h4>
+                        <!--<p class="news" style="color:#C7CCE6;">{{:shortContent}}</p>-->
+                        <span style="color:#333333;">{{:updateTime}}</span>
+                    </li>
+
+       </script>
+                <div class="pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<span th:replace="cms/layout/footer :: footer"></span>
+
+
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",DEV+"/page_cms_article"], function (main,article) {
+            article.notices();
+            article.listArticles();
+        });
+
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+
+</body>
+</html>

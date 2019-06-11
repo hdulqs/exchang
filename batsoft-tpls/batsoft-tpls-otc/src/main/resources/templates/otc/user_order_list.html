@@ -1,0 +1,40 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">我的订单</span>
+            </span>
+        </h2>
+        <form>
+        <ul class="nav nav-tabs nav-top-border mb-20 paramsPanel" id="order_search">
+            <input type="text" class="hide" name="status" id="status" value="0"/>
+            <li class="nav-item"><a class="nav-link active" data-status="0" href="javascript:void(0)" >未付款</a></li>
+            <li class="nav-item"><a class="nav-link" data-status="1" href="javascript:void(0)" >已付款</a></li>
+            <li class="nav-item"><a class="nav-link" data-status="2" href="javascript:void(0)" >已完成</a></li>
+            <li class="nav-item"><a class="nav-link" data-status="3" href="javascript:void(0)" >已取消</a></li>
+            <!--<li class="nav-item"><a class="nav-link" href="javascript:void(0)" >申诉中</a></li>-->
+        </ul>
+        </form>
+        <table id="table">
+
+        </table>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh", DEV + "/table_bootstrap",DEV+"/page_otc"], function (b,b1,b2,c,d) {
+            d.userOrder();
+        });
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+        .marketsTable .editCommBt {
+            width: 87px;
+            box-sizing: border-box;
+        }
+
+        .span_inline {
+            display: inline-block;
+            position: relative;
+        }
+
+        .span_inline ul {
+            width: 87px;
+            max-height: 150px;
+            overflow-y: auto;
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 1;
+            right: 2px;
+            top: 28px;
+            background-color: #FFFFFF;
+            border: 1px solid #dfdfdf;
+            border-bottom: 0px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .span_inline ul li a {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            border-bottom: 1px solid #dfdfdf;
+            font-size: 12px;
+        }
+
+        .span_inline ul li a:hover {
+            color: #d4a668;
+        }
+
+        .marketsTable .editCommBt.button_gold, .marketsTable .editCommBt.button_gold:hover {
+            background: #d4a668;
+            color: #FFFFFF;
+        }
+
+        .span_inline .span_tips {
+            width: 140px;
+            font-size: 12px;
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 1;
+            right: 2px;
+            top: 28px;
+            background-color: #FFFFFF;
+            border: 1px solid #dfdfdf;
+            border-bottom: 0px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+        }
+        .topColtitWrap{
+            border-bottom: #181b2a 1px solid;
+            min-width: 1200px;
+            clear: both;
+            width: 100%;
+            background-color: #181b2a;
+        }
+        .myAssetsBar .searchBox .input input {
+            width: 100%;
+            height: 14px;
+            padding: 5px 0;
+            line-height: 26px;
+            color: #C7CCE6;
+        }
+        .min_amt_hide {
+            display: none;
+        }
+        .myAssetsBar .hideAssetsBt:hover {
+            background-color: #181B2A
+        }
+        .myAssetsBar .hideAssetsBt{
+            color: #C7CCE6;
+            width: 130px;
+            padding: 3px 0;
+            height: 26px;
+            line-height: 26px;
+            text-align: center;
+            display: block;
+            float: left;
+            cursor: pointer;
+            border: #181B2A 1px solid;
+            background:#181B2A ;
+            font-size: 12px;
+            margin-right: 10px;
+        }
+
+
+        .marketsTable tr td.text-align-right, .marketsTable tr th.text-align-right {
+            text-align: center;
+            background: #181B2A;
+            color: #C7CCE6;
+
+        }
+        .marketsTable tr td.text-align-right, .marketsTable tr th.text-align-right {
+            text-align: right;
+            background: #181B2A;
+            color: #C7CCE6;
+        }
+        .searchInput::-webkit-input-placeholder{
+            color:#C7CCE6;
+        }
+        .deposit-button{
+         color:#387DE0;  display: inline-block;
+         min-width: 50px;
+         padding: 0 8px;
+         height: 28px;
+         line-height: 28px;
+         text-align: center;
+         cursor: pointer;
+         background: #181B2A;
+         margin: -3px 2px -2px;
+         border:none;
+         outline:none;
+         font-size: 12px;
+     }
+        .operateBar {
+            width: 130px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body style="">
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+
+    <div class="topColtitWrap">
+        <div class="colBar balancesBg" >
+            <p class="colTit" style="color:#C7CCE6; " th:text="#{balances}">我的资产</p>
+            <div class="myAssetsR" id="font-money">
+               <p class="font16" style="color:#c7cce6;">
+                  <span  style="color:#c7cce6;" th:text="#{luher}">总当前估值：</span>≈
+                  <span id="balances" style="color: white"></span>
+              </p>
+              <p class="gold" style="color: #5871BF ;" th:text="#{ktner}">不要给声称为本平台的工作人员转账和透露密码信息</p>
+            </div>
+        </div>
+    </div>
+    <div class="wrapMain fullScreen_h">
+        <div class="myAssetsBar">
+            <p class="hideAssetsBt" min_amt="0.00000001" >
+                <span th:text="#{account.hide_small_assets}">隐藏小额资产</span>
+            </p>
+            <div class="searchBox" style=" width: 318px;
+            height: 34px;
+            font-size: 12px;
+            line-height: 34px;
+            color: #C7CCE6;
+            float: left;
+            background: #181B2A;
+            border: #181B2A 1px solid;
+            ">
+                <a href="javascript:void(0)" class="ico searchBt" style="color: #C7CCE6;">search</a>
+                <div class="input" style="  height: 26px;">
+                    <input type="text" th:placeholder="#{coin}" placeholder="输入搜索币种名称" class="searchInput" style="color: #C7CCE6;"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="marketsTable borderTable" style="border-top: 1px solid #181B2A;">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl" style=" color: #C7CCE6;   background: #181B2A; ">
+                <tr class="theader" >
+                    <th width="1%" class="text-align-right">&nbsp;</th>
+                    <th width="10%" th:text="#{coin}" class="text-align-right">币种</th>
+                    <th width="10%" th:text="#{coin.name}" class="text-align-right">币种全称</th>
+                    <th width="17%" class="text-align-right" th:text="#{account.total_balance}">总额</th>
+                    <th width="17%" class="text-align-right" th:text="#{available_balance}">可用余额</th>
+                    <th width="16%" class="text-align-right" th:text="#{frozen_balance}">冻结</th>
+                    <th width="19%" class="text-align-right">
+                        <span>CNY</span><span th:text="#{value}">估值</span></th>
+                    <th width="10%" class="text-align-right">
+                        <div class="tc" th:text="#{actions}" style="text-indent: 55px;">操作</div>
+                    </th>
+                </tr>
+                <tbody id="coin_render" >
+
+                </tbody>
+
+                <script id="coin_tpl" type="text/x-jsrender">
+
+                <tr >
+                    <td>&nbsp;</td>
+                    <td class="text-align-right">
+                        <span class="coinType">
+                        <img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}"  alt="{{:coinCode}}">
+                        </span>
+                        {{:coinCode}}
+                    </td>
+                    <td  class="text-align-right">{{:coinCode}}</td>
+                    <td class="text-align-right">{{:totalMoneyStr}}</td>
+                    <td class="text-align-right">{{:availableStr}}</td>
+                    <td class="text-align-right">{{:freezeStr}}</td>
+                    <td class="text-align-right">
+
+                        {{:estimatedValue}}
+                    </td>
+                    <td >
+                        <div class="operateBar" >
+                            <a href="/ex/member/account/deposit?coin_code={{:coinCode}}&allowRecharge={{:allowRecharge}}" class="editCommBt1" >
+                           {{:allowRecharge == 0?'<input type="button" th:value="#{deposit}" class="deposit-button" style="color:gray;cursor: not-allowed;" disabled="disabled">':'<input type="button" th:value="#{deposit}" class="deposit-button" style="color:#387DE0">'}}
+                                </a>
+                            <a href="/ex/member/account/withdraw?coin_code={{:coinCode}}&allowWithdraw={{:allowWithdraw}}" class="editCommBt2"  id="pc" >
+                                                {{:allowWithdraw == 0?'<input type="button" th:value="#{withdraw}" class="deposit-button" style="color:gray;cursor: not-allowed;" disabled="disabled">':'<input type="button" th:value="#{withdraw}" class="deposit-button" style="color:#387DE0">'}}
+</a>
+
+                        </div>
+                    </td>
+                </tr>
+
+                </script>
+            </table>
+        </div>
+
+        <!--<h3 style="padding-bottom:20px;color:#C7CCE6 " th:text="#{account.asset_delisted}">已下架币种</h3>-->
+
+        <!--<div class="marketsTable borderTable" style="border-top: 1px solid #181B2A;">-->
+            <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tl">-->
+                <!--<tr class="theader" style="background:#181B2A ; ">-->
+                    <!--<th width="1%" class="text-align-right">&nbsp;</th>-->
+                    <!--<th width="10%" th:text="#{coin}" class="text-align-right">币种</th>-->
+                    <!--<th width="10%" th:text="#{coin.name}" class="text-align-right">币种全称</th>-->
+                    <!--<th width="14%" class="text-align-right" th:text="#{account.total_balance}">总额</th>-->
+                    <!--<th width="14%" class="text-align-right" th:text="#{available_balance}">可用余额</th>-->
+                    <!--<th width="12%" class="text-align-right" th:text="#{frozen_balance}">冻结</th>-->
+                    <!--<th width="10%" class="text-align-right">-->
+                        <!--<span>CNY</span><span th:text="#{value}">估值</span></th>-->
+                    <!--<th width="29%" class="text-align-right">-->
+                        <!--<div class="tc" th:text="#{actions}">操作</div>-->
+                    <!--</th>-->
+                <!--</tr>-->
+
+                <!--<tbody id="coin_under_render">-->
+
+                <!--</tbody>-->
+
+                <!--<script id="coin_under_tpl" type="text/x-jsrender">-->
+
+                <!--<tr class="">-->
+                    <!--<td>&nbsp;</td>-->
+                    <!--<td>-->
+<!--<span class="coinType">-->
+<!--<img th:src="@{${@globalService.fileHost()}+'{{:coinLogo}}'}"  alt="{{:coinCode}}">-->
+<!--</span>-->
+                        <!--{{:coinCode}}-->
+                    <!--</td>-->
+                    <!--<td>{{:coinCode}}</td>-->
+                    <!--<td class="text-align-right">{{:totalMoney}}</td>-->
+                    <!--<td class="text-align-right">{{:available}}</td>-->
+                    <!--<td class="text-align-right">{{:freeze}}</td>-->
+                    <!--<td class="text-align-right">-->
+                        <!--0.00-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div class="operateBar">-->
+
+                     <!--<span class="disabledTip" notice="该币种已下架"></span>-->
+                            <!--<a href="javascript:void(0)" class="editCommBt disabled" th:text="#{deposit}">充值</a>-->
+                            <!--<a href="/ex/member/account//withdraw?symbol={{:coinCode}}" class="editCommBt" th:text="#{withdraw}">提现</a>-->
+
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+
+                <!--</script>-->
+            <!--</table>-->
+        <!--</div>-->
+
+    </div>
+
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "numeral", "layer", "laydate", "qrcode", DEV + "/page_user"], function (a, i, o, b, c, d) {
+            d.account();
+        });
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+
+
+    </script>
+</div>
+
+</body>
+</html>

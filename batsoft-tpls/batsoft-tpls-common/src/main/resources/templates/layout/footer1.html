@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	
+	
+	<div  th:fragment="footer1">
+        <footer id="footer" >
+            <div class="copyright">
+                <div class="container">
+                    <ul class="float-right m-0 list-inline mobile-block">
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">费率说明</a></li>
+                        <li><a href="#">常见问题</a></li>
+                    </ul>
+                    <span th:text="${@globalService.company()}"></span> © 2013-2017 www.batsoft.com
+                </div>
+            </div>
+        </footer>
+
+    </div>
+	
+</body>
+</html>
+

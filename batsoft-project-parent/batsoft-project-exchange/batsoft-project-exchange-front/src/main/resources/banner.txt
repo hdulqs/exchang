@@ -1,0 +1,24 @@
+
+
+BBBBBBBBBBBBBBBBB            tttt               tttt          MMMMMMMM               MMMMMMMM                  lllllll lllllll
+B::::::::::::::::B        ttt:::t            ttt:::t          M:::::::M             M:::::::M                  l:::::l l:::::l
+B::::::BBBBBB:::::B       t:::::t            t:::::t          M::::::::M           M::::::::M                  l:::::l l:::::l
+BB:::::B     B:::::B      t:::::t            t:::::t          M:::::::::M         M:::::::::M                  l:::::l l:::::l
+  B::::B     B:::::Bttttttt:::::tttttttttttttt:::::ttttttt    M::::::::::M       M::::::::::M  aaaaaaaaaaaaa    l::::l  l::::l
+  B::::B     B:::::Bt:::::::::::::::::tt:::::::::::::::::t    M:::::::::::M     M:::::::::::M  a::::::::::::a   l::::l  l::::l
+  B::::BBBBBB:::::B t:::::::::::::::::tt:::::::::::::::::t    M:::::::M::::M   M::::M:::::::M  aaaaaaaaa:::::a  l::::l  l::::l
+  B:::::::::::::BB  tttttt:::::::tttttttttttt:::::::tttttt    M::::::M M::::M M::::M M::::::M           a::::a  l::::l  l::::l
+  B::::BBBBBB:::::B       t:::::t            t:::::t          M::::::M  M::::M::::M  M::::::M    aaaaaaa:::::a  l::::l  l::::l
+  B::::B     B:::::B      t:::::t            t:::::t          M::::::M   M:::::::M   M::::::M  aa::::::::::::a  l::::l  l::::l
+  B::::B     B:::::B      t:::::t            t:::::t          M::::::M    M:::::M    M::::::M a::::aaaa::::::a  l::::l  l::::l
+  B::::B     B:::::B      t:::::t    tttttt  t:::::t    ttttttM::::::M     MMMMM     M::::::Ma::::a    a:::::a  l::::l  l::::l
+BB:::::BBBBBB::::::B      t::::::tttt:::::t  t::::::tttt:::::tM::::::M               M::::::Ma::::a    a:::::a l::::::ll::::::l
+B:::::::::::::::::B       tt::::::::::::::t  tt::::::::::::::tM::::::M               M::::::Ma:::::aaaa::::::a l::::::ll::::::l
+B::::::::::::::::B          tt:::::::::::tt    tt:::::::::::ttM::::::M               M::::::M a::::::::::aa:::al::::::ll::::::l
+BBBBBBBBBBBBBBBBB             ttttttttttt        ttttttttttt  MMMMMMMM               MMMMMMMM  aaaaaaaaaa  aaaallllllllllllllll
+
+
+
+
+
+

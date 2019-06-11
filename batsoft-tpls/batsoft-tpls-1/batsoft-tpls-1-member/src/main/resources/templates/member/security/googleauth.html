@@ -1,0 +1,208 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/csrfToken :: csrfMetaToken"></span>
+    <span th:replace="layout/head :: head"></span>
+
+    <style type="text/css">
+        .googleS4Box li{position:relative;}
+        .googleS4Box li .errorTip{position: absolute;left:100%;top:0px;display:block;padding:5px 0px;width:100%;}
+        .googleS4Box li .hide{display:none;}
+        .submitBt {
+            display: block;
+            width: 100%;
+            height: 48px;
+            line-height: 48px;
+            text-align: center;
+            background-color: #387de0;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 0 auto;
+            color: #fff;
+            border-radius: 2px;
+        }
+
+        #password-error {
+            color: white;
+            display: none;
+            margin-bottom: -20px;
+
+        }
+        #google_code-error {
+            color: white;
+            display: none;
+            margin-bottom: -20px;
+
+        }
+        #google_secret:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #password:focus{
+            border: 1px solid #638BD4;
+            cursor: pointer;
+            color:#C7CCE6;
+        }
+        #google_code:focus{
+                   border: 1px solid #638BD4;
+                   cursor: pointer;
+                   color:#C7CCE6;
+               }
+        body, html {
+            height: 100%;
+            background-color: #F3F4F8;
+        }
+    </style>
+
+</head>
+
+<body style="background:#F3F4F8">
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <div class="topColtitWrap">
+        <div class="verifyHeader">
+            <p class="colTit" th:text="#{guge_kig}">开启谷歌验证</p>
+            <div class="stepBar">
+                <ul>
+                    <li class="step curr" id="step1_title"><span class="num">1</span>
+                        <p th:text="#{gui_jiu_li}">下载App</p>
+                    </li>
+                    <li class="step" id="step2_title"><span class="num">2</span>
+                        <p th:text="#{hg_gd}">扫描二维码</p>
+                    </li>
+                    <li class="step" id="step3_title"><span class="num">3</span>
+                        <p th:text="#{hg_gd_po}">备份密钥</p>
+                    </li>
+                    <li class="step" id="step4_title"><span class="num">4</span>
+                        <p th:text="#{guge_kig}">开启谷歌验证</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="verifyBar full_google" id="step1">
+        <ul class="googleS1Box">
+            <li class="font16"><span class="gold" th:text="#{frist_nginx_GD}">第一步：</span>&nbsp;<span th:text="#{GCSKIS}">下载并安装谷歌验证器APP</span></li>
+            <li class="downGoogleApp">
+                <a href="https://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8" class="downloadBt appstore" target="_blank"></a>
+                <a href="https://shouji.baidu.com/software/3832652.html" class="downloadBt googlemarket" target="_blank"></a>
+            </li>
+            <!--<li class="tr font12"><a href="#" style="color:#000000;" target="_blank">无法下载?</a></li>-->
+            <li><a href="javascript:void(0);" onclick="step(2);" class="submitBt white"  th:text="#{HGS}">我已安装 下一步</a></li>
+        </ul>
+    </div>
+    <div class="verifyBar hide full_google" id="step2">
+        <ul class="googleS2Box">
+            <li class="font16"><span class="gold" th:text="#{nginx_kh}">第二步：</span>&nbsp;<span th:text="#{hg_gd}">扫描二维码</span></li>
+            <li class="googleQRcode">
+                <div class="QRcodeBox">
+                    <input type="hidden" id="qrcode_text" th:value="|${host}?secret=${secret}&amp;issuer=${issuer}|" />
+                    <p id="qrcode"></p>
+                    <p th:text="#{ngfpo}">使用谷歌验证器APP扫描该二维码</p>
+                </div>
+                <div class="txtBox"> <span class="QRcodeNum" th:text="${secret}"></span>
+                    <p th:text="#{mspk}">如果您无法扫描二维码，<br>
+                        <span th:text="#{bsaA}">可以将该16位密钥手动输入到谷歌验证APP中</span> </p>
+                </div>
+            </li>
+            <li class="btBar">
+                <div class="tr font12" th:text="#{JXaA}">我已经完成二维码扫描</div>
+                <div class="overflowH">
+                    <p class="btL"><a href="javascript:void(0);" onclick="step(1);" class="normalBt" th:text="#{FXaA}">上一步</a></p>
+                    <p class="btR"><a href="javascript:void(0);" onclick="step(3);" class="submitBt white" th:text="#{PXaA}">下一步</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="verifyBar hide full_google" id="step3">
+        <ul class="googleS3Box">
+            <li class="font16"><span class="gold" th:text="#{MXaA}">第三步：</span>&nbsp;<span th:text="#{hg_gd_po}">备份密钥</span></li>
+            <li>
+                <div class="keyBox" th:text="${secret}"></div>
+            </li>
+            <li class="txtBox">
+                <p th:text="#{nbgsaq}">请将16位密钥记录在纸上，并保存在安全的地方。<br>
+                    <span th:text="#{vdsw}">如遇手机丢失，你可以通过该密钥恢复你的谷歌验证。</span></p>
+                <p class="icoTip"><span th:text="#{qwasadwq}"></span><span class="gold" th:text="#{dhgda}">至少7天</span><span th:text="#{hdaygiue9}">时间来处理。</span></p>
+            </li>
+            <li class="btBar">
+                <div class="tr font12" th:text="#{g5ws}">我已经写下了16位密钥</div>
+                <div class="overflowH">
+                    <p class="btL"><a href="javascript:void(0);" onclick="step(2);" class="normalBt" th:text="#{FXaA}">上一步</a></p>
+                    <p class="btR"><a href="javascript:void(0);" onclick="step(4);" class="submitBt white" th:text="#{PXaA}">下一步</a></p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="verifyBar hide full_google" id="step4">
+        <form id="form" class="form" method="post" th:action="@{/member/security/addGoogleAuth}">
+            <ul class="googleS4Box">
+                <li class="font16"><span class="gold" th:text="#{Bfud}">第四步：</span><span th:text="#{guge_kig}">开启谷歌验证</span></li>
+                <li>
+                    <div class="errorTip">
+                        <p class="hide" id="error">
+                            <span class="icoError"></span>
+                            <span id="error_show"></span>
+                        </p>
+                    </div>
+                </li>
+                <li class="input">
+                    <input type="text" id="google_secret" name="google_secret" value="" placeholder="16位密钥" th:placeholder="#{h78dsa}"/>
+                    <input type="hidden" name="secret" id="secret" th:value="${secret}" />
+                </li>
+                <li class="input">
+                    <input type="text" id="password" name="password" value="" placeholder="登录密码" th:placeholder="#{user.login_password}" onfocus="this.type='password'" />
+                </li>
+                <li class="input">
+                    <input type="text" id="google_code" name="googleCode" placeholder="谷歌验证码" th:placeholder="#{jtrda1}">
+                </li>
+                <li class="btBar">
+                    <div class="overflowH">
+                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                        <p class="btL"><a href="javascript:void(0);" onclick="step(3);" class="normalBt" th:text="#{FXaA}">上一步</a></p>
+                        <p class="btR"> <button type="submit" class="submitBt white submitBtDisabled" th:text="#{G_submit}">提交</button></p>
+                    </div>
+                </li>
+            </ul>
+        </form>
+    </div>
+</div>
+<!-- FOOTER -->
+<span th:replace="layout/footer :: footer"></span>
+<!-- /FOOTER -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","qrcode",  DEV + "/page_user_security"], function ( a, a0,a1, o, b, c, d) {
+            d.googleAuth();
+        });
+    </script>
+</div>
+<script >
+    function step(id) {
+        $(".step").removeClass("curr");
+        $("#step" + id + "_title").addClass("curr");
+        $(".verifyBar").addClass("hide");
+        $("#step" + id).removeClass("hide");
+    }
+    var shopToken = localStorage.getItem("shopToken");
+     var shopurls = $("#shop_urls").val();
+    var url=shopurls;
+    if(shopToken){
+        url = url + "?token=" + shopToken;
+    }
+    function goToShop() {
+        window.open(url);
+    }
+    function goToreferral() {
+        if($("#jhse").text().length > 0){
+            window.location.href = '/referral'
+        }else {
+            window.location.href = '/login'
+        }
+    }
+</script>
+</body>
+</html>

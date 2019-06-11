@@ -1,0 +1,357 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+
+    <!-- projects -->
+    <section class="section-sm mt-0">
+        <form  method="post" th:action="@{/otc/user/project/save}"
+               class="form">
+        <div class="container">
+            <span th:replace="layout/csrfToken :: csrfToken"></span>
+            <div class="card card-default mb-10 mdl-shadow--2dp">
+                <div class="card-block">
+                    <h2 class="fs-25 mt-0">
+										<span>
+										 <span class="fw-300">创建一个交易广告</span>
+										</span>
+                    </h2>
+
+                    <p>如果您经常进行交易，您可以创建自己的交易广告。如果您只是偶尔交易，我们建议您
+                        <a href="/">直接搜索<span th:text="${@globalService.webSiteTitle()}"></span>的交易广告。</a>
+                    </p>
+
+                    <p>创建一则交易广告是 <strong>免费的。</strong>
+                    </p>
+                    <p>在设置您的交易广告前，请阅读
+                        <a target="_blank" href="#" class="">在线销售交易广告指南</a> 和
+                        <a target="_blank" href="#">现金交易指南</a>。
+                    </p>
+                    <p>若您想直接编辑已创建的广告，请查看  <a href="/otc/myad">我的广告</a>。</p>
+
+
+                </div>
+            </div>
+
+            <div class="card card-default mb-10">
+                <div class="card-heading card-heading-transparent">
+                    <h2 class="card-title bold">基础信息</h2>
+                </div>
+
+                <div class="card-block">
+
+                        <fieldset>
+
+                        <div class="row">
+                        <div class="col-md-12">
+                            <label class="radio">
+                            <input type="radio" name="otcType" value="0" checked="checked">
+                            <i></i> 在线出售
+                        </label>
+
+                        <label class="radio">
+                            <input type="radio" name="otcType" value="1">
+                            <i></i> 在线购买
+                        </label>
+                            <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                <i class="fa fa-info-circle text-info"></i>您想要创建什么样的交易广告？如果您希望出售比特币，请确保您在<span th:text="${@globalService.webSiteTitle()}"></span>的钱包中有数字资产
+                            </div>
+                        </div>
+
+                    </div>
+                            <div class="row">
+                                <div class="col-md-12" id="coinsRender">
+
+                                </div>
+                                <script id="coinsTpl" type="text/x-jsrender">
+                                 {{if #getIndex()==0}}
+                                  <label class="radio"><input type="radio" checked="checked" name="coin" value="{{:coinCode}}" ><i></i> {{:coinCode}}</label>
+                                 {{else}}
+                                <label class="radio"><input type="radio" name="coin" value="{{:coinCode}}" ><i></i> {{:coinCode}}</label>
+                                {{/if}}
+                                </script>
+
+                            </div>
+                    <div class="row ">
+                        <div class="col-md-12">
+                            <label class="fs-15">国家: *</label>
+
+                            <span th:replace="component/select/select-country:: country('country','')"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label class="fs-15">货币: *</label>
+                            <span th:replace="component/select/select-currency:: currency('currency','')"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                    <!-- no layout applied -->
+                    <label class="switch switch switch-round">
+                        <input type="checkbox"  id="fixed" checked disabled >
+                        <span class="switch-label" data-on="YES" data-off="NO"></span>
+                        <span>开启固定价格？ 啟用后，您的交易價格不隨幣價波動，固定值不變</span>
+                    </label>
+                        </div>
+                    </div>
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <label class="fs-15">价格: *</label>
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" name="price">
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>交易价格：<span id="peggingPriceUnit" class=""></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <label class="fs-15">交易所: *</label>
+                                    <select class="form-control select2" name="exchangeName">
+                                        <option value="BitFinex" selected="true">BitFinex</option>
+                                        <option value="HUOBI">HUOBI</option>
+                                        <option value="CHBTC">CHBTC</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <label class="fs-15">溢价: *</label>
+                                    <div class="input-group">
+
+                                        <input type="text" value="0" class="form-control" name="overflowMoney">
+                                        <span class="input-group-addon">%</span>
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>如果您想要比特币市场价格的溢价，您可以以高于市场价买入或低于市场价卖出的方式来并吸引更多的交易者。对于更复杂的定价，您可以编辑以下方程。有关如何确定您的交易价格的公式的更多信息，请参阅定价 FAQ
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <label class="fs-15">记价公式: *</label>
+                                    <div class="input-group">
+                                        <input type="text" value="0" class="form-control" placeholder="记价公式">
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>交易价格：22800CNY/BTC
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="fs-15">付款方式: *</label>
+                                    <span th:replace="component/select/select-payType:: payTypeMultiple('payType','')"></span>
+
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="fs-15">付款期限: *</label>
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" name="payTime" value="90">
+                                        <span class="input-group-addon ">分钟</span>
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>要求对方在多少时间内完成支付，超时未支付的订单将被系统自动取消。
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="fs-15">付款方式备注:</label>
+                                    <textarea rows="3" class="form-control word-count" name="payRemarks" data-maxlength="200" data-info="textarea-words-info" placeholder="" style="margin-top: 0px; margin-bottom: 0px; height: 135px;"></textarea>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>可选项，付款方式备注信息。
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="fs-15">交易条款:</label>
+                                    <textarea rows="3"  name="transaction"  class="form-control word-count" data-maxlength="200" data-info="textarea-words-info" placeholder="有关您的交易的其它信息。示例  1: 此广告仅限现金交易。 2: 请先确认您能够在12小时内完成现金付款再发出交易请求" style="margin-top: 0px; margin-bottom: 0px; height: 135px;"></textarea>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <!-- no layout applied -->
+                                    <label class="switch switch switch-round">
+                                        <input type="checkbox"  id="automatic">
+                                        <span class="switch-label" data-on="YES" data-off="NO"></span>
+                                        <span>开启自动回复？启用后，用户通过此广告向您发起交易时，系统自动将您选择的自动回复用语发送给对方。</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <!-- no layout applied -->
+                                    <label class="switch switch switch-round">
+                                        <input type="checkbox" id="belived">
+                                        <span class="switch-label" data-on="YES" data-off="NO"></span>
+                                        <span>仅限受信任的交易者？ 启用后，仅限于自己信任的用户与本广告交易。</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row hide">
+                                <div class="col-md-12">
+                                    <!-- no layout applied -->
+                                    <label class="switch switch switch-round">
+                                        <input type="checkbox" id="security">
+                                        <span class="switch-label" data-on="YES" data-off="NO"></span>
+                                        <span>是否启用安全选项？ 启用后，仅限于已资料备份和通过手机验证的用户与本广告交易。。</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-md-12">
+                                    <label class="fs-15">最小交易额:</label>
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" name="minMoney">
+                                        <span class="input-group-addon currency-type">CNY</span>
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>可选。每一笔交易的最低限额。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label class="fs-15">最大交易额:</label>
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control" name="maxMoney">
+                                        <span class="input-group-addon currency-type">CNY</span>
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>可选。每一笔交易的最大限额。对于在线出售，您在 <span th:text="${@globalService.webSiteTitle()}"></span> 钱包里的比特币总量也会限制您的最大交易量。
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                </div>
+            </div>
+            <!--<div class="card card-default">
+                <div class="card-heading card-heading-transparent">
+                    <h2 class="card-title bold">高级信息 </h2><a href="javascript:;" onclick="jQuery('#pre-3').slideToggle();" style="float: right;margin-top: -10px">查看更多</a>
+
+                </div>
+                <div class="card-block">
+
+                    <div id="pre-3" class="text-left rad-0  hide  mb-0 bg-white brr-0" style="display: none;">
+                        <fieldset>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>累计最小交易量:</label>
+                                <div class="input-group">
+
+                                    <input type="text" class="form-control" >
+                                    <span class="input-group-addon">BTC</span>
+                                </div>
+                                <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                    <i class="fa fa-info-circle text-info"></i>要求买家之前做过多少以BTC计的交易量。把这个值设定为大于0将过滤掉所有零交易量的初次买家。
+                                </div>
+                            </div>
+                        </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>新买家限制:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" >
+                                        <span class="input-group-addon digitCurrencySpan"></span>
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>可选。该选项适用于尚未在BitcoinWorld上进行交易的用户，您设定的值将限制新用户第一次交易的金额。 设定一个较低的值将降低您被诈骗的风险。
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>交易量系数:</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" >
+                                        <span class="input-group-addon">X</span>
+
+                                    </div>
+                                    <div class="text-muted text-left mt-3 fs-12 mb-10">
+                                        <i class="fa fa-info-circle text-info"></i>对于和同一个交易者进行的多次交易，交易量将限制在过去和该交易者进行的总交易量乘以该系数的值。举例：您和交易者 A 总共交易了 2 BTC。 当交易量系数是 1.5时，A 可以最多一次从您这里购买 2 BTC * 1.5 = 3 BT
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+            <!-- PAGINATION -->
+            <section class="section-xs">
+                <div class="container text-center">
+
+                    <button class="btn btn-success" disabled >发布广告</button>
+
+                </div>
+            </section>
+            <!-- /PAGINATION -->
+        </form>
+    </section>
+    <!-- /projects -->
+
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_validate", "messages_zh","select2",DEV+"/page_otc"], function (a,a1,a2,b,c) {
+            c.add();
+        });
+    </script>
+</div>
+
+</body>
+</html>

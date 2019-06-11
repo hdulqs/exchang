@@ -1,0 +1,235 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+
+    <title th:text="#{login}">系统登录</title>
+    <meta charset="utf-8" />
+    <meta name="description" th:content="${@globalService.webSiteRemark()}">
+    <meta name="keywords"  th:content="${@globalService.webSiteKeyWords()}">
+    <!-- mobile settings -->
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{${@globalService.fileHost()}+${@globalService.iconPath()}}">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=0,user-scalable=yes,maximum-scale=1.0">
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/login_reg.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/app.min.css'}" rel="stylesheet"
+          type="text/css"/>
+
+
+    <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/i18n/'+${@globalService.lan()}+'.js'}"></script>
+    <!--  button 必须前置-->
+
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/t1/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+    <script src="https://cstaticdun.126.net/load.min.js"></script>
+</head>
+
+<body>
+<style>
+    .login-wrap__form .alert.alert-mini {
+        margin-right: 45%;
+    }
+    .navBar li a{display:block;height:50px;line-height:50px;padding:0 15px;color:#999}
+    .login-wrap__form form {
+        color: #fff;
+        position: relative;
+        top: 10px;
+        width: 520px;
+    }
+    #password:focus{
+        border:1px solid #4E5B85;
+    }
+    #userName:focus{
+        border:1px solid #4E5B85;
+    }
+    .footerNavBar div[class^=footer-section-] {
+        -webkit-box-flex: 1;
+        -ms-flex: 1;
+        flex: 1;
+        font-size: 12px;
+        color: #60688d;
+        padding-left: 0%;
+        min-height: 200px;
+    }
+</style>
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div class="wrapper">
+    <span th:replace="layout/nav :: nav"></span>
+    <!-- SLIDER -->
+    <div class="wrapMain tabs fullScreen_h login-wrap">
+
+
+
+
+
+
+        <div class="login-wrap__left-img"></div>
+        <!-- ALERT -->
+
+        <div class="login-wrap__form">
+            <!-- /ALERT -->
+            <div class="tit" th:text="#{welcome}">欢迎来到 bttmall</div>
+            <div class="errorTip">
+                <p class="hide" id="error">
+                    <span class="icoError"></span>
+                    <span id="error_show"></span>
+                </p>
+            </div>
+            <!-- login form -->
+
+            <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+                <input type="text" style="display: none" id="redirectUrl" th:value="${redirectUrl}" name="redirectUrl" >
+            </div>
+
+            <form method="post"  th:action="@{/loginCheck}" class="sky-form form" novalidate="novalidate">
+                <div class="input">
+                    <input type="text" class="form-control long-input" id="userName" name="userName"
+                           th:placeholder="#{login.name}" placeholder="请输入用户名">
+                    <!--<b class="tooltip tooltip-top-right f-w"  th:text="#{login.name}">请输入用户名</b>-->
+                </div>
+                <div class="input">
+                    <input type="password" class="form-control long-input" id="password" name="password"
+                           th:placeholder="#{login.password}"  placeholder="请输入密码">
+                    <!--<b class="tooltip tooltip-top-right f-w"  th:text="#{login.password}">请输入密码</b>-->
+                </div>
+
+                <div class="login-wrap__inline-style input">
+                    <div id="captcha"></div>
+
+                    <input  type="hidden"  th:value="#{msg_please_get_picture_code}"  id="validCode" name="validCode">
+                    <input  type="hidden"  th:value="#{msg_picture_code_error}"  id="validCodeError" name="validCodeError">
+
+                    <!--<b class="tooltip tooltip-top-right f-w"  th:text="#{login.verification}" style="left: 150px; right: 180px;">请输入验证码</b>-->
+                </div>
+                <div class="login-wrap__inline-style login-btn-row">
+
+                    <button type="submit" class="btn btn-primary" disabled style="margin:0"><span th:text="#{login}"> 登录</span></button>
+                    <a href="/forgot" class="forget-password" th:text="#{login.forgot_Password}">忘记密码?</a>
+                </div>
+
+                <div class="login-wrap__inline-style">
+                    <span th:text="#{do_not_have_account}">还没有注册? </span>
+                    <a href="/register" class="f-w" th:text="#{register}">立即注册</a>
+                </div>
+
+            </form>
+            <!-- /login form -->
+
+
+
+        </div>
+
+
+    </div>
+    <!-- /SLIDER -->
+
+
+</div>
+<!-- /wrapper -->
+<div class="googleVerify" id="forgetPasswordTpl" style="display:none;" th:if="${@globalService.googleAuth()}">
+    <div class="google_input_title" th:text="#{input_google_code}">请输入谷歌验证码：</div>
+    <div class="google_input_box">
+        <input type="radio" name="radio" value="1">google验证器找回
+        <input type="radio" name="radio" value="2">短信码找回
+    </div>
+    <div class="google_button_box">
+        <a href="javascript:void(0);" class="gold_button" th:text="#{confirm}">确定</a>
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+<div style=" background: #181b2a;">
+<div  th:fragment="footer" style="height: 280px;width: 100%;min-width: 1200px; background: #181b2a;">
+    <div class="footerNavBar" style="height: 200px;padding-top: 50px;">
+        <div class="footer-section-logo">
+            <div class="footer-logo-img" style="position: relative;top: 0px;"></div>
+            <div style=" font-size: 12px;color: #4E5B85;height: 22px;" th:text="#{main_page_currency}"></div>
+            <div style=" font-size: 12px;color: #4E5B85;height: 50px;width: 130px;">比特天猫官方8群</div>
+            <div class="fotop" style="position: relative;top: -13px;width: 80px;height: 80px;">
+                <!--<table>-->
+                <!--<tr>-->
+                <!--<th class="foter1" style="width: 32px;"></th>-->
+                <!--<th class="foter2" style="width: 32px;"></th>-->
+                <!--<th class="foter3" style="width: 32px;"></th>-->
+                <!--<th class="foter4" style="width: 32px;"></th>-->
+                <!--</tr>-->
+                <!--</table>-->
+            </div>
+        </div>
+        <div class="footer-section-service">
+            <div class="footer-title" th:text="#{footer.service}">服务</div>
+            <div class="footer-link"><a target="_blank" href="/market?symbol=BT_USDT" th:text="#{footer.center}">交易中心</a></div>
+            <div class="footer-link"><a target="_blank" href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></div>
+            <div class="footer-link"><a target="_blank" href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></a></div>
+        </div>
+        <div class="footer-section-terms">
+            <div class="footer-title" ><a target="_blank"  th:text="#{footer.terms}" style="color: #fff;">条款说明</a></div>
+            <div class="footer-link"><a target="_blank" href="/privacys" th:text="#{footer.privacy}">隐私政策</a></div>
+            <div class="footer-link"><a target="_blank" href="/agreement" th:text="#{footer.user_terms}">用户协议</a></div>
+            <div class="footer-link"><a target="_blank" href="/handlingfee" th:text="#{footer.fee}">手续费</a></div>
+        </div>
+        <div class="footer-section-about-us">
+            <div class="footer-title" th:text="#{footer.about_us}">联系我们</div>
+            <div class="footer-link" style="color:#60688d"  th:text="#{footer_Cooperation}">商务合作：admin@bttmall.com</div>
+            <div class="footer-link" style="color:#60688d"  th:text="#{footer_Customer}">客户支持合作：support@bttmall.com</div>
+        </div>
+    </div>
+    <div style="width: 100%;text-align:center;color: #60688d;height: 50px;"  >
+        © 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited
+    </div>
+</div>
+</div>
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <!-- Global site tag (gtag.js) - Google Ads: 754375084 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-754375084"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-754375084'); </script>
+    <script>
+        seajs.use(["bootstrap", "jquery_validate", "messages_zh","layer", DEV + "/page_login",DEV + "/main"], function (a, d,  h,l, b) {
+            b.init();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        if ((/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent))) {
+            window.location.href = 'https://bttmall.com/mobile/#/login';
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

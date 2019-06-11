@@ -1,0 +1,34 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">我发布的广告</span>
+            </span>
+        </h2>
+        <form class="hide">
+            <div class=" paramsPanel">
+                <input name="otcType" />
+            </div>
+        </form>
+        <table id="table">
+
+        </table>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh", DEV + "/table_bootstrap","jquery_backstretch",DEV+"/page_otc"], function (b,b1,b2,b3,c,d) {
+            d.userProject();
+        });
+    </script>
+</div>
+
+</body>
+</html>

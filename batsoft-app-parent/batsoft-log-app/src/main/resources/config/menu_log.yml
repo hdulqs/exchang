@@ -1,0 +1,115 @@
+menus:
+  name: log管理系统
+  key: log
+  path: log
+  icon: appstore-o
+  description: log管理系统
+  item:
+  - name: API日志管理
+    key: log_api
+    icon: appstore-o
+    path: api/list
+    menu: 1
+    permission: log:api:list
+    description: API日志管理
+    item:
+    - name: 增加
+      key: log_api_add
+      icon: appstore-o
+      path: api/add
+      menu: 0
+      permission: log:api:add
+      description: API日志增加
+    - name: 修改
+      key: log_api_edit
+      icon: appstore-o
+      path: api/edit
+      menu: 0
+      permission: log:api:edit
+      description: API日志修改
+    - name: 查看
+      key: log_api_see
+      icon: appstore-o
+      path: api/info
+      menu: 0
+      permission: log:api:see
+      description: API日志查看
+    - name: 删除
+      key: log_api_remove
+      icon: appstore-o
+      path: api/remove
+      menu: 0
+      permission: log:api:remove
+      description: API日志删除
+  - name: 用户登陆日志管理
+    key: log_memberLogin
+    icon: appstore-o
+    path: memberLogin/list
+    menu: 1
+    permission: log:memberLogin:list
+    description: 用户登陆日志管理
+    item:
+    - name: 增加
+      key: log_memberLogin_add
+      icon: appstore-o
+      path: memberLogin/add
+      menu: 0
+      permission: log:memberLogin:add
+      description: 用户登陆日志增加
+    - name: 修改
+      key: log_memberLogin_edit
+      icon: appstore-o
+      path: memberLogin/edit
+      menu: 0
+      permission: log:memberLogin:edit
+      description: 用户登陆日志修改
+    - name: 查看
+      key: log_memberLogin_see
+      icon: appstore-o
+      path: memberLogin/info
+      menu: 0
+      permission: log:memberLogin:see
+      description: 用户登陆日志查看
+    - name: 删除
+      key: log_memberLogin_remove
+      icon: appstore-o
+      path: memberLogin/remove
+      menu: 0
+      permission: log:memberLogin:remove
+      description: 用户登陆日志删除
+  - name: 短信发送日志管理
+    key: log_messageSend
+    icon: appstore-o
+    path: messageSend/list
+    menu: 1
+    permission: log:messageSend:list
+    description: 短信发送日志管理
+    item:
+    - name: 增加
+      key: log_messageSend_add
+      icon: appstore-o
+      path: messageSend/add
+      menu: 0
+      permission: log:messageSend:add
+      description: 短信发送日志增加
+    - name: 修改
+      key: log_messageSend_edit
+      icon: appstore-o
+      path: messageSend/edit
+      menu: 0
+      permission: log:messageSend:edit
+      description: 短信发送日志修改
+    - name: 查看
+      key: log_messageSend_see
+      icon: appstore-o
+      path: messageSend/info
+      menu: 0
+      permission: log:messageSend:see
+      description: 短信发送日志查看
+    - name: 删除
+      key: log_messageSend_remove
+      icon: appstore-o
+      path: messageSend/remove
+      menu: 0
+      permission: log:messageSend:remove
+      description: 短信发送日志删除

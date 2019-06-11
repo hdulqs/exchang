@@ -1,0 +1,84 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">邮箱绑定</span>
+            </span>
+        </h2>
+        <form class="m-0 sky-form form" th:action="@{/ex/member/security/addEmail}"  method="post" >
+            <fieldset>
+                <!-- ALERT -->
+
+                <div class="alert alert-mini alert-danger mb-30 tip p-hide">
+
+                </div>
+
+                <!-- /ALERT -->
+                <div class="row">
+                    <span th:replace="layout/csrfToken :: csrfToken"></span>
+
+                    <div class="col-md-12 col-sm-12">
+                        <label >邮箱 *</label>
+                        <label class="input mb-10">
+                            <i class="ico-append fa fa-lock"></i>
+                            <input type="text" name="email" id="email" placeholder="请输入邮箱">
+                            <b class="tooltip tooltip-bottom-right">请输入邮箱</b>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                        <label >验证码 *</label>
+                        <label class="input mb-10">
+                            <div class="input-group">
+                            <input type="text" class="form-control" id="code" name="code" placeholder="请输入验证码"><b class="tooltip tooltip-top-right f-w">请输入验证码</b>
+                                <span class="input-group-btn" tabindex="-1"><button type="button" class="btn btn-primary rad-0 btn-sm  sendCode" style="height: 38px">获取验证码
+                                </button></span>
+                            </div>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+            </fieldset>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  DEV + "/page_user_security", DEV + "/page_sendCode"], function (a, d,b) {
+            d.setEmail();
+            b.sendEmailCode();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

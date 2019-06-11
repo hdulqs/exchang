@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>注册</title>
+    <span th:replace="book/layout/head :: head"></span>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/book/main.css'}">
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+</head>
+<body>
+<header class="Nav">
+    <a class="back" href="javascript:history.back()"></a>
+    <span>注册</span>
+    <a href=""></a>
+</header>
+
+<section class="login">
+    <form method="post" th:action="@{/reg}"  class="sky-form boxed form">
+        <input type="hidden" name="areaCode" id="areaCode" value="86" />
+        <label>&nbsp;</label>
+        <label class="input">
+            <span>手机号</span>
+            <input type="text"  id="userName" name="userName"  placeholder="请输入手机号">
+        </label>
+
+        <label >
+            <span>短信码</span>
+            <input type="text"  id="mobileCode" name="mobileCode" placeholder="请输入短信验证码">
+            <button type="button" class="Btn red  sendCode" style="width: 9em; height: 3em; font-size: 1em">获取验证码
+            </button>
+
+        </label>
+        <label >
+            <span>验证码</span>
+            <input type="text"  id="validCode" name="validCode"
+                   placeholder="请输入验证码">
+            <a class="reload-vify validCode" href="javascript:;">
+                <img src="/static/manage/dist/img/captcha.png" th:attr="src=@{/validCode}"
+                     onclick="this.src='/validCode?d='+new Date()*1" style="width: 9em; height: 3em;">
+            </a>
+
+        </label>
+        <label><span>密码</span> <input name="password" type="password" placeholder="数字 、字母或符号的组合" maxlength="16"/></label>
+
+        <p class="p-hide tip"></p>
+        <button type="submit" class="Btn red" disabled>注册</button>
+
+    </form>
+</section>
+<!-- 全局脚文件 -->
+<span th:replace="book/layout/footer :: footer"></span>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use(["jquery_validate", "messages_zh", DEV + "/page_sendCode", DEV + "/page_reg"], function (a, h,f, b) {
+            b.init();
+            f.sendMobileCode();
+        });
+    </script>
+</div>
+</body>
+</html>

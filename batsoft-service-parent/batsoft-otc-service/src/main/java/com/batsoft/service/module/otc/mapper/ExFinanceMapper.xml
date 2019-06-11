@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>ExFinanceMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-12-08 09:56:42 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.otc.dao.ExFinanceDao">
+
+    <resultMap id="baseResult" type="com.batsoft.model.module.otc.vo.ExFinanceVo">
+        <result column="symbol" property="symbol" jdbcType="VARCHAR"/>
+        <result column="available" property="available" jdbcType="DECIMAL"/>
+        <result column="freeze" property="freeze" jdbcType="DECIMAL"/>
+        <result column="coin_logo" property="coinLogo" jdbcType="VARCHAR"/>
+        <result column="allow_recharge" property="allowRecharge" jdbcType="INTEGER"/>
+        <result column="allow_deposit" property="allowDeposit" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="findList" resultMap="baseResult" parameterType="java.lang.String">
+        SELECT
+        f.symbol,
+        f.available,
+        f.freeze,
+        c.coin_logo as coin_logo,
+        c.allow_recharge as allow_recharge,
+        c.allow_deposit as allow_deposit
+        FROM otc_ex_finance f  LEFT  JOIN
+        otc_ex_coin as c on f.symbol =c.symbol
+         WHERE  f.user_id=#{userId,jdbcType=VARCHAR}
+        AND c.status=1 AND c.del=0   ORDER  BY  c.sort DESC
+    </select>
+
+</mapper>

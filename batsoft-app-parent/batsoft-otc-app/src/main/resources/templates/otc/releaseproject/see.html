@@ -1,0 +1,297 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+ <div class="ibox-title">
+                    <h5>采购信息查看</h5>
+                    <div class="ibox-tools">
+                    <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+    <a href="javascript:void(0)" class="toList" data-to-url="/otc/releaseproject/view/list">
+        <i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+</div>
+</div>
+<div class="ibox-content">
+    <form method="post" class="form">
+
+        <div id="releaseprojectRender"></div>
+        <script id="releaseprojectTpl" type="text/x-jsrender">
+
+            <div class="hr-line-dashed hidden"></div>
+            <div class="form-group hidden"><label class="col-sm-2 control-label">id</label>
+                <div class="col-sm-10"><input type="text" name="id" value="{{:id}}" class="form-control"></div>
+            </div>
+
+
+                            <div class="row">
+                            <div class="col-sm-4">
+                                    <label class="">项目编号</label>
+                                        <input type="text" placeholder="项目编号" disabled name="projectNum" value="{{:projectNum}}" class="form-control">
+                                </div>
+                            <div class="col-sm-4">
+
+                <div class="form-group"><label class=" control-label">发布类型 <span class="text-danger">*</span></label>
+                    <select name="otcType"  class="form-control">
+                            <option value="0" {{if otcType==0}}selected{{/if}}>在线出售</option>
+                            <option value="1" {{if otcType==1}}selected{{/if}}>在线购买</option>
+                    </select>
+                </div>
+        </div>
+
+                            <div class="col-sm-4">
+
+
+            <div class="form-group"><label class=" control-label">交易币种</label>
+                <input type="text" name="coin"
+                                              value="{{:coin}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">国家<span class="text-danger">*</span></label>
+                <input type="text" name="country"
+                                              value="{{:country}}"
+                                              class="form-control "></div>
+
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">货币<span class="text-danger">*</span></label>
+                <input type="text" name="currency"
+                                              value="{{:currency}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">开启固定价格 </label>
+                    <select name="fixed"  class="form-control">
+                            <option value="0" {{if fixed==0}}selected{{/if}}>关闭</option>
+                            <option value="1" {{if fixed==1}}selected{{/if}}>开启</option>
+                    </select>
+                </div>
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">购买价格</label>
+                <input type="text" name="price"
+                                              value="{{:price}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易所名称<span class="text-danger">*</span></label>
+                <input type="text" name="exchangeName"
+                                              value="{{:exchangeName}}"
+                                              class="form-control "></div>
+
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">溢价</label>
+                <input type="text" name="overflowMoney"
+                                              value="{{:overflowMoney}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">付款方式</label>
+                <input type="text" name="payType"
+                                              value="{{:payType}}"
+                                              class="form-control "></div>
+
+        </div>
+
+                            <div class="col-sm-6">
+
+                                    <div class="form-group"><label class=" control-label">付款方式备注 </label>
+                                         <textarea class="form-control" placeholder="付款方式备注" name="payRemarks" >{{:payRemarks}}</textarea></div>
+
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+                                    <div class="form-group"><label class=" control-label">交易条款 </label>
+                                         <textarea class="form-control" placeholder="交易条款" name="transaction" >{{:transaction}}</textarea></div>
+
+
+        </div>
+
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">开启自动回复 </label>
+                    <select name="automatic"  class="form-control">
+                            <option value="0" {{if automatic==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if automatic==1}}selected{{/if}}>是</option>
+                    </select>
+                </div>
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">是否启用安全选项 </label>
+                    <select name="security"  class="form-control">
+                            <option value="0" {{if security==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if security==1}}selected{{/if}}>是</option>
+                    </select>
+                </div>
+        </div>
+
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">授信交易者 </label>
+                    <select name="belived"  class="form-control">
+                            <option value="0" {{if belived==0}}selected{{/if}}>否</option>
+                            <option value="1" {{if belived==1}}selected{{/if}}>是</option>
+                    </select>
+                </div>
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">最大交易额</label>
+                <input type="text" name="maxMoney"
+                                              value="{{:maxMoney}}"
+                                              class="form-control "></div>
+
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">最小交易额</label>
+                <input type="text" name="minMoney"
+                                              value="{{:minMoney}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">用户帐号<span class="text-danger">*</span></label>
+                <input type="text" name="userName"
+                                              value="{{:userName}}"
+                                              class="form-control "></div>
+
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">发布人ID<span class="text-danger">*</span></label>
+                <input type="text" name="userId"
+                                              value="{{:userId}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+
+                <div class="form-group"><label class=" control-label">状态 </label>
+                    <select name="status"  class="form-control">
+                            <option value="0" {{if status==0}}selected{{/if}}>发布</option>
+                            <option value="1" {{if status==1}}selected{{/if}}>已审核</option>
+                            <option value="2" {{if status==2}}selected{{/if}}>交易完成</option>
+                            <option value="3" {{if status==3}}selected{{/if}}>交易关闭</option>
+                    </select>
+                </div>
+        </div>
+
+                            <div class="col-sm-6">
+
+
+            <div class="form-group"><label class=" control-label">交易地点</label>
+                <input type="text" name="adress"
+                                              value="{{:adress}}"
+                                              class="form-control "></div>
+
+        </div>
+                            </div>
+
+
+ <div class="hr-line-dashed"></div>
+                            <div class="row">
+
+
+                                <div class="col-sm-12">
+                                    <label class="">付款期限</label>
+                                    <div class="input-group">
+                                        <input type="text" placeholder="付款期限" name="payTime" value="{{:payTime}}" class="form-control">
+                                        <span class="input-group-addon">分钟</span>
+                                    </div>
+                                </div>
+                            </div>
+        </script>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",  DEV + "/page_otc_releaseproject"], function (a, e, c,  b) {
+            b.see();
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

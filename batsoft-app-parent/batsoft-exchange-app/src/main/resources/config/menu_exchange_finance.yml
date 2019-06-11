@@ -1,0 +1,259 @@
+menus:
+  name: 交易所财务管理
+  key: exchange_finance
+  path: exchange_finance
+  icon: appstore-o
+  description: 交易所财务管理系统
+  item:
+  - name: 账户核算
+    key: exchange_customerAccount_userList
+    icon: appstore-o
+    path: customerAccount/userList
+    menu: 1
+    permission: exchange:customerAccount:userList
+    description: 账户核算
+    item:
+    - name: 账户核算
+      key: exchange_customerAccount_check
+      icon: appstore-o
+      path: customerAccount/checkAccout
+      menu: 0
+      permission: exchange:customerAccount:checkAccout
+      description: 账户核算
+  - name: 币种账户管理
+    key: exchange_customerAccount
+    icon: appstore-o
+    path: customerAccount/list
+    menu: 1
+    permission: exchange:customerAccount:list
+    description: 币种账户管理
+    item:
+    - name: 增加
+      key: exchange_customerAccount_add
+      icon: appstore-o
+      path: customerAccount/add
+      menu: 0
+      permission: exchange:customerAccount:add
+      description: 币种账户增加
+    - name: 修改
+      key: exchange_customerAccount_edit
+      icon: appstore-o
+      path: customerAccount/edit
+      menu: 0
+      permission: exchange:customerAccount:edit
+      description: 币种账户修改
+    - name: 查看
+      key: exchange_customerAccount_see
+      icon: appstore-o
+      path: customerAccount/info
+      menu: 0
+      permission: exchange:customerAccount:see
+      description: 币种账户查看
+    - name: 删除
+      key: exchange_customerAccount_remove
+      icon: appstore-o
+      path: customerAccount/remove
+      menu: 0
+      permission: exchange:customerAccount:remove
+      description: 币种账户删除
+    - name: 手动充币
+      key: exchange_customerAccount_depost
+      icon: appstore-o
+      path: customerAccount/depost
+      menu: 0
+      permission: exchange:customerAccount:depost
+      description: 手动充币
+  - name: 冻结明细管理
+    key: exchange_customerAccountFreeze
+    icon: appstore-o
+    path: customerAccountFreeze/list
+    menu: 1
+    permission: exchange:customerAccountFreeze:list
+    description: 冻结明细管理
+    item:
+    - name: 增加
+      key: exchange_customerAccountFreeze_add
+      icon: appstore-o
+      path: customerAccountFreeze/add
+      menu: 0
+      permission: exchange:customerAccountFreeze:add
+      description: 冻结明细增加
+    - name: 修改
+      key: exchange_customerAccountFreeze_edit
+      icon: appstore-o
+      path: customerAccountFreeze/edit
+      menu: 0
+      permission: exchange:customerAccountFreeze:edit
+      description: 冻结明细修改
+    - name: 查看
+      key: exchange_customerAccountFreeze_see
+      icon: appstore-o
+      path: customerAccountFreeze/info
+      menu: 0
+      permission: exchange:customerAccountFreeze:see
+      description: 冻结明细查看
+    - name: 删除
+      key: exchange_customerAccountFreeze_remove
+      icon: appstore-o
+      path: customerAccountFreeze/remove
+      menu: 0
+      permission: exchange:customerAccountFreeze:remove
+      description: 冻结明细删除
+  - name: 订单管理
+    key: exchange_customerAccountOrder
+    icon: appstore-o
+    path: customerAccountOrder/list
+    menu: 1
+    permission: exchange:customerAccountOrder:list
+    description: 订单管理
+    item:
+    - name: 增加
+      key: exchange_customerAccountOrder_add
+      icon: appstore-o
+      path: customerAccountOrder/add
+      menu: 0
+      permission: exchange:customerAccountOrder:add
+      description: 订单增加
+    - name: 修改
+      key: exchange_customerAccountOrder_edit
+      icon: appstore-o
+      path: customerAccountOrder/edit
+      menu: 0
+      permission: exchange:customerAccountOrder:edit
+      description: 订单修改
+    - name: 查看
+      key: exchange_customerAccountOrder_see
+      icon: appstore-o
+      path: customerAccountOrder/info
+      menu: 0
+      permission: exchange:customerAccountOrder:see
+      description: 订单查看
+    - name: 删除
+      key: exchange_customerAccountOrder_remove
+      icon: appstore-o
+      path: customerAccountOrder/remove
+      menu: 0
+      permission: exchange:customerAccountOrder:remove
+      description: 订单删除
+  - name: 提币地址管理
+    key: exchange_withdrawAddress
+    icon: appstore-o
+    path: withdrawAddress/list
+    menu: 1
+    permission: exchange:withdrawAddress:list
+    description: 提币地址管理
+    item:
+    - name: 增加
+      key: exchange_withdrawAddress_add
+      icon: appstore-o
+      path: withdrawAddress/add
+      menu: 0
+      permission: exchange:withdrawAddress:add
+      description: 提币地址增加
+    - name: 修改
+      key: exchange_withdrawAddress_edit
+      icon: appstore-o
+      path: withdrawAddress/edit
+      menu: 0
+      permission: exchange:withdrawAddress:edit
+      description: 提币地址修改
+    - name: 查看
+      key: exchange_withdrawAddress_see
+      icon: appstore-o
+      path: withdrawAddress/info
+      menu: 0
+      permission: exchange:withdrawAddress:see
+      description: 提币地址查看
+    - name: 删除
+      key: exchange_withdrawAddress_remove
+      icon: appstore-o
+      path: withdrawAddress/remove
+      menu: 0
+      permission: exchange:withdrawAddress:remove
+      description: 提币地址删除
+  - name: 充币管理
+    key: exchange_coinRecharge
+    icon: appstore-o
+    path: coinRecharge/list
+    menu: 1
+    permission: exchange:coinRecharge:list
+    description: 充币管理
+    item:
+    - name: 增加
+      key: exchange_coinRecharge_add
+      icon: appstore-o
+      path: coinRecharge/add
+      menu: 0
+      permission: exchange:coinRecharge:add
+      description: 充币增加
+    - name: 修改
+      key: exchange_coinRecharge_edit
+      icon: appstore-o
+      path: coinRecharge/edit
+      menu: 0
+      permission: exchange:coinRecharge:edit
+      description: 充币修改
+    - name: 查看
+      key: exchange_coinRecharge_see
+      icon: appstore-o
+      path: coinRecharge/info
+      menu: 0
+      permission: exchange:coinRecharge:see
+      description: 充币查看
+    - name: 删除
+      key: exchange_coinRecharge_remove
+      icon: appstore-o
+      path: coinRecharge/remove
+      menu: 0
+      permission: exchange:coinRecharge:remove
+      description: 充币删除
+  - name: 提币管理
+    key: exchange_coinWithdraw
+    icon: appstore-o
+    path: coinWithdraw/list
+    menu: 1
+    permission: exchange:coinWithdraw:list
+    description: 提币管理
+    item:
+    - name: 增加
+      key: exchange_coinWithdraw_add
+      icon: appstore-o
+      path: coinWithdraw/add
+      menu: 0
+      permission: exchange:coinWithdraw:add
+      description: 提币增加
+    - name: 修改
+      key: exchange_coinWithdraw_edit
+      icon: appstore-o
+      path: coinWithdraw/edit
+      menu: 0
+      permission: exchange:coinWithdraw:edit
+      description: 提币修改
+    - name: 查看
+      key: exchange_coinWithdraw_see
+      icon: appstore-o
+      path: coinWithdraw/info
+      menu: 0
+      permission: exchange:coinWithdraw:see
+      description: 提币查看
+    - name: 删除
+      key: exchange_coinWithdraw_remove
+      icon: appstore-o
+      path: coinWithdraw/remove
+      menu: 0
+      permission: exchange:coinWithdraw:remove
+      description: 提币删除
+    - name: 提币通过
+      key: exchange_coinWithdraw_passStatus
+      icon: appstore-o
+      path: coinWithdraw/passStatus
+      menu: 0
+      permission: exchange:coinWithdraw:passStatus
+      description: 提币通过
+    - name: 提币拒绝
+      key: exchange_coinWithdraw_refuseStatus
+      icon: appstore-o
+      path: coinWithdraw/refuseStatus
+      menu: 0
+      permission: exchange:coinWithdraw:refuseStatus
+      description: 提币拒绝

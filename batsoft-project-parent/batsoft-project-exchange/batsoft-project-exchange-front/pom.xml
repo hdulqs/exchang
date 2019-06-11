@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>batsoft-project-exchange-front</artifactId>
+    
+    <parent>
+        <artifactId>batsoft-project-exchange</artifactId>
+        <groupId>com.batsoft</groupId>
+        <version>1.1.RELEASE</version>
+    </parent>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-cms-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-ico-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-exchange-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-system-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-mq</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-member-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-otc-client</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+        <!--tpl-->
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-tpls-1-cms</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-tpls-1-member</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-tpls-1-exchange</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <!--/tpl-->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <finalName>exchange-front</finalName>
+    </build>
+
+</project>

@@ -1,0 +1,166 @@
+<html xmlns:th="http://www.thymeleaf.org"
+>
+
+
+
+<div class="wrapper wrapper-content animated fadeInRight ecommerce">
+    <div class="row">
+
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>订单新增 </h5>
+                    <div class="ibox-tools">
+                        <a class="collapse-link">
+                            <i class="fa fa-chevron-up" data-toggle="tooltip" data-placement="auto"  data-original-title="折叠"></i>
+                        </a>
+                             <a href="javascript:void(0)" class="toList" data-to-url="/otc/projectOrder/view/list"><i class="fa fa-mail-reply" data-toggle="tooltip" data-placement="auto"  data-original-title="返回"></i></a>
+
+                    </div>
+                </div>
+                <div class="ibox-content">
+                        <form  method="post" th:action="@{/otc/projectOrder/save}"
+                               class="form">
+
+
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">订单号 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="订单号" name="orderNum" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">项目id <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="项目id" name="projectId" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易币种 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="交易币种" name="orderCoin" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">交易类型 <span class="text-danger">*</span></label>
+                                    <select name="orderType"  class="form-control">
+                                                <option value="0" >出售</option>
+                                                <option value="1" >购买</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易数量 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="交易数量" name="orderCount" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易金额 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="交易金额" name="orderMoney" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">币种 </label>
+                                         <input type="text" placeholder="币种" name="currency" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">交易手续费 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="交易手续费" name="orderFee" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">用户 <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="用户" name="userName" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">用户id <span class="text-danger">*</span></label>
+                                         <input type="text" placeholder="用户id" name="userId" class="form-control  ">
+                                        </div>
+                            </div>
+                            </div>
+
+
+                             <div class="hr-line-dashed"></div>
+                            <div class="row">
+                            <div class="col-sm-6">
+                                        <div class="form-group"><label class=" control-label">付款备注 </label>
+                                         <input type="text" placeholder="付款备注" name="orderRemarkNum" class="form-control  ">
+                                        </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                    <div class="form-group"><label class=" control-label">状态 </label>
+                                    <select name="status"  class="form-control">
+                                                <option value="0" >未付款</option>
+                                                <option value="1" >已付款</option>
+                                                <option value="2" >已完成</option>
+                                                <option value="3" >已取消</option>
+                                                <option value="4" >申诉中</option>
+                                        </select>
+                                    </div>
+                            </div>
+                            </div>
+
+
+
+
+                        <div class="hr-line-dashed"></div>
+                        <div class="row">
+                        <div th:replace="layout/common/handler :: handler">
+
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--load js-->
+<div th:replace="layout/common/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main", "jquery_validate", "messages_zh",   DEV + "/page_otc_projectOrder"], function (a, e, c, b) {
+            b.add();
+        
+        });
+    </script>
+</div>
+<!--load js-->
+
+</html>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>ArticleMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-19 11:16:51 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.cms.dao.ArticleDao">
+
+    <resultMap id="ArticleResultMap" type="com.batsoft.model.module.cms.Article" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="typeId" property="typeId" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="hits" property="hits" jdbcType="INTEGER" />
+        <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+        <result column="content" property="content" jdbcType="VARCHAR" />
+        <result column="short_content" property="shortContent" jdbcType="VARCHAR" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="DATE" />
+    </resultMap>
+
+    <resultMap id="ArticleResultMapVO" type="com.batsoft.model.module.cms.vo.ArticleVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="type_key" property="typeKey" jdbcType="VARCHAR" />
+        <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+        <result column="title" property="title" jdbcType="VARCHAR" />
+        <result column="hits" property="hits" jdbcType="INTEGER" />
+        <result column="file_path" property="filePath" jdbcType="VARCHAR" />
+        <result column="short_content" property="shortContent" jdbcType="VARCHAR" />
+        <result column="author" property="author" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+    <sql id="article_Column_List" >
+        id,type_key,type_name, title,  hits,file_path, content,short_content,author,create_time,update_time
+    </sql>
+
+    <!-- 根据父类ID获取文章类型列表 -->
+    <select id="findArticles" resultMap="ArticleResultMapVO" >
+        SELECT
+        <include refid="article_Column_List" />
+        FROM cms_article c
+        where
+        c.del=0 and display=1
+        <if test="typeKey != null and typeKey != ''">
+            AND c.type_key =#{typeKey,jdbcType=VARCHAR}
+        </if>
+        order by c.update_time DESC
+        <if test="size != 0">
+            LIMIT 0, #{size,jdbcType=INTEGER}
+        </if>
+    </select>
+</mapper>

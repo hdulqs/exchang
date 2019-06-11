@@ -1,0 +1,259 @@
+.chart-page {
+    background: #131747;
+}
+#chart-area,#library-container,.header-chart-panel,.loading-indicator,.tv-main-panel {
+    background: transparent !important
+}
+
+#library-container {
+    border: 0 !important
+}
+
+.submenu.interval-dialog-button {
+    display: none
+}
+
+.tv-close-panel.top {
+    display: none
+}
+
+.header-chart-panel .button,.hotlist-controls .button,.symbol-edit-widget .button {
+    cursor: pointer
+}
+
+.header-chart-panel .right .space-single {
+    padding-right: 5px
+}
+.header-chart-panel .left .space-single {
+    margin: 3px 0 0;
+}
+
+.pane-legend-line.pane-legend-wrap.main.expand-line {
+    padding-right: 0 !important
+}
+
+@media (max-width: 700px) {
+    .tv-dialog:not(.change-interval-dialog) {
+        left:0;
+        width: 100%;
+        margin-left: 0 !important
+    }
+
+    .properties-tabs a.properties-tabs-label {
+        margin-left: 0 !important;
+        margin-right: 20px !important
+    }
+
+    .chart-status-picture {
+        display: none !important
+    }
+}
+
+.darkTheme *::-webkit-scrollbar {
+    width: 7px;
+    height: 7px
+}
+
+.darkTheme *::-webkit-scrollbar-thumb {
+    min-height: 35px;
+    border-radius: 4px;
+    background: rgba(0,0,0,0.4)
+}
+
+.darkTheme *::-webkit-scrollbar-track {
+    background: rgba(77,76,76,0.4);
+    border-radius: 4px
+}
+
+.darkTheme *::-webkit-scrollbar-corner {
+    background: rgba(0,0,0,0.4);
+    border-color: rgba(0,0,0,0.4)
+}
+
+.darkTheme .chart-controls-bar {
+    background: #3c3f3f;
+    border-top: 1px solid #7c8586;
+    height: 21px
+}
+
+.darkTheme .chart-controls-bar-buttons a {
+    color: #fff
+}
+
+.darkTheme .chart-controls-bar-buttons a:not(.disabled):hover {
+    background: rgba(51,51,51,0.25);
+    color: #fff
+}
+
+.darkTheme .tv-side-toolbar {
+    background: #565b5c;
+    border: 1px solid #7c8586
+}
+
+.darkTheme .chart-container {
+    /* border-color: #7c8586 */
+    /* border-color: #AAA9ED; */
+    /* border-color: #6d6da8; */
+    border: none;
+}
+
+.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button i,.darkTheme .tv-side-toolbar .tools-group .button i,.darkTheme .tv-side-toolbar .tools-group .button:hover i {
+    background-image: url("../images/sidetoolbar/instruments-inverted.png")
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button:hover,.darkTheme .tv-side-toolbar .tools-group .button:active,.darkTheme .tv-side-toolbar .tools-group .button.active,.darkTheme .tv-side-toolbar .tools-group .button.selected,.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button {
+    background: #3c3f3f
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup):active,.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup).active,.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup).selected,.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button:active,.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button.active,.darkTheme .tv-side-toolbar .tools-group .button.selected .main,.darkTheme .tv-side-toolbar .tools-group .button:active .side,.darkTheme .tv-side-toolbar .tools-group .button.active .side {
+    background: #3c3f3f
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup):active i,.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup).active i,.darkTheme .tv-side-toolbar .tools-group .button:not(.subgroup).selected i,.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button:active i,.darkTheme .properties-toolbar:not(.ui-draggable) .tools-group .button.active i,.darkTheme .tv-side-toolbar .tools-group .button.selected .main i,.darkTheme .tv-side-toolbar .tools-group .button:active .side i,.darkTheme .tv-side-toolbar .tools-group .button.active .side i {
+    background-image: url("../images/sidetoolbar/instruments.png")
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button.selected {
+    border-color: #979e9f
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button.selected svg {
+    fill: #5EC6E8
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button .main.text-as-icon {
+    color: #eee
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button:hover .main.text-as-icon,.darkTheme .tv-side-toolbar .tools-group .button .main.text-as-icon:hover {
+    color: #d5d4d4
+}
+
+.darkTheme .tv-side-toolbar .tools-group .button svg {
+    fill: #eee
+}
+
+/* 计数指标 */
+.darkTheme .favored-list-container,.darkTheme .favored-list-container span,.darkTheme .favored-list-container a,.darkTheme .favored-list-container .item,.darkTheme .favored-list,.darkTheme .favored-list span,.darkTheme .favored-list a,.darkTheme .favored-list .item,.darkTheme .header-chart-panel .button,.darkTheme .header-chart-panel .button.disabled,.darkTheme .hotlist-controls .button,.darkTheme .hotlist-controls .button.disabled,.darkTheme .symbol-edit-widget .button,.darkTheme .symbol-edit-widget .button.disabled,.darkTheme .tv-dialog,.darkTheme ._tv-dialog,.darkTheme .tv-dialog .js-study-item,.darkTheme ._tv-dialog .js-study-item,.darkTheme input,.darkTheme input.inset,.darkTheme .context-menu-wrapper,.darkTheme .context-menu .action-separator td,.darkTheme .context-menu,.darkTheme .properties-tabs a.properties-tabs-label,.darkTheme .property-page,.darkTheme .charts-popup-list .item span,.darkTheme tr.symbol-edit-popup:hover,.darkTheme .tv-objects-tree-item {
+    /* background-color: #3c3f3f !important; */
+    background-color: #131747 !important;
+    color: #fff;
+    border-color: #7c8586
+}
+
+/* active */
+.darkTheme .favored-list-container span:active,.darkTheme .favored-list-container span.active,.darkTheme .favored-list-container span.selected,.darkTheme .favored-list-container a:active,.darkTheme .favored-list-container a.active,.darkTheme .favored-list-container a.selected,.darkTheme .favored-list-container .item:active,.darkTheme .favored-list-container .item.active,.darkTheme .favored-list-container .item.selected,.darkTheme .favored-list span:active,.darkTheme .favored-list span.active,.darkTheme .favored-list span.selected,.darkTheme .favored-list a:active,.darkTheme .favored-list a.active,.darkTheme .favored-list a.selected,.darkTheme .favored-list .item:active,.darkTheme .favored-list .item.active,.darkTheme .favored-list .item.selected,.darkTheme .favored-list-container.active .submenu,.darkTheme .favored-list.active .submenu,.darkTheme .header-chart-panel .button:active,.darkTheme .header-chart-panel .button.active,.darkTheme .header-chart-panel .button.disabled:active,.darkTheme .header-chart-panel .button.disabled.active,.darkTheme .header-chart-panel .button.disabled.selected,.darkTheme .hotlist-controls .button:active,.darkTheme .hotlist-controls .button.active,.darkTheme .hotlist-controls .button.selected,.darkTheme .hotlist-controls .button.disabled:active,.darkTheme .hotlist-controls .button.disabled.active,.darkTheme .hotlist-controls .button.disabled.selected,.darkTheme .symbol-edit-widget .button:active,.darkTheme .symbol-edit-widget .button.active,.darkTheme .symbol-edit-widget .button.selected,.darkTheme .symbol-edit-widget .button.disabled:active,.darkTheme .symbol-edit-widget .button.disabled.active,.darkTheme .symbol-edit-widget .button.disabled.selected,.darkTheme .tv-dialog .js-study-item:active,.darkTheme .tv-dialog .js-study-item.active,.darkTheme .tv-dialog .js-study-item.selected,.darkTheme ._tv-dialog .js-study-item:active,.darkTheme ._tv-dialog .js-study-item.active,.darkTheme ._tv-dialog .js-study-item.selected,.darkTheme input:active,.darkTheme input.active,.darkTheme input.selected,.darkTheme input.inset:active,.darkTheme input.inset.active,.darkTheme input.inset.selected,.darkTheme .context-menu:active,.darkTheme .context-menu.active,.darkTheme .context-menu.selected,.darkTheme .properties-tabs a.properties-tabs-label:active,.darkTheme .properties-tabs a.properties-tabs-label.selected,.darkTheme .property-page:active,.darkTheme .property-page.active,.darkTheme .property-page.selected,.darkTheme .charts-popup-list .item span:active,.darkTheme .charts-popup-list .item span.active,.darkTheme .charts-popup-list .item span.selected,.darkTheme tr.symbol-edit-popup:hover:active,.darkTheme tr.symbol-edit-popup.active:hover,.darkTheme tr.symbol-edit-popup.selected:hover,.darkTheme .tv-objects-tree-item:active,.darkTheme .tv-objects-tree-item.active,.darkTheme .tv-objects-tree-item.selected {
+    /* background: #4c5051 !important; */
+    /* background: #686BDC !important; */
+    background: #0F112E !important;
+    color: #fff
+}
+
+/* hover */
+.darkTheme .favored-list-container span:hover,.darkTheme .favored-list-container span.hover,.darkTheme .favored-list-container a:hover,.darkTheme .favored-list-container a.hover,.darkTheme .favored-list-container .item:hover,.darkTheme .favored-list-container .item.hover,.darkTheme .favored-list span:hover,.darkTheme .favored-list span.hover,.darkTheme .favored-list a:hover,.darkTheme .favored-list a.hover,.darkTheme .favored-list .item:hover,.darkTheme .favored-list .item.hover,.darkTheme .header-chart-panel .button.hover,.darkTheme .header-chart-panel .button.disabled:hover,.darkTheme .header-chart-panel .button.disabled.hover,.darkTheme .hotlist-controls .button:hover,.darkTheme .hotlist-controls .button.hover,.darkTheme .hotlist-controls .button.disabled:hover,.darkTheme .hotlist-controls .button.disabled.hover,.darkTheme .symbol-edit-widget .button:hover,.darkTheme .symbol-edit-widget .button.hover,.darkTheme .symbol-edit-widget .button.disabled:hover,.darkTheme .symbol-edit-widget .button.disabled.hover,.darkTheme .tv-dialog .js-study-item:hover,.darkTheme .tv-dialog .js-study-item.hover,.darkTheme ._tv-dialog .js-study-item:hover,.darkTheme ._tv-dialog .js-study-item.hover,.darkTheme input:hover,.darkTheme input.hover,.darkTheme input.inset:hover,.darkTheme input.inset.hover,.darkTheme .context-menu-wrapper .context-menu-hover,.darkTheme .context-menu .action-separator td .context-menu-hover,.darkTheme .context-menu:hover,.darkTheme .context-menu.hover,.darkTheme .properties-tabs a.properties-tabs-label.hover,.darkTheme .property-page.hover,.darkTheme .charts-popup-list .item span:hover,.darkTheme .charts-popup-list .item span.hover,.darkTheme tr.symbol-edit-popup:hover,.darkTheme tr.symbol-edit-popup.hover:hover,.darkTheme .tv-objects-tree-item:hover,.darkTheme .tv-objects-tree-item.hover {
+    /* background: #4c5051 !important; */
+    /* background: #686BDC !important; */
+    background: #0F112E !important;
+    color: #dfdede;
+    border-color: #979e9f
+}
+
+.darkTheme .favored-list-container .to-quick,.darkTheme .favored-list-container .title,.darkTheme .favored-list .to-quick,.darkTheme .favored-list .title {
+    background: transparent !important
+}
+
+.darkTheme .hotlist-controls .button,.darkTheme .hotlist-controls .button.disabled,.darkTheme .symbol-edit-widget .button,.darkTheme .symbol-edit-widget .button.disabled {
+    border: 1px solid #7c8586;
+    color: #eee !important
+}
+
+.darkTheme .header-chart-panel svg,.darkTheme .header-chart-panel .getimage .icon,.darkTheme .hotlist-controls svg,.darkTheme .hotlist-controls .getimage .icon,.darkTheme .symbol-edit-widget svg,.darkTheme .symbol-edit-widget .getimage .icon {
+    /* fill: #eee */
+    fill: #A8ACF3;
+}
+
+.darkTheme .button.iconed i {
+    background-image: url("../images/icons-inverted.png")
+}
+
+.darkTheme .button.undo i,.darkTheme .button.redo i {
+    background-image: url("../chart-client/css/images/undo-redo-inverted.png")
+}
+
+.darkTheme .tv-close-panel {
+    background: #eee
+}
+
+.darkTheme .tv-dialog,.darkTheme ._tv-dialog {
+    max-width: 100%
+}
+
+.darkTheme .tv-dialog label,.darkTheme ._tv-dialog label {
+    color: #fff
+}
+
+.darkTheme .context-menu .action-separator td {
+    border-color: transparent
+}
+
+.darkTheme .context-menu .icon {
+    color: #eee
+}
+
+.darkTheme .feature-no-touch .tv-tabs__tab:active,.darkTheme .feature-no-touch .tv-tabs__tab:hover,.darkTheme .feature-touch .tv-tabs__tab:active,.darkTheme .tv-tabs__tab.i-active,.darkTheme .tv-tabs__tab.i-hover {
+    color: #eee
+}
+
+.darkTheme .tv-tabbed-dialog__bottom-border {
+    border-color: #7c8586
+}
+
+.darkTheme .tv-dialog__title,.darkTheme .tv-dialog-content,.darkTheme ._tv-dialog-content,.darkTheme .symbol-search-dialog .filter .exchange-filter,.darkTheme .symbol-search-dialog .filter a.type-filter {
+    color: #fff
+}
+
+.darkTheme .chart-style-popup .item svg,.darkTheme .chart-style-widget svg,.darkTheme .tv-dialog svg {
+    fill: #eee
+}
+
+.darkTheme .charts-popup-list {
+    background: #3c3f3f
+}
+
+.darkTheme .charts-popup-list .item:hover {
+    background: #4c5051
+}
+
+.darkTheme .charts-popup-list .item:active,.darkTheme .charts-popup-list .item.active {
+    background: #7c8586
+}
+
+/* 全屏按钮居右 */
+.header-chart-panel-content .header-group-fullscreen {
+    float: right;
+}
+
+
+/* 头部选择框 */
+.header-chart-panel {
+    border-top: 1px solid #0F112E;
+    border-bottom: 1px solid #0F112E;
+}
+.darkTheme .header-chart-panel .button.selected {
+    color: #357ce1;
+    background: rgba(37,42,68,.5) !important;
+}
+.darkTheme .header-chart-panel .button, .darkTheme .header-chart-panel .button.disabled {
+    color: #61688a;
+    border: none;
+    background: #171b2b !important;
+}
+.darkTheme .header-chart-panel .button.selected:hover {
+    color: #357ce1;
+    border: none !important;
+}
+
+.darkTheme .header-chart-panel .button > div:hover {
+    color: #ffff !important;
+    border: none !important;
+}

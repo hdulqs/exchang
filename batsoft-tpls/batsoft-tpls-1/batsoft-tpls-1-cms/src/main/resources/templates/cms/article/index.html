@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+
+
+
+    <section>
+        <div class="container" >
+
+            <div class="row" id="articleRender">
+                <span th:replace="component/load/spinner4 :: spinner4"></span>
+
+            </div>
+
+        </div>
+
+        <script id="articleTmpl" type="text/x-jsrender">
+            <div class="col-md-6 col-xs-6">
+
+                    <div class="heading-title heading-border-bottom heading-color">
+                        <h3>{{:name}}</h3>
+                        <a href="/article/list/{{:typeKey}}"   style="float: right">
+                            查看更多
+                        </a>
+                    </div>
+
+                    <div class="timeline"><!-- .timeline-inverse = right position [left on RTL] -->
+                        <div class="timeline-hline"><!-- horizontal line --></div>
+                     {{for articleVos}}
+
+                        <!-- POST ITEM -->
+                        <div class="blog-post-item mb-20 pb-20" style="border: 0px">
+
+                            <!-- timeline entry -->
+                            <div class="timeline-entry"><!-- .rounded = entry -->
+                                {{:~formatDate(updateTime,"dd")}}<span>{{:~formatDate(updateTime,"MM")}}</span>
+                                <div class="timeline-vline"><!-- vertical line --></div>
+                            </div>
+                            <!-- /timeline entry -->
+
+                            <h2><a href="/article/{{:id}}">{{:title}}</a></h2>
+
+                            <ul class="blog-post-info list-inline">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-clock-o"></i>
+                                        <span class="font-lato">{{:~formatDate(updateTime,"yyyy-MM-dd")}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-eye"></i>
+                                        <span class="font-lato">{{:hits}}</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i>
+                                        <span class="font-lato">{{:author}}</span>
+                                    </a>
+                                </li>
+
+
+                            </ul>
+
+                            <p>{{:shortContent}}</p>
+                        </div>
+                        <!-- /POST ITEM -->
+                         {{/for}}
+                    </div>
+
+
+                </div>
+       </script>
+    </section>
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer1 :: footer1"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","jquery_backstretch",DEV+"/page_cms_article"], function (a,b,c) {
+            c.index();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</body>
+</html>

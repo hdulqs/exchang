@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppConfigMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-06-26 17:29:20 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.config.AppConfigDao">
+
+    <resultMap id="appConfig" type="com.batsoft.model.module.system.config.AppConfig" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+        <result column="type_key" property="typeKey" jdbcType="VARCHAR" />
+        <result column="conf_key" property="confKey" jdbcType="VARCHAR" />
+        <result column="conf_name" property="confName" jdbcType="VARCHAR" />
+        <result column="remark" property="remark" jdbcType="VARCHAR" />
+        <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+        <result column="conf_value" property="confValue" jdbcType="VARCHAR" />
+        <result column="select_value" property="selectValue" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id,conf_key,conf_name,remark,data_type,conf_value,select_value,description, type_name, type_key
+    </sql>
+
+    <!-- 查询appConfig by typeKey -->
+    <select id="findByTypeKey" resultMap="appConfig">
+        SELECT <include refid="Base_Column_List" />
+        FROM system_app_config as c
+        where c.type_key=#{typeKey,jdbcType=VARCHAR} and  c.del=0 order by c.sort ASC
+    </select>
+
+    <!-- updateConfig -->
+    <update id="updateConfig">
+        update system_app_config set conf_value = #{confValue,jdbcType=VARCHAR}
+        where conf_key =#{confKey,jdbcType=VARCHAR};
+    </update>
+
+</mapper>

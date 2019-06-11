@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppDictionaryMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-05 23:23:40 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.type.AppDictionaryDao">
+
+
+    <resultMap id="RootResultMapVO" type="com.batsoft.model.module.system.type.vo.AppDictionaryVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="level_path" property="levelPath" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="dic_key" property="dicKey" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+        <result column="display" property="display" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="DictionaryListTree" type="com.batsoft.model.module.system.type.vo.AppDictionaryVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+        <result column="name" property="title" jdbcType="VARCHAR" />
+        <result column="display" property="display" jdbcType="INTEGER" />
+        <result column="dic_key" property="dicKey" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="JsTreeResultMapVO" type="com.batsoft.core.common.JsTree" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="text" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="dic_key" property="nodeKey" jdbcType="VARCHAR" />
+
+        <result column="name" property="label" jdbcType="VARCHAR" />
+        <result column="id" property="value" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="AppDictionaryTreeResult" type="com.batsoft.model.module.system.type.vo.AppDictionaryTree" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="dic_key" property="dicKey" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+    </resultMap>
+
+    <resultMap id="ResultByKey" type="com.batsoft.model.module.system.type.AppDictionary" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="dic_key" property="dicKey" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id, name,  parent_id, sort, level,level_path,description,display ,icon,dic_key
+    </sql>
+
+    <sql id="Dictionary_List_Tree" >
+        id, name,  parent_id, sort, description,display,icon,dic_key
+    </sql>
+    <sql id="JsTree_Column_List" >
+        id, name,  parent_id, sort,icon,dic_key
+    </sql>
+
+    <sql id="appDictionaryTree_Column" >
+        id, name, parent_id, sort,icon,dic_key
+    </sql>
+
+    <select id="findChildList" resultMap="DictionaryListTree" >
+        SELECT
+        <include refid="Dictionary_List_Tree" />,
+        (select count(*) from system_app_dictionary s1 where s1.parent_id=s.id) has_child
+        FROM system_app_dictionary s
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+
+        order by s.level, s.sort ASC
+    </select>
+
+
+    <select id="findJsTreeChildList" resultMap="JsTreeResultMapVO" >
+        SELECT
+        <include refid="JsTree_Column_List" />
+        FROM system_app_dictionary s
+
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+        order by s.level, s.sort ASC
+    </select>
+
+    <!--根据parentId，得到id plash-->
+    <select id="findParentId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT parent_id
+        FROM system_app_dictionary
+        where id = #{pid}
+    </select>
+
+    <!--根据Id，得到父name-->
+    <select id="findParentName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT name
+        FROM system_app_dictionary
+        where id = #{id}
+    </select>
+
+    <!--根据key，得到appmenu-->
+    <select id="findByKey" parameterType="java.lang.String" resultMap="ResultByKey">
+        SELECT
+        id,name,sort,parent_id,dic_key
+        FROM system_app_dictionary
+        where dic_key = #{dicKey}
+    </select>
+</mapper>

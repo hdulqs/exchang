@@ -1,0 +1,1583 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/csrfToken :: csrfMetaToken"></span>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{${@globalService.fileHost()}+${@globalService.iconPath()}}">
+    <link th:href="@{${@globalService.staticUrl()}+'/static/t1/dist/style/market.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/i18n/'+${@globalService.lan()}+'.js'}"></script>
+    <style type="text/css">
+        .wrapMain {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            min-width: 1200px;
+            margin: 0 auto;
+            clear: both;
+            min-height: 937px;
+        }
+        /*自定义弹框的样式*/
+        body .layui-layer-btn .layui-layer-btn0{background:#d4a668;border:1px solid #d4a668;}
+        body .layui-layer-msg{min-width:150px;}
+        body .layui-layer-msg .layui-layer-padding{padding:13px 20px 13px 55px;vertical-align: middle;}
+        .layui-layer-dialog.layui-layer-msg .layui-layer-content .layui-layer-ico{top:10px;}
+
+
+        .rotateLayer { display: none; width: 100%; height: 100%; position: fixed; top: 0; right: 0; bottom: 0; left: 0; background-color: #000000; z-index: 200000; text-align: center; line-height: 30px; color: #ffffff;}
+        .rotateLayer i.mobile { display: block; width: 90px; height: 150px;  position: absolute; left: 50%; top: 50%; margin-left: -45px; margin-top: -100px; background: url(https://www.GGCOIN.com/images/newindex/mobile.png) no-repeat center center; background-size: cover; transform: rotate(90deg); -webkit-transform: rotate(90deg); -webkit-animation: rotation infinite 1.5s ease-in-out; animation: rotation infinite 1.5s ease-in-out;}
+        .mobile_desc { width: 100%; height: 30px; text-align: center; line-height: 30px; position: absolute; left: 0; top: 50%; margin-top: 80px; font-size: 2rem;}
+        .loading{min-width:1200px;}
+        .product_cont tr{cursor:pointer;}
+        .searchBar{background: #181B2A;}
+        div#layui-laydate4.layui-laydate{
+            display: none;
+        }
+        .left_list{
+            width: 7%;
+            height: 40px;
+            box-sizing: border-box;
+            padding: 1px;
+            border-radius: 6px;
+            float: left;
+            background-image: linear-gradient(left, #FFD38C 10%, #C23068 60%);
+            background-image: -moz-linear-gradient(left, #FFD38C 10%, #C23068 60%);
+            background-image:  -webkit-linear-gradient(left, #FFD38C 10%, #C23068 60%);
+        }
+
+        .month{
+            width: 100%;
+            display: block;
+            height: 100%;
+            line-height: 40px;
+            border-radius:6px !important;
+            background: #000000;
+        }
+
+        .headerNewPrice li {
+            padding: 0 12px;
+            min-width: 60px;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+<div id="chart_loading" class="loading">
+    <div class="loading_table">
+        <div class="sk-wave">
+            <div class="sk-rect sk-rect1"></div>
+            <div class="sk-rect sk-rect2"></div>
+            <div class="sk-rect sk-rect3"></div>
+            <div class="sk-rect sk-rect4"></div>
+            <div class="sk-rect sk-rect5"></div>
+        </div>
+    </div>
+</div>
+<div class="wrapMain">
+
+    <style type="text/css">
+        .icoUser{background-position:0px 0px;display:block;width:30px;height:25px;}
+        .userStatus{position:relative;}
+        .userStatus:hover{color:#ffffff;}
+        .userStatus:hover .icoLanArr{transform:rotate(180deg);}
+        @media screen and (min-width: 300px) and (max-width:880px) {
+            .left_list{
+                width: 60px;
+                height: 40px;
+                box-sizing: border-box;
+                padding: 1px;
+                border-radius: 6px;
+                position: relative;
+                left:10%;
+                float: left;
+                background-image: linear-gradient(left, #FFD38C 10%, #C23068 60%);
+                background-image: -moz-linear-gradient(left, #FFD38C 10%, #C23068 60%);
+                background-image:  -webkit-linear-gradient(left, #FFD38C 10%, #C23068 60%);
+            }
+            .nonst{
+                width: 3%;
+                height: 40px;
+                display: block;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                /*position: relative;*/
+                /*left: 10%;*/
+                font-size:14px;
+                font-family:PingFang-SC-Regular;
+                color:rgba(223,223,223,1);
+            }
+        }
+        .userStatus .userItemSon{
+            display:none;
+            position:absolute;
+            left: 25px;
+            top: 39px;
+            z-index: 100;
+            width: 85px;
+            background-color: #000000;
+            border: #333333 1px solid;
+            line-height: 30px;
+            text-align: center;
+        }
+        .userStatus .userItemSon:hover{
+            display:block;
+            position:absolute;
+            left: 25px;
+            top: 39px;
+            z-index: 100;
+            width: 85px;
+            background-color: #000000;
+            border: #333333 1px solid;
+            line-height: 30px;
+            text-align: center;
+        }
+        #current_pairs{cursor:default;}
+        .userStatus .userItemSon a{color:#ffffff;}
+        .languageSwitch{left:15px;top: 38px;}
+        .headerNewPrice{border:none;cursor:default;}
+        .headerNewPrice li{min-width:75px;}
+        h1.logo{width:173px; height:49px; margin-left: 5%; background-position:10px 7px;background-repeat: no-repeat}
+        h1.logo a{display:block;width:152px;height:40px;}
+        .coin_select{
+            height: 39px;
+            line-height: 60px;
+            padding: 0 10px 0 25px;
+            float: left;
+            cursor: pointer;
+            position: relative;top:9px;
+        }
+        .userStatus {
+            float: left;
+            height: 25px;
+            line-height: 25px;
+            padding: 7px 6px;
+            position: relative;top:9px;
+
+
+        }
+
+        #languageBt {
+            width: 120px;
+            padding: 7px 0 7px 15px;
+            position: relative;
+            float: left;
+            line-height: 25px;
+            cursor: pointer;
+            position: relative;
+            top: 9px;
+        }
+
+        .searchBar {
+            height: 26px;
+            border: #3b3b3b 1px solid;
+            /*background-color: #1f1f1f;*/
+            overflow: hidden;
+            margin: 4px 15px 4px 0;
+            position: relative;
+            left: 8px;
+        }
+
+        #addies tr td {
+            vertical-align: middle;
+            padding: 0px 0px 0px 0px;
+            word-break: break-all;
+        }
+        .tv_chart_containe {
+            position: absolute;
+            width: 1000px;
+            height: 591px;
+            z-index: 900;
+            float: left;
+            left: 68px;
+        }
+        .area_r_b {
+            width: 30%;
+            background-color: #181b2a;
+            float: left;
+        }
+        .kLineMain_ls {
+            width: 50%;
+            height: 591px;
+            float: left;
+            position: relative;
+            margin-right: 10px;
+        }
+        #addies tr td a{
+            text-decoration: none;
+            color: #666;
+            width: 100%;
+            display: inline-table;
+            padding: 0px 0px 19px 0px;
+            border-bottom: 1px dotted #262A42;
+
+        }
+        #addies tr td a span{
+            position: relative;
+            top: 11px;
+        }
+        .button_2:hover{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .button_2:focus{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .areaTable_header .all_cancel:hover{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+
+        a.button:hover{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .hide{
+            width: 1080px;height: 591px; position: absolute; left: -8px;z-index: 1111111111111;
+        }
+        a.button:focus{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .buttonGroup .btG_bt:hover{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .buttonGroup .btG_bt:focus{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }
+        .historySearchBar .h_bt.curr, .historySearchBar .h_bt:hover, .historySearchBar .s_bt:hover{
+            border: 1px solid #4E5B85;
+            color: #C7CCE6;
+            cursor:pointer;
+        }    .historySearchBar .h_bt.curr, .historySearchBar .h_bt:hover, .historySearchBar .s_bt:focus{
+                 border: 1px solid #4E5B85;
+                 color: #C7CCE6;
+                 cursor:pointer;
+             }
+        #buy_core:hover{
+            background: #66A775;
+        }
+        #sell_core:hover{
+            background:#C2585F;
+        }
+        .kLineMain {
+            width: 80%;
+            overflow: hidden;
+            background-color: #272727;
+        }
+
+        .posRelative {
+            position: relative;
+            left: 0.8%;
+        }
+        .area_l_b {
+            width: 68.8%;
+            height: 256px;
+            float: left;
+            margin-right: 10px;
+        }
+        .tickerlise{
+            margin-right: 16px;
+            height: 18px;
+            line-height: 14px;
+            font-size: 12px;
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #357ce1;
+            border: 1px solid rgba(53,124,225,.4);
+            vertical-align: middle;
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            cursor: default;
+            border-radius: 5px 0;
+        }
+        .area_r_box1 .tableBox th, .buy_sell_tableHeader th {
+            height: 25px;
+            line-height: 12px;
+            font-weight: 400;
+            text-align: center;
+        }
+    </style>
+
+    <div class="header">
+        <div class="market-top-icon">
+            <h1 class="logo"><a href="/">Bttmall</a></h1>
+            <div class="shang_cheng_link">
+                <a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{mall}" style="color: #C7CCE6;font-size:20px;">商城</a>
+                <div class="shop-icon_mail"></div>
+            </div>
+        </div>
+
+        <div class="fr" id="current_pairs">
+            <div class="headerNewPrice" th:id="${'hc_'+symbol+'_'+priceSymbol}">
+                <ul>
+                    <li>
+                        <span class="coin_kid"  style="color: #c7cce6;position: relative; top: 2px;"></span>
+                        <spam class="tickerlise"></spam>
+                    </li>
+                    <li>
+                        <p th:text="#{last_price}">最新价</p>
+                        <p class="thinEn white last_price">0.00000000</p>
+                    </li>
+                    <li>
+                        <p th:text="'24h '+#{change}">24h涨跌</p>
+                        <p class="thinEn white change_rate">0%</p>
+                    </li>
+                    <li>
+                        <p th:text="'24h '+#{high}">24h最高价</p>
+                        <p class="thinEn white high_price">0.00000000</p>
+                    </li>
+                    <li>
+                        <p th:text="'24h '+#{low}">24h最低价</p>
+                        <p class="thinEn white low_price">0.00000000</p>
+                    </li>
+                    <li>
+                        <p th:text="'24h '+#{vol}">24h成交量</p>
+                        <p class="thinEn white"><span class="volume">0.00</span> <span th:text="${symbol}"></span></p>
+                    </li>
+                </ul>
+            </div>
+            <!--<div class="coin_select">-->
+            <!--<p class="tit creamy-white" th:text="${symbol+'/'+priceSymbol}"><span class="icoLanArr" style="background-position-y: 16px;"></span></p>-->
+            <!--<span class="ico"></span>-->
+            <!--</div>-->
+
+            <div class="userStatus" th:if="${!@globalService.isLogin()}">
+                <span class="userIco"></span><a href="/login" th:text="#{login}" class="creamy-white">登录</a> / <a href="/register" th:text="#{register}" class="creamy-white">注册</a>
+            </div>
+            <div class="userStatus" th:if="${@globalService.isLogin()}">
+                <!--<span class="ico icoUser fl"></span>-->
+                <span class="colTit fl"  id="user_kiss"   th:text="${@globalService.getUserName()}" style="color: #c7cce6"></span>
+                <span class="icoLanArr"></span>
+                <ul class="userItemSon" style="background: white;">
+                    <li class="cn"><a href="/ex/member/user" th:text="#{account}">用户中心</a></li>
+                    <li class="cn"><a href="/logout" th:text="#{logout}">退出</a></li>
+                </ul>
+            </div>
+            <div class=" cn " id="languageBt" th:fragment="lan" >
+                <span class="language colTit" th:text="#{chinese}"></span>
+                <span class="ico icoLanArr"></span>
+                <ul class="languageSwitch userItemSon" style="background: white;">
+                    <li class="en" ><a href="/lan/zh_CN" th:text="#{chinese}" class="creamy-white"></a> </li>
+                    <li class="en" ><a href="/lan/en_US" th:text="#{english}" class="creamy-white"></a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--<div class="hate" ></div>-->
+
+    <!--<div class="products" id="products">-->
+    <!--<div class="tabs">-->
+    <!--<div class="productsHeader">-->
+    <!--<ul class="t_menu" id="area_render">-->
+    <!--</ul>-->
+    <!--<script id="area_tpl" type="text/x-jsrender">-->
+    <!--{{if #getIndex()==0}}-->
+    <!--<li class="cur" market="m_{{:coinCode}}" data-code="{{:coinCode}}">{{:coinName}}</li>-->
+    <!--{{else}}-->
+    <!--<li market="m_{{:coinCode}}" data-code="{{:coinCode}}">{{:coinName}}</li>-->
+    <!--{{/if}}-->
+    <!--</script>-->
+    <!--<div class="searchBar"><a href="javascript:void(0)" class="searchBt">search</a>-->
+    <!--<div class="searchInput">-->
+    <!--<input type="text" placeholder="输入搜索币种名称" id="product_input">-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="tableHeader">-->
+    <!--<ul>-->
+    <!--<li class="fl" style="width: 110px; padding-left: 45px;" th:text="#{markets}">市场</li>-->
+    <!--<li class="fl" style="width: 150px;" th:text="#{last_price}">最新价</li>-->
+    <!--<li class="fl" style="width: 80px;" th:text="'24h '+#{change}" >24h涨跌</li>-->
+    <!--<li class="fl tr" style="width: 120px;" th:text="'24h '+#{vol}">24h成交量</li>-->
+    <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="productsTable scrollStyle" id="productsTable">-->
+    <!--<div class="t_cont product_cont" >-->
+
+    <!--<table width="100%" border="0" cellspacing="0" cellpadding="0" id="addies">-->
+    <!--<tbody id="coin_area_render">-->
+
+
+    <!--</tbody>-->
+
+    <!--<script id="coin_area_tpl" type="text/x-jsrender">-->
+    <!--<tr pairs="p_{{:tradeCoinCode}}_{{:pricingCoinCode}}">-->
+
+    <!--<td class="tc">-->
+
+    <!--<a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">-->
+    <!--<span class="icoStar" pid="{{:tradeCoinCode}}_{{:pricingCoinCode}}" data-collectionId={{:collectionId}} data-isCollect={{:isCollect}} data-id={{:id}} data-tradeCoinCode="{{:tradeCoinCode}}" data-pricingCoinCode="{{:pricingCoinCode}}"></span>-->
+    <!--</a>-->
+
+    <!--</td>-->
+    <!--<td style="width: 110px;">-->
+
+    <!--<a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">-->
+    <!--<span class="white">{{:tradeCoinCode}}</span>-->
+    <!--<span style="color: #002C00;">/{{:pricingCoinCode}}</span>-->
+    <!--</a>-->
+
+    <!--</td>-->
+    <!--<td style="width: 150px;">-->
+
+    <!--<a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}" >-->
+    <!--<span class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:preLast}}</span>-->
+    <!--<span class="last_price white" >{{:last}}</span>-->
+    <!--<span style="color: #002C00;">/￥{{:duihuan}}</span>-->
+    <!--</a>-->
+
+    <!--&lt;!&ndash;<span class="price" rate="0.00000000" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}"></span>&ndash;&gt;-->
+    <!--</td>-->
+    <!--<td style="width: 80px;">   <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}"><span class="change_rate white">{{:rate}}%</span></a></td>-->
+    <!--<td style="width: 120px; color: #002C00;" class="tr">-->
+
+    <!--<a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}" style="text-align:right;">-->
+    <!--<span class="volume white" style="   position: relative;left:-22px;">{{:volume}}</span>-->
+    <!--<span style="color:#c7cce6"> {{:pricingCoinCode}}</span>-->
+    <!--</a>-->
+
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</script>-->
+    <!--</table>-->
+    <!--</div>-->
+
+
+    <!--</div>-->
+    <!--</div>-->
+
+    <!--</div>-->
+    <div class="hide">
+        <input type="hidden" id="exchange_rate" value="6.2921" />
+        <input type="hidden" id="asset_exchange_rate" th:value="${tradeCoins}">
+        <input type="hidden" id="pairs_decimal" th:value="${digits}" />
+        <input type="hidden" id="getUserIds"  th:value="${@globalService.getUserId()}" />
+        <!--<input type="hidden" id="exchange_rate" value="6.2921" />-->
+        <!--<input type="hidden" id="asset_exchange_rate" value="{&quot;BTC&quot;:[],&quot;ETH&quot;:{&quot;KK&quot;:&quot;0.00000551&quot;,&quot;EOS&quot;:&quot;0.01791100&quot;,&quot;PETS&quot;:&quot;0.00010000&quot;,&quot;FAIR&quot;:0,&quot;PLC&quot;:0,&quot;TIO&quot;:0,&quot;AAC&quot;:0,&quot;BIGE&quot;:0,&quot;BMB&quot;:0,&quot;COT&quot;:0,&quot;CPC&quot;:0,&quot;IBC&quot;:0,&quot;MVC&quot;:0,&quot;Show&quot;:0,&quot;ZBT&quot;:0,&quot;GTO&quot;:&quot;0.00045900&quot;,&quot;CREDO&quot;:&quot;0.00002700&quot;,&quot;XIN&quot;:&quot;0.81164100&quot;,&quot;BIG&quot;:&quot;0.00268200&quot;,&quot;PRS&quot;:&quot;0.00034200&quot;,&quot;CANDY&quot;:&quot;0.00000054&quot;,&quot;MTN&quot;:&quot;0.00009400&quot;,&quot;HOT&quot;:&quot;0.00006284&quot;,&quot;CAF&quot;:&quot;0.00004714&quot;,&quot;SGCC&quot;:&quot;0.00000579&quot;,&quot;CPU&quot;:&quot;0.00000650&quot;,&quot;SSP&quot;:&quot;0.00001390&quot;,&quot;LET&quot;:&quot;0.00008095&quot;,&quot;VCA&quot;:&quot;0.00006867&quot;,&quot;KCASH&quot;:&quot;0.00022293&quot;,&quot;RED&quot;:&quot;0.00015300&quot;,&quot;MUSK&quot;:&quot;0.00002833&quot;,&quot;LZL&quot;:&quot;0.00002600&quot;,&quot;ICC&quot;:&quot;0.00000040&quot;,&quot;PRA&quot;:&quot;0.00062800&quot;,&quot;LIGHT&quot;:&quot;0.00000227&quot;,&quot;BAI&quot;:&quot;0.00000290&quot;,&quot;LGC&quot;:&quot;0.00000019&quot;,&quot;ATOC&quot;:&quot;0.00000002&quot;,&quot;SRNT&quot;:&quot;0.00004499&quot;,&quot;BCO&quot;:&quot;0.00018300&quot;,&quot;NXO&quot;:&quot;0.00038596&quot;,&quot;CSFT&quot;:&quot;0.00079900&quot;,&quot;GRAV&quot;:&quot;0.00000014&quot;,&quot;IBBF&quot;:&quot;0.00190000&quot;,&quot;VRT&quot;:&quot;0.00003896&quot;,&quot;VOTES&quot;:&quot;0.00004900&quot;,&quot;YUP&quot;:&quot;0.00000649&quot;,&quot;TOMO&quot;:&quot;0.00126797&quot;,&quot;PIAT&quot;:&quot;0.00000048&quot;,&quot;FAITH&quot;:0,&quot;NNT&quot;:&quot;0.00004829&quot;,&quot;DHT&quot;:&quot;0.00000604&quot;,&quot;MTC&quot;:&quot;0.00003385&quot;,&quot;LTCP&quot;:0,&quot;ePRX&quot;:&quot;0.00004600&quot;,&quot;EBTC&quot;:0,&quot;CS&quot;:&quot;0.00001035&quot;,&quot;OF&quot;:&quot;0.00000220&quot;,&quot;BSTN&quot;:&quot;0.00000798&quot;,&quot;SPX&quot;:&quot;0.00000100&quot;,&quot;CRE&quot;:&quot;0.00007280&quot;,&quot;LCWP&quot;:&quot;0.00000300&quot;,&quot;DSC&quot;:&quot;0.00021123&quot;,&quot;ADI&quot;:&quot;0.00003700&quot;,&quot;LTC&quot;:&quot;0.24000000&quot;},&quot;bitCNY&quot;:{&quot;BTC&quot;:&quot;56095.00000000&quot;,&quot;ETH&quot;:&quot;3784.00000000&quot;,&quot;LTC&quot;:&quot;48.00000000&quot;,&quot;EOS&quot;:0},&quot;USC&quot;:{&quot;VCA&quot;:&quot;0.06900000&quot;,&quot;SSP&quot;:&quot;0.00850000&quot;,&quot;LET&quot;:&quot;0.04830000&quot;,&quot;KCASH&quot;:&quot;0.14010000&quot;,&quot;ETH&quot;:&quot;596.60000000&quot;,&quot;PIAT&quot;:&quot;0.00090000&quot;}}">-->
+        <!--<input type="hidden" id="pairs_decimal" value="{&quot;KK_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;EOS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PETS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BTC_bitCNY&quot;:{&quot;amt_decimal&quot;:8,&quot;price_decimal&quot;:0,&quot;amount_decimal&quot;:8},&quot;ETH_bitCNY&quot;:{&quot;amt_decimal&quot;:6,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:8},&quot;LTC_bitCNY&quot;:{&quot;amt_decimal&quot;:6,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:8},&quot;FAIR_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PLC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;TIO_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;AAC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BIGE_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BMB_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;COT_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CPC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;IBC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;MVC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;Show_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;ZBT_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;EOS_bitCNY&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;GTO_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CREDO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;XIN_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BIG_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PRS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CANDY_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MTN_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;HOT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CAF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SGCC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CPU_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SSP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LET_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VCA_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;KCASH_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VCA_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;SSP_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;LET_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;KCASH_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;ETH_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:6},&quot;RED_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MUSK_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LZL_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ICC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PRA_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;LIGHT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BAI_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LGC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ATOC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SRNT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BCO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;NXO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CSFT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;GRAV_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;IBBF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VRT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VOTES_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;YUP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;TOMO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PIAT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PIAT_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;FAITH_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;NNT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;DHT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MTC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LTCP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ePRX_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;EBTC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CS_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;OF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BSTN_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SPX_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CRE_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LCWP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;DSC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ADI_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;LTC_ETH&quot;:{&quot;amt_decimal&quot;:3,&quot;price_decimal&quot;:5,&quot;amount_decimal&quot;:8}}" />-->
+    </div>
+    <!--<div class="hide" id="gidits_render">
+    </div>-->
+    <!--<script id="gidits_tpl" type="text/x-jsrender">
+        <input type="hidden" id="exchange_rate1" value="6.2921" />
+        <input type="hidden" id="asset_exchange_rate1" value="{{:tradeCoins}}">
+        <input type="hidden" id="pairs_decimal1" value="{{:digits}}" />
+    </script>-->
+
+    <!-- <input type="hidden" id="ws_url" value="wss://api.kkcoin.com/ws/" /> -->
+    <input type="hidden" id="ws_url" th:value="${@globalService.webSiteHost()+'/ws'}">
+    <input type="hidden" id="wss_url" th:value="${@globalService.webSiteHost()+'/ws'}" />
+    <input type="hidden" id="wss_post" th:value="${@globalService.webSiteHost()}" />
+    <input type="hidden" id="base_asset" th:value="${symbol}" />
+    <input type="hidden" id="quote_asset" th:value="${priceSymbol}" />
+    <input type="hidden" id="amt_decimal" value="8" />
+    <input type="hidden" id="price_decimal" value="8" />
+    <input type="hidden" id="symbol" th:value="${symbol+'_'+priceSymbol}" />
+    <input type="hidden" id="symbol_post" th:value="${symbol+'/'+priceSymbol}" />
+
+    <div class="marketL">
+        <div class="marketL_list">
+            <div class="products" id="products" style="display: block">
+
+                <div class="tabs" style="    background: #181b2a;">
+                    <div class="productsHeader" style="margin-bottom: 48px;">
+                        <div style="width: 100%;height: 40px;background: #181b2a">
+                            <ul class="t_menu" id="area_render">
+                            </ul>
+                            <!--<div class="Jcion" style=" width: 40px; height: 20px;  position: relative;left: 87px;top: 203px;display: none;z-index: 1111111111;">-->
+                            <!--</div>-->
+                        </div>
+                        <script id="area_tpl" type="text/x-jsrender">
+                            {{if #getIndex()==0}}
+                                <li class="cur" market="m_{{:coinCode}}" data-code="{{:coinCode}}">{{:coinName}}</li>
+                            {{else}}
+                                <li market="m_{{:coinCode}}" data-code="{{:coinCode}}">{{:coinName}}</li>
+                            {{/if}}
+                         </script>
+                        <div class="searchBar"><a href="javascript:void(0)" class="searchBt" id="searchBt_BTC">search</a>
+                            <div class="searchInput">
+                                <input type="text" placeholder="输入搜索币种名称" id="product_input" th:placeholder="#{kh6twq}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tableHeader">
+                        <ul>
+                            <li class="fl" style="width: 30%;text-align: center;color: #8489A0;" th:text="#{markets}">市场</li>
+                            <li class="fl" style="width: 45%;text-align: center;color: #8489A0;" th:text="#{last_price}">最新价</li>
+                            <li class="fl" style="width:25%;text-align: center;color:#8489A0;text-indent: 31px;" th:text="#{change}" >24h涨跌</li>
+                            <!--<li class="fl tr" style="width: 120px;" th:text="'24h '+#{vol}">24h成交量</li>-->
+                        </ul>
+                    </div>
+                    <div class="productsTable " id="productsTable">
+                        <div class="t_cont product_cont" >
+
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="addies">
+                                <tbody id="coin_area_render">
+
+
+                                </tbody>
+
+                                <script id="coin_area_tpl" type="text/x-jsrender">
+                 <tr pairs="p_{{:tradeCoinCode}}_{{:pricingCoinCode}}" class="click_kline" style="    height: 40px;
+    line-height: 40px;">
+
+                            <td class="tc"  style="    text-indent:3px;">
+
+                                 <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">
+                                    <span class="icoStar" pid="{{:tradeCoinCode}}_{{:pricingCoinCode}}" data-collectionId={{:collectionId}} data-isCollect={{:isCollect}} data-id={{:id}} data-tradeCoinCode="{{:tradeCoinCode}}" data-pricingCoinCode="{{:pricingCoinCode}}"></span>
+                               </a>
+
+                            </td>
+                            <td class="sou_coin" >
+                                <!--<div style="width: 57%;float: left;">-->
+                                    <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">
+                                        <span class="white1" id="hs" style="color:#C7CCE6;">{{:tradeCoinCode}}</span>
+                                        <span style="color: #4E5B85;">/</span>
+                                        <span style="color: #4E5B85;" class="hx">{{:pricingCoinCode}}</span>
+                                    </a>
+                                <!--</div>-->
+                                <!--<div class="Jcion" style=" width: 43%; height: 20px;  float: left;">-->
+                                <!--</div>-->
+                            </td>
+                            <td style="text-align: left;">
+
+                               <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}" >
+                                    <!--<span class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:preLast}}</span>-->
+                                    <span data-value={{:rate}} class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}"  style="display: none">{{:rate}}%</span>
+                                    <span class="last_price white"  >{{:last}}</span>
+                                    <span style="color: #60688D;" class="sd">/￥{{:duihuan}}</span>
+                                    <!--<span style="color: #60688D;">/￥<span class="SS"></span></span>-->
+                               </a>
+
+                                <!--<span class="price" rate="0.00000000" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}"></span>-->
+                             </td>
+                            <td style="text-align: center;">
+                                 <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">
+                                    <span class="change_rate white">{{:rate}}%</span>
+                                     <!--<span data-value={{:rate}} class="dayrate">{{:rate}}%</span>-->
+
+                                 </a>
+
+                             </td>
+                            <!--<td style="width: 120px; color: #002C00;" class="tr">-->
+
+                               <!--<a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}" style="text-align:right;">-->
+                                 <!--<span class="volume white" style="   position: relative;left:-22px;">{{:volume}}</span>-->
+                                  <!--<span style="color:#c7cce6"> {{:pricingCoinCode}}</span>-->
+                               <!--</a>-->
+
+                            <!--</td>-->
+                        </tr>
+                    </script>
+                            </table>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div  class="kLineMain_ls">
+            <div class="displaylist">
+                <div class="displaylist_a"></div>
+                <div class="displaylist_b">
+                    <div class="displaylist_b_1">
+                        <div class="maste"></div>
+                    </div>
+                    <div class="displaylist_b_2"></div>
+                    <div class="displaylist_b_3">NEW 即将开盘,距离开始还有</div>
+                    <div class="displaylist_b_4">
+                        <div class="vqs">
+                            <div class="left_list" style=" position: absolute;left: 32%;">
+                                <div class="month" id="time4_right" >00</div></div>
+                            <div class="nonst" th:text="#{T53}" style=" position: absolute;left: 38.7%;">天</div>
+                            <div class="left_list" style=" position: absolute;left: 42%;"> <div class="month"  id="time3_right">00</div></div>
+                            <div  class="nonst" th:text="#{Tg1}" style=" position: absolute;left: 48.7%;">时</div>
+                            <div class="left_list " style=" position: absolute;left: 52%;"> <div class="month" id="time1_right">00</div></div>
+                            <div class="nonst" th:text="#{Tg2}" style=" position: absolute;left: 58.7%;">分</div>
+                            <div class="left_list" style=" position: absolute;left: 62%;"> <div  class="month" id="time_right">00</div></div>
+                            <div  class="nonst" th:text="#{Tg3}" style=" position: absolute;left: 68.7%;">秒</div>
+                        </div>
+                    </div>
+                    <div class="displaylist_b_5"></div>
+                    <div class="displaylist_b_6"><a href="#" id="href_link" target="_blank"></a></div>
+                </div>
+            </div>
+            <div id="tv_chart_container" class="tv_chart_containe">
+            </div>
+        </div>
+        <div class="marketR">
+
+            <div class="area_r_t area_r_t_H" >
+                <style>
+                    .tableBox .tc span.txt{
+                        left:10px;
+                    }
+                    .area_r_b .item.inputBox .input input{
+                        width: 180px;
+                    }
+
+
+                    .marketL_list {
+                        width:18.1%;
+                        height: 591px;
+                        background: #181b2a;
+                        float: left;
+                        margin-right: 11px;
+                    }
+
+                    .marketL {
+                        overflow: hidden;
+                        height: 100%;
+                        height: 591px;
+                        margin-left: 10px;
+                    }
+                </style>
+                <div class="area_r_box1 area_r_t_H">
+                    <div class="colBar">
+                        <ul class="sortBox">
+                            <li class="curr"><span class="icoSort s3">1</span></li>
+                            <li><span class="icoSort s2">2</span></li>
+                            <li><span class="icoSort s1">3</span></li>
+                        </ul>
+                        <div class="fr">
+                        </div>
+                    </div>
+                    <div class="sortList_wrap sortListSell">
+                        <div class="buy_sell_tableHeader">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <th width="33%" class="tl" ><span th:text="#{price}"></span><span th:text="${'（'+priceSymbol+'）'}"></span></th>
+                                    <th width="33%" class="tc" >  <span th:text="#{amount}"></span><span th:text="${'（'+symbol+'）'}"></span></th>
+                                    <th width="34%" class="tr" >  <span th:text="#{total}"></span><span th:text="${'（'+priceSymbol+'）'}"></span></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tableBox tableBox_H posRelative" style="position: relative;left: 0%;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" id="sortSellBox" style="position: absolute;bottom: 0;">
+                                <tbody id="a">
+                                <tr class="oa" style="display: none;">
+                                    <td width="33%" class="tl"><span class="txt red price" data="0">0</span></td>
+                                    <td width="33%" class="tr"><span class="txt white volume">0</span></td>
+                                    <td width="34%" class="tr"><span class="txt white money">0</span>
+                                        <div class="zhuzhuangBg bg_r" style="width: 100px;"></div></td>
+                                </tr>
+                                </tbody>
+                                <tbody id="aa" style="display: none;">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="colBar_2 book_symbol">
+                        <span class="last_price white">0.0000000</span>
+                        <!--<span class="gray">/</span>-->
+                        <span class="yellow">￥<span class="guzhi">0.00</span></span>
+                        <!--<span class="ico_arrow"></span>-->
+                        <!--<span class="price gold"> ≈￥0.01 </span>-->
+                        <span class="change_rate green">0.00%</span>
+                    </div>
+
+                    <div class="sortList_wrap sortListBuy">
+                        <div class="buy_sell_tableHeader">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <th width="33%" class="tl" ><span th:text="#{price}"></span><span th:text="${'（'+priceSymbol+'）'}"></span></th>
+                                    <th width="33%" class="tc" >  <span th:text="#{amount}"></span><span th:text="${'（'+symbol+'）'}"></span></th>
+                                    <th width="34%" class="tr" >  <span th:text="#{total}"></span><span th:text="${'（'+priceSymbol+'）'}"></span></th>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tableBox tableBox_H">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tbody id="bb" style="display: none;">
+                                </tbody>
+                                <tbody id="b">
+                                <tr class="ob" style="display: none;">
+                                    <td width="33%" class="tl"><span class="txt green price" data="0">0</span></td>
+                                    <td width="33%" class="tr"><span class="txt white volume">0</span></td>
+                                    <td width="34%" class="tr"><span class="txt white money">0</span>
+                                        <div class="zhuzhuangBg bg_g" style="width: 100px;"></div></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> <div class="area_r_box2 area_r_t_H" style="margin-right:0 !important">
+                <ul class="marketHeader">
+                    <li class="fl" style="width: -1%;" ><span th:text="#{price}"></span><span th:text="${'（'+priceSymbol+'）'}"></span></li>
+                    <li class="fl tc" style=" width: 30%;" th:text="${symbol}"></li>
+                    <li class="overflowH tr" style="position: relative;left: -19px;" th:text="#{time}">时间</li>
+                </ul>
+                <div class="marketList scrollStyle">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody id="trade_body">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            </div>
+
+
+
+        </div>
+
+        <style type="text/css">
+            .vqs{
+                width: 100%; height: 100px;margin: 0 auto;   border-radius: 6px;
+            }
+
+            #chart_canvasGroup:after {
+                display: block;
+                width: 100%;
+                height: 100%;
+                content: "";
+                position: absolute;
+                z-index: 1;
+            }
+            .nonst{
+                width: 30px;
+                height: 40px;
+                display: block;
+                float: left;
+                line-height: 40px;
+                text-align: center;
+                position: relative;
+                left: 24%;
+                font-size:14px;
+                font-family:PingFang-SC-Regular;
+                color:rgba(223,223,223,1);
+            }
+            .displaylist_a{
+                width: 100%;
+                height: 21%;
+            }
+            .displaylist_b{
+                width: 70%;
+                height: 80%;
+                margin: 0 auto;
+                text-align: center;
+            }
+            .displaylist_b_1{
+                width: 50%;
+                height:11%;
+                margin: 0 auto;
+
+            }
+            .displaylist_b_2{
+                width: 50%;
+                height: 28px;
+                line-height: 60px;
+                font-size: 14px;
+                background: linear-gradient(129deg, rgba(255,211,140,1) 0%, rgba(199,31,96,1) 98%, rgba(180,236,81,1) 100%);
+                -webkit-background-clip:text;
+                -webkit-text-fill-color:transparent;
+                margin: 0 auto;
+            }
+
+            .displaylist_b_3{
+                width: 50%;
+                height: 50px;
+                font-size: 16px;
+                background: linear-gradient(129deg, rgba(255,211,140,1) 0%, rgba(199,31,96,1) 98%, rgba(180,236,81,1) 100%);
+                -webkit-background-clip:text;
+                -webkit-text-fill-color:transparent;
+                margin: 0 auto;
+
+            }
+            .displaylist_b_4{
+                width: 100%;
+                font-family:TRENDS;
+                height: 71px;
+                line-height: 100px;
+                font-size: 24px;
+                color: #DFDFDF;
+                margin: 0 auto;
+                border-radius: 5px;
+
+
+            }
+            .displaylist_b_5 {
+                width: 46%;
+                height: auto;
+                color: #DFDFDF;
+                font-size: 12px;
+                line-height: 20px;
+                margin: 0 auto;
+                margin-bottom: 25px;
+            }
+            .displaylist_b_6{
+                width: 50%;
+                height: 10%;
+                color: #DFDFDF;
+                font-size: 12px;
+                margin: 0 auto;
+            }
+            .displaylist_b_6 a{
+                color:  #387DE0;
+                border-bottom: 1px solid #387DE0;
+
+            }
+            .displaylist {
+                width: 100%;
+                height: 591px;
+                position: absolute;
+                left: 0px;
+                z-index: 11111111;
+                display: none;
+                background-size: cover;
+            }
+            .tv_chart_containe {
+                position: absolute;
+                width: 100%;
+                height: 591px;
+                z-index: 900;
+                float: left;
+                left: 0px;
+            }
+            .marketR {
+                width: 30.1%;
+                float: left;
+                height: 100%;
+            }
+            .area_r_box1 {
+                width: 52%;
+                float: left;
+                background-color: #181b2a;
+                margin-right: 10px;
+            }
+            .area_r_b .box_l {
+                width: 45%;
+                margin-left: 21px;
+                float: left;
+                position: relative;
+                top: 5px;
+                overflow: hidden;
+            }
+            .area_r_b .box_r {
+                width: 45%;
+                /* padding: 0 0 0 16px; */
+                /* margin: 5px 0 5px -1px; */
+                float: left;
+            }
+            .maste {
+                width: 75px;
+                height: 75px;
+                LINE-HEIGHT: 75PX;
+                text-align: center;
+                margin: 0 auto;
+                font-size: 35px;
+                font-family: TRENDS;
+                background: linear-gradient(129deg, rgba(255,211,140,1) 0%, rgba(199,31,96,1) 98%, rgba(180,236,81,1) 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+        </style>
+        <!--<div class="kLineMain posRelative" id="kLineMain">-->
+        <!--<div class="chartBox">-->
+        <!--<style type="text/css">-->
+        <!--#chart_canvasGroup:after {-->
+        <!--display: block;-->
+        <!--width: 100%;-->
+        <!--height: 100%;-->
+        <!--content: "";-->
+        <!--position: absolute;-->
+        <!--z-index: 1;-->
+        <!--}-->
+        <!--</style>-->
+        <!--<div id="chart_container" class="dark">-->
+        <!--<div id="chart_dom_elem_cache"></div>-->
+
+        <!--<div id="chart_toolbar" style="left: 0px; top: 0px; ">-->
+        <!--<div class="chart_toolbar_minisep"> </div>-->
+
+        <!--<div class="chart_dropdown" id="chart_toolbar_periods_vert">-->
+        <!--<div class="chart_dropdown_t"><a class="chart_str_period" style="color:#61688A;">周期</a></div>-->
+        <!--<div class="chart_dropdown_data" style="margin-left: -58px;">-->
+        <!--<table>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<td><ul>-->
+        <!--<li id="chart_period_1w_v" name="1w"> <a class="chart_str_period_1w">周线</a></li>-->
+        <!--<li id="chart_period_1d_v" name="1d"> <a class="chart_str_period_1d">日线</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td><ul>-->
+        <!--<li id="chart_period_12h_v" name="12h"> <a class="chart_str_period_12h">12小时</a></li>-->
+        <!--<li id="chart_period_6h_v" name="6h"> <a class="chart_str_period_6h">6小时</a></li>-->
+        <!--<li id="chart_period_4h_v" name="4h"> <a class="chart_str_period_4h">4小时</a></li>-->
+        <!--<li id="chart_period_2h_v" name="2h"> <a class="chart_str_period_2h">2小时</a></li>-->
+        <!--<li id="chart_period_1h_v" name="1h"> <a class="chart_str_period_1h">1小时</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td>-->
+        <!--<ul>-->
+        <!--<li id="chart_period_30m_v" name="30m"> <a class="chart_str_period_30m">30分钟</a></li>-->
+        <!--<li id="chart_period_15m_v" name="15m"> <a class="chart_str_period_15m">15分钟</a></li>-->
+        <!--<li id="chart_period_5m_v" name="5m"> <a class="chart_str_period_5m">5分钟</a></li>-->
+        <!--<li id="chart_period_1m_v" name="1m"> <a class="chart_str_period_1m selected">1分钟</a></li>-->
+        <!--<li id="chart_period_line_v" name="line"><a class="chart_str_period_line">分时</a></li>-->
+        <!--</ul>-->
+        <!--</td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!---->
+        <!--<div id="chart_toolbar_periods_horz">-->
+        <!--<ul class="chart_toolbar_tabgroup" style="padding-left:5px; padding-right:5px;">-->
+        <!--<li id="chart_period_1w_h" name="1w" style="display: inline-block;"> <a class="chart_str_period_1w">周线</a></li>-->
+        <!--</ul>-->
+        <!--<ul class="chart_toolbar_tabgroup" style="padding-left:5px; padding-right:5px;">-->
+        <!--<li id="chart_period_1d_h" name="1d" style="display: inline-block;"> <a class="chart_str_period_1d">日线</a></li>-->
+        <!--</ul>-->
+        <!--<ul class="chart_toolbar_tabgroup hour_ul hour_min_down" style="padding-left:5px; padding-right:5px;">-->
+        <!--<li id="chart_period_12h_h" name="12h"> <a class="chart_str_period_12h">12小时</a></li>-->
+        <!--<li id="chart_period_6h_h" name="6h" style="display:none;"> <a class="chart_str_period_6h">6小时</a></li>-->
+        <!--<li id="chart_period_4h_h" name="4h" style="display:none;"> <a class="chart_str_period_4h">4小时</a></li>-->
+        <!--<li id="chart_period_2h_h" name="2h" style="display:none;"> <a class="chart_str_period_2h">2小时</a></li>-->
+        <!--<li id="chart_period_1h_h" name="1h" style="display:none;"> <a class="chart_str_period_1h">1小时</a></li>-->
+        <!--</ul>-->
+        <!--<ul class="chart_toolbar_tabgroup min_ul hour_min_down" style="padding-left:5px; padding-right:5px;">-->
+        <!--<li id="chart_period_30m_h" name="30m"> <a class="chart_str_period_30m">30分钟</a></li>-->
+        <!--<li id="chart_period_15m_h" name="15m" style="display:none;"> <a class="chart_str_period_15m">15分钟</a></li>-->
+        <!--<li id="chart_period_5m_h" name="5m" style="display:none;"> <a class="chart_str_period_5m">5分钟</a></li>-->
+        <!--<li id="chart_period_1m_h" name="1m" style="display:none;"> <a class="chart_str_period_1m selected">1分钟</a></li>-->
+        <!--</ul>-->
+        <!--<ul class="chart_toolbar_tabgroup" style="padding-left:5px; padding-right:5px;">-->
+        <!--<li id="chart_period_line_h" name="line" style="display: block;"><a class="chart_str_period_line">分时</a></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!---->
+        <!--<div id="chart_show_tools" class="chart_toolbar_button chart_str_tools_cap" style="border: none;color: inherit;background: none;">画线工具</div>-->
+        <!--<div id="chart_show_indicator" class="chart_toolbar_button chart_str_indicator_cap">-->
+        <!--指标-->
+        <!--</div>-->
+        <!--<div id="chart_toolbar_theme">-->
+        <!--</div>-->
+        <!--<div class="chart_dropdown" id="chart_dropdown_settings">-->
+        <!--<div class="chart_dropdown_t chart_dropdown_t_w_border"><a class="chart_str_settings">更多</a></div>-->
+        <!--<div class="chart_dropdown_data" style="margin-left: -142px;">-->
+        <!--<table>-->
+        <!--<tbody>-->
+        <!--<tr id="chart_select_main_indicator">-->
+        <!--<td class="chart_str_main_indicator">主指标</td>-->
+        <!--<td><ul>-->
+        <!--<li><a name="MA">MA</a></li>-->
+        <!--<li><a name="EMA" class="">EMA</a></li>-->
+        <!--<li><a name="BOLL" class="">BOLL</a></li>-->
+        <!--<li><a name="SAR" class="">SAR</a></li>-->
+        <!--<li><a name="NONE" class="">None</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--<tr id="chart_select_chart_style">-->
+        <!--<td class="chart_str_chart_style">主图样式</td>-->
+        <!--<td><ul>-->
+        <!--<li><a>CandleStick</a></li>-->
+        <!--<li><a>CandleStickHLC</a></li>-->
+        <!--<li><a class="">OHLC</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--<tr id="chart_select_theme" style="display: none;">-->
+        <!--</tr>-->
+        <!--<tr id="chart_enable_tools" style="display: none;">-->
+        <!--<td class="chart_str_tools">画线工具</td>-->
+        <!--<td><ul>-->
+        <!--<li><a name="on" class="chart_str_on">开启</a></li>-->
+        <!--<li><a name="off" class="chart_str_off selected">关闭</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--<tr id="chart_enable_indicator" style="display: none;">-->
+        <!--<td class="chart_str_indicator">技术指标</td>-->
+        <!--<td><ul>-->
+        <!--<li><a name="on" class="chart_str_on selected">开启</a></li>-->
+        <!--<li><a name="off" class="chart_str_off">关闭</a></li>-->
+        <!--</ul></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--<div id="chart_updated_time"> <span class="chart_str_updated">更新于</span> <span id="chart_updated_time_text">4秒</span> <span class="chart_str_ago">前</span> </div>-->
+        <!--</div>-->
+
+        <!--<div id="chart_toolpanel" style="display: inline; left: 0px; top: 30px; width: 32px; height: 331px;">-->
+        <!--<div class="chart_toolpanel_separator"></div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_Cursor" name="Cursor"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_cursor">光标</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_CrossCursor" name="CrossCursor"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_cross_cursor">十字光标</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_SegLine" name="SegLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_seg_line">线段</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_StraightLine" name="StraightLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_straight_line">直线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_RayLine" name="RayLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_ray_line">射线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_ArrowLine" name="ArrowLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_arrow_line">箭头</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_HoriSegLine" name="HoriSegLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_horz_seg_line">水平线段</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_HoriStraightLine" name="HoriStraightLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_horz_straight_line">水平直线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_HoriRayLine" name="HoriRayLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_horz_ray_line">水平射线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_VertiStraightLine" name="VertiStraightLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_vert_straight_line">垂直直线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_PriceLine" name="PriceLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_price_line">价格线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_TriParallelLine" name="TriParallelLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_tri_parallel_line">价格通道线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_BiParallelLine" name="BiParallelLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_bi_parallel_line">平行直线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_BiParallelRayLine" name="BiParallelRayLine"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_bi_parallel_ray">平行射线</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_DrawFibRetrace" name="DrawFibRetrace"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_fib_retrace">斐波纳契回调</div>-->
+        <!--</div>-->
+        <!--<div class="chart_toolpanel_button">-->
+        <!--<div class="chart_toolpanel_icon" id="chart_DrawFibFans" name="DrawFibFans"></div>-->
+        <!--<div class="chart_toolpanel_tip chart_str_fib_fans">斐波纳契扇形</div>-->
+        <!--</div>-->
+        <!--<div style="padding-left: 3px;padding-top: 10px;">-->
+        <!--<button style="color: red;" id="clearCanvas" title="Clear All">X</button>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div id="chart_canvasGroup" style="left: 0px; top: 30px; width: 670px; height: 308px;" class="temp">-->
+        <!--<canvas class="chart_canvas" id="chart_mainCanvas" width="1670" height="308" style="cursor: default;"></canvas>-->
+        <!--<canvas class="chart_canvas" id="chart_overlayCanvas" width="1670" height="308" style="cursor: default;"></canvas>-->
+        <!--</div>-->
+        <!--<div style="position: relative; left: 0px; top:-20px;z-index: 11111111111111111111111; ">-->
+        <!--<div id="chart_tabbar" style="display: block; position: relative; left: 0px; top:610px; width: 1670px; height: 22px;z-index:2147483647;">-->
+        <!--<ul>-->
+        <!--<li><a name="MACD" class="selected">MACD</a></li>-->
+        <!--<li><a name="KDJ" class="">KDJ</a></li>-->
+        <!--<li><a name="StochRSI" class="">StochRSI</a></li>-->
+        <!--<li><a name="RSI" class="">RSI</a></li>-->
+        <!--<li><a name="DMI" class="">DMI</a></li>-->
+        <!--<li><a name="OBV" class="">OBV</a></li>-->
+        <!--<li><a name="BOLL" class="">BOLL</a></li>-->
+        <!--<li><a name="SAR" class="">SAR</a></li>-->
+        <!--<li><a name="DMA" class="">DMA</a></li>-->
+        <!--<li><a name="TRIX" class="">TRIX</a></li>-->
+        <!--<li><a name="BRAR" class="">BRAR</a></li>-->
+        <!--<li><a name="VR" class="">VR</a></li>-->
+        <!--<li><a name="EMV" class="">EMV</a></li>-->
+        <!--<li><a name="WR" class="">WR</a></li>-->
+        <!--<li><a name="ROC" class="">ROC</a></li>-->
+        <!--<li><a name="MTM" class="">MTM</a></li>-->
+        <!--<li><a name="PSY">PSY</a></li>-->
+        <!--</ul>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div id="chart_parameter_settings" style="left: 515px; top: -64px;">-->
+        <!--<h2 class="chart_str_indicator_parameters">指标参数设置</h2>-->
+        <!--<table>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+        <!--<th>MA</th>-->
+        <!--<td><input name="MA">-->
+        <!--<input name="MA">-->
+        <!--<input name="MA">-->
+        <!--<input name="MA">-->
+        <!--<br>-->
+        <!--<input name="MA">-->
+        <!--<input name="MA"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>DMA</th>-->
+        <!--<td><input name="DMA">-->
+        <!--<input name="DMA">-->
+        <!--<input name="DMA"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>EMA</th>-->
+        <!--<td><input name="EMA">-->
+        <!--<input name="EMA">-->
+        <!--<input name="EMA">-->
+        <!--<input name="EMA">-->
+        <!--<br>-->
+        <!--<input name="EMA">-->
+        <!--<input name="EMA"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>TRIX</th>-->
+        <!--<td><input name="TRIX">-->
+        <!--<input name="TRIX"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>VOLUME</th>-->
+        <!--<td><input name="VOLUME">-->
+        <!--<input name="VOLUME"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>BRAR</th>-->
+        <!--<td><input name="BRAR"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>MACD</th>-->
+        <!--<td><input name="MACD">-->
+        <!--<input name="MACD">-->
+        <!--<input name="MACD"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>VR</th>-->
+        <!--<td><input name="VR">-->
+        <!--<input name="VR"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>KDJ</th>-->
+        <!--<td><input name="KDJ">-->
+        <!--<input name="KDJ">-->
+        <!--<input name="KDJ"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>EMV</th>-->
+        <!--<td><input name="EMV">-->
+        <!--<input name="EMV"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>StochRSI</th>-->
+        <!--<td><input name="StochRSI">-->
+        <!--<input name="StochRSI">-->
+        <!--<input name="StochRSI">-->
+        <!--<input name="StochRSI"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>WR</th>-->
+        <!--<td><input name="WR">-->
+        <!--<input name="WR"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>RSI</th>-->
+        <!--<td><input name="RSI">-->
+        <!--<input name="RSI">-->
+        <!--<input name="RSI"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>ROC</th>-->
+        <!--<td><input name="ROC">-->
+        <!--<input name="ROC"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>DMI</th>-->
+        <!--<td><input name="DMI">-->
+        <!--<input name="DMI"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>MTM</th>-->
+        <!--<td><input name="MTM">-->
+        <!--<input name="MTM"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>OBV</th>-->
+        <!--<td><input name="OBV"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--<th>PSY</th>-->
+        <!--<td><input name="PSY">-->
+        <!--<input name="PSY"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<th>BOLL</th>-->
+        <!--<td><input name="BOLL"></td>-->
+        <!--<td><button class="chart_str_default">默认值</button></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+        <!--</table>-->
+        <!--<div id="close_settings"><a class="chart_str_close">关闭</a></div>-->
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<div style="display: none" id="chart_language_switch_tmp"> <span name="chart_str_period" zh_tw="週期" zh_cn="周期" en_us="TIME"> <span name="chart_str_period_line" zh_tw="分時" zh_cn="分时" en_us="Line"> <span name="chart_str_period_1m" zh_tw="1分钟" zh_cn="1分钟" en_us="1m"> <span name="chart_str_period_3m" zh_tw="3分钟" zh_cn="3分钟" en_us="3m"> <span name="chart_str_period_5m" zh_tw="5分钟" zh_cn="5分钟" en_us="5m"> <span name="chart_str_period_15m" zh_tw="15分钟" zh_cn="15分钟" en_us="15m"> <span name="chart_str_period_30m" zh_tw="30分钟" zh_cn="30分钟" en_us="30m"> <span name="chart_str_period_1h" zh_tw="1小時" zh_cn="1小时" en_us="1h"> <span name="chart_str_period_2h" zh_tw="2小時" zh_cn="2小时" en_us="2h"> <span name="chart_str_period_4h" zh_tw="4小時" zh_cn="4小时" en_us="4h"> <span name="chart_str_period_6h" zh_tw="6小時" zh_cn="6小时" en_us="6h"> <span name="chart_str_period_12h" zh_tw="12小時" zh_cn="12小时" en_us="12h"> <span name="chart_str_period_1d" zh_tw="日線" zh_cn="日线" en_us="1d"> <span name="chart_str_period_3d" zh_tw="3日" zh_cn="3日" en_us="3d"> <span name="chart_str_period_1w" zh_tw="周線" zh_cn="周线" en_us="1w"> <span name="chart_str_settings" zh_tw="更多" zh_cn="更多" en_us="MORE"> <span name="chart_setting_main_indicator" zh_tw="均線設置" zh_cn="均线设置" en_us="Main Indicator"> <span name="chart_setting_main_indicator_none" zh_tw="關閉均線" zh_cn="关闭均线" en_us="None"> <span name="chart_setting_indicator_parameters" zh_tw="指標參數設置" zh_cn="指标参数设置" en_us="Indicator Parameters"> <span name="chart_str_chart_style" zh_tw="主圖樣式" zh_cn="主图样式" en_us="Chart Style"> <span name="chart_str_main_indicator" zh_tw="主指標" zh_cn="主指标" en_us="Main Indicator"> <span name="chart_str_indicator" zh_tw="技術指標" zh_cn="技术指标" en_us="Indicator"> <span name="chart_str_indicator_cap" zh_tw="指標" zh_cn="指标" en_us="INDICATOR"> <span name="chart_str_tools" zh_tw="畫線工具" zh_cn="画线工具" en_us="Tools"> <span name="chart_str_tools_cap" zh_tw="畫線工具" zh_cn="画线工具" en_us="TOOLS"> <span name="chart_str_theme" zh_tw="主題選擇" zh_cn="主题选择" en_us="Theme"> <span name="chart_str_theme_cap" zh_tw="主題選擇" zh_cn="主题选择" en_us="THEME"> <span name="chart_language_setting" zh_tw="語言(LANG)" zh_cn="语言(LANG)" en_us="LANGUAGE"> <span name="chart_exchanges_setting" zh_tw="更多市場" zh_cn="更多市场" en_us="MORE MARKETS"> <span name="chart_othercoin_setting" zh_tw="其它市場" zh_cn="其它市场" en_us="OTHER MARKETS"> <span name="chart_str_none" zh_tw="關閉" zh_cn="关闭" en_us="None"> <span name="chart_str_theme_dark" zh_tw="深色主題" zh_cn="深色主题" en_us="Dark"> <span name="chart_str_theme_light" zh_tw="淺色主題" zh_cn="浅色主题" en_us="Light"> <span name="chart_str_on" zh_tw="開啟" zh_cn="开启" en_us="On"> <span name="chart_str_off" zh_tw="關閉" zh_cn="关闭" en_us="Off"> <span name="chart_str_close" zh_tw="關閉" zh_cn="关闭" en_us="CLOSE"> <span name="chart_str_default" zh_tw="默認值" zh_cn="默认值" en_us="default"> <span name="chart_str_loading" zh_tw="正在讀取數據..." zh_cn="正在读取数据..." en_us="Loading..."> <span name="chart_str_indicator_parameters" zh_tw="指標參數設置" zh_cn="指标参数设置" en_us="Indicator Parameters"> <span name="chart_str_cursor" zh_tw="光標" zh_cn="光标" en_us="Cursor"> <span name="chart_str_cross_cursor" zh_tw="十字光標" zh_cn="十字光标" en_us="Cross Cursor"> <span name="chart_str_seg_line" zh_tw="線段" zh_cn="线段" en_us="Trend Line"> <span name="chart_str_straight_line" zh_tw="直線" zh_cn="直线" en_us="Extended"> <span name="chart_str_ray_line" zh_tw="射線" zh_cn="射线" en_us="Ray"> <span name="chart_str_arrow_line" zh_tw="箭頭" zh_cn="箭头" en_us="Arrow"> <span name="chart_str_horz_seg_line" zh_tw="水平線段" zh_cn="水平线段" en_us="Horizontal Line"> <span name="chart_str_horz_straight_line" zh_tw="水平直線" zh_cn="水平直线" en_us="Horizontal Extended"> <span name="chart_str_horz_ray_line" zh_tw="水平射線" zh_cn="水平射线" en_us="Horizontal Ray"> <span name="chart_str_vert_straight_line" zh_tw="垂直直線" zh_cn="垂直直线" en_us="Vertical Extended"> <span name="chart_str_price_line" zh_tw="價格線" zh_cn="价格线" en_us="Price Line"> <span name="chart_str_tri_parallel_line" zh_tw="價格通道線" zh_cn="价格通道线" en_us="Parallel Channel"> <span name="chart_str_bi_parallel_line" zh_tw="平行直線" zh_cn="平行直线" en_us="Parallel Lines"> <span name="chart_str_bi_parallel_ray" zh_tw="平行射線" zh_cn="平行射线" en_us="Parallel Rays"> <span name="chart_str_fib_retrace" zh_tw="斐波納契回調" zh_cn="斐波纳契回调" en_us="Fibonacci Retracements"> <span name="chart_str_fib_fans" zh_tw="斐波納契扇形" zh_cn="斐波纳契扇形" en_us="Fibonacci Fans"> <span name="chart_str_updated" zh_tw="更新於" zh_cn="更新于" en_us="Updated"> <span name="chart_str_ago" zh_tw="前" zh_cn="前" en_us="ago"> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </span> </div>-->
+        <!--<input value="0" id="depArgs" type="hidden"> </div>-->
+        <!--</div>-->
+
+        <span th:text="#{query_next}" style="display: none" class="sther"></span>
+        <span th:text="#{nuxt_rse}" style="display: none" class="fexka"></span>
+        <span th:text="#{fuxt_rse}" style="display: none" class="dxat"></span>
+
+
+        <style type="text/css">
+            #history_entrust .areaTable table td{line-height:12px;}
+            #history_trade .areaTable table td{line-height:12px;}
+            .areaTable_header .all_cancel{position:absolute;left:0px;top:2px;}
+            .no_data_tpl{padding:50px 0px;text-align:center;display:none;}
+        </style>
+    </div>
+    <div style="width: 100%;height: 219px;">
+        <div class="dragLine" id="dragLine"></div>
+        <div class="area_l_b tabs" id="mainBottom">
+            <div class="tabBar">
+                <ul class="t_menu">
+                    <li class="cur" dataType="1" th:text="#{open_order}">当前委托</li>
+                    <li dataType="2" th:text="#{trade_history}">历史成交</li>
+                    <!-- <li dataType="3">历史成交</li> -->
+                    <li dataType="4" th:text="#{funds}">资产管理</li>
+                </ul>
+                <div class="btBar fr">
+                    <p class="button_2 toggleBt" th:text="#{hide_other_pairs}">隐藏其它交易对</p>
+                </div>
+            </div>
+
+            <div class="t_cont" id="current_entrust">
+                <div class="areaTable_header">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+
+                            <th width="10%"  th:text="#{time}">委托时间</th>
+                            <th width="10%" th:text="#{markets}">市场</th>
+                            <th width="10%" th:text="#{type}">类型</th>
+                            <th width="8%" th:text="#{side}">方向</th>
+                            <!--<th width="8%" th:text="#{average}">均价</th>-->
+                            <th width="7%" th:text="#{price}">价格</th>
+                            <th width="10%" th:text="#{amount}">数量</th>
+                            <th width="10%" th:text="#{original}">原始下单量</th>
+                            <th width="10%" th:text="#{filled}">成交率%</th>
+                            <th width="10%" th:text="#{total}">成交金额</th>
+                            <th width="10%" style="position:relative;">
+                                <a href="javascript:void(0);" class="button all_cancel" th:text="#{cancel_all}">全撤</a>
+                            </th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="areaTable scrollStyle">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody></tbody>
+                    </table>
+                    <div class="no_data_tpl" th:text="#{no_data}">
+                        暂无数据 </div>
+                </div>
+            </div>
+
+
+            <div class="t_cont" id="history_entrust" style="display: none;">
+                <div class="historySearchBar" id="history_entrust_search">
+                    <div class="fl">
+                        <span class="h_bt curr" dateType="1" th:text="#{1day}">当日</span>
+                        <span class="h_bt" dateType="2" th:text="#{1week}">一周</span>
+                        <span class="h_bt" dateType="3" th:text="#{1month}">一个月</span>
+                        <span class="h_bt" dateType="4" th:text="#{3month}">三个月</span>
+                    </div>
+                    <p class="fl marginLr_s start_date" th:text="#{from_date}">起止日期</p>
+                    <p class="calendarInput">
+                        <input type="text" id="history_entrust_start_date">
+                    </p>
+                    <p class="fl dash_text"> - </p>
+                    <p class="calendarInput">
+                        <input type="text" id="history_entrust_end_date">
+                    </p>
+                    <p class="fl marginLr_s"><span class="s_bt" th:text="#{search}">搜索</span></p>
+                </div>
+                <div class="areaTable_header">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <th width="10%" class="tc" th:text="#{time}">委托时间</th>
+                            <th width="10%" class="tc" th:text="#{markets}">市场</th>
+                            <th width="10%" class="tc" th:text="#{type}">类型</th>
+                            <th width="10%" class="tc" th:text="#{side}">方向</th>
+                            <th width="10%" class="tc" th:text="#{avg}">均价</th>
+                            <th width="10%" class="tc" th:text="#{price}">价格</th>
+                            <!--<th width="10%" class="tc" th:text="#{filled}">成交数量</th>-->
+                            <th width="10%" class="tc" th:text="#{vol}">成交量</th>
+                            <th width="10%" class="tc" th:text="#{total}">成交金额</th>
+                            <!--<th width="10%" class="tc" th:text="#{status}">状态</th>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="areaTable scrollStyle">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tc">
+                        <tbody></tbody>
+                    </table>
+                    <div class="no_data_tpl" th:text="#{no_data}">
+                        暂无数据 </div>
+                </div>
+            </div>
+
+            <div class="t_cont" id="history_trade" style="display: none;">
+                <div class="historySearchBar" id="history_trade_search">
+                    <div class="fl">
+                        <span class="h_bt curr" dateType="1" th:text="#{1day}">当日</span>
+                        <span class="h_bt" dateType="2" th:text="#{1week}">一周</span>
+                        <span class="h_bt" dateType="3" th:text="#{1month}">一个月</span>
+                        <span class="h_bt" dateType="4" th:text="#{3month}">三个月</span>
+                    </div>
+                    <p class="fl marginLr_s start_date" th:text="#{from_date}">起止日期</p>
+                    <p class="calendarInput">
+                        <input type="text" id="history_trade_start_date">
+                    </p>
+                    <p class="fl dash_text"> - </p>
+                    <p class="calendarInput">
+                        <input type="text" id="history_trade_end_date">
+                    </p>
+                    <p class="fl marginLr_s"><span class="s_bt" th:text="#{search}">搜索</span></p>
+                </div>
+                <div class="areaTable_header">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <th width="14%" class="tc" th:text="#{time }">成交时间</th>
+                            <th width="14%" class="tc" th:text="#{markets}">市场</th>
+                            <th width="14%" class="tc" th:text="#{type}">类型</th>
+                            <th width="14%" class="tc" th:text="#{avg}">成交均价</th>
+                            <th width="14%" class="tc" th:text="#{filled}">成交数量</th>
+                            <th width="14%" class="tc" th:text="#{total}">成交金额</th>
+                            <th width="16%" class="tc" th:text="#{fee}">手续费</th>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="areaTable scrollStyle">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tc">
+                        <tbody></tbody>
+                    </table>
+                    <div class="no_data_tpl" th:text="#{no_data}">
+                        暂无数据 </div>
+                </div>
+            </div>
+
+
+            <div class="t_cont" id="asset_manage" style="display: none;">
+                <div class="areaTable_header">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tbody>
+                        <tr>
+                            <th width="25%" class="tc" th:text="#{symbol}">币种</th>
+                            <th width="25%" class="tc" th:text="#{total_balance}">总&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;额</th>
+                            <th width="25%" class="tc" th:text="#{available_balance}">可用余额</th>
+                            <th width="25%" class="tc" th:text="#{frozen_balance}">冻结</th>
+                            <!-- <th width="22%" class="tc"><span>CNY</span>估值 </th> -->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="areaTable scrollStyle">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tc">
+                        <tbody></tbody>
+                    </table>
+                    <div class="no_data_tpl" th:text="#{no_data}">
+                        暂无数据 </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="area_r_b tabs">
+            <div class="tabBar">
+                <ul class="t_menu">
+                    <li class="cur" th:text="#{limit}">限价交易</li>
+                </ul>
+                <!--<span class="tabsSwitchBt"></span> </div>-->
+            </div>
+            <div class="tabsSwitchCon">
+                <div class="t_cont">
+                    <div class="box_l">
+                        <form id="buy" method="post" action="">
+                            <ul class="overflowH">
+                                <li class="item white" ><span th:text="#{buy}"></span>&nbsp;<span th:text="${symbol}"></span>
+                                    <span class="fr">
+                                        <span id="quote_account">0</span>&nbsp;<span th:text="${priceSymbol}"></span>
+                                    </span>
+                                </li>
+                                <li class="item inputBox">
+                                    <div class="txt" th:text="${priceSymbol}"></div>
+                                    <div class="input">
+                                        <input type="number" class="price" name="price" id="price_buy" value="0.00" th:placeholder="#{price}"  />
+                                    </div>
+                                </li>
+                                <li class="item inputBox">
+                                    <div class="txt" th:text="${symbol}"></div>
+                                    <div class="input">
+                                        <input type="number" class="origin_amount" name="amout" id="amount_buy" th:placeholder="#{amount}" />
+                                        <input type="hidden" name="type" value="buy" />
+                                        <input type="hidden" name="category" value="0" />
+                                        <input type="hidden" name="tradePwd" id="tradePwd" />
+                                        <input type="hidden" name="tradeCode" th:value="${symbol}"/>
+                                        <input type="hidden" name="pricingCode" th:value="${priceSymbol}" />
+                                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <ul class="buttonGroup">
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-25" >25%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-50" >50%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-75" >75%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-100" >100%</a></li>
+                                    </ul>
+                                </li>
+                                <li class="item"><span th:text="#{total}"></span>： <span class="white" id="amt_buy">0</span>
+                                    <span class="white" th:text="${priceSymbol}"></span>
+                                </li>
+                            </ul>
+                            <div class="hr10"></div>
+                            <a href="javascript:void(0)"  class="buyBt white btn-buy-x" id="buy_core" ><span th:text="#{buy}"></span>&nbsp;<span th:text="${symbol}"></span></a>
+                        </form>
+                    </div>
+                    <div class="box_r">
+                        <form id="sell" method="post" action="">
+                            <ul class="overflowH">
+                                <li class="item white" >
+                                    <span th:text="#{sell}"></span>&nbsp;<span th:text="${symbol}"></span>
+                                    <span class="fr">
+                                    <span id="base_account">0</span>&nbsp;<span th:text="${symbol}"></span>
+                                    </span>
+                                </li>
+                                <li class="item inputBox">
+                                    <div class="txt" th:text="${priceSymbol}"></div>
+                                    <div class="input">
+                                        <input type="number" class="price" name="price" id="price_sell" value="0.00" th:placeholder="#{price}" >
+                                    </div>
+                                </li>
+                                <li class="item inputBox">
+                                    <div class="txt" th:text="${symbol}"></div>
+                                    <div class="input">
+                                        <input type="number" class="origin_amount" name="amout" id="amount_sell" th:placeholder="#{amount}" />
+                                        <input type="hidden" name="type" value="sell" />
+                                        <input type="hidden" name="tradePwd" id="selltradePwd" />
+                                        <input type="hidden" name="category" value="0" />
+                                        <input type="hidden" name="tradeCode"  th:value="${symbol}" />
+                                        <input type="hidden" name="pricingCode" th:value="${priceSymbol}" />
+                                        <span th:replace="layout/csrfToken :: csrfToken"></span>
+                                    </div>
+                                </li>
+                                <li class="item">
+                                    <ul class="buttonGroup">
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-sell-25">25%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-sell-50" >50%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-sell-75" >75%</a></li>
+                                        <li><a href="javascript:void(0)" class="btG_bt slider-sell-100" >100%</a></li>
+                                    </ul>
+                                </li>
+                                <li class="item"><span th:text="#{total}"></span>： <span class="white" id="amt_sell">0</span>
+                                    <span class="white" th:text="${priceSymbol}"></span>
+                                </li>
+                            </ul>
+                            <div class="hr10"></div>
+                            <a href="javascript:void(0)"  class="sellBt white btn-sell-x"  id="sell_core"><span th:text="#{sell}"></span>&nbsp;<span th:text="${symbol}"></span></a>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="login_overlay" th:if="${!@globalService.isLogin()}">
+                    <div class="login_overlay__content">
+                        <p th:text="#{please_login}">您还没有登陆，请登陆后操作</p>
+                        <div class="login_overlay__login-btn">
+                            <a href="/login" th:text="#{login}">登陆</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script  th:src="@{${@globalService.staticUrl()}+'/static/t1/'+${@globalService.staticDev()=='dev'?'src':'dist'}+'/script/kline.assistant.js'}"></script>
+<script>
+    // var kline = new Kline();
+    var Loading = [];
+    var PairsDecimal = {};
+    var AssetExchangeRate = {};
+    var loadend = false;
+
+</script>
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+
+
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+
+
+        seajs.use([DEV + "/main","socketjs","stomp","numeral","layer","laydate",DEV+"/page_market",DEV+"/page_exchange_trade",DEV+"/page_exchange_order",DEV+"/page_exchange_ticker",DEV+"/page_exchange_common", DEV+"/index"], function (main,s2,s1,numeral,layer,laydate,market,trade,order,ticker,common, kline_list) {
+            if (!!window.ActiveXObject || "ActiveXObject" in window){
+                window.location = '/deprecated';
+            }
+            common.init();
+            market.init();
+            ticker.init();
+            trade.init();
+            order.init();
+                        kline_list.tradeView.init({symbol: $("#symbol").val(), interval: 1, lang: 'zh', pricescale: 10000000})
+                            $("#chart_loading").remove();
+                            $(".coin_kid").text($("#base_asset").val()+ "/" +$("#quote_asset").val());
+                            var mxuis = $('.fexka').text();
+                            var mixdea =$('.dxat').text();
+                            if($("#symbol_post").val()== "BTC/USDT" || $("#symbol_post").val()== "BT/USDT" || $("#symbol_post").val()== "ETH/USDT"){
+                            $(".tickerlise").text(mxuis);
+                            }else {
+                                $(".tickerlise").text(mixdea);
+                            }
+
+
+
+        });
+
+    </script>
+
+</div>
+
+</body>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta charset="utf-8"/>
+    <title th:text="${@globalService.webSiteTitle()}"></title>
+
+    <meta name="description" th:content="${@globalService.webSiteRemark()}">
+    <meta name="keywords" th:content="${@globalService.webSiteKeyWords()}">
+
+    <!-- mobile settings -->
+    <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0"/>
+    <!--[if IE]>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+
+    <link th:href="@{${@globalService.staticUrl()}+'/static/front/dist/style/app.min.css'}" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/mdl/material.indigo-blue.min.css'}"
+          rel="stylesheet" type="text/css" id="color_scheme"/>
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<div id="wrapper">
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky transparent header-sm clearfix')"></span>
+
+    <!-- SLIDER -->
+    <div th:replace="member/layout/slider :: slider"></div>
+    <!-- /SLIDER -->
+
+    <!-- 内容 -->
+
+    <section class="mdl-shadow--4dp">
+        <div id="my-account" class="container my-account">
+
+            <div class="row">
+
+                <div class="col-md-3 col-sm-3 " th:insert="member/layout/left :: left">
+
+                </div>
+
+
+                <div class="col-md-9 col-sm-9">
+                    <div layout:fragment="content" id="content"></div>
+
+
+                </div><!-- end right column -->
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- 内容 end -->
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+</div>
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+</body>
+</html>

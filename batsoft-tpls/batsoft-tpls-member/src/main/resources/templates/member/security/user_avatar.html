@@ -1,0 +1,51 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">头像设置</span>
+            </span>
+        </h2>
+      <div class="container">
+          <form method="post" th:action="@{/ex/member/security/addAvatar}"  class="sky-form  form">
+
+              <fieldset class="m-0">
+                  <span th:replace="layout/csrfToken :: csrfToken"></span>
+                  <span th:replace="component/imgUpload :: imgUpload('userAvatar',${userAvatar})"></span>
+
+              </fieldset>
+              <div class="row">
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                  </div>
+              </div>
+          </form>
+
+      </div>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",   DEV + "/page_user"], function ( c,a) {
+            a.userAvatar();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

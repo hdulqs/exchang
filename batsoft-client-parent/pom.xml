@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>batsoft-client-parent</artifactId>
+    <packaging>pom</packaging>
+    
+    <parent>
+        <artifactId>batsoft-parent</artifactId>
+        <groupId>com.batsoft</groupId>
+        <version>1.1.RELEASE</version>
+    </parent>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-utils</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-core</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.batsoft</groupId>
+            <artifactId>batsoft-log-service</artifactId>
+            <version>1.1.RELEASE</version>
+        </dependency>
+
+    </dependencies>
+    
+    <modules>
+        <module>batsoft-cms-client</module>
+        <module>batsoft-ico-client</module>
+        <module>batsoft-exchange-client</module>
+        <module>batsoft-member-client</module>
+        <module>batsoft-system-client</module>
+        <module>batsoft-otc-client</module>
+    </modules>
+    
+</project>

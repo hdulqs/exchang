@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>RobotTradeMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-05-29 23:10:22 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.RobotTradeDao">
+	
+	<resultMap id="findRecord" type="com.batsoft.model.module.exchange.RobotTrade">
+        <id column="id" property="id" javaType="java.lang.String"/>
+        <result column="create_time" property="createTime" javaType="java.util.Date"/>
+        <result column="update_time" property="updateTime" javaType="java.util.Date"/>
+		
+        <result column="coin_pair" property="coinPair" javaType="java.lang.String"/>
+        <result column="user_name" property="userName" javaType="java.lang.String"/>
+        <result column="entrust_num_max" property="entrustNumMax" javaType="java.math.BigDecimal"/>
+        <result column="entrust_num_min" property="entrustNumMin" javaType="java.math.BigDecimal"/>
+        <result column="entrust_time_max" property="entrustTimeMax" javaType="java.lang.Integer"/>
+        <result column="entrust_time_min" property="entrustTimeMin" javaType="java.lang.Integer"/>
+        <result column="entrust_price_max" property="entrustPriceMax" javaType="java.math.BigDecimal"/>
+        <result column="entrust_price_min" property="entrustPriceMin" javaType="java.math.BigDecimal"/>
+        <result column="base_price" property="basePrice" javaType="java.math.BigDecimal"/>
+        <result column="from_third" property="fromThird" javaType="java.lang.Integer"/>
+        <result column="third_api" property="thirdApi" javaType="java.lang.String" />
+        <result column="status"  property="status" javaType="java.lang.Integer" />
+	
+    </resultMap>
+	
+	<select id="findRecordByStatus" parameterType="java.util.Map" resultMap="findRecord">
+    	SELECT * FROM exchange_robot_trade 
+		<where>
+			<if test="status != null">
+				status = #{status}
+			</if>
+		</where>
+    </select>
+
+</mapper>

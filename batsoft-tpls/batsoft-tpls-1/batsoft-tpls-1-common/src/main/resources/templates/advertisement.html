@@ -1,0 +1,511 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+        <span th:replace="layout/head :: head"></span>
+    </head>
+
+<style>
+    .free_1_1 {
+        width: 100%;
+        height: 160px;
+    }
+
+    .free_1_2 {
+        width: 983px;
+        height: 100px;
+        margin: 0 auto;
+    }
+
+
+    .free_1_2_color {
+        width: 390px;
+        height: 72px;
+        line-height: 72px;
+        float: left;
+        position: relative;
+        left: 40px;
+        font-size: 38px;
+        font-family: PingFang-SC-Regular;
+        color: #F3F4F8;
+        font-weight: bold;
+    }
+
+    .free_2 {
+        width: 1200px;
+        height: 880px;
+        margin: 0 auto;
+    }
+
+    .free_1_3 {
+        width: 983px;
+        height: 110px;
+        font-size: 14px;
+        font-family: PingFang-SC-Medium;
+        color: #DFDFDF;
+        text-indent: 32px;
+        margin: 0 auto;
+    }
+
+    .free_1_4 {
+        width: 983px;
+        height: 164px;
+        margin: 0 auto;
+    }
+
+    .free_1_4_1 {
+        width: 229px;
+        height: 135px;
+        float: left;
+    }
+
+    .BT {
+        color: #DFDFDF;
+        font-size: 24px;
+        font-family: PingFang-SC-Medium
+    }
+
+    .VT {
+        font-size: 14px;
+        color: #9B9B9B;
+        font-family: PingFang-SC-Medium
+    }
+
+    .free_1_5 {
+        width: 160px;
+        height: 48px;
+        background: linear-gradient(318deg, rgba(15, 78, 70, 1) 0%, rgba(10, 155, 116, 1) 100%);
+        border-radius: 24px;
+        position: relative;
+        left: 114px;
+        text-align: center;
+        line-height: 48px;
+        margin-bottom: 49px;
+        color: #F9F9F9
+    }
+    .free_1_5 a{
+        color: #F9F9F9;
+        text-decoration: none;
+    }
+    .free_1_9{
+        width:557px;
+        height:200px;
+        background:#000000;
+        border-radius:2px;
+        background-color: rgba(0,0,0,0.1003);
+        color: #E3B73E;
+        font-size: 14px;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        position: relative;
+        left: 111px;
+
+    }
+    .free_1_9_1{
+        width:497px;
+        height:160px;
+        font-size:14px;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color: #E3B73E;
+        margin: 0 auto;
+        padding-top: 30px;
+        line-height: 20px;
+    }
+    .free_1_9_1 a{
+        font-size:14px;
+        font-family:PingFang-SC-Medium;
+        font-weight:500;
+        color:  #19A279;
+    }
+
+    .stree {
+        width: 100%;
+        height: 545px;
+        background: #14222C;
+        min-width: 1200px;
+        border-bottom: 1px solid #1C3722;
+    }
+
+    .stree_1 {
+        width: 1200px;
+        height: 107px;
+        margin: 0 auto;
+    }
+
+    .stree_2 {
+        width: 1200px;
+        height: 115px;
+        color: #DFDFDF;
+        margin: 0 auto;
+    }
+
+    .stree_2_1 {
+        width: 100%;
+        height: 42%;
+        color: #DFDFDF;
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .stree_2_2 {
+        width: 983px;
+        height: auto;
+        color: #DFDFDF;
+        font-size: 14px;
+        margin: 0 auto;
+        text-indent: 32px;
+    }
+    .stree_2_i {
+        width: 983px;
+        height: 40px;
+        color: #DFDFDF;
+        font-size: 14px;
+        margin: 0 auto;
+        text-indent: 32px;
+    }
+    .stree_2_3 {
+        width: 880px;
+        height: 20px;
+        color: #DFDFDF;
+        font-size: 14px;
+        margin: 0 auto;
+        text-align: center;
+        text-indent: -32px;
+    }
+
+    .stree_2_x {
+        width: 880px;
+        height: 20px;
+        color: #DFDFDF;
+        font-size: 14px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .stree_2_y {
+        width: 880px;
+        height: 40px;
+        margin: 0 auto;
+
+    }
+
+    .stree_2_m {
+        width: 880px;
+        height: 20px;
+        margin: 0 auto;
+        text-align: center;
+
+    }
+
+    .stree_2_m a {
+        color: #4A90E2;
+        font-size: 14px;
+
+    }
+
+    .stree_2_4 {
+        width: 880px;
+        height: 20px;
+        color: #DFDFDF;
+        font-size: 14px;
+        margin: 0 auto;
+        text-align: center
+    }
+
+    .stree_2_5 {
+        width: 880px;
+        height: 80px;
+        margin: 0 auto;
+
+    }
+
+
+    .ftree {
+        width: 100%;
+        height: 545px;
+        background: #14222C;
+        min-width: 1200px;
+        border-bottom: 1px solid #1C3722;
+    }
+
+    .AJ {
+        width: 640px;
+        height: 70px;
+        margin: 0 auto;
+        margin-bottom: 21px;
+    }
+
+    .NIKE {
+        width: 640px;
+        height: 35px;
+        margin: 0 auto;
+    }
+    .new_header {
+        background-color: #181b2a;
+        height: 81px;
+        min-width: 1200px;
+         padding: 0 0%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }
+
+    .NIKE_1 {
+        width: 33%;
+        height: 35px;
+        text-align: center;
+        font-size: 12px;
+        font-family: PingFangSC-Regular;
+        color: #9B9B9B;
+        float: left;
+    }
+    .green_white {
+        width: 100%;
+        min-width: 1200px;
+        height: 383px;
+        margin: 0 auto;
+        background: #14222C;
+        border-bottom: 1px solid #273348;
+
+    }
+
+    .pink {
+        min-width: 1200px;
+        width: 100%;
+        height: 180px;
+        background: #0C0E15;
+    }
+
+    .pink_1 {
+        width: 1200px;
+        height: 16px;
+        margin: 0 auto;
+    }
+
+    .pink_3{
+        width: 150px;
+        height: 47px;
+        margin: 0 auto;
+    }
+    .pink_4 {
+
+        width: 600px;
+        height: 22px;
+        margin: 0 auto;
+        color: #60688D;
+        font-size: 12px;
+        font-family: PingFang-SC-Regular;
+        text-align: center;
+        line-height: 33px;
+
+    }
+    .navBar li a{display:block;height:50px;line-height:50px;padding:0 15px;color:#999}
+</style>
+
+<body style="background: none">
+
+<div class="free">
+    <div style="width: 1200px;height: 80px;margin: 0 auto;">
+        <div th:fragment="nav">
+            <div class="new_header" style="background:none;">
+                <div  >
+                    <a href="/"><h1 class="logo">Bttmall</h1></a>
+                    <ul class="navBar">
+                        <li><a href="/market" th:text="#{exchange}">
+                            交易中心<i></i></a></li>
+
+                        <!--<li th:if="${@globalService.c2cOpen()=='1'}"><a href="/c2c" th:text="#{c2c}">-->
+                        <!--C2C<i></i></a></li>-->
+
+                        <li><a href="javascript:void(0);" th:onclick="'javascript:goToreferral();'" th:text="#{mutner}">
+                            召集令<i></i></a><div class="Kmarker"></div></li>
+
+                        <li><a href="/article/list/announcements" target="_blank" th:text="#{notice}">
+                            公告<i></i></a></li>
+                        <li class="shop"><a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{shop}">
+                            商城<i></i></a>
+                            <div class="shop-icon"></div>
+                        </li>
+
+
+
+
+                    </ul>
+                </div>
+                <div th:fragment="loginState" >
+                    <div class=" cn " id="languageBt" th:fragment="lan" style="position: relative;top: 1px; width: 95px;">
+                    <span class="language colTit" th:text="#{chinese}">
+                 </span>
+                        <span class="ico icoLanArr"></span>
+                        <ul class="languageSwitch userItemSon">
+                            <li class="en" ><a href="/lan/zh_CN" th:text="#{chinese}" class="creamy-white"></a> </li>
+                            <li class="en" ><a href="/lan/en_US" th:text="#{english}" class="creamy-white"></a> </li>
+                        </ul>
+                    </div>
+                    <!-- 登录注册 -->
+                    <div class="userStatus" th:if="${!@globalService.isLogin()}">
+                        <a href="/login" th:text="#{login}" >登录</a> / <a href="/register" th:text="#{register}">注册</a>
+                    </div>
+                    <!-- /登录注册 -->
+                    <!-- 退出登录 -->
+                    <div class="headerUserBar" th:if="${@globalService.isLogin()}">
+                        <ul>
+
+                            <li class="item"><span class="colTit" th:text="#{orders}">委托</span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/account/entrust" th:text="#{open_order}">当前委托</a></li>
+                                    <li class="cn"><a href="/ex/member/account/history_entrust" th:text="#{trade_history}">历史委托</a></li>
+                                    <li class="cn"><a href="/ex/member/account/history_trade" th:text="#{order_history}">历史成交</a></li>
+                                </ul>
+                            </li>
+
+                            <li class="item"><span class="colTit" th:text="#{funds}">资产</span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/account" th:text="#{balances}">我的资产</a></li>
+                                    <li class="cn"><a href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></li>
+                                    <li class="cn"><a href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></li>
+                                    <li class="cn"><a href="/ex/member/account/money_info" th:text="#{funwsd_history}">历史记录</a></li>
+                                    <li class="cn"><a href="/ex/member/account/withdraw_history" th:text="#{wites_history}">提现记录</a></li>
+                                </ul>
+                            </li>
+
+                           <li class="item"> <span class="colTit"  id="jhse" th:text="${@globalService.getUserName()}"></span><span class="ico icoLanArr"></span>
+                                <ul class="userItemSon" style="display: none;">
+                                    <li class="cn"><a href="/ex/member/user" th:text="#{account}">用户中心</a></li>
+                                    <li class="cn"><a href="/logouts" th:text="#{logout}">退出</a></li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <!-- /退出登录 -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="free_2">
+        <div class="free_1_1"></div>
+        <div class="free_1_2">
+            <div class="free_1_2_img"></div>
+            <div class="free_1_2_color">Bttmall Token(BT)</div>
+        </div>
+        <div class="free_1_3" th:text="#{bfs_post}">
+            BT 是Bttmall Token的缩写和交易符号，是Bchain的公有链基础币种，支撑Bchain公有链的基础设施。Bttmall Token(BT)是Bchain的主网燃料，支付网络转账手续费，Bchain通过BPoS权益挖矿方式激励BT持有人保护网络健康。Bttmall Token(BT)也是bttmall.com的重要生态成员以及商城流通的价值通证，是bttmall商场购物挖矿的桥梁。Bttmall Token(BT)也可以抵扣交易所手续费支出。
+        </div>
+        <div class="free_1_4">
+            <div class="free_1_4_1">
+                <span class="BT">1,000,000,000 BT</span><br />
+                <span class="VT" th:text="#{mf563dsa}">BT总流通量</span>
+            </div>
+            <div class="free_1_4_1">
+                <span class="BT">100,000,000 BT</span><br />
+                <span class="VT" th:text="#{mg56rda}">二级市场流通总量</span>
+            </div>
+            <div class="free_1_4_1" style="width: 485px;">
+                <span class="BT" id="BT_USDT"> </span><br />
+                <span class="VT" th:text="#{n56rd}">当前价格</span>
+            </div>
+        </div>
+        <div class="free_1_5"><a target="_blank" href="/market?symbol=BT_USDT"><span th:text="#{TRsty}">抢购BToken ></span></a>
+        </div>
+        <div class="free_1_9">
+            <div class="free_1_9_1">
+                BT初始总量为5亿枚，主网上线后100年挖矿总产量为5亿，总量递增为10亿枚。<br/>
+                 5亿枚，50% 转入黑洞地址永久锁仓，主网上线后才挖矿产出<br/>
+                3亿枚，30% 3亿冻结至 2020年5月13日<br/>
+                1亿枚，10% 研发&运营(主网上线后线性释放)<br/>
+                1亿枚，10% 平台抢购及IGO产出<br/><br/>
+                <a href="https://etherscan.io/address/0xb9f185f370f8cc2a247f16c055381e95bf9ee146">查看合约</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="stree">
+    <div class="stree_1"></div>
+    <div class="stree_2">
+        <div class="stree_2_1" th:text="#{Mudew}">Bttmall Token(BT)的历史</div>
+        <div class="stree_2_2" th:text="#{NBSUY}">Bttmall Token(BT)最初是作为全球化数字交易平台BTTMall的权益代表，并通过“交易即挖矿”及“预发行解锁”的机制，完成了大量Bttmall Token(BT)的发行。
+   BT持有者拥有参与BTTMALL收入分配、社区治理等一系列权益。
+随着Bttmall Token(BT)项目的启动，其本身也从“平台币”升级为“公链币”。</div>
+        <div class="stree_2_5"> </div>
+        <div class="stree_2_6"></div>
+    </div>
+</div>
+<div class="ftree">
+    <div class="stree_1"></div>
+    <div class="stree_2" style="margin-bottom:70px;">
+        <div class="stree_2_1" th:text="#{bcxds}">Bttmall Token(BT)的未来</div>
+        <div class="stree_2_2" th:text="#{bvcxsaa}">Bttmall Token(BT)项目的目标是成为通证经济基础设施。
+         随着Bttmall Token(BT)公链即BTTMall的一步步实现，特别是
+ 未来主链的上线及大规模投入应用，Bttmall Token(BT)将引领通证经济生态的发展，并立志成为该领域的基础通证及核心代表。</div>
+    </div>
+    <div class="AJ">
+        <div class="stree_2_6_1"></div>
+        <div class="stree_2_6_2"></div>
+        <div class="stree_2_6_3"></div>
+    </div>
+    <div class="NIKE">
+        <div class="NIKE_1">采用高效的BPOS<br />共识算法</div>
+        <div class="NIKE_1">支持token的发行、流通、分<br />红、及以投票功能</div>
+        <div class="NIKE_1">创新的blockchain<br />技术框架</div>
+    </div>
+</div>
+<div class="green_white">
+    <div class="stree_1"></div>
+    <div class="stree_2">
+        <div class="stree_2_1">如何获得BT？</div>
+        <div class="stree_2_i" th:text="#{MB2QW}">bttmall.com是目前BT的唯一获取渠道，bttmall本着对用户公平公正的态度拒绝了私募基金和投资机构的投资要求，BT将在2019年5月13日2019年-5月17日进行为期五天的公开抢购
+        每日两轮，抢购时间分别为15:00和21:00 </div>
+        <div class="stree_2_y"></div>
+        <div class="stree_2_x"> 用户可以到发售详情查看本次Bttmall Token(BT)抢购细则</div>
+        <div class="stree_2_m"><a href="https://bttmall.com/IGO">https://bttmall.com/IGO</a></div>
+    </div>
+</div>
+<div class="pink">
+    <div class="pink_1"></div>
+    <div class="pink_2"></div>
+    <div class="pink_6"></div>
+    <!--<div class="pink_3">-->
+        <!--<div class="pink_3_1"></div>-->
+        <!--<div class="pink_3_2"></div>-->
+        <!--<div class="pink_3_3"></div>-->
+        <!--<div class="pink_3_4"></div>-->
+    <!--</div>-->
+    <div class="pink_4">&#169 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited</div>
+</div>
+</body>
+<div th:replace="component/basejs :: basejs(~{::script})">
+
+    <script>
+        seajs.use([DEV + "/main","socketjs","stomp","numeral" ,DEV + "/page_user"], function (main,a,b,numeral,d) {
+              d.advertise();
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+    </script>
+</div>
+
+</html>

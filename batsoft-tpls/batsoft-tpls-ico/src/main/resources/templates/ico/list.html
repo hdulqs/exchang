@@ -1,0 +1,415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+
+
+</head>
+
+<body class="smoothscroll enable-animation">
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="cms/layout/nav :: nav('navbar-toggleable-md sticky header-sm clearfix')"></span>
+
+    <section class="page-header page-header-xlg parallax parallax-3"
+             style="background-image: url('http://127.0.0.1:8881/static/front/dist/img/backgrounds/banner/4.jpg'); background-position: 50% 0px;">
+        <div class="overlay dark-2"><!-- dark overlay [1 to 9 opacity] --></div>
+
+        <div class="container">
+
+        </div>
+    </section>
+
+    <!-- projects -->
+    <section class="section-sm">
+        <div class="container">
+            <nav class="navbar navbar-toggleable-md navbar-inverse  bg-faded  mb-20 pb-0">
+                <div class="collapse navbar-collapse ico-list" id="ico-list">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item w-200  pl-60 pr-60 ml-50 ">
+                            <a class="nav-link tex-black" href="#">全部ICO</a>
+                        </li>
+                        <li class="nav-item w-200  pl-60 pr-60 active">
+                            <a class="nav-link tex-black" href="#">精选ICO</a>
+                        </li>
+                        <li class="nav-item w-200  pl-60 pr-60">
+                            <a class="nav-link tex-black " href="#">进行中</a>
+                        </li>
+                        <li class="nav-item w-200  pl-60 pr-60">
+                            <a class="nav-link tex-black " href="#">等待开始</a>
+                        </li>
+                        <li class="nav-item w-200  pl-60 pr-60">
+                            <a class="nav-link tex-black" href="#">已结束</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <div class="row property-item-list">
+
+                <div class="col-xs-12 col-md-4">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box property-featured-yellow">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-green text-white">进行中</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <!-- countdown -->
+                            <div class="property-item-counter" data-text="距离开始">
+                                <div class="countdown" data-from="January 31, 2018 15:03:26" data-labels="years,months,weeks,days,hour,min,sec"><!-- Example Date From: December 31, 2018 15:03:26 --></div>
+                            </div>
+                            <!-- /countdown -->
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/joseph-albanese-102983-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                               炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                            <div class="col-xs-12 col-md-6 text-left">
+                                <a href="javascript:;" >ETH 8000.00</a>
+                            </div>
+                            <div class="col-xs-12 col-md-6 text-right">
+                                <a href="javascript:;" >70%</a>
+                            </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-4">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-green text-white">进行中</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+
+                            <!-- countdown -->
+                            <div class="property-item-counter" data-text="距离结束">
+                                <div class="countdown" data-from="January 31, 2018 15:03:26" data-labels="years,months,weeks,days,hour,min,sec"><!-- Example Date From: December 31, 2018 15:03:26 --></div>
+                            </div>
+                            <!-- /countdown -->
+
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/vita-vilcina-3217-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >70%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-4">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- RIBBON -->
+                        <div class="property-ribbon">
+                            <span class="bg-blue text-white">已结束</span>
+                        </div>
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <span class="rating rating-4 fs-17 text-white"><!-- rating-1 ... rating-5 --></span>
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/david-everett-strickler-196946-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >70%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-4">
+
+                    <!--
+                        # PROPERTY ITEM
+
+                            .property-item-box 			= boxed item (use it with bootstrap grid)
+                            .b-0 					= clean, unbordered item (use it woth .property-item-box  only)
+
+                            .property-featured-blue		= blue featured color
+                            .property-featured-yellow	= yellow featured color
+                            .property-featured-green	= green featured color
+                    -->
+                    <div class="property-item property-item-box">
+
+                        <!-- IMAGE -->
+                        <a class="property-image" href="/ico/info/1">
+                            <img class="img-fluid" src="http://127.0.0.1:8881/static/front/dist/img/gallery/evelyn-paris-95853-min.jpg" alt="">
+                        </a>
+
+
+                        <!-- PRICE and STREET LOCATION -->
+                        <h4 class="property-item-price">
+                            <strong class="text-primary">
+                                炫链（UGT）
+                            </strong>
+
+                            <small class="float-right text-danger">
+                                目标金额：ETH 1,595,000
+                            </small>
+                        </h4>
+
+                        <!-- FEATURES -->
+                        <ul class="property-item-features list-inline">
+                            <!-- progress -->
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6 text-left">
+                                    <a href="javascript:;" >ETH 8000.00</a>
+                                </div>
+                                <div class="col-xs-12 col-md-6 text-right">
+                                    <a href="javascript:;" >100%</a>
+                                </div>
+                            </div>
+                            <div class="progress mb-0">
+                                <div class="progress-bar bg-success progress-bar-striped progress-bar-animated h-8" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                                </div>
+                            </div>
+                        </ul>
+
+
+
+                        <hr /><!-- mobile and boxed separator -->
+
+
+                        <!-- DETAILED LOCATION -->
+                        <strong class="poperty-item-location">
+                            星云链是全球首个区块链搜索引擎，目标是发掘区块链世界的价值新维度。
+                        </strong>
+
+                        <hr /><!-- mobile and boxed separator -->
+
+                        <!-- BUTTONS -->
+                        <div class="property-item-btn">
+                            <a href="/ico/info/1">我要支持</a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+    </section>
+    <!-- /projects -->
+
+    <!-- PAGINATION -->
+    <section class="section-xs">
+        <div class="container text-center">
+
+        <a class="look-more pt-5" href="javascript:void(0)"><i class="fa fa-angle-down fa-2x"></i></a>
+
+        </div>
+    </section>
+    <!-- /PAGINATION -->
+
+    <!-- FOOTER -->
+    <span th:replace="layout/footer :: footer"></span>
+    <!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main","countdown",DEV+"/page_ico"], function (a,b,c) {
+            c.list();
+        });
+    </script>
+</div>
+
+</body>
+</html>

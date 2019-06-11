@@ -1,0 +1,187 @@
+menus:
+  name: cms管理系统
+  key: cms
+  path: cms
+  icon: fa fa-th-large
+  description: cms管理系统
+  item:
+  - name: banner管理
+    key: cms_banner
+    icon: appstore-o
+    path: banner/list
+    menu: 1
+    permission: cms:banner:list
+    description: banner管理
+    item:
+    - name: 增加
+      key: cms_banner_add
+      icon: appstore-o
+      path: banner/add
+      menu: 0
+      permission: cms:banner:add
+      description: banner增加
+    - name: 修改
+      key: cms_banner_edit
+      icon: appstore-o
+      path: banner/edit
+      menu: 0
+      permission: cms:banner:edit
+      description: banner修改
+    - name: 查看
+      key: cms_banner_see
+      icon: appstore-o
+      path: banner/info
+      menu: 0
+      permission: cms:banner:see
+      description: banner查看
+    - name: 删除
+      key: cms_banner_remove
+      icon: appstore-o
+      path: banner/remove
+      menu: 0
+      permission: cms:banner:remove
+      description: banner删除
+  - name: 友情链接管理
+    key: cms_friend
+    icon: appstore-o
+    path: friend/list
+    menu: 1
+    permission: cms:friend:list
+    description: 友情链接管理
+    item:
+    - name: 增加
+      key: cms_friend_add
+      icon: appstore-o
+      path: friend/add
+      menu: 0
+      permission: cms:friend:add
+      description: 友情链接增加
+    - name: 修改
+      key: cms_friend_edit
+      icon: appstore-o
+      path: friend/edit
+      menu: 0
+      permission: cms:friend:edit
+      description: 友情链接修改
+    - name: 查看
+      key: cms_friend_see
+      icon: appstore-o
+      path: friend/info
+      menu: 0
+      permission: cms:friend:see
+      description: 友情链接查看
+    - name: 删除
+      key: cms_friend_remove
+      icon: appstore-o
+      path: friend/remove
+      menu: 0
+      permission: cms:friend:remove
+      description: 友情链接删除
+  - name: 文章类别管理
+    key: cms_articleChannel
+    icon: appstore-o
+    path: articleChannel/list
+    menu: 1
+    permission: cms:articleChannel:list
+    description: 文章类别管理
+    item:
+    - name: 增加
+      key: cms_articleChannel_add
+      icon: appstore-o
+      path: articleChannel/add
+      menu: 0
+      permission: cms:articleChannel:add
+      description: 文章类别增加
+    - name: 修改
+      key: cms_articleChannel_edit
+      icon: appstore-o
+      path: articleChannel/edit
+      menu: 0
+      permission: cms:articleChannel:edit
+      description: 文章类别修改
+    - name: 查看
+      key: cms_articleChannel_see
+      icon: appstore-o
+      path: articleChannel/info
+      menu: 0
+      permission: cms:articleChannel:see
+      description: 文章类别查看
+    - name: 删除
+      key: cms_articleChannel_remove
+      icon: appstore-o
+      path: articleChannel/remove
+      menu: 0
+      permission: cms:articleChannel:remove
+      description: 文章类别删除
+  - name: 文章管理
+    key: cms_article
+    icon: appstore-o
+    path: article/list
+    menu: 1
+    permission: cms:article:list
+    description: 文章管理
+    item:
+    - name: 增加
+      key: cms_article_add
+      icon: appstore-o
+      path: article/add
+      menu: 0
+      permission: cms:article:add
+      description: 文章增加
+    - name: 修改
+      key: cms_article_edit
+      icon: appstore-o
+      path: article/edit
+      menu: 0
+      permission: cms:article:edit
+      description: 文章修改
+    - name: 查看
+      key: cms_article_see
+      icon: appstore-o
+      path: article/info
+      menu: 0
+      permission: cms:article:see
+      description: 文章查看
+    - name: 删除
+      key: cms_article_remove
+      icon: appstore-o
+      path: article/remove
+      menu: 0
+      permission: cms:article:remove
+      description: 文章删除
+  - name: 文章单页管理
+    key: cms_single
+    icon: appstore-o
+    path: single/list
+    menu: 1
+    permission: cms:single:list
+    description: 文章单页管理
+    item:
+    - name: 增加
+      key: cms_single_add
+      icon: appstore-o
+      path: single/add
+      menu: 0
+      permission: cms:single:add
+      description: 文章单页增加
+    - name: 修改
+      key: cms_single_edit
+      icon: appstore-o
+      path: single/edit
+      menu: 0
+      permission: cms:single:edit
+      description: 文章单页修改
+    - name: 查看
+      key: cms_single_see
+      icon: appstore-o
+      path: single/info
+      menu: 0
+      permission: cms:single:see
+      description: 文章单页查看
+    - name: 删除
+      key: cms_single_remove
+      icon: appstore-o
+      path: single/remove
+      menu: 0
+      permission: cms:single:remove
+      description: 文章单页删除

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>AppNavigationMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2017-08-08 18:29:21 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.system.dao.navigation.AppNavigationDao">
+
+    <resultMap id="RootResultMapVO" type="com.batsoft.model.module.system.navigation.vo.AppNavigationVo" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="has_child" property="hasChild" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="url" property="url" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+        <result column="level" property="level" jdbcType="INTEGER" />
+        <result column="path" property="path" jdbcType="VARCHAR" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="description" property="description" jdbcType="VARCHAR" />
+        <result column="display" property="display" jdbcType="INTEGER" />
+        <result column="external" property="external" jdbcType="INTEGER" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="JsTreeResultMapVO" type="com.batsoft.core.common.JsTree" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="name" property="text" jdbcType="VARCHAR" />
+        <result column="url" property="remark" jdbcType="VARCHAR" />
+        <result column="type" property="remark1" jdbcType="INTEGER" />
+        <result column="icon" property="icon" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+        <result column="sort" property="sort" jdbcType="INTEGER" />
+
+        <result column="name" property="label" jdbcType="VARCHAR" />
+        <result column="id" property="value" jdbcType="VARCHAR" />
+        <result column="id" property="key" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+        id,type, name, url, parent_id, sort, level,path,description,display ,icon,external
+    </sql>
+
+    <sql id="JsTree_Column_List" >
+        id, name,  parent_id, sort,icon,url,type
+    </sql>
+
+
+
+
+    <select id="findChildList" resultMap="RootResultMapVO" >
+        SELECT
+        <include refid="Base_Column_List" />,
+        (select count(*) from system_app_navigation s1 where s1.parent_id=s.id) has_child
+        FROM system_app_navigation s
+
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+
+        order by s.level, s.sort ASC
+    </select>
+
+
+    <select id="findJsTreeChildList" resultMap="JsTreeResultMapVO" >
+        SELECT
+        <include refid="JsTree_Column_List" />
+        FROM system_app_navigation s
+
+        where  s.parent_id =#{pid,jdbcType=VARCHAR}
+        <if test="display != null">
+            AND s.display=#{display,jdbcType=INTEGER}
+        </if>
+        order by s.level, s.sort ASC
+    </select>
+
+    <!--根据parentId，得到id plash-->
+    <select id="findParentId" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT parent_id
+        FROM system_app_navigation
+        where id = #{pid}
+    </select>
+
+    <!--根据Id，得到父name-->
+    <select id="findParentName" parameterType="java.lang.String" resultType="java.lang.String">
+        SELECT name
+        FROM system_app_navigation
+        where id = #{id}
+    </select>
+
+</mapper>

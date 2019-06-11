@@ -1,0 +1,165 @@
+menus:
+  name: system管理系统
+  key: system
+  path: system
+  icon: fa fa-th-large
+  description: system管理系统
+  item:
+  - name: 系统参数类型管理
+    key: system_appConfigType
+    icon: appstore-o
+    path: config/appConfigType/list
+    menu: 1
+    permission: system:config:appConfigType:list
+    description: 系统参数类型管理
+    item:
+    - name: 增加
+      key: system_appConfigType_add
+      icon: appstore-o
+      path: config/appConfigType/add
+      menu: 0
+      permission: system:config:appConfigType:add
+      description: 系统参数类型增加
+    - name: 修改
+      key: system_appConfigType_edit
+      icon: appstore-o
+      path: config/appConfigType/edit
+      menu: 0
+      permission: system:config:appConfigType:edit
+      description: 系统参数类型修改
+    - name: 查看
+      key: system_appConfigType_see
+      icon: appstore-o
+      path: config/appConfigType/info
+      menu: 0
+      permission: system:config:appConfigType:see
+      description: 系统参数类型查看
+    - name: 删除
+      key: system_appConfigType_remove
+      icon: appstore-o
+      path: config/appConfigType/remove
+      menu: 0
+      permission: system:config:appConfigType:remove
+      description: 系统参数类型删除
+  - name: 系统参数管理
+    key: system_appConfig
+    icon: appstore-o
+    path: config/appConfig/list
+    menu: 1
+    permission: system:config:appConfig:list
+    description: 系统参数管理
+    item:
+    - name: 增加
+      key: system_appConfig_add
+      icon: appstore-o
+      path: config/appConfig/add
+      menu: 0
+      permission: system:config:appConfig:add
+      description: 系统参数增加
+    - name: 修改
+      key: system_appConfig_edit
+      icon: appstore-o
+      path: config/appConfig/edit
+      menu: 0
+      permission: system:config:appConfig:edit
+      description: 系统参数修改
+    - name: 查看
+      key: system_appConfig_see
+      icon: appstore-o
+      path: config/appConfig/info
+      menu: 0
+      permission: system:config:appConfig:see
+      description: 系统参数查看
+    - name: 删除
+      key: system_appConfig_remove
+      icon: appstore-o
+      path: config/appConfig/remove
+      menu: 0
+      permission: system:config:appConfig:remove
+      description: 系统参数删除
+    - name: 参数设置
+      key: system_appConfig_setting
+      icon: appstore-o
+      path: config/appConfig/updateConfig
+      menu: 0
+      permission: system:config:appConfig:setting
+      description: 参数设置
+  - name: 缓存管理
+    key: system_appCache
+    icon: appstore-o
+    path: cache/appCache/list
+    menu: 1
+    permission: system:cache:appCache:list
+    description: 缓存管理
+    item:
+    - name: 增加
+      key: system_appCache_add
+      icon: appstore-o
+      path: cache/appCache/add
+      menu: 0
+      permission: system:cache:appCache:add
+      description: 缓存增加
+    - name: 修改
+      key: system_appCache_edit
+      icon: appstore-o
+      path: cache/appCache/edit
+      menu: 0
+      permission: system:cache:appCache:edit
+      description: 缓存修改
+    - name: 查看
+      key: system_appCache_see
+      icon: appstore-o
+      path: cache/appCache/info
+      menu: 0
+      permission: system:cache:appCache:see
+      description: 缓存查看
+    - name: 删除
+      key: system_appCache_remove
+      icon: appstore-o
+      path: cache/appCache/remove
+      menu: 0
+      permission: system:cache:appCache:remove
+      description: 缓存删除
+    - name: 更新缓存
+      key: system_appCache_updateAppConfigCache
+      icon: appstore-o
+      path: /
+      menu: 0
+      permission: system:cache:appCache:updateAppConfigCache
+      description: 更新缓存
+  - name: 数据字典管理
+    key: system_appDictionary
+    icon: appstore-o
+    path: type/appDictionary/list
+    menu: 1
+    permission: system:type:appDictionary:list
+    description: 数据字典管理
+    item:
+    - name: 增加
+      key: system_appDictionary_add
+      icon: appstore-o
+      path: type/appDictionary/add
+      menu: 0
+      permission: system:type:appDictionary:add
+      description: 数据字典增加
+    - name: 修改
+      key: system_appDictionary_edit
+      icon: appstore-o
+      path: type/appDictionary/edit
+      menu: 0
+      permission: system:type:appDictionary:edit
+      description: 数据字典修改
+    - name: 查看
+      key: system_appDictionary_see
+      icon: appstore-o
+      path: type/appDictionary/info
+      menu: 0
+      permission: system:type:appDictionary:see
+      description: 数据字典查看
+    - name: 删除
+      key: system_appDictionary_remove
+      icon: appstore-o
+      path: type/appDictionary/remove
+      menu: 0
+      permission: system:type:appDictionary:remove
+      description: 数据字典删除

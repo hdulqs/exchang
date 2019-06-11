@@ -1,0 +1,152 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">资产状况</span>
+            </span>
+        </h2>
+
+        <!--info-->
+        <div class="info-bar info-bar-color info-bar-bordered">
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-sm-3 countTo-sm">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        <h3>账户总额</h3>
+                        <span class="countTo f-w " data-speed="3000">130000</span>
+                        <span class="f-w">.</span>
+                        <span class="countTo f-w" data-speed="3000">12</span>
+                    </div>
+
+                    <div class="col-sm-3 countTo-sm">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        <h3>可用金额</h3>
+                        <span class="countTo f-w " data-speed="3000">130000</span>
+                        <span class="f-w">.</span>
+                        <span class="countTo f-w" data-speed="3000">12</span>
+                    </div>
+
+                    <div class="col-sm-3 countTo-sm">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        <h3>冻结金额</h3>
+                        <span class="countTo f-w " data-speed="3000">130000</span>
+                        <span class="f-w">.</span>
+                        <span class="countTo f-w" data-speed="3000">12</span>
+                    </div>
+                    <div class="col-sm-3 countTo-sm">
+                        <i class="glyphicon glyphicon-usd"></i>
+                        <h3>净资产</h3>
+                        <span class="countTo f-w " data-speed="3000">130000</span>
+                        <span class="f-w">.</span>
+                        <span class="countTo f-w" data-speed="3000">12</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- /INFO BAR -->
+
+
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#" class="btn btn-default btn-featured btn-inverse">
+                    <span>去充值</span>
+                    <i class="et-megaphone"></i>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#" class="btn btn-danger btn-featured">
+                    <span>去提现</span>
+                    <i class="et-trophy"></i>
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#" class="btn btn-warning btn-featured">
+                    <span>充币/提币</span>
+                    <i class="et-strategy"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="card card-default  mdl-shadow--2dp">
+    <div class="card-block">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">账户明细</span>
+            </span>
+        </h2>
+
+        <ul class="nav nav-pills mix-filter mb-10">
+            <li>交易类型：</li>
+            <li data-filter="all" class="filter active"><a href="#">全部</a></li>
+            <li data-filter="development" class="filter"><a href="#">充值</a></li>
+            <li data-filter="photography" class="filter"><a href="#">提现</a></li>
+            <li data-filter="design" class="filter "><a href="#">其他</a></li>
+        </ul>
+        <div class="row mb-20 pl-15">
+            <ul class="nav nav-pills">
+                <li>日期查询：</li>
+                <li class="w-300"><input type="text" class="form-control rangepicker active"
+                                         value="2015-01-01 - 2016-12-31" data-format="yyyy-mm-dd" data-from="2015-01-01"
+                                         data-to="2016-12-31"></li>
+            </ul>
+        </div>
+        <table class="table table-hover ">
+            <thead>
+            <tr>
+                <th>时间</th>
+                <th>操作类型</th>
+                <th>单号</th>
+                <th>金额</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            <tr>
+                <td>2017-01-01</td>
+                <td>充值</td>
+                <td>00000000000000000</td>
+                <td>10000.11</td>
+                <td>成功</td>
+            </tr>
+            <tr>
+                <td>2017-01-01</td>
+                <td>充值</td>
+                <td>00000000000000000</td>
+                <td>10000.11</td>
+                <td>成功</td>
+            </tr>
+            <tr>
+                <td colspan="5" class="text-center">
+                    <i class="fa fa-info-circle"></i>暂无记录
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  "jquery_datepicker", "jquery_daterangepicker", "jquery_appear", "jquery_countTo", DEV + "/page_user"], function (f, a,  o, b, c, d) {
+            d.init();
+        });
+    </script>
+</div>
+
+</body>
+</html>

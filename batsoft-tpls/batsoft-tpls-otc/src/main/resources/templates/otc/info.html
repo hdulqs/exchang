@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <!-- loadding button 必须前置-->
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/spin.min.js'}"></script>
+    <script th:src="@{${@globalService.staticUrl()}+'/static/front/dist/script/plugins/ladda/ladda.min.js'}"></script>
+
+</head>
+
+<body class="smoothscroll enable-animation" >
+
+<!-- SLIDE TOP -->
+
+<!-- /SLIDE TOP -->
+
+
+<!-- wrapper -->
+<div id="wrapper">
+
+    <span th:replace="layout/nav :: nav('navbar-toggleable-md sticky clearfix')"></span>
+
+    <!-- projects -->
+    <section style="margin-top: -50px">
+        <div class="container">
+            <div class="row">
+
+                <!-- LEFT -->
+
+                <div class="col-lg-9 col-md-9 col-sm-8">
+
+                    <input id="adId" type="text" class="hide" th:value="${id}">
+
+                    <form  method="post" th:action="@{/otc/order/user/save}"
+                           class="form">
+                    <div class="box-light" id="infoRender"><!-- .box-light OR .box-dark -->
+                        <span th:replace="component/load/spinner3 :: spinner3"></span>
+
+
+                    </div>
+                    </form>
+
+                    <script id="infoTpl" type="text/x-jsrender">
+                          <!-- PROJECT LIS -->
+                        <div class="row">
+                        <input type="text" class="form-control hide" name="projectId" value={{:id}}>
+                           <input type="text" class="form-control hide" name="currency" value={{:currency}}>
+                           <input type="text" class="form-control hide" name="orderCoin" value={{:coin}}>
+
+                            {{if otcType==0}}
+             <input type="text" class="form-control hide" name="orderType" value=1>
+        {{else}}
+            <input type="text" class="form-control hide" name="orderType" value=0>
+        {{/if}}
+                            <!-- item -->
+                            <div class="col-md-12 col-sm-12">
+                                <div class="box-inner mt-5">
+
+                                {{if otcType==0}}
+            <h2 class="text-left bold fs-18 "> 在 {{:country}}  以 ({{:currency}}) 购买 {{:coin}}</h2>
+        {{else}}
+            <h2 class="text-left bold fs-18 "> 在 {{:country}}  以 ({{:currency}}) 出售 {{:coin}}</h2>
+        {{/if}}
+
+                                    <ul class="portfolio-detail-list list-unstyled ">
+                                        <li class="pt-15"><span>报价:</span> {{:price}} {{:currency}} </li>
+                                        <li class="pt-15"><span>交易限额:</span> {{:minMoney}}-{{:maxMoney}} {{:currency}}</li>
+                                        <li class="pt-15"><span>付款方式:</span> {{:payType}}</li>
+                                        <li class="pt-15"><span>付款期限:</span> {{:payTime}}分钟</li>
+                                    </ul>
+
+                                </div>
+                                <div class="box-inner mt-0">
+                                    <h3 class="text-left mt-0 bold fs-16 elipsis"><a href="#">想购买多少？</a></h3>
+
+                                    <div class="row ">
+                                        <div class="col-md-5 col-sm-5">
+                                            <div class="input-group">
+
+                                                <input type="text" class="form-control" name="orderMoney">
+                                                <span class="input-group-addon currency-type">{{:currency}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1 col-sm-1 pt-15 pl-30"><img th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/exchange.png'}" src="/static/front/src/img/exchange.png" style="width:15px ;height: 15px" alt=""></div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <div class="input-group">
+
+                                                <input type="text" class="form-control" name="orderCount">
+                                                <span class="input-group-addon currency-type">{{:coin}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center mt-20">
+                                        <div class="col-md-12 col-sm-12">
+
+                                  {{if userAuth==true}}
+                                 {{if otcType==0}}
+                                     <button type="submit" disabled class="btn btn-info btn-lg btn-block"> 我要购买</button>
+                                {{else}}
+                                    <button type="submit" disabled class="btn btn-info btn-lg btn-block"> 我要出售</button>
+                                {{/if}}
+                                {{else}}
+                                 <a href="/login" class="btn btn-info btn-lg btn-block"> 立即登录</a>
+                                {{/if}}
+
+                                        </div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <!-- /item -->
+
+                            <!-- item -->
+                            <div class="col-md-12 col-sm-12">
+                                <div class="box-inner mt-30">
+
+                                    <h3 class="text-left mt-20 bold fs-16 elipsis"><a href="#">交易条款</a></h3>
+                                    <p class="text-left">
+
+                                       {{:transaction}}
+
+                                    </p>
+
+                                </div>
+                            </div>
+                            <!-- /item -->
+                            <!-- item -->
+                            <div class="col-md-12 col-sm-12">
+                                <div class="box-inner mt-30">
+
+                                    <h3 class="text-left mt-20 bold fs-16 elipsis"><a href="#">交易须知</a></h3>
+                                    <p class="text-left">
+
+                                        在您发起交易请求后，数字货币被锁定在托管中，受到<span th:text="${@globalService.webSiteTitle()}"></span>保护。
+
+
+                                        如果您是买家，发起交易请求后，您应在90分钟内付款并把交易标记为付款已完成。卖家在收到付款后将会放行处于托管中的数字货币。
+
+
+
+
+                                    </p>
+                                    <p class="text-left">交易前请阅读《<span th:text="${@globalService.webSiteTitle()}"></span>网络服务条款》以及常见问题、交易指南等帮助文档。</p>
+                                    <p class="text-left">当心骗子！交易前请检查该用户收到的评价，并对新近创建的账户多加留意。</p>
+                                    <p class="text-left">请注意，四舍五入和价格的波动可能会影响最终成交的数字货币数额。您输入的固定数额决定最后数额，数字货币金额将在请求发布的同一时间由即时的汇率算出。</p>
+                                    <p class="text-left">托管服务保护网上交易的买卖双方。在发生争议的情况下，我们将评估所提供的所有信息，并将托管的数字货币放行给其合法所有者。</p>
+
+                                </div>
+                            </div>
+                            <!-- /item -->
+                        </div>
+                        <!-- /PROJECTS LIS -->
+                    </script>
+
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-lg-3 col-md-3 col-sm-4">
+
+                    <!-- info -->
+                    <div class="box-light mb-30" id="userRender"><!-- .box-light OR .box-light -->
+
+                        <span th:replace="component/load/spinner3 :: spinner3"></span>
+
+
+                    </div>
+
+                    <script id="userTpl" type="text/x-jsrender">
+
+                        <div class=" text-center pt-30">
+
+                        <a href="/otc/user/{{:id}}">
+                          {{if userAvatar!=null}}
+                          <img class="user-head img-circle" style="width: 80px;height: 80px"  th:src="@{${@globalService.fileHost()}+'{{:userAvatar}}'}" alt="">
+                          {{else}}
+                          <img class="user-head img-circle" style="width: 80px;height: 80px"  th:src="@{${@globalService.staticUrl()}+'/static/front/dist/img/avatar.png'}" alt="用户头像" >
+                          {{/if}}
+
+                            <h2 class="fs-18 mt-10 mb-0">{{:userNick}}</h2>
+                            </a>
+                            <div class="svg-group">
+                            <a href="javascript:void(0)"  class="{{if hasEmailValid }} text-aqua {{else}} text-gray {{/if}}" title="{{if hasEmailValid }} 邮箱已认证 {{else}} 邮箱未认证 {{/if}}">
+                                    <i class="fa fa-envelope fa-2x"></i>
+                                </a>
+                                <a href="javascript:void(0)" class="{{if realState==1 }} text-aqua ml-10 {{else}} text-gray ml-10 {{/if}}" title="{{if realState==1 }} 实名已认证 {{else}} 实名未认证 {{/if}}">
+                                <i class="fa  fa-user fa-2x"></i>
+
+                                </a>
+                                <a href="javascript:void(0)" class="{{if hasMobileValid }} text-aqua ml-10 {{else}} text-gray ml-10 {{/if}}" title="{{if hasMobileValid }} 手机已认证 {{else}} 手机未认证 {{/if}}">
+                                   <i class="fa  fa-mobile fa-2x"></i>
+                                </a>
+
+                            </div>
+                            </div>
+
+                            <div class="row mb-20">
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-center bold">
+                            <h2 class="fs-30 mt-10 mb-0 font-raleway">{{:trustNum}}</h2>
+                            <h3 class="fs-11 mt-0 mb-10 text-info">信任人数</h3>
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-center bold">
+                            <h2 class="fs-30 mt-10 mb-0 font-raleway">{{:exchangeNum}}</h2>
+                            <h3 class="fs-11 mt-0 mb-10 text-info">交易次数</h3>
+                            </div>
+
+                            <div class="col-md-4 col-sm-4 col-xs-4 text-center bold">
+                            <h2 class="fs-30 mt-10 mb-0 font-raleway">5M</h2>
+                        <h3 class="fs-11 mt-0 mb-10 text-info">平均放行</h3>
+                            </div>
+                            </div>
+                            <!-- /info -->
+                            <!-- completed -->
+                            <div class="mb-30">
+                           <!-- <label>88% 好评</label>
+                            <div class="progress progress-xxs">
+                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="88" aria-valuemin="0" aria-valuemax="100" style="width: 88%; min-width: 2em;"></div>
+                            </div>
+                            </div>-->
+                            <div class="row mb-20">
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-right bold">
+                            <a href="javascript:addTrustInfo('8c25ca6b25ca42d183d0a63f91233666');" class="btn btn-padsm btn-primary">信任</a>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6 col-xs-6 text-left bold">
+                            <a href="javascript:addBlockedInfo('8c25ca6b25ca42d183d0a63f91233666');" class="btn btn-padsm btn-primary" style="    background: #666;border-color: #666;">屏蔽</a>
+                            </div>
+
+
+                            </div>
+                            <!-- /completed -->
+                            <!-- <div class="text-muted">
+                            <h2 class="fs-18 text-muted mb-6"><b>About</b> Felicia Doe</h2>
+                        <p>Lorem ipsum dolor sit amet diam nonummy nibh dolore.</p>
+
+                        <ul class="list-unstyled m-0">
+                            <li class="mb-10"><i class="fa fa-globe fw-20 hidden-xs-down hidden-sm"></i> <a href="http://www.stepofweb.com">www.stepofweb.com</a></li>
+                            <li class="mb-10"><i class="fa fa-facebook fw-20 hidden-xs-down hidden-sm"></i> <a href="http://www.facebook.com/stepofweb">stepofweb</a></li>
+                            <li class="mb-10"><i class="fa fa-twitter fw-20 hidden-xs-down hidden-sm"></i> <a href="http://www.twitter.com/stepofweb">@stepofweb</a></li>
+                        </ul>
+                        </div>-->
+                    </script>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+<!-- /projects -->
+
+
+
+
+
+
+<!-- FOOTER -->
+<span th:replace="layout/footer1 :: footer1"></span>
+<!-- /FOOTER -->
+
+</div>
+<!-- /wrapper -->
+
+
+<!-- SCROLL TO TOP -->
+<span th:replace="layout/scrolltop :: scrolltop"></span>
+
+<!-- /SCROLL TO TOP -->
+
+<!-- PRELOADER -->
+<span th:replace="layout/preloader :: preloader"></span>
+<!-- /PRELOADER -->
+
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV + "/main",  "jquery_backstretch",DEV+"/page_otc"], function (b,c,d) {
+            d.info();
+        });
+    </script>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,127 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="member/layout">
+<body layout:fragment="content">
+<style>
+    .chosen-container {
+        border-style: solid ;
+        border-width: 2px;
+        border-color: #e5e5e5;
+        display: inline-block;
+        font-size: 13px;
+        position: relative;
+        vertical-align: middle;
+    }
+
+    .chosen-container .chosen-single{
+        border-width: 0px;
+    }
+
+    .user-auth .dz-default{
+        margin-top:90px
+    }
+
+</style>
+<div class="card card-default mdl-shadow--2dp ">
+    <div class="card-block ">
+        <h2 class="fs-25 mt-0">
+            <span>
+                <span class="fw-300">实名认证</span>
+            </span>
+        </h2>
+      <div class="container">
+          <form method="post" th:action="@{/ex/member/security/addUserAuth}"  class="sky-form  form">
+
+              <fieldset class="m-0">
+                  <span th:replace="layout/csrfToken :: csrfToken"></span>
+
+                  <span th:replace="component/area :: area"></span>
+                  <div class="form-group">
+                      <label >证件类型 *</label>
+                      <select data-placeholder="证件类型" name="userCardType" id="userCardType"  class="chosen-select" tabindex="-1" style="display: none;">
+                          <option value="0">身份证</option>
+                          <option value="1">护照</option>
+                      </select>
+                  </div>
+                  <label class="input">
+                      <label >证件姓名 *</label>
+                      <input type="text" class="form-control" id="realName" name="realName"  placeholder="请输入证件姓名">
+                      <b class="tooltip tooltip-top-right f-w">请输入证件姓名</b>
+                  </label>
+
+                  <label class="input">
+                      <label >证件号 *</label>
+                      <input type="text" class="form-control" id="userCardNumber" name="userCardNumber" placeholder="请输入证件号">
+                      <b class="tooltip tooltip-top-right f-w">请输入证件号</b>
+                  </label>
+                  <div class="row user-auth">
+                      <div class="col-md-6">
+                          <div  class="dropzone" >
+                              <input class="hide" type="text" name="userCardFront">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div  class="card-z">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row user-auth">
+                      <div class="col-md-6">
+                          <div  class="dropzone" >
+                              <input class="hide" type="text" name="userCardBack">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div  class="card-f">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="row user-auth">
+                      <div class="col-md-6">
+                          <div  class="dropzone" >
+                              <input class="hide" type="text" name="userCardAll">
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <div  class="card-sc">
+                          </div>
+                      </div>
+
+                  </div>
+
+
+
+              </fieldset>
+              <div class="row">
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-primary" disabled><i class="fa fa-check"></i> 设置</button>
+                  </div>
+              </div>
+          </form>
+
+      </div>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT FILES -->
+
+<div th:replace="component/basejs :: basejs(~{::script})">
+    <script>
+        seajs.use([DEV+"/plugins/dropzone/min/dropzone.min.css",DEV + "/main", "dropzone", "jquery_chosen", "jquery_datepicker",  DEV + "/page_user"], function (i, p, d,g,c,a) {
+            $('.chosen-select').chosen({width: "100%"});
+            a.userAuth();
+
+        });
+        var shopToken = localStorage.getItem("shopToken");
+        var url="https://shop.bttmall.com/";
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+            window.open(url);
+        }
+    </script>
+</div>
+
+</body>
+</html>

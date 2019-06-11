@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body th:fragment="left">
+<div id="userNav"></div>
+<script id="userNavTmpl" type="text/x-jsrender">
+         {{for}}
+
+            <div class="side-nav mdl-shadow--4dp left-nav-bg-color">
+            <div class="side-nav-head ">
+                <button class="fa fa-bars"></button>
+                <h4 class="mt-0"><i class="fa fa-circle-o-notch text-warning"></i>&nbsp;{{:text}}</h4>
+            </div>
+
+             <ul class="list-group list-unstyled">
+         {{for children}}
+             <li class="list-group-item mb-5 "><a href="{{:remark}}" >{{:text}}</a></li>
+        {{/for}}
+             </ul>
+</div>
+
+   {{/for}}
+
+
+</script>
+
+
+
+</body>
+</html>
+

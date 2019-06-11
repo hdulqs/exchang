@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>WithdrawAddressMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-25 15:16:42 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CoinPairUserCollectionDao">
+
+    <resultMap id="CoinPairUserCollectionResult" type="com.batsoft.model.module.exchange.CoinPairUserCollection">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="trade_coin_code" property="tradeCoinCode" jdbcType="VARCHAR"/>
+        <result column="pricing_coin_code" property="pricingCoinCode" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+    <select id="findCoinPairUserCollectionList" resultMap="CoinPairUserCollectionResult">
+        SELECT
+        id,
+        user_id,
+       trade_coin_code,
+       pricing_coin_code
+        FROM coin_pair_user_collection c
+        where   c.user_id=#{userId,jdbcType=VARCHAR}
+    </select>
+
+    <delete id="deleteByKeyId" parameterType="String">
+      DELETE FROM coin_pair_user_collection
+        <where>
+            <if test="id != null">
+                AND id = #{id,jdbcType=VARCHAR}
+            </if>
+            <if test="userId != null">
+                AND user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </delete>
+    
+    <delete id="deleteByCoinCode" parameterType="String">
+        DELETE FROM coin_pair_user_collection
+        <where>
+        	<if test="userId != null">
+                AND user_id = #{userId,jdbcType=VARCHAR}
+            </if>
+            <if test="tradeCoinCode != null">
+                AND trade_coin_code = #{tradeCoinCode,jdbcType=VARCHAR}
+            </if>
+            <if test="pricingCoinCode != null">
+                AND pricing_coin_code = #{pricingCoinCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </delete>
+
+</mapper>

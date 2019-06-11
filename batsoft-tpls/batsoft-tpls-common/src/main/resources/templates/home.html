@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+   <meta charset="UTF-8" />
+
+   <title>hello</title>
+   
+<link th:href="@{${urls.getForLookupPath('/static/style/base.css')}}" media="screen" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<img alt="test" src="http://localhost:8080/static/style/img/com_logo.png"></img>
+<P>api: <a th:href="@{/swagger-ui.html}">api ui</a></P>
+ <p><label th:text="${name}"></label></p>
+
+       <p><label th:text="#{welcome}"></label></p>
+       
+       
+       <form action="/changeLanguage" method="get">
+
+              <input name="lang" type="hidden" value="zh"  />
+
+              <button th:text="#{language.cn}"></button>
+
+       </form>
+
+      
+
+       <form action="/changeLanguage" method="get">
+
+              <input name="lang" type="hidden" value="en"/>
+
+              <button th:text="#{language.us}"></button>
+
+       </form>
+
+</body>
+
+</html>

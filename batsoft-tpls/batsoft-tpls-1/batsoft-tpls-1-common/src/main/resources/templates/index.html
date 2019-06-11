@@ -1,0 +1,945 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en">
+<head>
+    <span th:replace="layout/head :: head"></span>
+    <style type="text/css">
+
+        .marketsTable table td{cursor:default;}
+        .marketsTable td a:hover{color:#e8b342;}
+        .gold_border{border:1px solid #e8b342;}
+        .wrapper{display: none;}
+        .noticeBar ul li a:link{color:#999999;}
+        .noticeBar ul li a:visited{color:#999999;}
+        .noticeBar ul li a:hover{color:#ffffff;}
+        .tl{text-align:left;}
+        .tc{text-align:center;}
+        .tr{text-align:right;}
+        .sVol .vol{display:inline-block;padding-right:5px;}
+        .sVol_hr{display:inline-block;padding:0px 5px;}
+        .wrapMain .marketsTable tr td{cursor:pointer;}
+        .math{
+            width: 1100px;
+            height:148.8px;
+        }
+        .math table{
+            margin: 0 auto;
+        }
+        .math-conter {
+            width: 900px;
+            height: 55px;
+            margin: 0 auto;
+            line-height: 35px;
+            margin-bottom: 30px;
+        }
+        .math-conter table{
+            margin-left: 77px;
+        }
+        #test option {
+            height: 32px;
+            line-height: 32px;
+            padding: 0px 5px;
+            cursor: pointer;
+        }
+        .iuter{
+            width:340px;
+            height:38px;
+            background:rgba(243,244,248,1);
+            border-radius:2px;
+            font-size:14px;
+            font-family:PingFang-SC-Medium;
+            text-indent: 12px;
+        }
+        .iuter::-webkit-input-placeholder{
+            color:#C7CCE6;
+            font-size:14px;
+            font-family:PingFang-SC-Medium;
+            text-indent: 12px;
+
+        }
+     .imghser{
+         width: 30px;
+         height: 30px;
+         background-repeat: no-repeat;
+         background-size: cover;
+     }
+        .footerNavBar {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 1200px;
+            padding: 0 5%;
+            background: #181b2a;
+            height: 200px;
+            margin: 0 auto;
+        }
+        .intro-wrap-col {
+            text-align: center;
+            width: 33.3%;
+            float: left;
+        }
+        .footerNavBar {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 1200px;
+            padding: 0 5%;
+            background: #181b2a;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .chexe{
+            width:120px;
+            height:38px;
+            background:rgba(48,169,133,1);
+            border-radius:2px;
+            color: #C7CCE6;
+            font-size:16px;
+            font-family:PingFang-SC-Bold;
+            font-weight:bold;
+            color:rgba(255,255,255,1);
+            outline: none;
+            text-align: center;
+            border: 1px solid rgba(48,169,133,1);
+            cursor:pointer;
+
+        }
+        .marketTitle {
+            padding: 18px 0 18px 30px;
+            color: #c7cce6;
+            font-size: 15px;
+            background: #181b2a;
+        }
+        .select-money{
+            width:120px;
+            height:38px;
+            background:rgba(243,244,248,1);
+            border-radius:2px;
+            text-indent: 12px;
+            color: #262A42;
+
+        }
+        .math_money_list{
+            width: 100%;
+            height: 75px;
+            background: #181b2a;
+        }
+        ul .right-money li{
+            list-style: none;
+            margin-bottom: 8px;
+
+        }
+        .container0:nth-child(2){
+            position: absolute;left:1px;
+        }
+        .container0::nth-child(3){
+            position: absolute;left:1px;
+        }
+        ul.hotMarkets.child_data:nth-child(4){
+            position: absolute;left:1px;
+        }
+        .favoriteIco.favorited {
+            background-position:0 0px;
+        }
+        /*ul.hotMarkets li:hover .item{*/
+            /*border-top:#4e5b85 3px solid*/
+        /*}*/
+        .focusBar {
+            min-width: 1200px;
+            height: 380px;
+            position: relative;
+            background: -webkit-linear-gradient(#181B2A,#233394 ); /* Safari 5.1 - 6.0 */
+            background: -o-linear-gradient(#181B2A,#233394 ); /* Opera 11.1 - 12.0 */
+            background: -moz-linear-gradient(#181B2A,#233394 ); /* Firefox 3.6 - 15 */
+            background: linear-gradient(#181B2A,#233394 ); /* 标准的语法 */
+        }
+        .banner_new{
+            width: 100%;
+            height: 45%;
+        }
+        .banner_new_1{
+            width: 100%;
+            height: 25%;
+        }
+        .favoriteIco.favorited {
+            background-position: 5px 2px;
+        }
+        .date_auto {
+            width: 122px;
+            height: 14px;
+            position: relative;
+            left: 10px;
+            top: 9px;
+            font-size: 10px;
+            color: #4A90E2;
+            border-radius: 10px;
+            /* display: none; */
+            text-indent: -19px;
+        }
+        .date_auto_on {
+            background: linear-gradient(to right, #224494 0%, #181B2A 100%);
+        }
+        .banner_new_2{
+            width: 90%;
+            height: 24%;
+            font-family:PingFang-SC-Regular;
+            font-size: 26px;
+            line-height: 43px;
+            text-align: center;
+            color: #C7CCE6;
+            margin: 0 auto;
+        }
+        .banner_new_3{
+            width: 100%;
+            height: 25%;
+            line-height: 34px;
+            text-align: center;
+            color: #387DE0;
+            margin: 0 auto;
+            font-size: 16px;
+            font-family: PingFang-SC-Regular;
+        }
+        .banner_frist{
+            width:100%;
+            height: 30%;
+
+        }
+        .banner_frist_1{
+            width:1200px;
+            height: 100%;
+            margin: 0 auto;
+        }
+        .new_header {
+            background-color: #181b2a;
+            height: 81px;
+            width: 1200px;
+            padding: 0 5%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            margin: 0 auto;
+        }
+
+        ul.hotMarkets .tit {
+            font-size: 14px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            padding-top: 2px;
+            line-height: 28px;
+            font-weight: 700;
+            padding-left: 15px;
+            font-size: 16px;
+            color: #c7cce6;
+        }
+        .banner_frist_x{
+            width: 300px;
+            height: 130px;
+            float: left;
+        }
+        .banner_frist_x a{
+            cursor:pointer;
+        }
+        /*a{text-decoration:none;color:#589065}*/
+        /*a:visited{color:#589065}*/
+    </style>
+</head>
+
+<body >
+
+<div class="wrapper" style="display: block;min-width: 1325px;">
+    <!-- New Section -->
+    <!--<div class="coins_info">-->
+    <!--<th:block th:each="i: ${#numbers.sequence(0, 4)}">-->
+    <!--<div class="coins_info-coin green">-->
+    <!--<span class="coins_info-coin__name">BTC/CNY: ¥</span>-->
+    <!--<span class="coins_info-coin__price">42773.97</span>-->
+    <!--<span class="up_down_icon"></span>-->
+    <!--</div>-->
+    <!--</th:block>-->
+    <!--</div>-->
+    <div style="width: 100%;height: 80px;background: #181b2a">
+    <div th:fragment="nav">
+
+        <div class="new_header">
+            <div  >
+                <a href="/"><h1 class="logo">Bttmall</h1></a>
+                <ul class="navBar">
+                    <li><a href="/market" th:text="#{exchange}">
+                        交易中心<i></i></a></li>
+
+                    <!--<li th:if="${@globalService.c2cOpen()=='1'}"><a href="/c2c" th:text="#{c2c}">-->
+                    <!--C2C<i></i></a></li>-->
+                    <li><a href="javascript:void(0);" th:onclick="'javascript:goToreferral();'" th:text="#{mutner}">
+                        召集令<i></i></a> <div class="Kmarker"></div></li>
+
+                    <li><a href="/article/list/announcements" target="_blank" th:text="#{notice}">
+                        公告<i></i></a></li>
+                    <li class="shop"><a href="javascript:void(0);" th:onclick="'javascript:goToShop();'" th:text="#{shop}">
+                        商城<i></i></a>
+                        <div class="shop-icon"></div>
+                    </li>
+
+
+
+                </ul>
+            </div>
+            <div th:fragment="loginState" style="position: relative;left:5%;">
+                <div class=" cn " id="languageBt" th:fragment="lan" style="position: relative;top: 1px; width: 95px;">
+                    <span class="language colTit" th:text="#{chinese}">
+                 </span>
+                                    <span class="ico icoLanArr"></span>
+                                    <ul class="languageSwitch userItemSon">
+                                        <li class="en" ><a href="/lan/zh_CN" th:text="#{chinese}" class="creamy-white"></a> </li>
+                                        <li class="en" ><a href="/lan/en_US" th:text="#{english}" class="creamy-white"></a> </li>
+                                    </ul>
+                                </div>
+                <!-- 登录注册 -->
+                <div class="userStatus" th:if="${!@globalService.isLogin()}">
+                    <a href="/login" th:text="#{login}" >登录</a> / <a href="/register" th:text="#{register}">注册</a>
+                </div>
+                <!-- /登录注册 -->
+                <!-- 退出登录 -->
+                <div class="headerUserBar" th:if="${@globalService.isLogin()}">
+                    <ul>
+
+                        <li class="item"><span class="colTit" th:text="#{orders}">委托</span><span class="ico icoLanArr"></span>
+                            <ul class="userItemSon" style="display: none;">
+                                <li class="cn"><a href="/ex/member/account/entrust" th:text="#{open_order}">当前委托</a></li>
+                                <li class="cn"><a href="/ex/member/account/history_entrust" th:text="#{trade_history}">历史委托</a></li>
+                                <li class="cn"><a href="/ex/member/account/history_trade" th:text="#{order_history}">历史成交</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="item"><span class="colTit" th:text="#{funds}">资产</span><span class="ico icoLanArr"></span>
+                            <ul class="userItemSon" style="display: none;">
+                                <li class="cn"><a href="/ex/member/account" th:text="#{balances}">我的资产</a></li>
+                                <li class="cn"><a href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></li>
+                                <li class="cn"><a href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></li>
+                                <li class="cn"><a href="/ex/member/account/money_info" th:text="#{funwsd_history}">历史记录</a></li>
+                                <li class="cn"><a href="/ex/member/account/withdraw_history" th:text="#{wites_history}">提现记录</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="item"> <span class="colTit"  id="jhse" th:text="${@globalService.getUserName()}"></span><span class="ico icoLanArr"></span>
+                            <ul class="userItemSon" style="display: none;">
+                                <li class="cn"><a href="/ex/member/user" th:text="#{account}">用户中心</a></li>
+                                <li class="cn"><a href="/logouts" th:text="#{logout}">退出</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <!-- /退出登录 -->
+
+            </div>
+        </div>
+    </div>
+</div>
+    <input type="hidden" id="ws_url" th:value="${@globalService.webSiteHost()+'/ws'}">
+    <input type="hidden" id="wss_url" th:value="${@globalService.webSiteHost()+'/ws'}" />
+    <div class="focusBar" style="overflow: hidden;">
+        <div class="banner_new">
+            <div class="banner_new_1"></div>
+            <div class="banner_new_2" th:text="#{btc_link}" ></div>
+            <div style="color: #8489A0;font-size: 14px;text-align: center;" th:text="#{h_link}"></div>
+            <!--<div class="banner_new_3">官方公告BASIC REGULATION (ON THE COMMUNTY COMMITTEE)/官方公告BASIC REGULATION (ON THE COMMUNTY COMMITTEE)</div>-->
+        </div>
+        <div class="banner_frist">
+            <div class="banner_frist_1">
+                <div class="banner_frist_x">
+                    <a href="/BT"><div class="banner_red"></div></a>
+                </div>
+                <div class="banner_frist_x">
+                    <a href="/introduce"><div class="banner_blue"></div></a>
+                </div>
+                <div class="banner_frist_x">
+                    <a href="/SHOPPING_GUIDE"><div class="banner_green"></div></a>
+                </div>
+                <div class="banner_frist_x">
+                    <a href="javascript:void(0);" th:onclick="'javascript:goTomining();'"><div class="banner_pink"></div></a>
+                </div>
+                <!--<ul>-->
+                    <!--<a href="/BT"> <li class="banner_red"></li></a>-->
+                    <!--<a href="/introduce"><li class="banner_blue"></li></a>-->
+                    <!--<a href="/IGO"><li class="banner_green"></li></a>-->
+                    <!--<a href="javascript:void(0);" th:onclick="'javascript:goTomining();'"><li class="banner_pink"></li></a>-->
+                <!--</ul>-->
+            </div>
+        </div>
+        <div class="pagination banner-page" >
+        </div>
+    <!--轮播图-->
+        <!--<ul class="focusList" id="banner_render">-->
+            <!--&lt;!&ndash;<table>&ndash;&gt;-->
+            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td></td>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;</table>&ndash;&gt;-->
+
+        <!--</ul>-->
+
+        <script id="banner_tpl" type="text/x-jsrender">
+       <li th:style="'background-image:url('+@{${@globalService.fileHost()}}+'{{:image}});display:none'  "   >
+                <a href="{{:url}}" target="_blank" class="focusLink">{{:name}}</a>
+        </li>
+    </script>
+
+        <div class="noticeBar" >
+            <div style="width: 1200px;height:25px;margin: 0 auto;">
+                <ul id="notice_render">
+                </ul>
+            </div>
+
+            <script id="notice_tpl" type="text/x-jsrender">
+              {{if #getIndex()==0}}
+             <li class="tl"><a href="/article/{{:id}}" target="_blank">{{:title}}</a></li>
+              {{else #getIndex()==1}}
+              <li class="tc"><a href="/article/{{:id}}" target="_blank">{{:title}}</a></li>
+             {{else}}
+             <li class="tr"><a href="/article/{{:id}}" target="_blank">{{:title}}</a></li>
+              {{/if}}
+            </script>
+            <!--
+            <div class="operation">
+                <a href="javascript:void(0)" class="ico closeBt">CLOSE</a>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <!-- new mock -->
+    <div class="info-wrap" style="border-bottom: 1px solid #252a42">
+        <!--<th:block th:each="i: ${#numbers.sequence(0, 2)}">-->
+        <!--<div class="info-wrap-col">-->
+        <!--<th:block th:each="i: ${#numbers.sequence(0, 1)}">-->
+        <!--<div class="info-wrap-col-tit">流通中的总FJ</div>-->
+        <!--<div class="info-wrap-col-text">3,382,334,882.94 FJ</div>-->
+        <!--</th:block>-->
+        <!--</div>-->
+        <!--</th:block>-->
+        <!-- 交易挖矿 -->
+        <!--<div class="math" id="sex-block">-->
+            <!--<table>-->
+                <!--<tr>-->
+                    <!--<td style="border-right: 1px solid #252a42;border-left: 1px solid #252a42;position: relative;top: 3px;">-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;">-->
+                            <!--<div class="info-wrap-col-tit" th:text="#{main_page_trade_bt}"></div>-->
+                            <!--<div class="info-wrap-col-text"  id="T_borrowedBt">0 BT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <!--<td style="position: relative;top: 3px;">-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;">-->
+                            <!--<div class="info-wrap-col-tit" th:text="#{main_page_yesterday_total_trade_bt}"></div>-->
+                            <!--<div class="info-wrap-col-text" id="T_yesterdayTotalTradeAmount">0 USDT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <!--<td style="border-right: 1px solid #252a42;border-left: 1px solid #252a42;position: relative;top: 3px;">-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;">-->
+                            <!--<div class="info-wrap-col-tit" th:text="#{main_page_today_global_total_trade}"></div>-->
+                            <!--<div class="info-wrap-col-text" id="T_todayTotalTradeAmount">0 USDT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td style="border-right: 1px solid #252a42;border-left: 1px solid #252a42;">-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;">-->
+                            <!--<div class="info-wrap-col-tit" th:text="#{main_page_yesterday_product_bt}"></div>-->
+                            <!--<div class="info-wrap-col-text" id="T_yesterdayOutputBt" >0 BT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;">-->
+                            <!--<div class="info-wrap-col-tit" th:text="#{main_page_yesterday_total_trade_fee}"></div>-->
+                            <!--<div class="info-wrap-col-text" id="T_yesterdayTotalTradeFee">0 USDT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <!--<td style="border-right: 1px solid #252a42;border-left: 1px solid #252a42;">-->
+                        <!--<div class="info-wrap-col" style="border-left: none; border-right:none;" >-->
+                            <!--<div class="info-wrap-col-tit"th:text="#{main_page_today_total_trade_fee}"></div>-->
+                            <!--<div class="info-wrap-col-text" id="T_todayTotalTradeFee">0 USDT</div>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+            <!--</table>-->
+
+        <!--</div>-->
+    <!--</div>-->
+    <!-- 一键买币功能  -->
+    <div class="math_money_list" style="width: 100%;height: 1px;background: #181b2a;">
+        <!--<div class="math-conter" >-->
+            <!--<table>-->
+                <!--<tr>-->
+                    <!--<td width="187px" id="a">-->
+                        <!--<ul class="right-money">-->
+                            <!--<li style="color: #C7CCE6;font-size:16px; position: relative;top: 7px; " th:text="#{main_page_shape_trade}">闪电交易 一键买币</li>-->
+                            <!--<li style="color:#5871BF;font-size: 12px;position: relative;top: -4px;"><span th:text="#{main_page_Reference_price}"></span> <span id="red-opt"></span>CNY/USDT</li>-->
+                        <!--</ul>-->
+                    <!--</td>-->
+                    <!--<td  width="352px"><input type="text" th:placeholder="#{main_page_please_input_buy_money}" class="iuter" id="money-ener"></td>-->
+                    <!--<td  width="131px" >-->
+                        <!--<select class="select-money" id="test" onchange="getPipost()">-->
+                        <!--</select>-->
+                    <!--</td>-->
+                    <!--<td  width="200px"><input type="button" class="chexe" id="clickPurchase" th:value="#{main_page_one_buy}"></td>-->
+                <!--</tr>-->
+            <!--</table>-->
+        <!--</div>-->
+        <div>
+            <span th:text="#{main_page_own_choice}" id="main_page_own_choice" style="display: none"></span>
+            <!-- 推荐交易对  -->
+            <div class="hotMarketsBar">
+
+                <div class="wrapMain">
+                    <ul class="hotMarkets">
+                        <input type="hidden" name="pincount" id="pincount" value="5">
+                        <div id="recommend_render"></div>
+                        <script id="recommend_tpl" type="text/x-jsrender">
+                          <div style="position:relative;float:left" class="child_data">
+                            <div style="position: relative">
+                                <div id="container{{:#index}}" data="{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="width:240px;height:110px" data-highcharts-chart="2"></div>
+                                <li class="hotMarkets-row" style="height:102px;">
+                                    <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}" style="position: relative;top: 8px;">
+                                        <div class="item" style="width:216px;">
+                                            <div class="tit">{{:tradeCoinCode}}/{{:pricingCoinCode}}</div>
+                                            <p class="priceChange change_top_{{:tradeCoinCode}}_{{:pricingCoinCode}} desc">0%</p>
+                                            <div class="priceInfo">
+                                                <!--<p><span class="last_price font18 fb last_price_{{:tradeCoinCode}}_{{:pricingCoinCode}} green">0.00</span> <span><span class="price cny_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}" rate="0.00" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}">￥0.00</span></span></p>-->
+                                                <p><span class="force_white last_price font18 fb last_price_{{:tradeCoinCode}}_{{:pricingCoinCode}} green">0.00</span></p>
+                                                <p class="dealPrice"><span th:text="#{vol}">成交额</span>: <span class="volume_{{:tradeCoinCode}}_{{:pricingCoinCode}}">0.00</span> {{:tradeCoinCode}} </p>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            </div>
+                        </div>
+                </script>
+                    </ul>
+                </div>
+                <div class="cl"></div>
+            </div>
+
+            <!-- 交易区域 - 1 -->
+            <div class="wrapMain tabs index-tabs">
+                <div class="marketTitle">
+                    <span th:text="#{market.1.title.text}">主交易区</span>
+                </div>
+                <div class="marketsTop">
+                    <ul class="t_menu" id="area_render">
+                    </ul>
+                    <script id="area_tpl" type="text/x-jsrender">
+             {{if #getIndex()==0}}
+                <li class="cur" data-code="{{:coinCode}}">{{:coinName}}</li>
+                {{else}}
+                <li data-code="{{:coinCode}}">{{:coinName}}</li>
+                {{/if}}
+            </script>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="searchBox">
+                        <a href="javascript:void(0)" class="searchBt">search</a>
+                        <div class="input">
+                            <input type="text" placeholder="" class="searchInput" name="search" style="border: 1px soild #387de0" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marketsTable">
+                    <div class="t_cont"  id="godats">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr class="theader">
+                                <th width="4%"><span class="favoriteIco"></span></th>
+                                <th width="12%" th:text="#{markets}">交易对</th>
+                                <th width="21%"><span th:text="#{last_price}">最新价</span></th>
+                                <th width="14%"><span th:text="'24h '+#{change}">24h涨跌</span></th>
+                                <th width="14%" th:text="'24h '+#{high}">24h最高价</th>
+                                <th width="14%" th:text="'24h '+#{low}">24h最低价</th>
+                                <th width="14%"><span th:text="'24h '+#{vol}">24h成交量</span></th>
+                                <th width="7%" th:text="#{due}">去交易</th>
+                            </tr>
+                            <tbody id="coin_area_render">
+
+                            </tbody>
+
+                            <script id="coin_area_tpl" type="text/x-jsrender">
+                        <tr data="{{:tradeCoinCode}}/{{:pricingCoinCode}}">
+                        <td style="display:flex;">
+                            <span class="ico favoriteIco" data-collectionId={{:collectionId}} data-isCollect={{:isCollect}} data="1" data-id={{:id}} data-tradeCoinCode="{{:tradeCoinCode}}" data-pricingCoinCode="{{:pricingCoinCode}}"></span>
+                            <!--<span class="new_coin_icon {{:tradeCoinCode}}_{{:pricingCoinCode}}_img"></span>-->
+                            <span class="new_coin_icon"><img th:src="@{${@globalService.fileHost()}+'{{:tradeCoinLogo}}'}"  alt="{{:tradeCoinLogo}}" class="imghser"></span>
+                        </td>
+                        <td class=""  style ="line-height:14px;">
+                            <div style="width: 70%;height: 15px;line-height: 26px;" >
+                                <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">
+                                <span style="color:#C7CCE6;">{{:tradeCoinCode}}</span>
+                                <span style="color: #8489A0;">/ {{:pricingCoinCode}}</span>
+                                </a>
+
+                               </div>
+                                <div class="date_auto" data-value="{{:textTime}}">{{:textTime}}</div>
+
+                        </td>
+                        <td >
+                          <span data-value={{:rate}} class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}"  style="display: none">{{:rate}}</span>
+                            <!--<span class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:preLast}}</span>-->
+                            <!--{{:preLast}}-->
+                            <!--<span class="last_price last_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">-->
+                                <!--<span class="up_down_icon"></span>-->
+                                <!--<span>{{:last}}</span>-->
+                            <!--</span>-->
+                            <span>
+                                <span class="up_down_icon"></span>
+                                <span >{{:last}}</span>
+                            </span>
+                            <span style="color: #8489A0;">/￥{{:duihuan}}</span>
+                            <!--<span class="gray">/ <span class="price cny_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}" rate="3807.00" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}">￥<span>0.00</span></span></span>-->
+                        </td>
+                        <td>
+
+                            <span data-value={{:rate}} class="dayrate">{{:rate}}%</span>
+                             <!--<span class="change_rate_{{:tradeCoinCode}}_{{:pricingCoinCode}} red"></span>-->
+                             <!--{{:rate}}%-->
+                        </td>
+                        <!--<td class="high_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:high}}</td>-->
+                        <td>{{:high}}</td>
+                         <td>{{:low}}</td>
+                         <td><span>{{:volume}}</span> {{:tradeCoinCode}}</td>
+                        <!--<td class="low_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:low}}</td>-->
+                        <!--<td><span class="volume_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:volume}}</span> {{:tradeCoinCode}}</td>-->
+                        <td><a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}"><span class="jiaoyi_icon"></span></a></td>
+                    </tr>
+                    </script>
+                        </table>
+                        <div class="more-btn" style="display: none">
+                            <a href="/"><span th:text="#{more}"></span> ></a>
+                        </div>
+                        <div class="coin_k"></div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+            <!-- 交易区域 - 2-->
+            <div class="wrapMain tablist index-tabs">
+                <div class="marketTitle">
+                    <span th:text="#{market.2.title.text}">创新版交易区</span>
+                </div>
+                <div class="marketsTop"  style="background: #181b2a">
+                    <ul class="t_menus" id="area_render_2">
+                    </ul>
+                    <script id="area_tpl_2" type="text/x-jsrender">
+             {{if #getIndex()==0}}
+                <li class="curlist" data-code="{{:coinCode}}">{{:coinName}}</li>
+                {{else}}
+                <li data-code="{{:coinCode}}">{{:coinName}}</li>
+                {{/if}}
+            </script>
+                    <div class="spacer">&nbsp;</div>
+                    <div class="searchBox">
+                        <a href="javascript:void(0)" class="searchBt">search</a>
+                        <div class="input">
+                            <input type="text" placeholder="" class="searchInputE" name="searchs" >
+                        </div>
+                    </div>
+                </div>
+
+                <div class="marketsTable">
+                    <div class="t_cont" id="godat">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                            <tr class="theader">
+                                <th width="4%"><span class="favoriteIco"></span></th>
+                                <th width="12%" th:text="#{markets}">交易对</th>
+                                <th width="21%"><span th:text="#{last_price}">最新价</span> </th>
+                                <th width="14%"><span th:text="'24h '+#{change}">24h涨跌</span></th>
+                                <th width="14%" th:text="'24h '+#{high}">24h最高价</th>
+                                <th width="14%" th:text="'24h '+#{low}">24h最低价</th>
+                                <th width="14%"><span th:text="'24h '+#{vol}">24h成交量</span></th>
+                                <th width="7%" th:text="#{due}">去交易</th>
+                            </tr>
+                            <tbody id="coin_area_render_2">
+
+                            </tbody>
+
+                            <script id="coin_area_tpl_2" type="text/x-jsrender">
+                        <tr data="{{:tradeCoinCode}}/{{:pricingCoinCode}}" class="far">
+                        <td style="display:flex;">
+                            <span class="ico favoriteIco" data-collectionId={{:collectionId}} data-isCollect={{:isCollect}} data="1" data-id={{:id}} data-tradeCoinCode="{{:tradeCoinCode}}" data-pricingCoinCode="{{:pricingCoinCode}}"></span>
+                            <span class="new_coin_icon"><img th:src="@{${@globalService.fileHost()}+'{{:tradeCoinLogo}}'}"  alt="{{:tradeCoinLogo}}" class="imghser"></span>
+                        </td>
+                      <td  style ="line-height:14px;">
+                            <div style="width: 70%;height: 15px;line-height:26px;" >
+                                <a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}">
+                                <span style="color:#C7CCE6;">{{:tradeCoinCode}}</span>
+                                <span style="color: #8489A0;">/ {{:pricingCoinCode}}</span>
+                                </a>
+<!--                                <div class="coin_k"></div>-->
+                               </div>
+                                <div class="date_auto" data-value="{{:textTime}}">{{:textTime}}</div>
+
+                        </td>
+                        <!--<td>-->
+                            <!--<span class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:preLast}}</span>-->
+                            <!--&lt;!&ndash;<span class="last_price last_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">&ndash;&gt;-->
+                                <!--<span class="up_down_icon"></span>-->
+                                <!--<span>{{:last}}</span>-->
+                            <!--&lt;!&ndash;</span>&ndash;&gt;-->
+                            <!--<span style="color: #8489A0;">/￥{{:duihuan}}</span>-->
+                            <!--&lt;!&ndash;<span class="gray">/ <span class="price cny_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}" rate="3807.00" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}">￥<span>0.00</span></span></span>&ndash;&gt;-->
+                        <!--</td>-->
+                         <td>
+                         <span data-value={{:rate}} class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:rate}}</span>
+                            <!--<span class="prelastprice prelastprice_{{:tradeCoinCode}}_{{:pricingCoinCode}}" style="display: none">{{:preLast}}</span>-->
+                            <!--<span class="last_price last_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">-->
+                                <span class="up_down_icon"></span>
+                                <span >{{:last}}</span>
+                            <!--</span>-->
+                            <span style="color: #8489A0;">/￥{{:duihuan}}</span>
+                            <!--<span class="gray">/ <span class="price cny_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}" rate="3807.00" pairs="{{:tradeCoinCode}}_{{:pricingCoinCode}}">￥<span>0.00</span></span></span>-->
+                        </td>
+                        <td>
+                            <span data-value={{:rate}} class="dayrate">{{:rate}}%</span>
+                             <!--<span >{{:rate}}%</span>-->
+                             <!--<span class="change_rate_{{:tradeCoinCode}}_{{:pricingCoinCode}} red">{{:rate}}%</span>-->
+                        </td>
+                        <!--<td class="high_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:high}}</td>-->
+                        <!--<td class="low_price_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:low}}</td>-->
+                        <!--<td><span class="volume_{{:tradeCoinCode}}_{{:pricingCoinCode}}">{{:volume}}</span> {{:tradeCoinCode}}</td>-->
+                        <td >{{:high}}</td>
+                        <td >{{:low}}</td>
+                        <td><span>{{:volume}}</span> {{:tradeCoinCode}}</td>
+                        <td><a href="/market?symbol={{:tradeCoinCode}}_{{:pricingCoinCode}}"><span class="jiaoyi_icon"></span></a></td>
+                    </tr>
+                    </script>
+                        </table>
+                        <div class="more-btn" style="display: none">
+                            <a href="/"><span th:text="#{more}"></span> ></a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="hide">
+                <input type="hidden" id="exchange_rate" value="6.2921">
+                <input type="hidden" id="asset_exchange_rate" th:value="${tradeCoins}">
+                <input type="hidden" id="pairs_decimal" th:value="${digits}">
+                <!--<input type="hidden" id="exchange_rate" value="6.2921">-->
+                <!--<input type="hidden" id="asset_exchange_rate" value="{&quot;BTC&quot;:[],&quot;ETH&quot;:{&quot;GG&quot;:&quot;0.00000551&quot;,&quot;EOS&quot;:&quot;0.01813600&quot;,&quot;PETS&quot;:&quot;0.00010000&quot;,&quot;FAIR&quot;:0,&quot;PLC&quot;:0,&quot;TIO&quot;:0,&quot;AAC&quot;:0,&quot;BIGE&quot;:0,&quot;BMB&quot;:0,&quot;COT&quot;:0,&quot;CPC&quot;:0,&quot;IBC&quot;:0,&quot;MVC&quot;:0,&quot;Show&quot;:0,&quot;ZBT&quot;:0,&quot;GTO&quot;:&quot;0.00045100&quot;,&quot;CREDO&quot;:&quot;0.00002700&quot;,&quot;XIN&quot;:&quot;0.81164100&quot;,&quot;BIG&quot;:&quot;0.00270100&quot;,&quot;PRS&quot;:&quot;0.00034200&quot;,&quot;CANDY&quot;:&quot;0.00000055&quot;,&quot;MTN&quot;:&quot;0.00009400&quot;,&quot;HOT&quot;:&quot;0.00005940&quot;,&quot;CAF&quot;:&quot;0.00004706&quot;,&quot;SGCC&quot;:&quot;0.00000583&quot;,&quot;CPU&quot;:&quot;0.00000650&quot;,&quot;SSP&quot;:&quot;0.00001390&quot;,&quot;LET&quot;:&quot;0.00008106&quot;,&quot;VCA&quot;:&quot;0.00006867&quot;,&quot;KCASH&quot;:&quot;0.00021062&quot;,&quot;RED&quot;:&quot;0.00024800&quot;,&quot;MUSK&quot;:&quot;0.00003088&quot;,&quot;LZL&quot;:&quot;0.00002600&quot;,&quot;ICC&quot;:&quot;0.00000040&quot;,&quot;PRA&quot;:&quot;0.00062800&quot;,&quot;LIGHT&quot;:&quot;0.00000227&quot;,&quot;BAI&quot;:&quot;0.00000272&quot;,&quot;LGC&quot;:&quot;0.00000019&quot;,&quot;ATOC&quot;:&quot;0.00000001&quot;,&quot;SRNT&quot;:&quot;0.00004499&quot;,&quot;BCO&quot;:&quot;0.00018300&quot;,&quot;NXO&quot;:&quot;0.00038596&quot;,&quot;CSFT&quot;:&quot;0.00079900&quot;,&quot;GRAV&quot;:&quot;0.00000014&quot;,&quot;IBBF&quot;:&quot;0.00190000&quot;,&quot;VRT&quot;:&quot;0.00003933&quot;,&quot;VOTES&quot;:&quot;0.00004900&quot;,&quot;YUP&quot;:&quot;0.00000649&quot;,&quot;TOMO&quot;:&quot;0.00127404&quot;,&quot;PIAT&quot;:&quot;0.00000048&quot;,&quot;FAITH&quot;:0,&quot;NNT&quot;:&quot;0.00004829&quot;,&quot;DHT&quot;:&quot;0.00000607&quot;,&quot;MTC&quot;:&quot;0.00003381&quot;,&quot;LTCP&quot;:0,&quot;ePRX&quot;:&quot;0.00004600&quot;,&quot;EBTC&quot;:0,&quot;CS&quot;:&quot;0.00000417&quot;,&quot;OF&quot;:&quot;0.00000220&quot;,&quot;BSTN&quot;:&quot;0.00000798&quot;,&quot;SPX&quot;:&quot;0.00000100&quot;,&quot;CRE&quot;:&quot;0.00007191&quot;,&quot;LCWP&quot;:&quot;0.00000300&quot;,&quot;DSC&quot;:&quot;0.00023648&quot;,&quot;ADI&quot;:&quot;0.00005300&quot;,&quot;LTC&quot;:&quot;0.24000000&quot;},&quot;bitCNY&quot;:{&quot;BTC&quot;:&quot;56198.00000000&quot;,&quot;ETH&quot;:&quot;3807.00000000&quot;,&quot;LTC&quot;:&quot;48.00000000&quot;,&quot;EOS&quot;:0},&quot;USC&quot;:{&quot;VCA&quot;:&quot;0.06900000&quot;,&quot;SSP&quot;:&quot;0.00850000&quot;,&quot;LET&quot;:&quot;0.04980000&quot;,&quot;KCASH&quot;:&quot;0.13120000&quot;,&quot;ETH&quot;:&quot;604.50000000&quot;,&quot;PIAT&quot;:&quot;0.00090000&quot;}}">-->
+                <!--<input type="hidden" id="pairs_decimal" value="{&quot;GG_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;EOS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PETS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BTC_bitCNY&quot;:{&quot;amt_decimal&quot;:8,&quot;price_decimal&quot;:0,&quot;amount_decimal&quot;:8},&quot;ETH_bitCNY&quot;:{&quot;amt_decimal&quot;:6,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:8},&quot;LTC_bitCNY&quot;:{&quot;amt_decimal&quot;:6,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:8},&quot;FAIR_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PLC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;TIO_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;AAC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BIGE_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BMB_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;COT_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CPC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;IBC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;MVC_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;Show_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;ZBT_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;EOS_bitCNY&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;GTO_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CREDO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;XIN_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;BIG_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;PRS_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;CANDY_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MTN_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;HOT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CAF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SGCC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CPU_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SSP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LET_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VCA_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;KCASH_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VCA_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;SSP_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;LET_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;KCASH_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;ETH_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:2,&quot;amount_decimal&quot;:6},&quot;RED_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MUSK_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LZL_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ICC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PRA_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;LIGHT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BAI_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LGC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ATOC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SRNT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BCO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;NXO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CSFT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;GRAV_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;IBBF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VRT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;VOTES_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;YUP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;TOMO_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PIAT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;PIAT_USC&quot;:{&quot;amt_decimal&quot;:4,&quot;price_decimal&quot;:4,&quot;amount_decimal&quot;:8},&quot;FAITH_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;NNT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;DHT_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;MTC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LTCP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ePRX_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;EBTC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CS_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;OF_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;BSTN_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;SPX_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;CRE_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;LCWP_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;DSC_ETH&quot;:{&quot;amt_decimal&quot;:0,&quot;price_decimal&quot;:8,&quot;amount_decimal&quot;:8},&quot;ADI_ETH&quot;:{&quot;amt_decimal&quot;:2,&quot;price_decimal&quot;:6,&quot;amount_decimal&quot;:8},&quot;LTC_ETH&quot;:{&quot;amt_decimal&quot;:3,&quot;price_decimal&quot;:5,&quot;amount_decimal&quot;:8}}">-->
+            </div>
+
+            <!-- Intro section -->
+            <div class="intro-wrap">
+                <div style="width:1200px;height: auto;margin: 0 auto;">
+                    <div class="intro-wrap-col">
+                        <div class="intro-wrap-col-img img-1"></div>
+                        <div class="intro-wrap-col-tit" th:text="#{intro.1.title}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.1.text1}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.1.text2}"></div>
+                    </div>
+                    <div class="intro-wrap-col">
+                        <div class="intro-wrap-col-img img-2"></div>
+                        <div class="intro-wrap-col-tit" th:text="#{intro.2.title}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.2.text1}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.2.text2}"></div>
+                    </div>
+                    <div class="intro-wrap-col">
+                        <div class="intro-wrap-col-img img-3"></div>
+                        <div class="intro-wrap-col-tit" th:text="#{intro.3.title}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.3.text1}"></div>
+                        <div class="intro-wrap-col-text" th:text="#{intro.3.text2}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FOOTER -->
+        <div style=" background: #181b2a;height:280px;width: 100%;">
+            <div style="height: 30px;width:100%;"></div>
+
+            <div  th:fragment="footer" >
+                <div class="footerNavBar" style="height: 200px;">
+                    <div class="footer-section-logo">
+                        <div class="footer-logo-img"></div>
+                        <div style=" font-size: 12px;color: #4E5B85;height: 10px;" th:text="#{main_page_currency}"></div>
+                        <div style=" font-size: 12px;color: #4E5B85;height: 31px;width: 130px;">比特天猫官方8群</div>
+                        <div class="fotop" style="position: relative;top: -11px;width: 80px;height: 67px;">
+                            <!--<table>-->
+                                <!--<tr>-->
+                                    <!--<th class="foter1" style="width: 32px;"></th>-->
+                                    <!--<th class="foter2" style="width: 32px;"></th>-->
+                                    <!--<th class="foter3" style="width: 32px;"></th>-->
+                                    <!--<th class="foter4" style="width: 32px;"></th>-->
+                                <!--</tr>-->
+                            <!--</table>-->
+                        </div>
+                    </div>
+                    <div class="footer-section-service">
+                        <div class="footer-title" th:text="#{footer.service}">服务</div>
+                        <div class="footer-link"><a target="_blank" href="/market?symbol=BT_USDT" th:text="#{footer.center}">交易中心</a></div>
+                        <div class="footer-link"><a target="_blank" href="/ex/member/account/withdraw" th:text="#{withdraw}">提现</a></div>
+                        <div class="footer-link"><a target="_blank" href="/ex/member/account/deposit" th:text="#{deposit}">充值</a></a></div>
+                    </div>
+                    <div class="footer-section-terms">
+                        <div class="footer-title" ><a target="_blank"  th:text="#{footer.terms}" style="color: #fff;">条款说明</a></div>
+                        <div class="footer-link"><a target="_blank" href="/privacys" th:text="#{footer.privacy}">隐私政策</a></div>
+                        <div class="footer-link"><a target="_blank" href="/agreement" th:text="#{footer.user_terms}">用户协议</a></div>
+                        <div class="footer-link"><a target="_blank" href="/handlingfee" th:text="#{footer.fee}">手续费</a></div>
+                    </div>
+                    <div class="footer-section-about-us">
+                        <div class="footer-title" th:text="#{footer.about_us}">联系我们</div>
+                        <div class="footer-link" style="color:#60688d" th:text="#{footer_Cooperation}">商务合作：admin@bttmall.com</div>
+                        <div class="footer-link" style="color:#60688d" th:text="#{footer_Customer}">客户支持合作：support@bttmall.com</div>
+                    </div>
+                </div>
+                <div style="width: 100%;text-align:center;color: #60688d;height: 50px;"  >
+                    © 2017-2019 BttMall, All Rights Reserved. BttMall Technology Co.,Limited
+                </div>
+
+            </div>
+            <span th:text="#{query_next}" style="display: none" class="sther"></span>
+            <!--<div th:replace="component/basejs :: basejs(~{::script})">
+                <script>
+                    seajs.use([DEV + "/main","jquery_validate", "messages_zh","numeral","layer","laydate",  DEV + "/page_index"], function ( a, a0,a1, o, b, c, d) {
+                        d.footer();
+                    });
+                </script>
+            </div>-->
+</body>
+</html>
+
+
+<!-- /FOOTER -->
+
+<!-- JAVASCRIPT FILES -->
+<!-- Global site tag (gtag.js) - Google Ads: 754375084 --> <script async src="https://www.googletagmanager.com/gtag/js?id=AW-754375084"></script> <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'AW-754375084'); </script>
+<div th:replace="component/basejs :: basejs(~{::script})">
+
+    <script>
+        seajs.use([DEV + "/main","socketjs","stomp","numeral",DEV+"/page_index"], function (main,a,b,numeral,index) {
+            index.init();
+        });
+        var shopToken ="";
+        if($("#jhse").text().length > 0){
+            shopToken = localStorage.getItem("shopToken");
+        }else {
+            shopToken =localStorage.removeItem("shopToken");
+        }
+       var shopurls = $("#shop_urls").val();
+        var url=shopurls;
+        console.log(url)
+        if(shopToken){
+            url = url + "?token=" + shopToken;
+        }
+        function goToShop() {
+                window.open(url);
+        }
+
+
+        var shopTokens ="";
+        if($("#jhse").text().length > 0){
+            shopTokens = localStorage.getItem("shopToken");
+        }else {
+            shopTokens =localStorage.removeItem("shopToken");
+        }
+        var shopurls = $("#shop_urls").val();
+        var urls=shopurls+"/mining";
+        if(shopTokens){
+            urls = urls + "?token=" + shopTokens;
+        }
+        function goTomining() {
+            window.open(urls);
+        }
+
+        $.ajax({
+            type: "get",
+            url: " /c2c/findProducts",
+            dataType: 'json',
+            success: function (data) {
+                var datalist = data.data;
+                for(var i = 0; i < datalist.length; i++){
+                    $("#test").append("<option value='"+datalist[i].id+"' style='padding-top:10px;padding-bottom: 20px;height:80px;line-height: 80px;'>"+datalist[i].coinCode+"</option>");//新增
+                    $("#red-opt").text(datalist[i].buyPrice);
+                }
+                $("#test option:eq(0)").attr('selected', 'selected');//选中第一
+            },
+        })
+        function goToreferral() {
+            if($("#jhse").text().length > 0){
+                window.location.href = '/referral'
+            }else {
+                window.location.href = '/login'
+            }
+        }
+        $("#clickPurchase").click(function(){
+            $.ajax({
+                type: "POST",
+                url: "/c2c/purchase",
+                dataType: 'json',
+                async: true,
+                data:{"coinCode":$('#test option').val(),"mount":$("#money-ener").val()},
+                success: function (data) {
+                    window.location.href= data.data+data.msg;
+                }
+            })
+        })
+
+
+        $.ajax({
+            type:"get",
+            url:"/exchange/tradeData",
+            dataType: 'json',
+            success: function(data) {
+                if(data.success){
+                    $("#T_borrowedBt").html(data.data.borrowedBt+" BT");
+                    $("#T_yesterdayTotalTradeAmount").html(data.data.yesterdayTotalTradeAmount+" USDT");
+                    $("#T_todayTotalTradeAmount").html(data.data.todayTotalTradeAmount+" USDT");
+                    $("#T_yesterdayOutputBt").html(data.data.yesterdayOutputBt+" BT");
+                    $("#T_yesterdayTotalTradeFee").html(data.data.yesterdayTotalTradeFee+" USDT");
+                    $("#T_todayTotalTradeFee").html(data.data.todayTotalTradeFee+" USDT");
+                }
+            },
+
+        });
+    </script>
+    // 接入在线客服
+    <script type='text/javascript' src='https://webchat.7moor.com/javascripts/7moorInit.js?accessId=7f0e9120-1e0d-11e9-afa1-0b71cff3ba53&autoShow=true&language=ZHCN' async='async'>
+    </script>
+
+</div>
+
+</body>
+</html>

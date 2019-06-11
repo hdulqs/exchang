@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CustomerAccountMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:20:38 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CustomerAccountHistoryDao">
+
+    <resultMap id="baseResult" type="com.batsoft.model.module.exchange.CustomerAccountHistory">
+        <result column="id" property="id" jdbcType="VARCHAR"/>
+        <result column="coin_code" property="coinCode" jdbcType="VARCHAR"/>
+        <result column="available" property="available" jdbcType="DECIMAL"/>
+        <result column="freeze" property="freeze" jdbcType="DECIMAL"/>
+        <result column="coin_logo" property="coinLogo" jdbcType="VARCHAR"/>
+        <result column="allow_recharge" property="allowRecharge" jdbcType="INTEGER"/>
+        <result column="allow_withdraw" property="allowWithdraw" jdbcType="INTEGER"/>
+        <result column="coin_confirm" property="confirm" jdbcType="INTEGER"/>
+        <result column="coin_address" property="coinAddress" jdbcType="VARCHAR"/>
+        <result column="memo" property="memo" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="warning" property="warning" jdbcType="INTEGER"/>
+        <result column="warning_remark" property="warningRemark" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+
+    <select id="getRecordSum" resultMap="baseResult" parameterType="java.util.Map">
+       SELECT * FROM exchange_customer_account_history  WHERE user_id = #{userId,jdbcType=VARCHAR} AND coin_code = #{coinCode,jdbcType=VARCHAR} AND update_time &lt; #{time} ;
+    </select>
+
+
+    <select id="getFreezeSum" resultMap="baseResult" parameterType="java.util.Map">
+        SELECT * FROM exchange_customer_account_history  WHERE user_id = #{userId,jdbcType=VARCHAR} AND coin_code = #{coinCode,jdbcType=VARCHAR} AND update_time &lt; #{time};
+    </select>
+
+    <update id="updateDateById" parameterType="com.batsoft.model.module.exchange.CustomerAccountHistory">
+        update exchange_customer_account_history
+        <set>
+            <if test="available != null">
+                available = #{available},
+            </if>
+            <if test="freeze != null">
+                freeze = #{freeze},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="warning != null">
+                warning = #{warning},
+            </if>
+            <if test="warningRemark != null">
+                warning_remark = #{warningRemark},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+    <insert id="insertBatch" parameterType="java.util.List">
+        insert into exchange_customer_account_history(id,coin_code,user_id,user_name,update_time) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.id},#{item.coinCode},#{item.userId},#{item.userName},#{item.updateTime})
+        </foreach>
+    </insert>
+
+</mapper>

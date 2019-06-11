@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+  ~ <p>CustomerAccountRecordMapper</p>
+  ~
+  ~ Copyright (c)  http://www.batsoft.cn
+  ~ @Date:        2018-04-14 10:21:48 
+  -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.batsoft.service.module.exchange.dao.CustomerAccountRecordDao">
+
+    <resultMap id="findPageBySqlMap" type="com.batsoft.model.module.exchange.CustomerAccountRecord">
+        <id column="id" property="id" javaType="java.lang.String" />
+        <result column="create_time" property="createTime" javaType="java.util.Date" />
+        <result column="update_time" property="updateTime" javaType="java.util.Date" />
+        <result column="account_id" property="accountId" javaType="java.lang.String" />
+        <result column="customer_id" property="customerId" javaType="java.lang.String" />
+        <result column="coin_code" property="coinCode" javaType="java.lang.String" />
+        <result column="type" property="type" javaType="java.lang.String" />
+        <result column="order_id" property="orderId" javaType="java.lang.String" />
+        <result column="money" property="money" javaType="java.math.BigDecimal" />
+        <result column="user_name" property="userName" javaType="java.lang.String" />
+    </resultMap>
+
+    <!--&lt;!&ndash; 通过sql分页查询 &ndash;&gt;-->
+    <select id="findPageBySql" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+		SELECT  * FROM ${tablename}
+		<where>
+			<if test="account_id!=null">
+				AND account_id = #{account_id}
+			</if>
+			<if test="customer_id!=null">
+				AND customer_id = #{customer_id}
+			</if>
+		</where>
+		limit #{from},#{pageSize}
+	</select>
+
+	<select id="findPageBySqlTotal" parameterType="java.util.Map" resultType="java.lang.Long">
+		SELECT  COUNT(*) AS vl FROM ${tablename}
+		<where>
+			<if test="account_id != null">
+			   account_id = #{account_id}
+			</if>
+			<if test="customer_id != null">
+				AND customer_id = #{customer_id}
+			</if>
+		</where>
+	</select>
+	<!-- 通过sql分页查询 -->
+	<select id="findById" parameterType="java.util.Map" resultMap="findPageBySqlMap">
+		select * from ${tablename}
+		<where>
+			<if test="id != null">
+				 id = #{id}
+			</if>
+		</where>
+	</select>
+
+	<delete id="deleteById" parameterType="java.util.HashMap"  >
+		delete from ${tablename} where id in
+		  <foreach collection="id" item="item" open="(" separator="," close=")">
+			  #{item}
+		  </foreach>
+	</delete>
+    <!--使用货币代码和交易类型查询交易额总量-->
+    <select id="findMoneyByTypeCoinCode" parameterType="java.util.Map" resultType="java.math.BigDecimal">
+        SELECT ABS(SUM(money)) AS money FROM ${tablename}
+        <where>
+			<if test="type != null">
+				type = #{type}
+			</if>
+			<if test="coinCode != null">
+             	AND coin_code = #{coinCode}
+			</if>
+        </where>
+    </select>
+    
+    <!-- 查询流水综合查询 -->
+    <resultMap id="findPageAccountRecord" type="com.batsoft.model.module.exchange.CustomerAccountRecord">
+        <id column="id" property="id" javaType="java.lang.String" />
+        <result column="create_time" property="createTime" javaType="java.util.Date" />
+        <result column="update_time" property="updateTime" javaType="java.util.Date" />
+        <result column="account_id" property="accountId" javaType="java.lang.String" />
+        <result column="customer_id" property="customerId" javaType="java.lang.String" />
+        <result column="coin_code" property="coinCode" javaType="java.lang.String" />
+        <result column="type" property="type" javaType="java.lang.String" />
+        <result column="order_id" property="orderId" javaType="java.lang.String" />
+        <result column="money" property="money" javaType="java.math.BigDecimal" />
+        <result column="remark" property="remark" javaType="java.lang.String" />
+        <result column="trade_coin_code" property="tradeCoinCode" javaType="java.lang.String" />
+        <result column="pricing_coin_code" property="pricingCoinCode" javaType="java.lang.String" />
+    </resultMap>
+    
+    <select id="findPage" parameterType="java.util.Map" resultMap="findPageAccountRecord">
+    	SELECT * FROM ${tablename}
+    	<where>
+	    	<!-- 用户ID -->
+	    	<if test="customerId!=null">
+	    		customer_id = #{customerId}
+	    	</if>
+	    	<!-- 交易类型 -->
+	    	<if test="type!=null">
+	    		AND type = #{type}
+	    	</if>
+    	</where>
+    	ORDER BY create_time DESC limit #{from},#{pageSize}
+    </select>
+
+	<select id="findPageToalRows" parameterType="java.util.Map" resultType="java.lang.Long">
+		SELECT count(id) FROM ${tablename}
+		<where>
+			<!-- 用户ID -->
+			<if test="customerId != null">
+				 customer_id = #{customerId}
+			</if>
+
+			<!-- 交易类型 -->
+			<if test="type != null">
+				AND type = #{type}
+			</if>
+		</where>
+	</select>
+	
+	<!-- 【任务调度功能】查询每人每日USDT交易流水 -->
+	<select id="findCustomerEverydayRecord" parameterType="com.batsoft.model.module.exchange.po.FindCustomerEverydayRecordPO" resultType="com.batsoft.model.module.exchange.vo.FindCustomerEverydayRecordVO" >
+		 SELECT SUM(IF(coin_code = 'BT', ABS(money), ABS(money) / trade_coin_real_time_price)) AS 'awardAmount',
+			coin_code AS coinCode, 
+			customer_id AS customerId,
+		    trade_coin_code AS tradeCoinCode,
+		    pricing_coin_code AS pricingCoinCode
+		    FROM ${tableName}
+		<where>
+			<!-- 交易类型 -->
+			<if test="type != null">
+				 type = #{type}
+			</if>
+			
+			<!-- 开始时间 -->
+			<if test="beginTime != null">
+				AND create_time &gt;= #{beginTime}
+			</if>
+			
+			<!-- 结束时间 -->
+			<if test="endTime != null">
+				AND create_time &lt; #{endTime}
+			</if>
+			
+			<!-- 交易币代码 -->
+			<if test="tradeCoinCode != null">
+				AND trade_coin_code = #{tradeCoinCode}
+			</if>
+		</where>
+		GROUP BY customer_id, coin_code, trade_coin_code, pricing_coin_code
+	</select>
+	
+	<!-- 根据条件查询是否有记录 -->
+	<select id="findCustomerAccountRecordExist" parameterType="com.batsoft.model.module.exchange.po.FindCustomerAccountRecordExistPO" resultType="java.math.BigInteger">
+		SELECT COUNT(*) FROM ${tableName} AS emp 
+		<where>
+			<!-- 交易类型 -->
+			<if test="type != null">
+				 type = #{type}
+			</if>
+			
+			<!-- 开始时间 -->
+			<if test="beginTime != null">
+				AND create_time &gt;= #{beginTime}
+			</if>
+			
+			<!-- 结束时间 -->
+			<if test="endTime != null">
+				AND create_time &lt; #{endTime}
+			</if>
+			
+			<!-- 客户id -->
+			<if test="customerId != null">
+				AND customer_id = #{customerId}
+			</if>
+			
+			<!-- 交易金额 -->
+			<if test="money != null">
+				 AND money = #{money}
+			</if>
+			
+			<!-- 交易货币代码 -->
+			<if test="coinCode != null">
+				AND coin_code = #{coinCode}
+			</if>
+			
+		</where>
+		
+	</select>
+
+
+
+	<select id="getRecordSum" resultType="java.math.BigDecimal" parameterType="java.util.Map" >
+      select COALESCE (sum(money),0) as recordsum from ${tables}  where customer_id = #{userId,jdbcType=VARCHAR} and coin_code = #{coinCode,jdbcType=VARCHAR} ;
+    </select>
+
+</mapper>

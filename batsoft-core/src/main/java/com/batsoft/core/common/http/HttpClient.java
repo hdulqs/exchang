@@ -88,6 +88,12 @@ public class HttpClient {
                 .setConnectionRequestTimeout(connectionRequestTimeout)
                 .setSocketTimeout(socketTimeout)
                 .setStaleConnectionCheckEnabled(staleConnectionCheckEnabled);
+
+//        int timeout = 5;
+//        RequestConfig config = RequestConfig.custom()
+//                .setConnectTimeout(timeout * 1000)
+//                .setConnectionRequestTimeout(timeout * 1000)
+//                .setSocketTimeout(timeout * 1000).build();
     }
 
     /**

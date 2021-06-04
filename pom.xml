@@ -31,7 +31,7 @@
         <mybatis.spring.version>1.2.4</mybatis.spring.version>
         <mapper.version>3.3.6</mapper.version>
         <pagehelper.version>4.1.1</pagehelper.version>
-        <httpclient.version>4.4.1</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
 
         <disruptor.version>3.3.6</disruptor.version>
         <druid.version>1.0.23</druid.version>
